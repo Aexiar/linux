@@ -1124,7 +1124,7 @@ systemctl status chronyd
 
 * 验证 NTP 服务器源：
 
-```shhell
+```shell
 chronyc sources -v
 ```
 

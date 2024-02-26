@@ -6,6 +6,7 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: 'Linux基础',
       collapsed: true,
       items: [
+        { text: '计算机硬件与组成原理基础', link: `/notes/01_linux_basic/00_${commonDirectoryName}/` },
         { text: 'Linux 初识和安装', link: `/notes/01_linux_basic/01_${commonDirectoryName}/` },
         { text: 'Linux 基础和入门', link: `/notes/01_linux_basic/02_${commonDirectoryName}/` },
         { text: 'Linux 核心目录和必会命令', link: `/notes/01_linux_basic/03_${commonDirectoryName}/` },
