@@ -24,7 +24,8 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: 'Linux 正则表达式', link: `/notes/01_linux_basic/15_${commonDirectoryName}/` },
         { text: 'Linux 四剑客（二）', link: `/notes/01_linux_basic/16_${commonDirectoryName}/` },
         { text: 'Linux 定时任务', link: `/notes/01_linux_basic/17_${commonDirectoryName}/` },
-        { text: 'Linux 网络（计算机网络）', link: `/notes/01_linux_basic/18_${commonDirectoryName}/` },
+        { text: '计算机网络基础', link: `/notes/01_linux_basic/18_${commonDirectoryName}/` },
+        { text: 'Linux 网络管理', link: `/notes/01_linux_basic/19_${commonDirectoryName}/` },
       ]
     },
     {
