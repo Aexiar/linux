@@ -121,7 +121,7 @@ ll /etc/ | sort -nrk5 | head -n 5
 grep [-i][-n][-v] '字符串' [文件]...
 ```
 
-* 对应的英文`：Global Regular Expression Print`，翻译为中文就是`全局正则输出`。
+* 对应的英文：`Global Regular Expression Print`，翻译为中文就是`全局正则输出`。
 * 选项：
   * `-i`， `--ignore-case`：忽略大小写。
   * `-n`，`--line-number`：显示行号。
