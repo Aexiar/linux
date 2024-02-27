@@ -97,7 +97,7 @@ tree -L 1 /
 
 | 核心目录 | 备注                                                         |
 | -------- | ------------------------------------------------------------ |
-| `/etc/`  | 系统服务`配置文件`的目录，存放系统、服务、命令的配置。       |
+| `/etc/`  | 系统服务`配置文件`的目录，存放系统、服务、命令的配置；通常，yum 或 rpm 安装的软件的配置都在该目录中。 |
 | `/home/` | 普通用户的家目录，如：`x` 用户的家目录就是 `/home/x/`。      |
 | `/root/` | root 用户的家目录，如：`root` 用户的家目录就是 `/root/`。    |
 | `/dev/`  | dev 是 device 的缩写，是设备文件目录，如：硬盘等。           |
@@ -188,9 +188,9 @@ cd [目录]
 
 > 注意⚠️：
 >
-> * ① 如果目录省略，即 `cd` ，就是默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
-> * ② 如果目录为 `~`，即 `cd ~`，也是 默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
-> * ③ 如果目录为 `-`，即 `cd -`，是切换到上次所在位置（了解）。
+> * 如果目录省略，即 `cd` ，就是默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
+> * 如果目录为 `~`，即 `cd ~`，也是 默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
+> * 如果目录为 `-`，即 `cd -`，是切换到上次所在位置（了解）。
 
 
 
@@ -446,9 +446,11 @@ mv [-b][-f] 源文件|目录 目标文件|目标目录
   * `-f`：如果目标文件和现有文件重名，则直接覆盖。
 
 > 注意⚠️：
+>
 > * ① mv 命令类似于`剪切并粘贴`。
+>
 > * ② 如果`文件所在目录`和`目标目录`是`同一个目录`，就是`重命名`。
-> * ③ 如果目标文件或目标目录`不存在`，则 mv 命令将`创建`它。如果目标文件或目标目录`已经存在`，则 mv 命令将`覆盖`它。
+> * ③ 如果目标文件或目标目录不存在，则 mv 命令将创建它。如果目标文件或目标目录已经存在，则 mv 命令将覆盖它。
 
 
 
@@ -519,7 +521,7 @@ touch /tmp/a.txt /tmp/back/a.txt
 ```
 
 ```shell
-mv -f /tmp/a.txt /tmp/a.txt
+mv -f /tmp/a.txt /tmp/back/a.txt
 ```
 
 ![](./assets/27.gif)
@@ -537,7 +539,7 @@ touch /tmp/a.txt /tmp/back/a.txt
 ```
 
 ```shell
-mv -bf /tmp/a.txt /tmp/a.txt
+mv -bf /tmp/a.txt /tmp/back/a.txt
 ```
 
 ![](./assets/28.gif)
@@ -646,7 +648,7 @@ echo 字符串|变量 ...
 
 > 温馨提示ℹ️：
 >
-> * ① `echo` 可以和 `{}` 一起简单使用，如：`echo {1..10}` ，此时的 `{}` 被称为生成序列。
+> * ① `echo` 可以和 `{}` 一起简单使用，如：`echo {1..10}` ，此时的 `{} `被称为生成序列。
 > * ② `{}` 也可以用来和 `touch` 或 `mkdir` 一起配合使用，用来批量生成文件或目录。
 
 
@@ -850,6 +852,36 @@ echo $SHELL
 
 ![](./assets/47.gif)
 
+### 4.1.4 查看 Linux 发行版本
+
+* 命令：
+
+```shell
+cat /etc/os-release
+```
+
+* 功能：显示 Linux 发行版本信息。
+
+
+
+* 示例：
+
+```shell
+cat /etc/os-release
+```
+
+![](./assets/48.gif)
+
+
+
+* 示例：
+
+```shell
+cat /etc/*-release
+```
+
+![](./assets/49.gif)
+
 ## 4.2 Linux 环境的初步优化（⭐）
 
 * 安装 epel-release ：
@@ -859,7 +891,7 @@ dnf config-manager --set-enabled crb
 dnf -y install epel-release
 ```
 
-![](./assets/48.gif)
+![](./assets/50.gif)
 
 * 安装 Linux 常用的工具：
 
@@ -869,7 +901,7 @@ dnf -y install tree vim wget bash-completion \
     nmap telnet bc psmisc httpd-tools bind-utils nethogs expect
 ```
 
-![](./assets/49.gif)
+![](./assets/51.gif)
 
 * 安装 Linux 娱乐命令（可选）：
 
@@ -877,7 +909,7 @@ dnf -y install tree vim wget bash-completion \
 dnf -y install sl cowsay
 ```
 
-![](./assets/50.gif)
+![](./assets/52.gif)
 
 * 安装开发工具软件包组：
 
@@ -885,4 +917,4 @@ dnf -y install sl cowsay
 dnf -y groupinstall "Development Tools" 
 ```
 
-![](./assets/51.gif)
+![51](./assets/53.gif)
