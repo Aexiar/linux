@@ -99,7 +99,7 @@ systemctl disable 服务名
 > 注意⚠️：有的时候，可能会看到如下的写法
 >
 > * ① `systemctl enable --now 服务名` 和 `systemctl enable 服务名 以及 systemctl start 服务名` 是等价的。
-> * ① `systemctl disable--now 服务名` 和 `systemctl disable 服务名 以及 systemctl stop 服务名` 是等价的。
+> * ② `systemctl disable--now 服务名` 和 `systemctl disable 服务名 以及 systemctl stop 服务名` 是等价的。
 
 
 
