@@ -301,11 +301,11 @@ which java
 whereis xxx ...
 ```
 
-* 功能：查询`命令`及其`相关文件`的`所在位置`的`绝对路径`。
+* 功能：查询`命令`及其`相关帮助文件`的`所在位置`的`绝对路径`。
 
 
 
-* 示例：查询 `ssh` 命令及其`相关文件`的绝对路径
+* 示例：查询 `ssh` 命令及其`相关帮助文件`的绝对路径
 
 ```shell
 whereis ssh
@@ -315,7 +315,7 @@ whereis ssh
 
 
 
-* 示例：查询 `java` 命令及其`相关文件`的绝对路径
+* 示例：查询 `java` 命令及其`相关帮助文件`的绝对路径
 
 ```shell
 whereis java
@@ -325,7 +325,7 @@ whereis java
 
 
 
-* 示例：查询 `cd`、`head`、`tail`、`less`、`more` 命令及其`相关文件`的绝对路径
+* 示例：查询 `cd`、`head`、`tail`、`less`、`more` 命令及其`相关帮助文件`的绝对路径
 
 ```shell
 whereis cd head tail less more

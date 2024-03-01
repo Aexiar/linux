@@ -919,7 +919,7 @@ dnf -y groupinstall "Development Tools"
 
 ![51](./assets/53.gif)
 
-## 4.3 内部命令和外部命令（了解）
+## 4.3 内部命令和外部命令
 
 * Linux 中的`内部命令`（**Built-in Commands**）：
   * 内部命令是直接内置在 Shell 解析器（如：Bash、Zsh 等）中的命令，它们不是独立的可执行文件。
@@ -974,4 +974,235 @@ hash
 ![image-20240229205135310](./assets/59.png)
 
 > 注意⚠️：如果有的时候，移动了 Linux 外部命令的位置，可以使用 `hash -r` 清除 hash 表记录，以防止 Linux 报错：`xxx 命令找不到`。 
+
+## 4.4 Linux 命令帮助手册
+
+### 4.4.1 概述
+
+* 对于 Linux 的内部命令，我们可以通过如下的命令，来查看命令的使用方法：
+
+```shell
+man command
+```
+
+```shell
+# 通常用来查看常用的选项和参数
+help command
+```
+
+* 对于 Linux 的外部命令，我们可以通过如下的命令，来查看命令的使用方法：
+
+```shell
+man command
+```
+
+```shell
+# 通常用来查看常用的选项和参数
+command --help
+```
+
+```shell
+# 通常用来查看常用的选项和参数，并不是所有的命令都有 -h 选项
+command -h
+```
+
+> 注意⚠️：
+>
+> * ① man 命令来查看帮助，其实是查看指定命令的帮助手册，在 `/usr/share/man` 下。
+> * ② 可以通过 `whereis 命令`或 `whatis 命令`查看其对应命令的帮助手册的位置。
+> * ③ 实际工作中，并不会严格区分 Linux 内部命令或 Linux 外部命令，如果查询 Linux 内部命令的方法不行，就根据提示换为查看 Linux 外部命令的方法。
+
+
+
+
+
+* 示例：查看 Linux 内部命令的使用方法
+
+```shell
+man cd
+```
+
+![](./assets/60.gif)
+
+
+
+* 示例：查看 Linux 内部命令的使用方法
+
+```shell
+help cd
+```
+
+![](./assets/61.gif)
+
+
+
+* 示例：查看 Linux 外部命令的使用方法
+
+```shell
+man cat
+```
+
+![](./assets/62.gif)
+
+
+
+* 示例：查看 Linux 外部命令的使用方法
+
+```shell
+cat --help
+```
+
+![](./assets/63.gif)
+
+
+
+* 示例：查看 Linux 外部命令的使用方法
+
+```shell
+cat -h
+```
+
+![](./assets/64.gif)
+
+### 4.4.2 查看 Linux 命令位置及其帮助手册位置
+
+* 可以通过如下的命令，查看 Linux 命令的位置及其帮助手册的位置：
+
+```shell
+whereis command
+```
+
+```shell
+whatis command
+```
+
+
+
+* 示例：
+
+```shell
+whereis cd
+```
+
+![image-20240301103547326](./assets/65.png)
+
+
+
+* 示例：
+
+```shell
+whatis passwd
+```
+
+![image-20240301103707221](./assets/66.png)
+
+### 4.4.3 Linux 帮助手册详解
+
+* 我们可以通过如下的命令，来查看 Linux 的帮助手册：
+
+```shell
+ll /usr/share/man
+```
+
+![image-20240301103827094](./assets/67.png)
+
+* 内容如下，只显示有用的信息，即：
+
+```shell {1,4,7,13,17,19,21,23}
+drwxr-xr-x. 2 root root  77824  3月  1 09:35 man1 # 1 章节，用户命令
+drwxr-xr-x. 2 root root   8192  2月 29 13:36 man1p
+drwxr-xr-x. 2 root root      6  3月 25  2022 man1x
+drwxr-xr-x. 2 root root  16384  2月 29 13:36 man2 # 2 章节，系统调用
+drwxr-xr-x. 2 root root     31  2月 29 13:36 man2type
+drwxr-xr-x. 2 root root      6  3月 25  2022 man2x
+drwxr-xr-x. 2 root root 372736  2月 29 14:21 man3 # 3 章节， C 库调用
+drwxr-xr-x. 2 root root   4096  2月 29 13:36 man3const
+drwxr-xr-x. 2 root root     58  2月 29 13:36 man3head
+drwxr-xr-x. 2 root root  32768  2月 29 13:36 man3p
+drwxr-xr-x. 2 root root   4096  2月 29 13:36 man3type
+drwxr-xr-x. 2 root root      6  3月 25  2022 man3x
+drwxr-xr-x. 2 root root   4096  2月 29 13:36 man4 # 4 章节， 设备文件和特殊文件
+drwxr-xr-x. 2 root root      6  3月 25  2022 man4x
+drwxr-xr-x. 2 root root  16384  3月  1 09:35 man5 # 5 章节， 配置文件格式
+drwxr-xr-x. 2 root root      6  3月 25  2022 man5x
+drwxr-xr-x. 2 root root     24  2月 29 13:36 man6 # 6 章节， 游戏
+drwxr-xr-x. 2 root root      6  3月 25  2022 man6x
+drwxr-xr-x. 2 root root  16384  2月 29 14:19 man7 # 7 章节， 杂项
+drwxr-xr-x. 2 root root      6  3月 25  2022 man7x
+drwxr-xr-x. 2 root root  40960  3月  1 09:35 man8 # 8 章节， 管理类的命令
+drwxr-xr-x. 2 root root      6  3月 25  2022 man8x
+drwxr-xr-x. 2 root root      6  3月 25  2022 man9 # 9 章节， Linux 内核 API
+drwxr-xr-x. 2 root root      6  3月 25  2022 man9x
+```
+
+> 注意⚠️：
+>
+> * ① 手册中含有 p 的一般都是程序员专用的，因为 p 是 programmer 的缩写。
+> * ② 在实际工作中，对于含有 p 的手册，我们一般不关心！！！
+
+* 我们知道，`passwd` 命令对应的配置文件是 `/etc/passwd`：
+
+```shell 
+whereis passwd
+```
+
+![image-20240301104246331](./assets/68.png)
+
+* 通过，如下的命令去查看 `/etc/passwd` 文件的内容：
+
+```shell
+cat /etc/passwd
+```
+
+![image-20240301104344443](./assets/69.png)
+
+> 疑惑😖：该配置文件中的每一列的含义是什么？
+
+* 我们可以去看下，man 命令如何使用：
+
+```shell
+man --help
+```
+
+![image-20240301104621166](./assets/70.png)
+
+* 我们可以通过 `whereis` 或 `whatis` 去，查看该命令对应的配置文件是那个章节的帮助手册：
+
+```shell
+whereis passwd
+```
+
+```shell
+whatis passwd
+```
+
+![image-20240301104833989](./assets/71.png)
+
+* 此时，我们就可以通过 `man` 命令，来查看 `passwd` 命令对应配置文件 `/etc/passwd` 中每一列的含义：
+
+```shell
+man 5 passwd
+```
+
+![](./assets/72.gif)
+
+* 如果不写帮助手册的章节，默认就是查看命令的使用方法：
+
+```shell
+man passwd # 等价于 man 1 passwd 
+```
+
+![](./assets/73.gif)
+
+* 其实，在使用 man 查看命令的时候，会显示帮助手册的章节：
+
+```shell
+man passwd
+```
+
+```shell
+man 5 passwd
+```
+
+![](./assets/74.gif)
 
