@@ -1115,23 +1115,23 @@ drwxr-xr-x. 2 root root      6  3月 25  2022 man1x
 drwxr-xr-x. 2 root root  16384  2月 29 13:36 man2 # 2 章节，系统调用
 drwxr-xr-x. 2 root root     31  2月 29 13:36 man2type
 drwxr-xr-x. 2 root root      6  3月 25  2022 man2x
-drwxr-xr-x. 2 root root 372736  2月 29 14:21 man3 # 3 章节， C 库调用
+drwxr-xr-x. 2 root root 372736  2月 29 14:21 man3 # 3 章节，C 库调用
 drwxr-xr-x. 2 root root   4096  2月 29 13:36 man3const
 drwxr-xr-x. 2 root root     58  2月 29 13:36 man3head
 drwxr-xr-x. 2 root root  32768  2月 29 13:36 man3p
 drwxr-xr-x. 2 root root   4096  2月 29 13:36 man3type
 drwxr-xr-x. 2 root root      6  3月 25  2022 man3x
-drwxr-xr-x. 2 root root   4096  2月 29 13:36 man4 # 4 章节， 设备文件和特殊文件
+drwxr-xr-x. 2 root root   4096  2月 29 13:36 man4 # 4 章节，设备文件和特殊文件
 drwxr-xr-x. 2 root root      6  3月 25  2022 man4x
-drwxr-xr-x. 2 root root  16384  3月  1 09:35 man5 # 5 章节， 配置文件格式
+drwxr-xr-x. 2 root root  16384  3月  1 09:35 man5 # 5 章节，配置文件格式
 drwxr-xr-x. 2 root root      6  3月 25  2022 man5x
-drwxr-xr-x. 2 root root     24  2月 29 13:36 man6 # 6 章节， 游戏
+drwxr-xr-x. 2 root root     24  2月 29 13:36 man6 # 6 章节，游戏
 drwxr-xr-x. 2 root root      6  3月 25  2022 man6x
-drwxr-xr-x. 2 root root  16384  2月 29 14:19 man7 # 7 章节， 杂项
+drwxr-xr-x. 2 root root  16384  2月 29 14:19 man7 # 7 章节，杂项
 drwxr-xr-x. 2 root root      6  3月 25  2022 man7x
-drwxr-xr-x. 2 root root  40960  3月  1 09:35 man8 # 8 章节， 管理类的命令
+drwxr-xr-x. 2 root root  40960  3月  1 09:35 man8 # 8 章节，管理类的命令
 drwxr-xr-x. 2 root root      6  3月 25  2022 man8x
-drwxr-xr-x. 2 root root      6  3月 25  2022 man9 # 9 章节， Linux 内核 API
+drwxr-xr-x. 2 root root      6  3月 25  2022 man9 # 9 章节，Linux 内核 API
 drwxr-xr-x. 2 root root      6  3月 25  2022 man9x
 ```
 
