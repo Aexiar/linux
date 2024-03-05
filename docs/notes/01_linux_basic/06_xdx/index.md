@@ -420,12 +420,12 @@ df -h
 
 * 但是，Linux 中的`扩展名`仅仅用于展示而已，可以随意修改；但是，`推荐加上扩展名`，以便`见名识意`，如：
 
-| 常用扩展名                | 备注               |
-| ------------------------- | ------------------ |
-| `.txt`                    | 普通文本文件       |
-| `.sh` 或 `.bash`          | Shell 脚本文件爱你 |
-| `.conf` 、`.cfg` 、`.ini` | 配置文件           |
-| ...                       |                    |
+| 常用扩展名                | 备注           |
+| ------------------------- | -------------- |
+| `.txt`                    | 普通文本文件   |
+| `.sh` 或 `.bash`          | Shell 脚本文件 |
+| `.conf` 、`.cfg` 、`.ini` | 配置文件       |
+| ...                       |                |
 
 ## 3.2 Linux 中的文件类型（⭐）
 
@@ -811,7 +811,124 @@ unzip demo.zip -d /tmp
 
 
 
+# 第六章：补充
 
+## 6.1 块设备和字符设备
+
+* 在 Linux 系统中，设备可以分为两大类：`块设备`（block devices）和`字符设备`（character devices）。
+
+  * 块设备（Block Devices）：
+
+    - 数据传输：`块设备`以固定大小的`数据块（block）`为单位进行数据的读写操作。这些数据块的大小通常是 `4KB`。当进行`读写`操作时，系统会将数据`按照块`的大小进行`分块`处理。
+
+    - 用途：块设备通常用于`存储数据`，如：硬盘驱动器（HDD）、固态硬盘（SSD）、USB 闪存驱动器等。它们支持随机访问，即可以直接跳转到任意位置进行读写。
+
+    - 特点：块设备`支持`文件系统，可以进行格式化、分区等操作。它们通常有较好的性能，因为它们可以缓存数据，提高数据传输效率。
+  
+  * 字符设备（Character Devices）：
+  
+    - 数据传输：`字符设备`以`字符`为单位进行数据的读写操作。它们不会将数据分块，而是以`连续的字符流`的形式进行传输。
+  
+    - 用途：字符设备通常用于`输入输出设备`，如：键盘、鼠标、显示器、串口等。它们不支持随机访问，数据通常按照顺序进行处理。
+  
+    - 特点：字符设备`不支持`文件系统，它们通常用于处理流式数据，如文本和二进制数据。性能相对较低，因为它们不能像块设备那样进行数据缓存。
+  
+
+> 温馨提示ℹ️：
+>
+> * 在 Linux 系统中，设备文件通常位于`/dev`目录下，块设备文件以`b`开头（如：`/dev/sda`），字符设备文件以`c`开头（如：`/dev/tty`）。
+> * `块设备`以`数据块`的形式进行读写，适合存储数据，支持文件系统，性能较高。
+> * `字符设备`以`字符流`的形式进行读写，适合处理输入输出设备，不支持文件系统，性能相对较低。
+
+* 有的时候，我们通过 `ll` 命令查询到文件的实际内容大小，如：
+
+```shell
+ll -lah /etc/issue
+```
+
+![image-20240305081717361](./assets/51.png)
+
+* 但是，通过 `du` 命令查询到文件占用磁盘的大小，会发现文件占用磁盘的大小远远大于实际内容大小，如：
+
+```shell
+du -sh /etc/issue
+```
+
+![image-20240305082023621](./assets/52.png)
+
+## 6.2 将语言切换为英文
+
+* 安装语言包：
+
+```shell
+dnf -y install glibc-langpack-en
+```
+
+![](./assets/53.gif)
+
+> 注意⚠️：
+>
+> * ① 可以使用 `lcoale -a | grep xxx` 查看本地是否安装有指定的 locale 。
+> * ② 可以使用 `dnf search locale xxx` 查看指定的 locale 软件包。
+
+* 查看当前系统的所有 locale ：
+
+```shell
+localectl list-locales
+```
+
+![](./assets/54.gif)
+
+* 查看当前系统默认的 locale ：
+
+```shell
+locale
+```
+
+![](./assets/55.gif)
+
+* 内容如下：
+
+```shell
+LANG=zh_CN.UTF-8 # 语言，其中 zh_CN.UTF-8 表示 语言_地区.字符集编码
+LC_CTYPE="zh_CN.UTF-8"  # 语言符号及其分类
+LC_NUMERIC="zh_CN.UTF-8" # 数字
+LC_TIME="zh_CN.UTF-8" # 时间显示格式
+LC_COLLATE="zh_CN.UTF-8" # 比较和排序习惯
+LC_MONETARY="zh_CN.UTF-8" # 货币单位
+LC_MESSAGES="zh_CN.UTF-8" # 信息，主要是提示信息、错误信息、菜单等
+LC_PAPER="zh_CN.UTF-8" # 默认纸张的尺寸大小
+LC_NAME="zh_CN.UTF-8" # 姓名
+LC_ADDRESS="zh_CN.UTF-8" # 地址
+LC_TELEPHONE="zh_CN.UTF-8" # 电话号码
+LC_MEASUREMENT="zh_CN.UTF-8" # 度量衡表达方式
+LC_IDENTIFICATION="zh_CN.UTF-8" # 对 locale 自身包含信息的概述
+LC_ALL=
+```
+
+* 修改 locale 为英文：
+
+```shell
+localectl set-locale LANG=en_US.UTF-8
+```
+
+![](./assets/56.gif)
+
+* 手动加载配置文件：
+
+```shell
+source /etc/locale.conf
+```
+
+![](./assets/57.gif)
+
+* 验证是否生效：
+
+```shell
+locale
+```
+
+![](./assets/58.gif)
 
 
 
