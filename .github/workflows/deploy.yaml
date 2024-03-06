@@ -8,8 +8,6 @@ on:
     branches:
       - master # 仅在 push master 分支时触发
       - main # 仅在 push main 分支时触发
-    paths:
-      - 'docs/**'
 
 jobs:
   build: # 构建工作
