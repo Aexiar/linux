@@ -10,6 +10,11 @@ on:
     paths:
       - 'docs/**'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build: # 构建工作
     runs-on: ubuntu-latest # 构建环境
@@ -23,14 +28,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - name: "可以简化 GitHub Pages 的部署流程" 
+      - name: "简化 GitHub Pages 的部署流程" 
         uses: actions/configure-pages@v4    
       - name: "安装依赖"
         run: npm install
       - name: "打包"
         run: npm run docs:build
       - name: "上传制品"
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: docs/.vitepress/dist
   deploy: # 部署工作
