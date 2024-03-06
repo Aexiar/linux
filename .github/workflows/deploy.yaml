@@ -9,17 +9,6 @@ on:
       - main # 仅在 push main 分支时触发
     paths:
       - 'docs/**'
-# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
-# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
-# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build: # 构建工作
@@ -35,7 +24,9 @@ jobs:
           node-version: 20
           cache: npm
       - name: "简化 GitHub Pages 的部署" 
-        uses: actions/configure-pages@v4    
+        uses: actions/configure-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: "安装依赖"
         run: npm install
       - name: "打包"
@@ -48,9 +39,11 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+        pages: write      
+        id-token: write  
     needs: build # 依赖构建工作
     runs-on: ubuntu-latest # 构建环境
-    name: Deploy
     steps:
       - name: "部署"
         id: deployment

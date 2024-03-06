@@ -717,7 +717,7 @@ tar -xvf etc.tar.gz -C /tmp
 
 ![](./assets/44.gif)
 
-## 5.3 gzip
+## 5.3 gzip（了解）
 
 ### 5.3.1 概述
 
