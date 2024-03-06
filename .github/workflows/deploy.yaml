@@ -42,8 +42,10 @@ jobs:
         with:
           name: vitepress-artifact
           path: ./
-      - name: '查看文件'
-        run: ls -lah .    
+      - name: '解压压缩文件'
+        run: |
+          tar -xvf artifact.tar 
+          ls -lah .    
       - name: "部署"
         uses: peaceiris/actions-gh-pages@v3
         with:
