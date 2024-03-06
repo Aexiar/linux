@@ -44,13 +44,14 @@ jobs:
           path: ./
       - name: '解压压缩文件'
         run: |
-          tar -xvf artifact.tar 
-          ls -lah .    
+          mkdir docs
+          tar -xvf artifact.tar -C docs/
+          ls -lah ./docs    
       - name: "部署"
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./docs 
         
      
 
