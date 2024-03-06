@@ -9,11 +9,17 @@ on:
       - main # 仅在 push main 分支时触发
     paths:
       - 'docs/**'
-
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
+
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build: # 构建工作
@@ -24,11 +30,11 @@ jobs:
         with:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - name: "设置node.js的版本"
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-      - name: "简化 GitHub Pages 的部署流程" 
+      - name: "简化 GitHub Pages 的部署" 
         uses: actions/configure-pages@v4    
       - name: "安装依赖"
         run: npm install
@@ -48,5 +54,5 @@ jobs:
     steps:
       - name: "部署"
         id: deployment
-        uses: actions/deploy-pages@v2         
+        uses: actions/deploy-pages@v4        
 
