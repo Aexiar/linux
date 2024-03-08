@@ -1,105 +1,4 @@
-# 第一章：管道（⭐）
-
-## 1.1 扫清概念
-
-* 在 Linux 中，`标准输入`（stdin）、`标准输出`（stdout）和`标准错误`（stderr）都可以通过`文件描述符`来表示，它们分别对应文件描述符的 `0` 、 `1` 和 `2` 。
-* 以下是一个简单的图例，用来展示这些`标准输入`、`标准输出`和`标准错误`在`进程`中的流向，即：
-
-![image-20240207081941447](./assets/1.png)
-
-* 下面是对于`标准输入`、`标准输出`以及`标准错误`的`详细解释`：
-  * 标准输入（stdin）：
-    * `文件描述符`是 `0` 。
-    * 默认情况下，标准输入关联到终端（键盘）。
-    * 进程可以通过`标准输入`接收到数据，如：用户在命令行中输入的文本或者通过管道传递的数据。
-  * 标准输出（stdout）：
-    * `文件描述符`是 `1` 。
-    * 默认情况下，标准输出关联到终端（屏幕）。
-    * 进程可以通过`标准输出`发送数据，这些数据通常会显示在用户的屏幕上，也可以通过管道传递给其它的进程。
-  * 标准错误（stderr）：
-    * `文件描述`是 `2` 。
-    * 默认情况下，标准错误也是关联到终端（屏幕）；但是，其通常用于输出错误信息，而不是程序的正常输出。
-    * 错误信息通常用于调试和通知用户程序运行时遇到的问题。
-
-> 注意⚠️：
->
-> * ① 在 Linux 命令中，我们可以使用`重定向`操作符，如：`<`、`>`、`|` 等改变上述标准流的默认行为。
->   * 我们可以将`标准输入`重定向到`文件`（默认是终端（键盘））。
->   * 我们可以将`标准输出`重定向到`文件`（默认是终端（屏幕））。
->   * 我们可以将`标准错误`重定向到`文件`（默认是终端（屏幕））。
->   * ……
-> * ② 上述这些操作对于`自动化脚本`和`复杂的数据处理任务`非常有用且高效。
-
-## 1.2 概念
-
-* 其实，之前我们就使用过`管道`（使用 `|` 表示）；但是，一直没有怎么解释，如：
-
-```shell
-ll /etc | sort -nrk5 | head -n 5
-```
-
-* 在 Linux 中，`管道`是一个非常强大的概念，用于将`一个命令的标准输出`作为`另一个命令的标准输入`，通过管道的机制，我们可以将简单的命令结合起来，创建复杂的数据处理流程。
-* `管道`的`定义`如下：
-
-```shell
-命令1 | 命令2 ...
-```
-
-* 可以使用如下的图示来解释管道，即：
-
-![image-20240207120147765](./assets/2.png)
-
-* 我们复习下，Linux 命令的格式：
-
-```
-命令（command） [选项](option) [参数](arguments/parameter)
-```
-
-* 其命令格式说明：
-
-| 类别 | 说明                                       | 备注                                        |
-| :--- | :----------------------------------------- | :------------------------------------------ |
-| 命令 | Linux 中通过`命令`控制整个操作系统。       | 通常而言，命令是单词或单词缩写。            |
-| 选项 | 就是`功能`，不同的`选项`对应不同的`功能`。 | 通常而言，选项会使用加上 `-` 或 `--` 前缀。 |
-| 参数 | 命令处理的`目标`                           |                                             |
-
-> 注意⚠️：并不是所有的命令`都遵循`上述的格式，有些命令就只有命令，而没有选项或参数，如：`pwd` 等。
-
-* 我们之前，是这么使用 [sort](https://aexiar.github.io/linux/notes/01_linux_basic/05_xdx/#_5-2-sort) 命令的，即：
-
-```shell
-sort -nr /tmp/a.txt
-```
-
-* 没什么问题，因为 sort 命令的格式是这样的，即：
-
-```shell
-sort [-n][-r][-k][-t] [文件] ...
-```
-
-> 注意⚠️：如果没有指定文件，则从标准输入中读取。
-
-* 需要`注意`⚠️的是，默认情况下，管道符（`|`） 将`上一个命令`的`输出`作为`字符串`传递给`下一个命令`，即：
-
-![image-20240207120418244](./assets/3.png)
-
-## 1.3 案例
-
-* 需求： `ll /etc` 取出最大的前 5 个。
-
-
-
-* 示例：
-
-```shell
-ll /etc/ | sort -nrk5 | head -n 5
-```
-
-![](./assets/4.gif)
-
-
-
-# 第二章：Linux 四剑客（⭐）
+# 第一章：Linux 四剑客（⭐）
 
 ## 1.1 概述
 
@@ -131,7 +30,7 @@ grep [-i][-n][-v] '字符串' [文件]...
 
 * `过滤`类似于`淘米`，通过`淘米筛`将一些`小的颗粒`以及`杂质`等`过滤`掉，只剩下`米`：
 
-![image-20240206163639911](./assets/5.png)
+![image-20240206163639911](./assets/1.png)
 
 ### 1.2.2 案例（基本使用） 
 
@@ -141,7 +40,7 @@ grep [-i][-n][-v] '字符串' [文件]...
 grep 'root' /etc/passwd
 ```
 
-![](./assets/6.gif)
+![](./assets/2.gif)
 
 
 
@@ -151,7 +50,7 @@ grep 'root' /etc/passwd
 ps -ef | grep chronyd
 ```
 
-![](./assets/7.gif)
+![](./assets/3.gif)
 
 
 
@@ -161,7 +60,7 @@ ps -ef | grep chronyd
 grep 'Failed password' /var/log/secure
 ```
 
-![](./assets/8.gif)
+![](./assets/4.gif)
 
 
 
@@ -171,7 +70,7 @@ grep 'Failed password' /var/log/secure
 grep 'Failed password' /var/log/secure | wc -l
 ```
 
-![](./assets/9.gif)
+![](./assets/5.gif)
 
 ### 1.2.3 案例（显示行号）
 
@@ -181,7 +80,7 @@ grep 'Failed password' /var/log/secure | wc -l
 grep -n 'root' /etc/passwd
 ```
 
-![](./assets/10.gif)
+![](./assets/6.gif)
 
 
 
@@ -191,7 +90,7 @@ grep -n 'root' /etc/passwd
 grep -n 'Failed password' /var/log/secure
 ```
 
-![](./assets/11.gif)
+![](./assets/7.gif)
 
 ### 1.2.4 案例（不区分大小写）
 
@@ -205,7 +104,7 @@ grep -n 'Failed password' /var/log/secure
 grep -i 'failed passwod' /var/log/secure
 ```
 
-![](./assets/12.gif)
+![](./assets/8.gif)
 
 ### 1.2.5 案例（排除）
 
@@ -219,7 +118,7 @@ grep -i 'failed passwod' /var/log/secure
 ps -ef | grep -i chronyd | grep -v grep
 ```
 
-![](./assets/13.gif)
+![](./assets/9.gif)
 
 ## 1.3 find 命令
 
@@ -251,7 +150,7 @@ find [path...] [-type xxx][-name xxx][-size xxx][-mtime xxx]
 find / -type f -name 'hostname'
 ```
 
-![](./assets/14.gif)
+![](./assets/10.gif)
 
 
 
@@ -262,7 +161,7 @@ find / -type f -name 'hostname'
 find / -type f -name 'ls'
 ```
 
-![](./assets/15.gif)
+![](./assets/11.gif)
 
 
 
@@ -272,7 +171,7 @@ find / -type f -name 'ls'
 find /etc -type f -name 'hostname'
 ```
 
-![](./assets/16.gif)
+![](./assets/12.gif)
 
 
 
@@ -283,7 +182,7 @@ find /etc -type f -name 'hostname'
 find /etc -type f -name '*.conf'
 ```
 
-![](./assets/17.gif)
+![](./assets/13.gif)
 
 ### 1.3.3 案例（根据文件大小查找）
 
@@ -294,7 +193,7 @@ find /etc -type f -name '*.conf'
 find /etc /tmp	-type f -size 10k
 ```
 
-![](./assets/18.gif)
+![](./assets/14.gif)
 
 
 
@@ -305,7 +204,7 @@ find /etc /tmp	-type f -size 10k
 find /etc /tmp	-type f -size +100k
 ```
 
-![](./assets/19.gif)
+![](./assets/15.gif)
 
 
 
@@ -316,13 +215,13 @@ find /etc /tmp	-type f -size +100k
 find /etc /tmp	-type f -size -1k
 ```
 
-![](./assets/20.gif)
+![](./assets/16.gif)
 
 ### 1.3.4 案例（根据修改时间查找）
 
 * 时间是一维的，和 size 不一样，是去`过去的时间`中查找，如下所示：
 
-![image-20240207162503418](./assets/21.png)
+![image-20240207162503418](./assets/17.png)
 
 
 
@@ -332,7 +231,7 @@ find /etc /tmp	-type f -size -1k
 find /etc -type f -mtime -5
 ```
 
-![](./assets/22.gif)
+![](./assets/18.gif)
 
 
 
@@ -342,7 +241,7 @@ find /etc -type f -mtime -5
 find /etc -type f -mtime +1000 -name '*.conf'
 ```
 
-![](./assets/23.gif)
+![](./assets/19.gif)
 
 ### 1.3.5 案例（综合案例）
 
@@ -352,7 +251,7 @@ find /etc -type f -mtime +1000 -name '*.conf'
 find /etc -type f -size +10k -mtime +7 -name '*.conf'
 ```
 
-![](./assets/24.gif)
+![](./assets/20.gif)
 
 ### 1.3.6 案例（进阶案例，了解）
 
@@ -363,7 +262,7 @@ find /etc -type f -size +10k -mtime +7 -name '*.conf'
 find / -maxdepth 2  -type f -size +2k -mtime +15 -name '*.conf'
 ```
 
-![](./assets/25.gif)
+![](./assets/21.gif)
 
 
 
@@ -374,13 +273,13 @@ find / -maxdepth 2  -type f -size +2k -mtime +15 -name '*.conf'
 find /etc -type f -size +10k -mtime +7 -iname '*.conf'
 ```
 
-![](./assets/26.gif)
+![](./assets/22.gif)
 
 
 
-# 第三章：find 命令高级用法（⭐，难点）
+# 第二章：find 命令高级用法（⭐，难点）
 
-## 3.1 概述
+## 2.1 概述
 
 * find 命令可以和其它的命令配合使用，以便处理复杂的任务，如：
   * ① find + 简单命令（ls、head、less 、grep 等）：查看某些文件的详细信息、显示文件的内容、过滤等。
@@ -396,11 +295,11 @@ mkdir -pv /tmp/find
 touch /tmp/find/linux{01..10}.txt
 ```
 
-![](./assets/27.gif)
+![](./assets/23.gif)
 
-## 3.2 find + 简单命令
+## 2.2 find + 简单命令
 
-### 3.2.1 概述
+### 2.2.1 概述
 
 * 需求：通过 find 查询 /tmp/find 目录下以 `.txt` 结尾的文件的详细信息。
 
@@ -422,9 +321,9 @@ ls -lah `find /tmp/find -type f -name '*.txt'`
 ls -lah $(find /tmp/find -type f -name '*.txt')
 ```
 
-![](./assets/28.gif)
+![](./assets/24.gif)
 
-### 3.2.2 引出 xargs 
+### 2.2.2 引出 xargs 
 
 * 如果上述的需求，我们使用管道符 `|` 来完成，如下所示：
 
@@ -432,7 +331,7 @@ ls -lah $(find /tmp/find -type f -name '*.txt')
 find /tmp/find -type f -name '*.txt' | ls -lah
 ```
 
-![image-20240207201558682](./assets/29.png)
+![image-20240207201558682](./assets/25.png)
 
 * 我们会发现很奇怪，结果完全不对，此时我们就需要 xargs 来解决，如下所示：
 
@@ -440,7 +339,7 @@ find /tmp/find -type f -name '*.txt' | ls -lah
 find /tmp/find -type f -name '*.txt' | xargs ls -lah
 ```
 
-![image-20240207201721264](./assets/30.png)
+![image-20240207201721264](./assets/26.png)
 
 * 再次回顾命令的格式，如下所示：
 
@@ -470,7 +369,7 @@ ls [选项]... [文件]...
 ls -lah /tmp/find
 ```
 
-![image-20240207202000269](./assets/31.png)
+![image-20240207202000269](./assets/27.png)
 
 * 也会这么使用，即：
 
@@ -479,7 +378,7 @@ ls -lah /tmp/find
 ls -lah
 ```
 
-![image-20240207202101150](./assets/32.png)
+![image-20240207202101150](./assets/28.png)
 
 > 注意⚠️：ls 命令默认情况下，是不能读取标准输入的。
 
@@ -498,11 +397,11 @@ grep [-i][-n][-v] '字符串' [文件]...
 ps -ef | grep sshd
 ```
 
-![image-20240207202309972](./assets/33.png)
+![image-20240207202309972](./assets/29.png)
 
 * 既然，ls 在默认情况下，不能读取标准输入；那么，就可以 xargs 将标准输入转换为命令行参数，即：
 
-![image-20240207202811280](./assets/34.png)
+![image-20240207202811280](./assets/30.png)
 
 * 那么，xargs 的作用是什么？xargs 就是将`管道的标准输入`转换为`某些命令`的`命令行参数`，因为某些命令是不能读取标准输入的，如：ls 命令。
 * 可能，你还是不能理解上面的逻辑，可以手动模拟下，即：
@@ -521,7 +420,7 @@ EOF
 cat test.txt | xargs
 ```
 
-![](./assets/35.gif)
+![](./assets/31.gif)
 
 * 所以，`| xargs` 就是通过这样的方式，将`上一个命令`的`标准输出`通过 `|xargs`转换为`单行 + 空格`的方式`添加到`命令的`参数位置`，进而完成某些命令不支持读取标准流，也能通过管道来使用。
 * 默认情况下，管道是没有办法将`上一个命令`的`标准输出`转变为`下一个命令`的`参数`，即：
@@ -539,7 +438,7 @@ ls -lah '/tmp/find/linux01.txt
 /tmp/find/linux10.txt'
 ```
 
-![image-20240207204545161](./assets/36.png)
+![image-20240207204545161](./assets/32.png)
 
 * 会导致传递失败，默认情况下，上一条命输出的内容就被丢弃；所以，就相当于如下的命令，即：
 
@@ -547,11 +446,11 @@ ls -lah '/tmp/find/linux01.txt
 ls -lah 
 ```
 
-![image-20240207204652694](./assets/37.png)
+![image-20240207204652694](./assets/33.png)
 
 * 所以，当然会显示`当前目录`下文件的`详细信息`了；解决方案，就是通过 `|xargs`将`上一个命令`的`标准输出`转换为`单行 + 空格`的方式`添加到`命令的`参数位置`，进而完成某些命令不支持读取标准流，也能通过`管道`来使用。
 
-## 3.3 find + 打包压缩命令
+## 2.3 find + 打包压缩命令
 
 * 需求：通过 find 查询 /tmp/find 目录下以 `.txt` 结尾的文件，并通过 tar 命令进行打包。
 
@@ -563,7 +462,7 @@ ls -lah
 tar -zcvf find.tar.gz $(find /tmp/find -type f -name '*.txt')
 ```
 
-![](./assets/38.gif)
+![](./assets/34.gif)
 
 
 
@@ -573,9 +472,9 @@ tar -zcvf find.tar.gz $(find /tmp/find -type f -name '*.txt')
 find /tmp/find -type f -name '*.txt' | xargs tar -zcvf find.tar.gz
 ```
 
-![](./assets/39.gif)
+![](./assets/35.gif)
 
-## 3.4 find + 复制或移动命令
+## 2.4 find + 复制或移动命令
 
 * 需求：通过 find 查询 /tmp/find 目录下以 `.txt` 结尾的文件，并复制到 /tmp 目录下
 
@@ -589,7 +488,7 @@ find /tmp/find -type f -name '*.txt' | xargs tar -zcvf find.tar.gz
 cp `find /tmp/find -type f -name '*.txt'` /tmp
 ```
 
-![](./assets/40.gif)
+![](./assets/36.gif)
 
 
 
@@ -599,13 +498,13 @@ cp `find /tmp/find -type f -name '*.txt'` /tmp
 find /tmp/find -type f -name '*.txt' | xargs cp -t /tmp
 ```
 
-![](./assets/41.gif)
+![](./assets/37.gif)
 
 
 
-# 第四章：别名（⭐）
+# 第三章：别名（⭐）
 
-## 4.1 概述
+## 3.1 概述
 
 * Linux 中的`别名`是一种将`常用`或`复杂的命令`简化为`简短名称`的功能：当用户输入`别名`的时候，Linux 会自动将其替换为`完整的命令`。
 * 在 AlmaLinux 中，最为常见的别名就是 `ll` ，相当于 `ls -l --color=auto`，即：
@@ -628,7 +527,7 @@ alias ll='ls -l --color=auto'
 alias
 ```
 
-![image-20240207221805798](./assets/42.png)
+![image-20240207221805798](./assets/38.png)
 
 * 查看别名对应的完整命令：
 
@@ -636,9 +535,9 @@ alias
 alias ll
 ```
 
-![image-20240207222049976](./assets/43.png)
+![image-20240207222049976](./assets/39.png)
 
-## 4.2 临时设置别名
+## 3.2 临时设置别名
 
 * 在当前会话中，临时设置别名(重启或重新登录失效)：
 
@@ -659,9 +558,9 @@ alias 别名='命令'
 alias rm='echo rm is not found,please use mv'
 ```
 
-![](./assets/44.gif)
+![](./assets/40.gif)
 
-## 4.3 永久设置别名
+## 3.3 永久设置别名
 
 * 如果要想别名在每次登录的时候都生效，则需要将其添加到 Shell 对应的配置文件中。
 
@@ -711,5 +610,5 @@ echo "alias rm='echo rm is not found,please use mv'" >>  ~/.bashrc
 source ~/.bashrc
 ```
 
-![](./assets/45.gif)
+![](./assets/41.gif)
 
