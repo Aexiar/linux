@@ -481,7 +481,10 @@ useradd [-u][-s][-M][-g] 用户名
   *   `-M`，`--no-create-home`：不创建用户的家目录。
   *   `-g`，`--gid GROUP`：指定用户组名称或用户组 ID。
 
-> 注意⚠️：默认情况下，会创建`同名`的`家目录`和`用户组`。
+> 注意⚠️：
+>
+> * ① 默认情况下，会创建`同名`的`家目录`和`用户组`。
+> * ② `useradd` 命令的默认选项，可以通过 `cat /etc/default/useradd` 查看；通过编辑这个文件，系统管理员可以预先定义一些参数，这些参数将在没有手动指定的情况下被 `useradd` 命令使用。
 
 
 
@@ -826,7 +829,7 @@ groupdel 用户组
 > 注意⚠️：
 >
 > * ① 需要确保用户组中没有用户；否则，将会报错！！！
-> * ② 可以通过 `getent group 用户组`命令查询用户组的详细信息，包括：用户组密码、GID以及用户组成员列表。
+> * ② 可以通过 `getent group 用户组`命令查询用户组的详细信息，包括：用户组密码、GID 以及用户组成员列表。
 
 
 
@@ -1275,3 +1278,176 @@ systemctl status next-terminal
 * 在`会话审计 --> 在线会话 或 历史会话` 中，可以通过`监控或回放`查看 Linux 的操作，即：
 
 ![](./assets/90.gif)
+
+
+
+# 第七章：补充
+
+## 7.1 getent
+
+### 7.1.1 概述
+
+* 命令：
+
+```shell
+getent database [key]
+```
+
+* 功能：从`系统数据库`中根据`指定的 key`  查询出`想要的信息`。
+* 对应的英文：get entries from administrative database 。
+
+> 注意⚠️：database 可以是 ahosts、ahostsv4、ahostsv6、aliases、ethers、group、gshadow、hosts、initgroups、netgroup、networks、passwd、protocols、rpc、services、shadow。
+
+* 应用场景：
+  * 查询用户信息：通过 `getent passwd` 命令，可以查看系统中的用户账户信息。
+  * 查询用户组信息：使用 `getent group` 可以查看用户组及其成员。
+  * 查询主机信息：通过 `getent hosts` 可以查看主机名与 IP 地址的映射。
+  * 查询服务信息：`getent services` 用于查看系统中的服务及其对应的端口号。
+  * 查询网络协议：`getent protocols` 可以列出网络协议及其编号。
+
+### 7.1.2 案例
+
+* 需求 ① ：查看系统中的指定用户的信息。
+
+
+
+* 示例：
+
+```shell
+cat /etc/passwd | grep xiaoming
+```
+
+![](./assets/91.gif)
+
+
+
+* 示例：
+
+```shell
+getent passwd xiaoming
+```
+
+![](./assets/92.gif)
+
+
+
+* 需求 ② ：查看系统中的指定用户密码的信息。
+
+
+
+* 示例：
+
+```shell
+cat /etc/shadow | grep xiaoming
+```
+
+![](./assets/93.gif)
+
+
+
+* 示例：
+
+```shell
+getent shadow xiaoming
+```
+
+![](./assets/94.gif)
+
+
+
+* 需求 ③ ：查看系统中的指定用户组的信息。
+
+
+
+* 示例：
+
+```shell
+cat /etc/group | grep xiaoming
+```
+
+![](./assets/95.gif)
+
+
+
+* 示例：
+
+```shell
+getent group xiaoming
+```
+
+![](./assets/96.gif)
+
+
+
+* 需求 ④ ：查看系统中的指定用户组密码的信息。
+
+
+
+* 示例：
+
+```shell
+cat /etc/gshadow | grep xiaoming
+```
+
+![](./assets/97.gif)
+
+
+
+* 示例：
+
+```shell
+getent gshadow xiaoming
+```
+
+![](./assets/98.gif)
+
+### 7.1.3 案例
+
+* 需求：查询主机信息。
+
+
+
+* 示例：
+
+```shell
+cat /etc/hosts
+```
+
+![](./assets/99.gif)
+
+
+
+* 示例：
+
+```shell
+gentent hosts
+```
+
+![](./assets/100.gif)
+
+### 7.1.4 案例
+
+* 需求：查询服务信息（服务和端口）。
+
+
+
+* 示例：
+
+```shell
+netstat -anp | grep ssh
+```
+
+![](./assets/101.gif)
+
+
+
+* 示例：
+
+```shell
+getent services ssh
+```
+
+![](./assets/102.gif)
+
+
+
