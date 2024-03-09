@@ -34,7 +34,7 @@
 
 ## 2.1 概述
 
-* `rpm` 命令是 `RPM` 软件包的管理工具。`rpm` 原本是 `Red Hat Linux` 发行版专门用来管理 `Linux` 各项套件的程序，由于它遵循 `GPL` 规则且功能强大方便，因而广受欢迎，逐渐受到其他发行版的采用。
+* `rpm（Redhat Package Manager）` 命令是 `RPM` 软件包的管理工具。`rpm` 原本是 `Red Hat Linux` 发行版专门用来管理 `Linux` 各项套件的程序，由于它遵循 `GPL` 规则且功能强大方便，因而广受欢迎，逐渐受到其他发行版的采用。
 * `RPM` 套件管理方式的出现，让 `Linux` 易于安装，升级，间接提升了 `Linux` 的适用度。
 
 ## 2.2 扫清概念（软件包和命令的区别）
@@ -52,7 +52,7 @@
 
 > 温馨提示ℹ️：
 >
-> * ① 软件包是软件的集合，包含了运行软件所需的所有文件，而命令是用户与系统交互的工具，用于执行软件包中的程序。
+> * ① 软件包是软件的集合，包含了运行软件所需的所有文件（可执行文件、库文件、配置文件、帮助文档、脚本、数据文件等），而命令（通常是可执行文件）是用户与系统交互的工具，用于执行软件包中的程序，是软件包的一部分。
 > * ② 在Linux中，我们通常需要先安装软件包，然后才能使用其中的命令。
 > * ③ `软件包 != 命令`，如：`ifconfig` 命令的软件包是 `net-tools` ，`rz` 和 `sz` 命令的软件包是 `lrzsz`。
 
@@ -67,7 +67,7 @@
 | 增（安装） | `rpm -ivh xxx.rpm`        | `-i`， `--install`：安装软件包。 <br>`-v`，`--verbose` ：安装的时候显示详细信息。 <br>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
 | 删（卸载） | `rpm -e xxx.rpm --nodeps` | `-e`，`--erase`：清除（卸载）软件包，eraser 是 erase 的名词，即橡皮，所以 erase  是擦除的意思。 <br/>`--nodeps`：不验证软件包依赖，有的时候卸载不了，就需要此参数。 |
 | 改（升级） | `rpm -Uvh xxx.rpm`        | `-U`，`--upgrade`：升级软件包。<br/>`-v`，`--verbose` ：安装的时候显示详细信息。 <br/>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
-| 查（查询） | `rpm -qa `                | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
+| 查（查询） | `rpm -qa | grep xxx`      | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
 |            | `rpm -ql xxx`             | `-q`，`--query` ：查询。<br/>`-l`，`--list`：列出安装到系统中软件包中的内容（绝对路径），如：命令、配置文件等。 |
 |            | `rpm -qf $(which xxx)`    | `-q`，`--query` ：查询。<br/>`-f`，`--file`：根据命令或文件的绝对路径，查询对应的软件包。 |
 
@@ -252,8 +252,8 @@ mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/baseos # yum 仓
 # baseurl=https://repo.almalinux.org/almalinux/$releasever/BaseOS/$basearch/os/ # 指向一个固定的地址
 enabled=1 # 启动状态：1 开启；0 关闭
 gpgcheck=1 # GPG 检查，1 表示在安装软件包时会进行 GPG 签名验证，确保软件包的完整性和来源的可靠性。
-countme=1 # 计数器，1 表示这个软件源应该被计入软件包管理器的统计中
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9 # GPG 密钥，用于验证软件包的签名
+countme=1 # 计数器，1 表示这个软件源应该被计入软件包管理器的统计中
 metadata_expire=86400 # 元数据过期时间，86400 秒表示软件源的元数据（如软件包列表）在没有更新的情况下可以保持多久
 enabled_metadata=1 # 启用元数据， 1 表示启用元数据的自动更新
 ```
@@ -300,7 +300,10 @@ best=True
 skip_if_unavailable=False
 ```
 
-> 注意⚠️：通常情况下，我们不会修改该文件，如果在内网环境中，我们通常会搭建 yum 私服（nexus3），并指定 yum 源为  yum 私服（nexus3）。
+> 注意⚠️：
+>
+> * ① 可以通过 `man yum.conf` 命令查看 yum.conf 中的所有可用的配置选项和详细描述。
+> * ② 通常情况下，我们不会修改该文件，如果在内网环境中，我们通常会搭建 yum 私服（nexus3），并指定 yum 源为  yum 私服（nexus3）。
 
 ## 3.3 yum 安装软件包
 
@@ -308,22 +311,21 @@ skip_if_unavailable=False
 
 * yum 安装软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
 
-| 功能       | 命令                                        | 解释说明                                                     |
-| ---------- | ------------------------------------------- | ------------------------------------------------------------ |
-| 增（安装） | `yum -y install xxx`                        | 安装软件包。                                                 |
-|            | `yum -y groupinstall xxx`                   | 安装程序组（软件包组）。                                     |
-|            | `yum -y localinstall xxx.rpm`               | 安装本地 rpm 包的同时安装所需依赖。                          |
-| 删（卸载） | `yum -y remove xxx`                         | 卸载（删除）软件。                                           |
-|            | `yum -y groupremove xxx`                    | 卸载程序组。                                                 |
-| 改（升级） | `yum -y update xxx`<br>`yum -y upgrade xxx` | update 和 upgrade  等价，都是升级的意思。                    |
-| 查（查询） | `yum repolist [--all]`                      | 查看已启用的 yum 仓库，默认。<br>`--all` 选项表示查询所有仓库。 |
-|            | `yum grouplist [--installed]`               | 查询所有程序组，默认。<br>`--installed` 选项表示查询已安装的程序组。 |
-|            | `yum list [--installed]`                    | 查询所有的软件包，包括仓库中的，默认。<br>`--installed` 选项表示查询已经安装到本地的软件包。 |
-|            | `yum provides xxx`                          | 查找提供指定内容的软件包，是 `rpm -qf $(which xxx)`的升级版本。 |
-| yum 仓库   | `yum config-manager --enable 仓库名称`      | 启用仓库。                                                   |
-|            | `yum config-manager --disable 仓库名称`     | 禁用仓库。                                                   |
-| yum 缓存   | `yum clean all`                             | 释放磁盘空间并保持 YUM 的缓存数据最新，包括：清除缓存、清理头文件、清理过期的元数据、清理过期的软件包。 |
-|            | `yum makecache`                             | 构建缓存。                                                   |
+| 功能       | 命令                                    | 备注                                                         |
+| ---------- | --------------------------------------- | ------------------------------------------------------------ |
+| 增（安装） | `yum -y install xxx`                    |                                                              |
+|            | `yum -y groupinstall xxx`               | 安装程序组                                                   |
+| 删（卸载） | `yum -y remove xxx`                     | 卸载（删除）软件                                             |
+|            | `yum -y groupremove xxx`                | 卸载程序组                                                   |
+| 改（升级） | `yum -y update|upgrade  xxx`            | update 和 upgrade  都是升级的意思，任选其一即可。            |
+| 查（查询） | `yum repolist [--all]`                  | 查看已启用的 yum 仓库，默认。<br>`--all` 选项表示查询所有仓库。 |
+|            | `yum grouplist [--installed]`           | 查询所有程序组，默认。<br>`--installed` 选项表示查询已安装的程序组。 |
+|            | `yum list [--installed]`                | 查询所有的软件包，包括仓库中的，默认。<br>`--installed` 选项表示查询已经安装到本地的软件包。 |
+|            | `yum provides xxx`                      | 查找提供指定内容的软件包，是 `rpm -qf $(which xxx)`的升级版本。 |
+| yum 仓库   | `yum config-manager --enable 仓库名称`  | 启用仓库                                                     |
+|            | `yum config-manager --disable 仓库名称` | 禁用仓库                                                     |
+| yum 缓存   | `yum clean all`                         | 释放磁盘空间并保持 YUM 的缓存数据最新，包括：清除缓存、清理头文件、清理过期的元数据、清理过期的软件包。 |
+|            | `yum makecache`                         | 构建缓存                                                     |
 
 ### 3.3.2 增（安装）
 
@@ -552,7 +554,7 @@ yum config-manager --enable crb devel
 * 示例：禁用仓库
 
 ```shell
-yum config-manager disable crb devel
+yum config-manager --disable crb devel
 ```
 
 ![](./assets/22.gif)
@@ -612,7 +614,7 @@ yum -y remove tree
 ## 4.1 概述
 
 * 很多 Linux 上的软件都是使用 C 语言写的，为了简化跨平台构建，很多 C 语言项目使用了 GNU Autotools 工具链来进行构建。
-*  GNU Autotools 工具链是一个自动化的构建系统，包括了：`autoconf`、`automake` 和 `libtool` 等工具，通过它可以很容器将源代码在在不同的操作系统和编译环境中编译。
+* GNU Autotools 工具链是一个自动化的构建系统，包括了：`autoconf`、`automake` 和 `libtool` 等工具，通过它可以很容器将源代码在在不同的操作系统和编译环境中编译。
 * GNU Autotools 工具链配置、编译和安装过程如下：
   * ① **`配置`**：使用 `configure` 脚本来检查系统环境并生成 `Makefile`。这个脚本会根据你的系统配置（如：是否支持 SSL、是否安装了 PCRE 和 Zlib 、安装到那个目录，默认是 /usr/local 等）来定制 `Makefile`。
   * ② **`编译`**：使用 `make` 命令根据 `Makefile` 编译 C 语言源代码，生成的通常是可执行文件（executables）、静态库（static libraries）、动态库（shared libraries）或目标文件（object files），具体取决于项目的构建配置和 `Makefile` 中定义的规则。
@@ -696,9 +698,313 @@ curl http://127.0.0.1:80
 
 
 
+# 第五章：使用 nexus3 搭建 yum 私有仓库（⭐）
 
+## 5.1 安装 nexus3
 
+### 5.1.1 概述
 
+* nexus3 是用 Java 语言构建的集中式组件仓库，它支持各种软件包，如：Maven、YUM、npm 等。
 
+![image-20240309095943990](./assets/32.png)
 
+> 注意⚠️：nexus3 的下载地址是[这里](https://help.sonatype.com/en/download-archives---repository-manager-3.html)。
 
+* 目前的架构如下：
+
+![image-20240309133612792](./assets/33.png)
+
+> 注意⚠️：nexus3 的主要功能和应用场景如下：
+>
+> * ① **中央仓库缓存**：Nexus3 可以作为中央仓库，如：Maven Central 的缓存服务器，提高内部网络中构建和依赖下载的速度。通过设置代理仓库，可以减少对外部网络的依赖，同时节省带宽。
+> * ② **私有仓库**：开发者可以在 Nexus3 中创建私有仓库，用于存储公司内部开发的库和依赖。这有助于保护知识产权，同时方便内部团队共享和重用代码。
+> * ③ **依赖管理**：Nexus3 提供了对依赖的管理和分发功能，可以帮助团队管理项目依赖，确保依赖的一致性和安全性。
+> * ④ **Docker 镜像仓库**：Nexus3 支持 Docker 镜像的存储和分发，这对于容器化应用的构建和部署非常有用。它可以作为 Docker Registry 的私有替代品。
+> * ⑤ **权限管理**：Nexus3 提供了细粒度的权限控制，允许管理员根据用户和角色设置访问权限，确保资源的安全性。
+> * ⑥ **仓库类型支持**：除了 Maven 和 Docker，Nexus3 还支持 npm、Bower、RubyGems 等多种仓库类型，使其成为一个多功能的仓库管理平台。
+> * ⑦ ……
+
+### 5.1.2 安装并启动
+
+* 安装 JDK ：
+
+```shell
+yum -y install java-1.8.0*
+```
+
+![](./assets/34.gif)
+
+* 查看 JDK 是否安装成功：
+
+```shell
+javac -version
+```
+
+```shell
+java -version
+```
+
+![](./assets/35.gif)
+
+* 下载 nexus3 ：
+
+```shell
+curl -L -o /opt/nexus-3.66.0-02-unix.tar.gz \
+	--no-buffer https://download.sonatype.com/nexus/3/nexus-3.66.0-02-unix.tar.gz
+```
+
+![](./assets/36.gif)
+
+* 解压并重命名：
+
+```shell
+cd /opt 
+```
+
+```shell
+tar -zxvf nexus-3.66.0-02-unix.tar.gz -C /usr/local
+```
+
+```shell
+mv nexus-3.66.0-02 nexus3
+```
+
+![](./assets/37.gif)
+
+* 创建虚拟用户：
+
+```shell
+useradd -M -s /sbin/nologin nexus3
+```
+
+![](./assets/38.gif)
+
+* 授权 nexus3 目录权限：
+
+```shell
+chown -R nexus3:nexus3 /usr/local/nexus3
+chown -R nexus3:nexus3 /usr/local/sonatype-work
+```
+
+![](./assets/39.gif)
+
+* 配置 systemd ：
+
+```shell
+vim /etc/systemd/system/nexus.service
+```
+
+```
+[Unit]
+Description=nexus3 service
+After=network.target
+  
+[Service]
+Type=forking
+LimitNOFILE=65536
+ExecStart=/usr/local/nexus3/bin/nexus start
+ExecStop=/usr/local/nexus3/bin/nexus stop 
+User=nexus3
+Group=nexus3
+Restart=on-abort
+TimeoutSec=600
+  
+[Install]
+WantedBy=multi-user.target
+```
+
+![](./assets/40.gif)
+
+* 启动：
+
+```shell
+systemctl daemon-reload
+```
+
+```shell
+systemctl enable --now nexus.service
+```
+
+![](./assets/41.gif)
+
+* 查询服务是否启动：
+
+```shell
+# 如果失败，可以通过 journalctl -u nexus 调试错误
+sytemctl status nexus
+```
+
+![](./assets/42.gif)
+
+## 5.2 访问并配置
+
+### 5.2.1 访问
+
+* 通过浏览器输入 `http://192.168.10.100:8081` 来进行访问（请先关闭防火墙）：
+
+![image-20240309114510501](./assets/43.png)
+
+* 默认的用户名是 `admin` ，可以根据提示获取初始化密码：
+
+![image-20240309114557125](./assets/44.png)
+
+* 登录到系统中：
+
+![image-20240309114638073](./assets/45.png)
+
+* 根据提示，修改初始化密码：
+
+![image-20240309114720441](./assets/46.png)
+
+* 其余，下一步即可：
+
+![image-20240309114837106](./assets/47.png)
+
+![image-20240309114858532](./assets/48.png)
+
+### 5.2.2 解释 nexus3 中仓库的类型
+
+* 我们可以通过如下的步骤，查看 nexus3 中的仓库类型：
+
+![image-20240309141551634](./assets/49.png)
+
+![image-20240309141629121](./assets/50.png)
+
+![image-20240309141725221](./assets/51.png)
+
+* 我们注意到，nexus3 中的仓库类型有 3 种，区别如下：
+* ① hosted（宿主仓库，本地仓库）：
+  * 该仓库是 nexus3 服务器上的本地仓库。用于存储和分发用户自己创建和管理的软件包。
+  * hosted仓库可以是 Releases（只发布正式版本）、Snapshots（用于存储开发中的快照版本）或者 Mixed（混合使用 Releases 和 Snapshots）。
+  * hosted 仓库通常用于管理内部开发的软件项目，或者作为私有的依赖库（一般不对外开放）。
+
+* ② proxy（代理仓库）：
+  * proxy 仓库是 Nexus3 作为中间代理，代理外部仓库，如：Maven Central、npm 官方仓库等的仓库。
+  * 当用户从 Proxy 仓库拉取软件包时，nexus3 会先从外部仓库下载软件包，然后缓存到本地，之后再提供给用户。这样可以加快后续的下载速度，因为用户可以从本地缓存中获取软件包，而不是每次都从外部网络下载。
+  * proxy仓库通常用于加速外部仓库的访问速度，减少对外部网络的依赖，以及在网络不稳定或受限的情况下提供稳定的软件包以便获取服务。
+* ③ group（仓库组）：
+  * group 仓库是将多个仓库（可以是 hosted、proxy 或其他 group）组合在一起，形成一个逻辑上的仓库组。
+  * 用户可以像操作单个仓库一样操作 group 仓库，但实际上 nexus3 会根据配置的规则，从组内的多个仓库中寻找和提供构件。
+  * group 仓库通常用于实现复杂的仓库管理策略，例如：可以将一个 proxy 仓库和一个或多个 hosted仓库组合在一起，以便在满足特定条件时从不同的仓库中获取软件包。
+
+> 注意⚠️：这三种仓库类型提供了灵活的仓库管理策略，使得 nexus3 能够适应不同的软件开发和部署需求。通过合理配置这些仓库类型，可以优化构建流程，提高效率，同时确保依赖的一致性和安全性。
+
+### 5.2.3 配置
+
+#### 5.2.3.1 创建 blob 存储空间
+
+* 因为 nexus3 可以作为多种软件包的集中式组件仓库，所以我们需要为其单独创建一个 blob 存储空间，即：
+
+![image-20240309142652442](./assets/52.png)
+
+![image-20240309142748388](./assets/53.png)
+
+![image-20240309142818812](./assets/54.png)
+
+#### 5.2.3.2 创建 hosted 类型的仓库
+
+* 创建仓库：
+
+![image-20240309142921618](./assets/55.png)
+
+* 选择仓库的类型：
+
+![image-20240309142957323](./assets/56.png)
+
+* 填写关键信息，完成仓库的创建：
+
+![](./assets/57.png)
+
+![image-20240309144328206](./assets/58.png)
+
+#### 5.2.3.3 创建 proxy 类型的仓库
+
+* 和创建 hosted 类型的仓库的步骤类似，只不过需要填写远程 yum 仓库的地址，如：
+
+![image-20240309145557434](./assets/59.png)
+
+* 仓库创建完毕时的状态如下：
+
+![image-20240309145709198](./assets/60.png)
+
+#### 5.2.3.4 创建 group 类型的仓库
+
+* 将刚才创建的 hosted 类型和 proxy 类型的仓库，组合为 group 类型，即：
+
+![image-20240309145934873](./assets/61.png)
+
+* 仓库创建完毕时的状态如下：
+
+![image-20240309150013335](./assets/62.png)
+
+## 5.3 配置 yum 源为 nexus3
+
+* 在 nexus3 的界面中，复制 yum 源的地址：
+
+![image-20240309150428604](./assets/63.png)
+
+![image-20240309150516576](./assets/64.png)
+
+* 临时禁用其他 yum 源：
+
+```shell
+dnf config-manager --disable baseos appstream epel extras
+```
+
+![](./assets/65.gif)
+
+* 配置 yum 源：
+
+```shell
+cat > /etc/yum.repos.d/nexus3-baseos.repo <<'EOF'
+[nexus-baseos]
+name=Nexus AlmaLinux BaseOS
+baseurl=http://192.168.10.1:8081/repository/proxy-aliyun-yum/$releasever/BaseOS/$basearch/os/
+enabled=1
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+metadata_expire=86400
+enabled_metadata=1
+EOF
+```
+
+```shell
+cat > /etc/yum.repos.d/nexus3-appstream.repo <<'EOF'
+[nexus3-appstream]
+name=AlmaLinux $releasever - AppStream
+baseurl=http://192.168.10.1:8081/repository/proxy-aliyun-yum/$releasever/AppStream/$basearch/os/
+enabled=1
+gpgcheck=1
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+metadata_expire=86400
+enabled_metadata=1
+EOF
+```
+
+> 注意⚠️：目前，官方没有解决 group 元数据合并问题，所以使用 proxy 类型的仓库。
+
+![](./assets/66.gif)
+
+## 5.4 测试
+
+* 清除本地缓存，并重新构建缓存：
+
+```shell
+dnf clean all
+```
+
+```shell
+dnf makecache
+```
+
+![](./assets/67.gif)
+
+* 安装 Nginx 进行测试 ：
+
+```shell
+dnf -y install nginx
+```
+
+![](./assets/68.gif)
