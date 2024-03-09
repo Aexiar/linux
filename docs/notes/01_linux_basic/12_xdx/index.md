@@ -67,7 +67,7 @@
 | 增（安装） | `rpm -ivh xxx.rpm`        | `-i`， `--install`：安装软件包。 <br>`-v`，`--verbose` ：安装的时候显示详细信息。 <br>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
 | 删（卸载） | `rpm -e xxx.rpm --nodeps` | `-e`，`--erase`：清除（卸载）软件包，eraser 是 erase 的名词，即橡皮，所以 erase  是擦除的意思。 <br/>`--nodeps`：不验证软件包依赖，有的时候卸载不了，就需要此参数。 |
 | 改（升级） | `rpm -Uvh xxx.rpm`        | `-U`，`--upgrade`：升级软件包。<br/>`-v`，`--verbose` ：安装的时候显示详细信息。 <br/>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
-| 查（查询） | `rpm -qa | grep xxx`      | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
+| 查（查询） | `rpm -qa `                | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
 |            | `rpm -ql xxx`             | `-q`，`--query` ：查询。<br/>`-l`，`--list`：列出安装到系统中软件包中的内容（绝对路径），如：命令、配置文件等。 |
 |            | `rpm -qf $(which xxx)`    | `-q`，`--query` ：查询。<br/>`-f`，`--file`：根据命令或文件的绝对路径，查询对应的软件包。 |
 
@@ -311,21 +311,21 @@ skip_if_unavailable=False
 
 * yum 安装软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
 
-| 功能       | 命令                                    | 备注                                                         |
-| ---------- | --------------------------------------- | ------------------------------------------------------------ |
-| 增（安装） | `yum -y install xxx`                    |                                                              |
-|            | `yum -y groupinstall xxx`               | 安装程序组                                                   |
-| 删（卸载） | `yum -y remove xxx`                     | 卸载（删除）软件                                             |
-|            | `yum -y groupremove xxx`                | 卸载程序组                                                   |
-| 改（升级） | `yum -y update|upgrade  xxx`            | update 和 upgrade  都是升级的意思，任选其一即可。            |
-| 查（查询） | `yum repolist [--all]`                  | 查看已启用的 yum 仓库，默认。<br>`--all` 选项表示查询所有仓库。 |
-|            | `yum grouplist [--installed]`           | 查询所有程序组，默认。<br>`--installed` 选项表示查询已安装的程序组。 |
-|            | `yum list [--installed]`                | 查询所有的软件包，包括仓库中的，默认。<br>`--installed` 选项表示查询已经安装到本地的软件包。 |
-|            | `yum provides xxx`                      | 查找提供指定内容的软件包，是 `rpm -qf $(which xxx)`的升级版本。 |
-| yum 仓库   | `yum config-manager --enable 仓库名称`  | 启用仓库                                                     |
-|            | `yum config-manager --disable 仓库名称` | 禁用仓库                                                     |
-| yum 缓存   | `yum clean all`                         | 释放磁盘空间并保持 YUM 的缓存数据最新，包括：清除缓存、清理头文件、清理过期的元数据、清理过期的软件包。 |
-|            | `yum makecache`                         | 构建缓存                                                     |
+| 功能       | 命令                                          | 备注                                                         |
+| ---------- | --------------------------------------------- | ------------------------------------------------------------ |
+| 增（安装） | `yum -y install xxx`                          |                                                              |
+|            | `yum -y groupinstall xxx`                     | 安装程序组                                                   |
+| 删（卸载） | `yum -y remove xxx`                           | 卸载（删除）软件                                             |
+|            | `yum -y groupremove xxx`                      | 卸载程序组                                                   |
+| 改（升级） | `yum -y update xxx` <br>`yum -y upgrade  xxx` | update 和 upgrade  都是升级的意思，任选其一即可。            |
+| 查（查询） | `yum repolist [--all]`                        | 查看已启用的 yum 仓库，默认。<br>`--all` 选项表示查询所有仓库。 |
+|            | `yum grouplist [--installed]`                 | 查询所有程序组，默认。<br>`--installed` 选项表示查询已安装的程序组。 |
+|            | `yum list [--installed]`                      | 查询所有的软件包，包括仓库中的，默认。<br>`--installed` 选项表示查询已经安装到本地的软件包。 |
+|            | `yum provides xxx`                            | 查找提供指定内容的软件包，是 `rpm -qf $(which xxx)`的升级版本。 |
+| yum 仓库   | `yum config-manager --enable 仓库名称`        | 启用仓库                                                     |
+|            | `yum config-manager --disable 仓库名称`       | 禁用仓库                                                     |
+| yum 缓存   | `yum clean all`                               | 释放磁盘空间并保持 YUM 的缓存数据最新，包括：清除缓存、清理头文件、清理过期的元数据、清理过期的软件包。 |
+|            | `yum makecache`                               | 构建缓存                                                     |
 
 ### 3.3.2 增（安装）
 
