@@ -41,6 +41,14 @@ ll /proc/7355/fd
 
 ![image-20240207081941447](./assets/5.png)
 
+* 当然，我们也可以通过下面的命令来证明：
+
+```shell
+ll /dev
+```
+
+![](./assets/6.gif)
+
 ## 1.2 IO 重定向
 
 * 所谓的 IO 重定向就是改变标准输入（stdin）、标准输出（stdout）和标准错误（stderr）的默认流向；在 Linux 中，很多命令都有标准输出，如：
@@ -49,7 +57,7 @@ ll /proc/7355/fd
 hostname # 默认显示到终端
 ```
 
-![](./assets/6.gif)
+![](./assets/7.gif)
 
 * 也可以输出到其它的终端，如：
 
@@ -57,7 +65,7 @@ hostname # 默认显示到终端
 hostname > /dev/pts/1
 ```
 
-![](./assets/7.gif)
+![](./assets/8.gif)
 
 * 甚至，可以输出到文件中，如：
 
@@ -65,7 +73,7 @@ hostname > /dev/pts/1
 hostname > hostname.txt
 ```
 
-![](./assets/8.gif)
+![](./assets/9.gif)
 
 * 其实，在 Linux 中有很多 IO 重定向语法：
 
@@ -126,7 +134,7 @@ command 1>> outputfile
 date > abc.log
 ```
 
-![](./assets/9.gif)
+![](./assets/10.gif)
 
 
 
@@ -136,7 +144,7 @@ date > abc.log
 cat /etc/passwd >> abc.log
 ```
 
-![](./assets/10.gif)
+![](./assets/11.gif)
 
 
 
@@ -146,7 +154,7 @@ cat /etc/passwd >> abc.log
 abc 2> abc.log
 ```
 
-![](./assets/11.gif)
+![](./assets/12.gif)
 
 
 
@@ -160,7 +168,7 @@ cat /etc/passwd &>> abc.log
 abc &>> abc.log
 ```
 
-![](./assets/12.gif)
+![](./assets/13.gif)
 
 
 
@@ -170,7 +178,7 @@ abc &>> abc.log
 ll /etc/passwd /etc/xxx >> a.log 2>> b.log
 ```
 
-![](./assets/13.gif)
+![](./assets/14.gif)
 
 
 
@@ -180,7 +188,7 @@ ll /etc/passwd /etc/xxx >> a.log 2>> b.log
 ll /etc/passwd /etc/xxx > abc.log 2>&1
 ```
 
-![](./assets/14.gif)
+![](./assets/15.gif)
 
 
 
@@ -201,7 +209,7 @@ EOF
 xargs < test.txt
 ```
 
-![](./assets/15.gif)
+![](./assets/16.gif)
 
 
 
@@ -238,7 +246,7 @@ seq 1 10 > abc.log
 tr '\n' ' ' < abc.log
 ```
 
-![](./assets/16.gif)
+![](./assets/17.gif)
 
 
 
@@ -248,7 +256,7 @@ tr '\n' ' ' < abc.log
 seq 1 10 | tr '\n' ' '
 ```
 
-![](./assets/17.gif)
+![](./assets/18.gif)
 
 ## 2.3 tee
 
@@ -275,7 +283,7 @@ seq 1 10 | tr '\n' ' '
 tee
 ```
 
-![](./assets/18.gif)
+![](./assets/19.gif)
 
 
 
@@ -285,7 +293,7 @@ tee
 tee abc.log
 ```
 
-![](./assets/19.gif)
+![](./assets/20.gif)
 
 
 
@@ -295,7 +303,7 @@ tee abc.log
 tee -a abc.log
 ```
 
-![](./assets/20.gif)
+![](./assets/21.gif)
 
 
 
@@ -305,7 +313,7 @@ tee -a abc.log
 ping baidu.com | tee output.log
 ```
 
-![](./assets/21.gif)
+![](./assets/22.gif)
 
 
 
@@ -337,5 +345,5 @@ tee /etc/docker/daemon.json <<-'EOF'
 EOF
 ```
 
-![](./assets/22.gif)
+![](./assets/23.gif)
 
