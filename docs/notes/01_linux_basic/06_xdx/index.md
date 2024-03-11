@@ -883,7 +883,7 @@ dnf -y install glibc-langpack-en
 
 > 注意⚠️：
 >
-> * ① 可以使用 `lcoale -a | grep xxx` 查看本地是否安装有指定的 locale 。
+> * ① 可以使用 `locale -a | grep xxx` 查看本地是否安装有指定的 locale 。
 > * ② 可以使用 `dnf search locale xxx` 查看指定的 locale 软件包。
 
 * 查看当前系统的所有 locale ：
