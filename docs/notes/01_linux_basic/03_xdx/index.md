@@ -104,6 +104,8 @@ tree -L 1 /
 | `/tmp/`  | tmp 是 temp 的缩写，表示临时目录，用来存储程序运行中的临时文件等。 |
 | `/proc/` | proc 是 process（进程）的缩写，表示虚拟的目录，它是系统内存的映射，存放的是内存中的信息、进程、服务信息以及内核信息等。 |
 
+> 注意⚠️：对于 Linux 中的目录，官方是有[标准](https://www.pathname.com/fhs/)（文件系统分层结构，LSB（Linux Standard Base））的。
+
 ## 2.4 Linux 中的目录
 
 * 可以通过如下的命令，查看 Linux 中根目录下的一级子目录：
