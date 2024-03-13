@@ -774,7 +774,7 @@ mv nexus-3.66.0-02 nexus3
 * 创建虚拟用户：
 
 ```shell
-useradd -M -s /sbin/nologin nexus3
+useradd -M -r -s /sbin/nologin nexus3
 ```
 
 ![](./assets/38.gif)
