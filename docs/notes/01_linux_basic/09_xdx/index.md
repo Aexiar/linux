@@ -201,7 +201,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 vim ~/.zshrc
 ```
 
-```txt {5}
+```{5}
 # 其余略
 plugins=(
     git
@@ -239,7 +239,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 vim ~/.zshrc
 ```
 
-```txt {6}
+```{6}
 # 其余略
 plugins=(
     git
@@ -330,11 +330,11 @@ source ~/.zshrc
 
 > 注意⚠️：
 >
-> * ① RBAC模型的应用场景非常广泛，包括但不限于：
+> * ① RBAC 模型的应用场景非常广泛，包括但不限于：
 >
 >   * 企业资源规划（ERP）系统：在大型企业中，员工可能需要访问不同的业务模块，RBAC 可以确保他们只能访问其职责范围内的数据。
 >   * 医疗信息系统：医生、护士、行政人员等不同角色需要访问不同级别的患者信息。
->   * 金融服务：银行和金融机构使用RBAC来控制员工对敏感金融数据的访问。
+>   * 金融服务：银行和金融机构使用 RBAC 来控制员工对敏感金融数据的访问。
 >   * ……
 >   
 > * ② Kubernetes（云原生的事实标准）也是基于 RBAC 模型开发的。
@@ -434,6 +434,11 @@ cat /etc/passwd
 
 ![image-20240214100834258](./assets/35.png)
 
+> 注意⚠️：
+>
+> * ① 可以使用 `vipw`命令来修改 `/etc/passwd` 文件，以防止误操作；但是，通常不建议手动修改 `/etc/passwd` 文件。
+> * ② 可以使用 `pwck` 命令来校验 `/etc/passwd` 文件格式是否正确。
+
 * 查询 `/etc/shadow` 文件：
 
 ```shell
@@ -446,6 +451,8 @@ cat /etc/shadow
 
 ![image-20240214102604614](./assets/37.png)
 
+> 注意⚠️： 对于密码的策略，如：最后一次密码修改时间、最小密码修改间隔，最长密码有效期等等，可以使用 `chage 用户名` 命令来修改，以防止误操作！！！
+
 * 查询 `/etc/group` 文件：
 
 ```shell
@@ -457,6 +464,11 @@ cat /etc/group
 * 详细解释 `/etc/group` 中每一列的含义：
 
 ![image-20240214111510332](./assets/39.png)
+
+> 注意⚠️：
+>
+> * ① 可以使用 `vigr`命令来修改 `/etc/group` 文件，以防止误操作；但是，通常不建议手动修改 `/etc/group` 文件。
+> * ② 可以使用 `grpck` 命令来校验 `/etc/group` 文件格式是否正确。
 
 
 
@@ -471,7 +483,7 @@ cat /etc/group
 * 命令：
 
 ```shell
-useradd [-u][-s][-M][-g] 用户名
+useradd [-u][-s][-M][-g][-r] 用户名
 ```
 
 * 功能：创建用户。
@@ -480,11 +492,13 @@ useradd [-u][-s][-M][-g] 用户名
   *   `-s`，`--shell SHEL`：指定命令解释器，默认是 `/bin/bash`。
   *   `-M`，`--no-create-home`：不创建用户的家目录。
   *   `-g`，`--gid GROUP`：指定用户组名称或用户组 ID。
+  *   `-r`，`--system`：创建系统用户，即 UID < 1000 。
 
 > 注意⚠️：
 >
 > * ① 默认情况下，会创建`同名`的`家目录`和`用户组`。
 > * ② `useradd` 命令的默认选项，可以通过 `cat /etc/default/useradd` 查看；通过编辑这个文件，系统管理员可以预先定义一些参数，这些参数将在没有手动指定的情况下被 `useradd` 命令使用。
+> * ③ 在实际工作中，像 `MySQL` 、`NGINX` 之类的软件，都是作为`服务`出现的，通常是使用这样的命令：`useradd  -s /sbin/nologin -M -r mysql` 来创建虚拟账户。
 
 
 
@@ -521,7 +535,7 @@ userdel [-r] 用户名
 > 注意⚠️：
 >
 > * ① 默认情况下，不会删除用户的家目录，除非添加 `-r` 选项。
-> * ② 在实际工作中，userdel 命令很危险，建议在 `/etc/passwd` 文件对应的`用户前`添加 `#` 注释，以便达到删除用户的效果。
+> * ② 在实际工作中，`userdel` 命令很危险，建议在 `/etc/passwd` 文件对应的`用户前`添加 `#` 注释，以便达到删除用户的效果。
 
 
 
@@ -1069,7 +1083,7 @@ EOF
 vim /usr/lib/systemd/system/guacd.service
 ```
 
-```txt{11-12}
+```{11-12}
 [Unit]
 Description=Guacamole proxy daemon
 Documentation=man:guacd(8)
@@ -1449,5 +1463,67 @@ getent services ssh
 
 ![](./assets/102.gif)
 
+## 7.2 批量用户操作
 
+### 7.3.1 批量创建或更新用户
+
+* 命令：
+
+```shell
+newusers 文件
+```
+
+* 应用场景：适合于迁移多个用户到新的 Linux 操作系统中。
+
+![image-20240313135514706](./assets/103.png)
+
+
+
+* 示例：导出指定用户信息到文件中
+
+```shell
+tail -n 3 /etc/passwd > abc.txt
+```
+
+![](./assets/104.gif)
+
+
+
+* 示例：通过 `scp` 命令传递该文件到指定的操作系统
+
+```shell
+scp abc.txt root@192.168.10.120:~/
+```
+
+![](./assets/105.gif)
+
+
+
+* 示例：批量创建或更新用户信息
+
+```shell
+newusers abc.txt
+```
+
+![](./assets/106.gif)
+
+### 7.3.2 批量更新密码
+
+* 命令：
+
+```shell
+echo '用户名:密码' | chpasswd
+```
+
+> 注意⚠️：chpasswd 和 passwd 类似，都是交互式命令；所以，chpasswd 通常配合管道使用。
+
+
+
+* 示例：
+
+```shell
+echo 'x:123456' 'y:123456' 'z:123456' | chpasswd
+```
+
+![](./assets/107.gif)
 
