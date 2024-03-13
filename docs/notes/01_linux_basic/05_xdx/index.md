@@ -1050,7 +1050,7 @@ date -d '-1 year'
 vim /etc/chrony.conf
 ```
 
-```{3-4}
+```txt {3-4}
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 # pool 2.almalinux.pool.ntp.org iburst 注释掉

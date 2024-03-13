@@ -40,7 +40,7 @@ export default defineConfig({
     search: { // 本地搜索
       provider: 'local'
     },
-    logo: '/logo.svg',  // 左上角logo
+    logo: '/logo.svg',  // 左上角logo 
     nav: nav, // 导航
     sidebar: sidebar, // 侧边栏
     socialLinks: [ // 社交链接
