@@ -67,7 +67,7 @@
 | 增（安装） | `rpm -ivh xxx.rpm`        | `-i`， `--install`：安装软件包。 <br>`-v`，`--verbose` ：安装的时候显示详细信息。 <br>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
 | 删（卸载） | `rpm -e xxx.rpm --nodeps` | `-e`，`--erase`：清除（卸载）软件包，eraser 是 erase 的名词，即橡皮，所以 erase  是擦除的意思。 <br/>`--nodeps`：不验证软件包依赖，有的时候卸载不了，就需要此参数。 |
 | 改（升级） | `rpm -Uvh xxx.rpm`        | `-U`，`--upgrade`：升级软件包。<br/>`-v`，`--verbose` ：安装的时候显示详细信息。 <br/>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
-| 查（查询） | `rpm -qa `                | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
+| 查（查询） | `rpm -qa | grep xxx`      | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
 |            | `rpm -ql xxx`             | `-q`，`--query` ：查询。<br/>`-l`，`--list`：列出安装到系统中软件包中的内容（绝对路径），如：命令、配置文件等。 |
 |            | `rpm -qf $(which xxx)`    | `-q`，`--query` ：查询。<br/>`-f`，`--file`：根据命令或文件的绝对路径，查询对应的软件包。 |
 
@@ -311,21 +311,21 @@ skip_if_unavailable=False
 
 * yum 安装软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
 
-| 功能       | 命令                                          | 备注                                                         |
-| ---------- | --------------------------------------------- | ------------------------------------------------------------ |
-| 增（安装） | `yum -y install xxx`                          |                                                              |
-|            | `yum -y groupinstall xxx`                     | 安装程序组                                                   |
-| 删（卸载） | `yum -y remove xxx`                           | 卸载（删除）软件                                             |
-|            | `yum -y groupremove xxx`                      | 卸载程序组                                                   |
-| 改（升级） | `yum -y update xxx` <br>`yum -y upgrade  xxx` | update 和 upgrade  都是升级的意思，任选其一即可。            |
-| 查（查询） | `yum repolist [--all]`                        | 查看已启用的 yum 仓库，默认。<br>`--all` 选项表示查询所有仓库。 |
-|            | `yum grouplist [--installed]`                 | 查询所有程序组，默认。<br>`--installed` 选项表示查询已安装的程序组。 |
-|            | `yum list [--installed]`                      | 查询所有的软件包，包括仓库中的，默认。<br>`--installed` 选项表示查询已经安装到本地的软件包。 |
-|            | `yum provides xxx`                            | 查找提供指定内容的软件包，是 `rpm -qf $(which xxx)`的升级版本。 |
-| yum 仓库   | `yum config-manager --enable 仓库名称`        | 启用仓库                                                     |
-|            | `yum config-manager --disable 仓库名称`       | 禁用仓库                                                     |
-| yum 缓存   | `yum clean all`                               | 释放磁盘空间并保持 YUM 的缓存数据最新，包括：清除缓存、清理头文件、清理过期的元数据、清理过期的软件包。 |
-|            | `yum makecache`                               | 构建缓存                                                     |
+| 功能       | 命令                                    | 备注                                                         |
+| ---------- | --------------------------------------- | ------------------------------------------------------------ |
+| 增（安装） | `yum -y install xxx`                    |                                                              |
+|            | `yum -y groupinstall xxx`               | 安装程序组                                                   |
+| 删（卸载） | `yum -y remove xxx`                     | 卸载（删除）软件                                             |
+|            | `yum -y groupremove xxx`                | 卸载程序组                                                   |
+| 改（升级） | `yum -y update|upgrade  xxx`            | update 和 upgrade  都是升级的意思，任选其一即可。            |
+| 查（查询） | `yum repolist [--all]`                  | 查看已启用的 yum 仓库，默认。<br>`--all` 选项表示查询所有仓库。 |
+|            | `yum grouplist [--installed]`           | 查询所有程序组，默认。<br>`--installed` 选项表示查询已安装的程序组。 |
+|            | `yum list [--installed]`                | 查询所有的软件包，包括仓库中的，默认。<br>`--installed` 选项表示查询已经安装到本地的软件包。 |
+|            | `yum provides xxx`                      | 查找提供指定内容的软件包，是 `rpm -qf $(which xxx)`的升级版本。 |
+| yum 仓库   | `yum config-manager --enable 仓库名称`  | 启用仓库                                                     |
+|            | `yum config-manager --disable 仓库名称` | 禁用仓库                                                     |
+| yum 缓存   | `yum clean all`                         | 释放磁盘空间并保持 YUM 的缓存数据最新，包括：清除缓存、清理头文件、清理过期的元数据、清理过期的软件包。 |
+|            | `yum makecache`                         | 构建缓存                                                     |
 
 ### 3.3.2 增（安装）
 
@@ -774,7 +774,7 @@ mv nexus-3.66.0-02 nexus3
 * 创建虚拟用户：
 
 ```shell
-useradd -M -r -s /sbin/nologin nexus3
+useradd -M -s /sbin/nologin nexus3
 ```
 
 ![](./assets/38.gif)
@@ -1008,3 +1008,1267 @@ dnf -y install nginx
 ```
 
 ![](./assets/68.gif)
+
+
+
+# 第六章：dnf 安装（⭐）
+
+## 6.1 概述
+
+*  在 AlmaLinux9 中，推荐使用 `dnf` 来管理软件包；不过，为了兼容之前的版本，我们还是可以使用 `yum` 命令的。
+
+> 温馨提示ℹ️：
+>
+> * ① Yum 主要使用 Python 编写，有自己的依赖解析方法。
+> * ② DNF 使用 libsolv 进行依赖解析，由 SUSE 开发和维护，旨在提高性能。
+
+## 6.2 软件仓库
+
+* 默认情况下，AlmaLinux9 启用了如下的仓库：
+
+```shell
+dnf repolist [--enabled]
+```
+
+![image-20240318131040109](./assets/69.png)
+
+> 温馨提示ℹ️：
+>
+> * ① `baseos` 软件仓库提供底层操作系统功能的核心组件，它包含了构成基础操作系统的基本软件包，如：系统库、工具和驱动程序，该仓库的内容采用 RPM 格式，支持条款与之前的 RHEL 版本相似。
+> * ② `appstream` 软件仓库包含额外的用户空间应用程序、运行时语言和数据库，这些组件支持各种工作负载和使用案例，如：开发工具、Web 服务器、数据库等。并且该仓库的内容包括多个版本的用户空间组件，这些组件的更新频率可能高于核心操作系统软件包，它提供了更大的灵活性，允许用户自定义 RHEL 版本，同时不影响平台的基本稳定性。
+> * ③ `epel` 软件仓库旨在为 RHEL 及其衍生版（如 CentOS、Scientific Linux 等）提供那些在官方仓库中不可用的额外软件包。epel 是由 Fedora 项目社区维护的，它提供了许多在 RHEL 官方仓库中找不到的软件，这些软件通常是由社区成员构建和测试的，它仍然遵循严格的质量控制流程，确保软件包的稳定性和安全性。
+> * ④ `extra` 软件仓库通常是 CentOS 或 RHEL 官方支持的一部分，它提供了一些官方仓库中未包含的软件包，这些软件可能不是由 CentOS 或 RHEL 官方团队直接维护的，但被认为是对用户有用的。
+
+* 也可以通过如下的命令，来查看的所有的软件仓库：
+
+```shell
+dnf repolist --all
+```
+
+![image-20240318131741204](./assets/70.png)
+
+* 也可以通过如下的命令，来查看的所有的禁用的软件仓库：
+
+```shell
+dnf repolist --disabled
+```
+
+![image-20240318131903582](./assets/71.png)
+
+## 6.3 软件包格式
+
+###  6.3.1 概述
+
+* AlmaLinux 9 提供的软件包格式包括：
+  * RPM 格式。
+  * 模块化，它们是 RPM 格式的扩展。
+  * Software Collections。
+
+> 注意ℹ️：
+>
+> * ① Software Collections 主要是为了解决 CentOS7 软件包版本固定的问题，毕竟这个操作系统存在的时间太长了，长达 10 年；但是，CentOS 7 已经退出了历史舞台了，即该技术也已经过时了，被模块化所取代。
+> * ② dnf 其实一直运行在 fedora 项目中，而在 fedora 项目中其实一直没有很好的支持 Software Collections 。
+
+### 6.3.2 RPM 格式
+
+* 所谓的 RPM 格式，就是在每个主要的 Linux 版本中都安装有指定版本的 RPM 包。
+
+![image-20240318153516955](./assets/72.png)
+
+* RPM 格式的优点：
+  * RPM 格式是一种标准的软件包管理格式，可以用于打包、安装和管理软件包。
+  * 它提供了直接的软件包安装和卸载方式，适用于大多数常见的软件包管理任务。
+* RPM 格式的缺点：
+  * RPM 格式在处理软`件依赖关系`和`多版本软件管理`时相对较为基础，不够灵活。
+  * 当需要管理`多个版本`的软件包或处理`复杂的依赖关系`时，RPM 格式可能显得不够方便。
+
+> 温馨提示ℹ️：通常，我们在使用 `dnf -y install xxx` 的时候就是这种方式。
+
+### 6.3.3 模块化
+
+* 我们也知道，很多软件包，都有不同的版本，并且每个版本又可能分为开发版本、客户端版本、服务器端版本、最小安装版本或其他等。
+* 以 `node.js` 为例：
+
+![image-20240318152253785](./assets/73.png)
+
+* 以 `postgresql` 为例：
+
+![image-20240318152515505](./assets/74.png)
+
+* 我们可以通过如下命令来查询系统内置的模块化：
+
+```shell
+dnf module list
+```
+
+![image-20240318152725368](./assets/75.png)
+
+> 温馨提示ℹ️：
+>
+> * ① 对于 stream 和 profile 而言，可能有多个，但是总是会有一个是默认的，使用 d 来表示。
+> * ② 模块化软件包的格式有：
+>   * `NAME`（模块化软件包的名称）。
+>   * `NAME:STREAM`（模块化软件包的名称:模块化软件包的版本）
+>   * `NAME/PROFILE`（模块化软件包的名称/软件包的应用场景）
+>   * `NAME:STREAM/PROFILE`（模块化软件包的名称:模块化软件包的版本/软件包的应用场景）
+
+* 所以，模块化软件包在 Linux 系统中的表现形式如下：
+
+![image-20240318154225933](./assets/76.png)
+
+## 6.4 dnf 搜索
+
+### 6.4.1 搜索软件包
+
+* 根据`软件包`的`名称`或`摘要`搜索软件包：
+
+```shell
+dnf search <term>
+```
+
+
+
+* 示例：
+
+```shell
+dnf search tree
+```
+
+![](./assets/77.gif)
+
+
+
+* 根据`软件包`的`名称`、`概述`或`描述`中搜索：
+
+```shell
+dnf search --all <term>
+```
+
+
+
+* 示例：
+
+```shell
+dnf search --all ifconfig
+```
+
+![](./assets/78.gif)
+
+
+
+* 根据`软件包`的`名称`，列出`软件包`的`名称`及其`版本`：
+
+```shell
+dnf repoquery <package_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf repoquery kernel
+```
+
+![](./assets/79.gif)
+
+
+
+* 根据`文件名（命令）`或`文件名的路径`，查询`软件包`的`名称`：
+
+```shell
+dnf provides <file_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf provides ifconfig
+```
+
+![](./assets/80.gif)
+
+### 6.4.2 显示软件包
+
+* 显示`所有`可用的`软件包`的`最小版本`，包括`构架`、`版本号`以及从其中安装的`存储库`：
+
+```shell
+dnf list --all
+```
+
+
+
+* 示例：
+
+```shell
+dnf list --all
+```
+
+![](./assets/81.gif)
+
+
+
+* 示例：
+
+```shell
+dnf list --all | grep kernel
+```
+
+![](./assets/82.gif)
+
+
+
+* 显示`所有`可用的`软件包`，包括`版本号`和`架构`：
+
+```shell
+dnf repoquery
+```
+
+
+
+* 示例：
+
+```shell
+dnf repoquery
+```
+
+![](./assets/83.gif)
+
+
+
+* 示例：
+
+```shell
+dnf repoquery | grep kernel
+```
+
+![](./assets/84.gif)
+
+
+
+* 显示所有`已经安装`的`软件包`：
+
+```shell
+dnf list --installed 
+```
+
+
+
+* 示例：
+
+```shell
+dnf list --installed 
+```
+
+![](./assets/85.gif)
+
+
+
+* 显示所有`可用`的`软件包`：
+
+```shell
+dnf list --available 
+```
+
+
+
+* 示例：
+
+```shell
+dnf list --available 
+```
+
+![](./assets/86.gif)
+
+
+
+* 显示`新版本`提供的`软件包`：
+
+```shell
+dnf list --upgrades
+```
+
+
+
+* 示例：
+
+```shell
+dnf list --upgrades
+```
+
+![](./assets/87.gif)
+
+### 6.4.3 显示软件仓库
+
+* 显示系统上`所有启用`的`软件仓库`：
+
+```shell
+dnf repolist [--enabled]
+```
+
+
+
+* 示例：
+
+```shell
+dnf repolist
+```
+
+![](./assets/88.gif)
+
+
+
+* 列出系统上`所有`的`软件仓库`，包括`启用`和`禁用`：
+
+```shell
+dnf repolist --all
+```
+
+![](./assets/89.gif)
+
+
+
+* 显示系统上`所有禁用`的`软件仓库`：
+
+```shell
+dnf repolist --disabled
+```
+
+![](./assets/90.gif)
+
+
+
+* 显示`软件仓库`的`额外信息`：
+
+```shell
+dnf repoinfo <repository_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf repoinfo baseos
+```
+
+![](./assets/91.gif)
+
+### 6.4.4 显示软件包信息
+
+* 显示`软件包`（安装到当前系统以及软件仓库中的最新版本）的`详细信息`，包括版本、发布、架构、软件包大小和描述等：
+
+```shell
+dnf info <package_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf info kernel
+```
+
+![](./assets/92.gif)
+
+
+
+* 显示`软件包`的`所有版本`的`详细信息`：
+
+```shell
+dnf repoquery --info <package_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf repoquery --info kernel
+```
+
+![](./assets/93.gif)
+
+### 6.4.5 显示软件包组及其提供的软件包
+
+* 显示`已经安装`和`可用`的`软件包组`：
+
+```shell
+dnf group list
+```
+
+
+
+* 示例：
+
+```shell
+dnf group list
+```
+
+![](./assets/94.gif)
+
+
+
+* 显示`软件包组`中的`强制`、`可选`和`默认`的`软件包`：
+
+```shell
+dnf group info "<group_name>"
+```
+
+
+
+* 示例：
+
+```shell
+dnf group info "System Tools"
+```
+
+![](./assets/95.gif)
+
+### 6.4.6 显示可用模块化内容
+
+* 显示所有`可用`的`模块化`：
+
+```shell
+dnf module list
+```
+
+
+
+* 示例：
+
+```shell
+dnf module list
+```
+
+![](./assets/96.gif)
+
+
+
+* 根据`软件包`查询属于哪个`模块`：
+
+```shell
+dnf module provides <package_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf module provides npm
+```
+
+![](./assets/97.gif)
+
+
+
+* 显示`模块`的`详细信息`：
+
+```shell
+dnf module info <module_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf module info nodejs
+```
+
+![](./assets/98.gif)
+
+## 6.5 dnf 安装
+
+### 6.5.1 安装软件包
+
+* 从`软件仓库`中安装`指定的软件包`：
+
+```shell
+dnf -y install <package_name_1> <package_name_2> ...
+```
+
+
+
+* 示例：
+
+```shell
+dnf -y install nodejs
+```
+
+![](./assets/99.gif)
+
+
+
+* 安装`本地 RPM 包`，并自动`从`软件仓库中`解决依赖`：
+
+```shell
+dnf -y install xxx.rmp
+```
+
+> 温馨提示ℹ️：之前，在使用 yum 的时候，我们会使用 `yum -y localinstall xxx.rpm` 来安装本地的 RPM 包；但是，这个 `localinstall` 在 dnf 已经被标记为过时。
+
+
+
+* 示例：
+
+```shell
+# 下载安装包
+wget -O mysql-8.0.36-1.el9.x86_64.rpm-bundle.tar \
+https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.36-1.el9.x86_64.rpm-bundle.tar
+```
+
+```shell
+# 解压到指定目录
+tar -xvf mysql-8.0.36-1.el9.x86_64.rpm-bundle.tar --one-top-level=mysql-8.0.36 && \
+	cd mysql-8.0.36
+```
+
+```shell
+# 安装依赖
+yum -y install https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.rpm
+```
+
+```shell
+# 安装 MySQL
+dnf -y install mysql-community-server-8.0.36-1.el9.x86_64.rpm
+```
+
+![](./assets/100.gif)
+
+### 6.5.2 安装软件包组
+
+* 从`软件仓库`中安装`软件包组`：
+
+```shell
+dnf -y group install <group_name_or_ID>
+```
+
+
+
+* 示例：
+
+```shell
+dnf -y group install "System Tools"
+```
+
+![](./assets/101.gif)
+
+### 6.5.3 安装模块化内容
+
+* 显示所有`可用`的软件包的`模块化`：
+
+```
+dnf module list
+```
+
+
+
+* 示例：
+
+```shell
+dnf module list
+```
+
+![](./assets/102.gif)
+
+
+
+* 显示`想要`安装的软件包的`模块化`：
+
+```shell
+dnf module list <module_name>
+```
+
+
+
+* 示例：
+
+```shell
+dnf module list nodejs
+```
+
+![](./assets/103.gif)
+
+
+
+* `启用`软件包的`模块化`，并`安装`模块化中的`软件包`：
+
+```shell
+dnf module -y enable <module_name:stream_name> && \
+	dnf -y install module_name
+```
+
+> 温馨提示ℹ️：这种方式和传统的 `dnf -y install xxx` 的方式没有什么区别，都只是安装了软件包，并没有在系统中`安装`软件的`模块化`；换言之，使用 `dnf module list --installed` 命令并不能查询到。
+
+
+
+* 示例：
+
+```shell
+dnf module enable nodejs:18 -y && \
+	dnf -y install nodejs
+```
+
+![](./assets/104.gif)
+
+
+
+* `安装`软件包的`模块`：
+
+```shell
+dnf module install NAME -y
+```
+
+```shell
+dnf module install NAME:STREAM -y
+```
+
+```shell
+dnf module install NAME/PROFILE -y
+```
+
+```shell
+dnf module install NAME:STREAM/PROFILE  -y
+```
+
+
+
+* 示例：
+
+```shell
+dnf module install nodejs:18
+```
+
+![](./assets/105.gif)
+
+
+
+* `切换`软件包的`模块化`：
+
+```shell
+dnf module switch-to NAME:STREAM -y
+```
+
+> 温馨提示ℹ️： 切换流是一项有风险的操作，并不是所有的软件包都支持这种操作，尤其是降级。
+
+
+
+* 示例：
+
+```shell
+dnf module switch-to nodejs:20 -y
+```
+
+![](./assets/106.gif)
+
+## 6.6 dnf 更新
+
+### 6.6.1 检查更新
+
+* 查看系统中`安装`的软件包`是否`有`可用更新`：
+
+```shell
+dnf check-update
+```
+
+> 温馨提示ℹ️： 也可以使用 `dnf check-upgrade` ，因为 `check-upgrade` 是 `check-update` 的别名。
+
+
+
+* 示例：
+
+```shell
+dnf check-update
+```
+
+![](./assets/107.gif)
+
+### 6.6.2 更新软件包
+
+* 更新`单个`软件包：
+
+```shell
+dnf upgrade package-name -y
+```
+
+> 温馨提示ℹ️： 在 yum 中，我们会使用 `dnf update package-name -y`  来更新软件包；但是，在 dnf 中 update 被标记为 upgrade 过时的别名。
+
+
+
+* 示例：
+
+```shell
+dnf upgrade python3 -y
+```
+
+![](./assets/108.gif)
+
+
+
+* 更新`所有`的软件包：
+
+```shell
+dnf upgrade -y
+```
+
+> 温馨提示ℹ️：
+>
+> *  ① 在 yum 中，我们会使用 `dnf update -y`  来更新软件包；但是，在 dnf 中 update 被标记为 upgrade 过时的别名。
+> * ② 当有内核应用更新的时候，`dnf -y update` 或 `dnf -y upgrade` 总是会安装一个新的内核，除非你手动排除内核的更新，看下文 `dnf 插件`部分。
+
+
+
+* 示例：
+
+```shell
+dnf upgrade -y
+```
+
+![](./assets/109.gif)
+
+
+
+* 更新软件包组：
+
+```shell
+dnf group upgrade group-name -y
+```
+
+
+
+* 示例：
+
+```shell
+dnf group upgrade "System Tools" -y
+```
+
+![](./assets/110.gif)
+
+### 6.6.3 更新和安全相关的软件包
+
+* 更新有`安全勘误`的`最新`可用软件包：
+
+```shell
+dnf upgrade --security -y
+```
+
+
+
+* 示例：
+
+```shell
+dnf upgrade --security -y
+```
+
+![](./assets/111.gif)
+
+
+
+* 升级到`最后`一个`安全勘误`软件包：
+
+```shell
+dnf upgrade-minimal --security -y
+```
+
+
+
+* 示例：
+
+```shell
+dnf upgrade-minimal --security -y
+```
+
+![](./assets/112.gif)
+
+## 6.7 dnf 软件自动化更新
+
+### 6.7.1 安装 dnf automatic 工具
+
+* 安装 `dnf-automatic` 软件包：
+
+```shell
+dnf install dnf-automatic -y
+```
+
+> 温馨提示ℹ️：
+>
+> * ① dnf-automatic 软件包，在默认情况下，使用 `/etc/dnf/automatic.conf` 作为其配置文件来定义其行为。
+> * ② 在实际工作中，生产环境慎用该功能，防止升级的挂掉环境！！！
+
+
+
+* 示例：
+
+```shell
+dnf install dnf-automatic -y
+```
+
+![](./assets/113.gif)
+
+### 6.7.2 启动 dnf automatic 工具
+
+* 选择、启用并启动一个 systemd 计时器单元，该单元`下载`并`安装`、`更新`软件包：
+
+```shell
+systemctl enable --now dnf-automatic-install.timer
+```
+
+> 温馨提示ℹ️：
+>
+> * ① `dnf-automatic-download.timer` 会`下载软件包以便进行更新`，除非手动执行 dnf -y upgrade 命令才会更新软件包。
+> * ② `dnf-automatic-install.timer`会`下载并安装、更新软件包`。
+> * ③ `dnf-automatic-notifyonly.timer`只会`下载存储库数据，以保持存储库缓存最新状态，并通知是否有可用的更新`。
+> * ④ `dnf-automatic.timer`，此计时器在下载和应用更新时的行为是由 `/etc/dnf/automatic.conf` 配置文件中的设置指定；默认行为与 `dnf-automatic-download.timer` 单元相同：它会下载软件包，但不安装它们。、
+> * ⑤ 可以通过 `systemctl show dnf-automatic-install.timer` 来查看详细的配置和预订的运行时间；默认情况下，会在每天的凌晨执行软件包的下载、安装和更新操作。
+
+
+
+* 示例：
+
+```shell
+systemctl enable --now dnf-automatic-install.timer
+```
+
+![](./assets/114.gif)
+
+## 6.8 dnf 删除
+
+### 6.8.1 删除安装的软件包
+
+* 要删除`某个`软件包以及所有`未使用`的依赖软件包：
+
+```shell
+yum remove package-name -y
+```
+
+
+
+* 示例：
+
+```shell
+yum remove nodejs -y
+```
+
+![](./assets/115.gif)
+
+
+
+* `同时`删除`多个`软件包及其`未使用`的依赖项：
+
+```shell
+dnf remove package-name-1 package-name-2 ... -y
+```
+
+
+
+* 示例：
+
+```shell
+dnf remove nodejs nginx -y
+```
+
+![](./assets/116.gif)
+
+### 6.8.2 删除软件包组
+
+* 根据`软件包组的名称`删除`软件包组`：
+
+```shell
+dnf group remove group-name -y
+```
+
+
+
+* 示例：
+
+```shell
+dnf group remove "System Tools" -y
+```
+
+![](./assets/117.gif)
+
+### 6.8.3 删除安装的模块化内容
+
+* 删除安装的`模块化`内容：
+
+```shell
+dnf module remove NAME -y 
+```
+
+```shell
+dnf module remove NAME:STREAM -y
+```
+
+```shell
+dnf module remove NAME/PROFILE -y
+```
+
+```shell
+dnf module remove NAME:STREAM/PROFILE -y
+```
+
+> 温馨提示ℹ️：可以通过 `dnf module reset module-name -y` 来重置模块化内容的状态，变为初始化状态。
+
+
+
+* 示例：
+
+```shell
+dnf module remove nodejs:18 -y
+```
+
+![](./assets/118.gif)
+
+## 6.9 软件包的历史记录
+
+### 6.9.1 概述
+
+* Redo（重做） 和 Undo（撤销） 是在计算机程序和应用程序中经常使用的两个功能，用于处理用户操作的不同方式。它们通常用于编辑文档、图像或其他数据的过程中。
+* Undo（撤销）：
+  * 意义：Undo 是指撤销先前的操作，将系统恢复到之前的状态。当用户进行了一个操作后发现这个操作不正确或者不想要时，可以通过执行撤销操作将系统还原到执行该操作之前的状态。
+  * 功能：Undo 功能允许用户回退到之前的操作，通常是通过快捷键（如：`Ctrl+Z`）或菜单选项来触发。这个功能对于纠正错误操作或者试验性质的操作非常有用。
+* Redo（重做）：
+  * 意义：Redo 是指重新执行之前被撤销的操作，将系统恢复到撤销操作之后的状态。当用户撤销了一个操作后，如果后悔或者需要重新执行该操作，可以通过重做来再次应用该操作。
+  * 功能：Redo 功能允许用户对已经撤销的操作进行重做，通常也是通过快捷键（如：`Ctrl+Y`）或菜单选项来触发。这个功能对于反悔之前的撤销操作或者回到之前状态的需要非常有用。
+
+> 总结：Undo 是撤销先前的操作，而 Redo 是重新执行已经被撤销的操作，两者结合起来可以提供更好的用户体验，使用户能够更自由地控制其操作历史。
+
+### 6.9.2 列出事务
+
+* 显示所有`最新`的 dnf `事务列表`：
+
+```shell
+dnf history
+```
+
+
+
+* 示例：
+
+```shell
+dnf history
+```
+
+![](./assets/119.gif)
+
+
+
+* 显示`所选`软件包的`最新`操作列表：
+
+```shell
+dnf history list package-name
+```
+
+
+
+* 示例：
+
+```shell
+dnf history list nodejs
+```
+
+![](./assets/120.gif)
+
+
+
+* 显示`特定事务`的`详情`：
+
+```shell
+dnf history info transactionID
+```
+
+
+
+* 示例：
+
+```shell
+dnf history info 11
+```
+
+![](./assets/121.gif)
+
+### 6.9.3 恢复单个事务
+
+* 恢复`单个`事务：
+
+```shell
+dnf history undo transaction_id -y
+```
+
+> 温馨提示ℹ️：
+>
+> * ① 请谨慎使用 `dnf history undo` 和 `dnf history rollback` 命令。不支持将 RHEL 软件包，特别是`selinux`, `selinux-policy-*`, `kernel`, `glibc` (`glibc` 的依赖项，如 `gcc`) 软件包，降级到旧版本。
+> * ② 因此，不建议将系统降级为次版本（例如，从 RHEL 9.1 到 RHEL 9.0），因为这可能会使系统处于不稳定状态。
+
+
+
+* 示例：
+
+```shell
+dnf history undo 5 -y
+```
+
+![](./assets/122.gif)
+
+### 6.9.4 恢复多个事务
+
+* 恢复`多个`事务：
+
+```shell
+dnf history rollback transaction_id -y
+```
+
+> 温馨提示ℹ️：在指定事务和最后一个事务之间进行恢复。
+
+
+
+* 示例：
+
+```shell
+dnf history rollback 4 -y 
+```
+
+![](./assets/123.gif)
+
+### 6.9.5 重做事务
+
+* 重做到`指定`的事务：
+
+```shell
+dnf history redo transactionID -y
+```
+
+> 温馨提示ℹ️：如果要重做到最后的事务，可以使用 `dnf history redo last -y` 。
+
+
+
+* 示例：
+
+```shell
+dnf history redo 5 -y
+```
+
+![](./assets/124.gif)
+
+## 6.10 管理自定义软件仓库
+
+### 6.10.1 添加 dnf 软件仓库
+
+* 添加 dnf 软件仓库：
+
+```shell
+dnf config-manager --add-repo xxx
+```
+
+
+
+* 示例：
+
+```shell
+dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+![](./assets/125.gif)
+
+### 6.10.2 禁用 dnf 软件仓库
+
+* 禁用 dnf 软件仓库：
+
+```shell
+dnf config-manager --disable repositoryID
+```
+
+
+
+* 示例：
+
+```shell
+dnf config-manager --disable docker-ce
+```
+
+![](./assets/126.gif)
+
+### 6.10.3 启用 dnf 软件仓库
+
+* 启用 dnf 软件仓库：
+
+```shell
+dnf config-manager --enable repositoryID
+```
+
+
+
+* 示例：
+
+```shell
+dnf config-manager --enable docker-ce
+```
+
+![](./assets/127.gif)
+
+## 6.11 插件
+
+### 6.11.1 概述
+
+* dnf 其实依赖于很多插件，来完成工作，之前的 `dnf config-manager` 命令就是 dnf 的插件提供的，可以通过如下的命令来查看 dnf 的插件：
+
+```shell
+dnf list --installed | grep plugin
+```
+
+![](./assets/128.gif)
+
+* 但是，`锁定版本`的`插件`并`没有默认安装`，请看下面的讲解。
+
+### 6.11.2 锁定版本
+
+#### 6.11.2.1 概述
+
+* 在生产环境中，我们有时会将软件包进行锁定，防止升级到更高的版本，避免出现一些问题。
+
+> 温馨提示ℹ️：滴滴之前出现过生产事故，就是运维通过 `dnf -y update` 命令进行整个 Linux 系统的软件包升级，包括： Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
+
+* `yum-versionlock` 是一个 Yum 插件，它采用一组软件包的名称/版本，并排除这些软件包的所有其他版本（包括可选的以下过时版本）。这允许您保护软件包不被新版本更新。该插件提供了一个命令 `“versionlock”` ，它允许您轻松查看和编辑锁定的软件包列表。
+
+#### 6.11.2.2 安装
+
+* 在 AlmaLinux9 上安装 yum-versionlock 插件：
+
+```shell
+dnf -y install python3-dnf-plugin-versionlock
+```
+
+![](./assets/129.gif)
+
+> 注意⚠️：该插件是通过在 Linux 系统中创建 `/etc/yum/pluginconf.d/versionlock.list` 文件，当执行 `yum -y update` 的时候，会去该文件中查找，如果有对应的软件包信息，则不更新；否则，将更新到最新的版本。
+
+#### 6.11.2.3 锁定软件包
+
+* 命令：
+
+```shell
+dnf versionlock [add] 软件包1 软件包2 ...
+```
+
+> 注意⚠️：add 可以加，也可以不加，默认就是 add 。
+
+
+
+* 示例：显示当前系统的内核
+
+```shell
+dnf list --installed | grep kernel
+```
+
+![](./assets/130.gif)
+
+
+
+* 示例：显示当前系统的信息（包括 kernel）
+
+```shell
+# 需要提前安装 dnf -y install neofecth
+neofetch
+```
+
+![](./assets/131.gif)
+
+* 示例：查询内核的所有版本，并降序排序
+
+```shell
+dnf list --showduplicates | grep kernel | sort -r 
+```
+
+![](./assets/132.gif)
+
+
+
+* 示例：锁定内核
+
+```shell
+dnf versionlock kernel*
+```
+
+![](./assets/133.gif)
+
+
+
+* 示例：锁定 gcc 
+
+```shell
+dnf versionlock add gcc*
+```
+
+![](./assets/134.gif)
+
+#### 6.11.2.4 查看锁定的软件包的列表
+
+* 命令：
+
+```shell
+dnf versionlock [list]
+```
+
+> 注意⚠️：list 可以加，也可以不加，默认就是 list 。
+
+
+
+* 示例：
+
+```shell
+dnf versionlock
+```
+
+![](./assets/135.gif)
+
+
+
+* 示例：
+
+```shell
+dnf versionlock list
+```
+
+![](./assets/136.gif)
+
+#### 6.11.2.5 取消指定软件包的锁定
+
+* 命令：
+
+```shell
+dnf versionlock delete 软件包
+```
+
+
+
+* 示例：取消 gcc 包的锁定
+
+```shell
+dnf versionlock delete gcc*
+```
+
+![](./assets/137.gif)
+
+#### 6.11.2.6 取消所有软件包的锁定
+
+* 命令：
+
+```shell
+dnf versionlock clear
+```
+
+
+
+* 示例：
+
+```shell
+dnf versionlock clear
+```
+
+![](./assets/138.gif)
+
