@@ -201,7 +201,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 vim ~/.zshrc
 ```
 
-```{5}
+```txt {5}
 # 其余略
 plugins=(
     git
@@ -239,7 +239,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 vim ~/.zshrc
 ```
 
-```{6}
+```txt {6}
 # 其余略
 plugins=(
     git
@@ -1083,7 +1083,7 @@ EOF
 vim /usr/lib/systemd/system/guacd.service
 ```
 
-```{11-12}
+```txt {11-12}
 [Unit]
 Description=Guacamole proxy daemon
 Documentation=man:guacd(8)

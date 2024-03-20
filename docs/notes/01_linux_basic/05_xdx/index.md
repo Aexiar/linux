@@ -1056,7 +1056,7 @@ date -d '-1 year'
 vim /etc/chrony.conf
 ```
 
-```{3-4}
+```txt {3-4}
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (https://www.pool.ntp.org/join.html).
 # pool 2.almalinux.pool.ntp.org iburst 注释掉
@@ -1130,7 +1130,7 @@ systemctl status chronyd
 
 * 验证 NTP 服务器源：
 
-```shhell
+```shell
 chronyc sources -v
 ```
 
