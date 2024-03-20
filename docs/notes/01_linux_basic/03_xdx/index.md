@@ -108,7 +108,7 @@ tree -L 1 /
 >
 > * ① 对于 Linux 中的目录，官方是有[标准](https://www.pathname.com/fhs/)（文件系统分层结构，LSB（Linux Standard Base））的。
 > * ② 在实际工作中，通常所说的`文件名或目录大小写敏感`指的是`文件名或目录区分大小写`。
-> * ③ 在实际工作中，可能会有人说：Linux 系统是区分大小写的，而 Win 系统是不区分大小写的；这种说法，某种意义上是错误的，因为不是操作系统区分大小写，而是操作系统下的`某些文件系统区分大小写`，比如：Linux 系统就可以支持 NTFS 文件系统，而 NTFS 文件系统就是不区分大小写的（win 默认的文件系统）。
+> * ③ 在实际工作中，可能会有人说：Linux 系统是区分大小写的，而 Win 系统是不区分大小写的；这种说法，某种意义上是错误的，因为不是操作系统区分大小写，而是操作系统下的`某些文件系统区分大小写`，比如：Linux 系统就可以挂载 NTFS 文件系统，而 NTFS 文件系统就是不区分大小写的（win 默认的文件系统）。
 
 ## 2.4 Linux 中的目录
 
@@ -136,7 +136,7 @@ tree -L 1 /
 | `/mnt/`                 | `mnt` 是 `mount tempoary` 的缩写，临时挂载点，临时的入口。   |
 | `/opt/`                 | opt 是 optional(可选) 的缩写，第三方软件的安装位置，如：MySQL 等。 |
 | `/proc/`                | proc 是 process（进程）的缩写，表示虚拟的目录（不占硬盘空间），它是系统内存的映射，存放的是内存中的信息、进程、服务信息以及内核信息等。 |
-| `/sys/`                 | 和 /proc 类似，表示虚拟的目录（不占硬盘空间），用于展示系统硬件信息、管理硬件设备、调整内核参数、控制设备驱动程序以及进行电源管理等。<br>它是内核对象的映射，允许用户和程序以文件系统的方式访问和控制这些内核对象。 |
+| `/sys/`                 | 和 /proc 类似，表示虚拟的目录（不占硬盘空间），用于展示系统硬件信息、管理硬件设备、调整内核参数、控制设备驱动程序以及进行电源管理等。它是内核对象的映射，允许用户和程序以文件系统的方式访问和控制这些内核对象。 |
 | `/tmp/`                 | tmp 是 temp 的缩写，表示临时目录，用来存储程序运行中的临时文件等。 |
 | `/usr/`                 | usr 是 unix shared resources(共享资源) 的缩写，存放的是用户软件安装的位置，类似于 windows 下的 program files 目录。 |
 | `/var/`                 | var 是 variable 的缩写，用来存放经常变化的数据，经常用来保存应用程序的日志。 |
@@ -195,7 +195,7 @@ cd [目录]
 > 注意⚠️：
 >
 > * 如果目录省略，即 `cd` ，就是默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
-> * 如果目录为 `~`，即 `cd ~`，也是默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
+> * 如果目录为 `~`，即 `cd ~`，也是 默认进入当前用户的 shell 变量 HOME 所在目录，即家目录。
 > * 如果目录为 `-`，即 `cd -`，是切换到上次所在位置（了解）。
 
 
@@ -848,6 +848,8 @@ echo $SHELL
 
 * 功能：显示默认的 SHELL 解释器。
 
+> 温馨提示ℹ️：可以通 `cat /etc/shells`命令查看当前 Linux 系统支持的所有 SHELL 类型。
+
 
 
 * 示例：
@@ -1017,8 +1019,6 @@ command -h
 > * ① man 命令来查看帮助，其实是查看指定命令的帮助手册，在 `/usr/share/man` 下。
 > * ② 可以通过 `whereis 命令`或 `whatis 命令`查看其对应命令的帮助手册的位置。
 > * ③ 实际工作中，并不会严格区分 Linux 内部命令或 Linux 外部命令，如果查询 Linux 内部命令的方法不行，就根据提示换为查看 Linux 外部命令的方法。
-
-
 
 
 
@@ -1212,3 +1212,300 @@ man 5 passwd
 
 ![](./assets/74.gif)
 
+## 4.5 命令的历史记录（⭐）
+
+### 4.5.1 概述
+
+* 在 Linux 中，当用户登录的时候，系统会读取 `/etc/profile` 文件，我们可以查看如下的命令，来查看该文件的内容：
+
+```shell
+cat /etc/profile | head -n 20
+```
+
+![](./assets/75.gif)
+
+* 其内容如下：
+
+```txt
+# /etc/profile
+
+# System wide environment and startup programs, for login setup
+# Functions and aliases go in /etc/bashrc
+
+# 系统范围的环境和启动程序，对于登录设置的函数和别名可以设置到 /etc/bashrc 文件中
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# 除非你明确知道你自己在做什么，否则修改这个文件不是很好的注意。最好的方式就是你在 /etc/profile.d/ 目录中
+# 创建一个 custom.sh 的 shell 文件来对环境进行自定义更改，以避免将来更新的时候需要合并的问题。
+
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+# 其余略
+```
+
+* 从上述的翻译中，我们可以得知以下的内容：`/etc/profile` 文件是系统范围内的全局配置文件，会在用户登录的时候被读取和执行，并且通常用于`设置环境变量`和`执行系统级别的配置`；但是，一般不建议，修改这个文件。
+* 其次，上述的翻译中，也提到了对于`登录设置的函数`和`别名`可以设置到 `/etc/bashrc` 文件中，我们可以通过如下的命令，来查看该文件的内容：
+
+```shell
+cat /etc/bashrc | head -n 20
+```
+
+![](./assets/76.gif)
+
+* 其内容如下：
+
+```txt
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# 系统范围的函数和别名
+# 环境相关的配置放在 /etc/profile 中
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# 除非你明确知道你自己在做什么，否则修改这个文件不是很好的注意。最好的方式就是你在 /etc/profile.d/ 目录中
+# 创建一个 custom.sh 的 shell 文件来对环境进行自定义更改，以避免将来更新的时候需要合并的问题。
+
+# Prevent doublesourcing
+if [ -z "$BASHRCSOURCED" ]; then
+  BASHRCSOURCED="Y"
+
+  # are we an interactive shell?
+  if [ "$PS1" ]; then
+    # 其余略
+    # Turn on parallel history
+    shopt -s histappend
+    # 将命令历史记录加载到内存中
+    history -a
+    
+    # 其余略
+  fi
+
+  if ! shopt -q login_shell ; then # We're not a login shell
+    # 其余略
+    # Set default umask for non-login shell only if it is set to 0
+    [ `umask` -eq 0 ] && umask 022
+	# 设置环境变量 SHELL 为 bash
+    SHELL=/bin/bash 
+    # 遍历 /etc/etc/profile.d/ 中以 *.sh 为结尾的配置文件，并进行设置
+    for i in /etc/profile.d/*.sh; do
+        if [ -r "$i" ]; then
+            if [ "$PS1" ]; then
+                . "$i"
+            else
+                . "$i" >/dev/null
+            fi
+        fi
+    done
+    unset i
+    unset -f pathmunge
+  fi
+
+fi
+
+```
+
+* 其次，上述的翻译中，也提到了在 `/etc/profile.d/`目录中创建 `custom.sh` 的 shell 文件，来`执行系统级别的配置`是好的方式，我们可以通过如下的命令，来查看 `/etc/profile.d/` 目录：
+
+```shell
+ll /etc/profile.d/
+```
+
+![](./assets/176.png)
+
+* 其实，在`创建用户`的时候，就会有一些`默认设置`，可以通过如下的命令查看：
+
+```shell
+useradd -D # 等同于 cat /etc/default/useradd
+```
+
+![](./assets/177.png)
+
+* 其内容如下：
+
+```txt
+GROUP=100 # 用户组，root 用户默认是 0 
+HOME=/home # 用户的家目录，
+INACTIVE=-1
+EXPIRE=
+SHELL=/bin/bash # 用户的默认 SHELL 解释器
+SKEL=/etc/skel # SKEL 是骨架、模板的意思
+CREATE_MAIL_SPOOL=yes
+```
+
+> 注意⚠️：
+>
+> * ① 在 Linux 系统中，`/etc/skel` 目录包含了新建用户账号时所复制的默认配置文件和目录结构，相当于一个用户家目录的模板或骨架。
+> * ② 当管理员创建新用户账号时，系统会复制 `/etc/skel` 目录中的文件和目录到新用户的家目录 (`/home/new_user`) 下，作为新用户的初始配置。这样可以确保新用户拥有一套基本的配置文件，比如 `.bashrc`、`.bash_logout` 、`bash_profile`等，以及一些默认的目录结构。
+
+* 我们可以如下的命令，查看 `/etc/skel` 目录来验证下：
+
+```shell
+ll -lah /etc/skel
+```
+
+![](./assets/178.png)
+
+* 其实，`root` 用户是我们在安装操作系统的时候创建的，并且 `root` 用户的家目录是 `/root` ；所以，`root` 用户在家目录下也有这些文件：
+
+```shell 
+ll -lah ~/
+```
+
+![image-20240320162501931](./assets/179.png)
+
+* 当用户登录的时候，Linux 操作系统会加载 `~/.bash_profile` ，我们可以查看该文件的内容：
+
+```shell
+cat ~/.bash_profile
+```
+
+![image-20240320162705428](./assets/180.png)
+
+* 内容如下：
+
+```txt
+# .bash_profile
+
+# Get the aliases and functions
+
+# 通过执行 ~/.bashrc 来获取别名和登录设置的函数
+
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+```
+
+* 此时，我们可以查看下 `~/.bashrc` 文件的内容：
+
+```shell
+cat ~/.bashrc
+```
+
+![image-20240320162924665](./assets/181.png)
+
+* 其内容如下：
+
+```txt
+# .bashrc
+
+# Source global definitions
+
+# 加载 /etc/bashrc 中定义的系统范围的函数和别名
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+# 导出 PATH 环境变量，以便执行应用程序
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+# 用户自定义的别名和函数 
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+```
+
+> 注意⚠️：如果修改了 `.bashrc` 文件，可以使用 `source ~/.bashrc` 使其生效。
+
+* 其实，还有一个 `.bash_history` 文件，该命令是用来记录用户每一次执行的命令情况，即命令的历史记录：
+
+```shell
+cat ~/.bash_history | head 
+```
+
+![image-20240320163322161](./assets/182.png)
+
+* 那么，`.bash_history` 是 `history` 命令用来记录命令的历史的，以便我们可以查看和回顾之前执行过的命令，其执行流程如下：
+
+![image-20240320165156080](./assets/183.png)
+
+### 4.5.2 history 命令使用
+
+* 命令：
+
+```shell
+history [-c] [n]
+```
+
+* 功能：查看已经执行过的历史命令。
+* 选项：
+  * `-c`：清空历史记录。
+* 参数：
+  * `n`：最近 n 条历史命令记录。
+
+> 注意⚠️：
+>
+> * ① 可以使用 `!历史记录数` 执行命令历史记录中的命令。
+> * ② 可以使用 `ctrl + r` 进行历史命令搜索（ `reverse-i-search`），使用 `ctrl + g` 退出搜索。
+
+
+
+* 示例：显示所有的命令历史记录
+
+```shell
+history 
+```
+
+![](./assets/184.gif)
+
+
+
+* 示例：显示最近 10 条命令历史记录
+
+```shell
+history 10
+```
+
+![](./assets/185.gif)
+
+
+
+* 示例：执行历史命令
+
+```shell
+!87
+```
+
+![](./assets/186.gif)
+
+
+
+* 示例：搜索历史命令，并执行
+
+```shell
+# 如果有多个，可以一直按 ctrl + r
+ctrl + r
+```
+
+![](./assets/187.gif)
