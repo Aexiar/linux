@@ -1114,7 +1114,7 @@ ll /usr/share/man
 
 * 内容如下，只显示有用的信息，即：
 
-```shell {1,4,7,13,17,19,21,23}
+```shell {1,4,7,13,15,17,19,21,23}
 drwxr-xr-x. 2 root root  77824  3月  1 09:35 man1 # 1 章节，用户命令
 drwxr-xr-x. 2 root root   8192  2月 29 13:36 man1p
 drwxr-xr-x. 2 root root      6  3月 25  2022 man1x
