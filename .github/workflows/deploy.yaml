@@ -1,0 +1,55 @@
+name: Deploy
+
+on:
+  workflow_dispatch: # 允许从 Actions 选项卡手动运行此工作流程
+  schedule:
+    - cron: '0 0 10,20 * *'  # 每月第 10、20 天的凌晨 0 点执行
+  push:
+    branches:
+      - master # 仅在 push master 分支时触发
+      - main # 仅在 push main 分支时触发
+
+jobs:
+  build: # 构建工作
+    runs-on: ubuntu-latest # 构建环境
+    steps: # 步骤
+      - name: "拉取代码"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+      - name: "设置node.js的版本"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: "安装依赖"
+        run: npm install
+      - name: "打包"
+        run: npm run docs:build
+      - name: "上传制品"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: vitepress-artifact
+          path: docs/.vitepress/dist
+  deploy: # 部署工作
+    needs: build # 依赖构建工作
+    runs-on: ubuntu-latest # 构建环境
+    steps:
+      - name: "下载制品"
+        uses: actions/download-artifact@v4
+        with:
+          name: vitepress-artifact
+          path: ./
+      - name: '解压压缩文件'
+        run: |
+          mkdir docs
+          tar -xvf artifact.tar -C docs/
+          ls -lah ./docs    
+      - name: "部署"
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs 
+        
+     
+
