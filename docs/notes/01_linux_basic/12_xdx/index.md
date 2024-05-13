@@ -461,7 +461,7 @@ cat /etc/yum.repos.d/xxx.repo
 
 * 配置文件格式
 
-```
+```txt
 [baseos] # 源的名称
 name=AlmaLinux $releasever - BaseOS # 描述信息
 mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/baseos # yum 仓库镜像列表，会自动进行切换
@@ -469,15 +469,34 @@ mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/baseos # yum 仓
 enabled=1 # 启动状态：1 开启；0 关闭
 gpgcheck=1 # GPG 检查，1 表示在安装软件包时会进行 GPG 签名验证，确保软件包的完整性和来源的可靠性。
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9 # GPG 密钥，用于验证软件包的签名
-countme=1 # 计数器，1 表示这个软件源应该被计入软件包管理器的统计中
-metadata_expire=86400 # 元数据过期时间，86400 秒表示软件源的元数据（如软件包列表）在没有更新的情况下可以保持多久
-enabled_metadata=1 # 启用元数据， 1 表示启用元数据的自动更新
 ```
 
 > 注意⚠️：
 >
 > * ① 如果是虚拟机或私有云，可能需要配置 yum 源；不过，现在默认配置的 mirrorlist 会动态切换 yum 仓库源到指定国家，速度也还是可以的。
 > * ② 如果是公有云，通常都是配置好的。
+> * ③ 可以通过 `man 5 yum.conf` 命令查看相关帮助手册。
+
+* yum 源配置文件的相关变量：
+
+```shell
+$arch：CPU 的架构，如：aarch64 、i586 、i686 、x86_64 等。
+$basearch：系统的基本架构，如：i686 和 i586 机器的基本架构都是 i386，而 AMD64 和 InTel64 机器的基本架构都是x86_64。
+$releasever：操作系统的发型版的主版本号，如：9、8、7、6 等。
+```
+
+* yum 源配置文件中 baseurl 必须指向含有 repodata 目录所在的路径，即：
+
+```shell
+[baseos] 
+name=AlmaLinux $releasever - BaseOS 
+baseurl=https://mirrors.aliyun.com/almalinux/$releasever/BaseOS/$basearch/os/ # 路径必须包含 repodata 目录
+enabled=1 
+gpgcheck=1 
+gpgkey=https://mirrors.aliyun.com/almalinux/9/BaseOS/x86_64/os/RPM-GPG-KEY-AlmaLinux-9
+```
+
+![image-20240513081809210](./assets/image-20240513081809210.png)
 
 * 修改为阿里云的 yum 镜像源：
 
