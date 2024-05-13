@@ -451,7 +451,7 @@ rpm -e zabbix-agent2
 
 ![image-20240219151504276](./assets/19.png)
 
-### 3.2.2 yum 源配置
+### 3.2.2 yum 源配置文件
 
 * 查看：
 
