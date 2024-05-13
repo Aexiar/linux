@@ -498,6 +498,44 @@ gpgkey=https://mirrors.aliyun.com/almalinux/9/BaseOS/x86_64/os/RPM-GPG-KEY-AlmaL
 
 ![image-20240513081809210](./assets/image-20240513081809210.png)
 
+* yum 源配置 yum 仓库的形式有多种，如下所示：
+
+```shell
+[baseos] 
+name=AlmaLinux $releasever - BaseOS 
+baseurl=https://mirrors.aliyun.com/almalinux/$releasever/BaseOS/$basearch/os/ # https 的方式，推荐
+enabled=1 
+gpgcheck=1 
+gpgkey=https://mirrors.aliyun.com/almalinux/9/BaseOS/x86_64/os/RPM-GPG-KEY-AlmaLinux-9
+```
+
+```shell
+[baseos] 
+name=AlmaLinux $releasever - BaseOS 
+baseurl=http://mirrors.aliyun.com/almalinux/$releasever/BaseOS/$basearch/os/ # http 的方式，不推荐
+enabled=1 
+gpgcheck=1 
+gpgkey=https://mirrors.aliyun.com/almalinux/9/BaseOS/x86_64/os/RPM-GPG-KEY-AlmaLinux-9
+```
+
+```shell
+[baseos] 
+name=AlmaLinux $releasever - BaseOS 
+baseurl=file:///mnt/cd # 本地目录
+enabled=1 
+gpgcheck=1 
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+```
+
+```shell
+[baseos] 
+name=AlmaLinux $releasever - BaseOS 
+baseurl=ftp://192.168.10.120/pub # ftp 服务的方式
+enabled=1 
+gpgcheck=1 
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+```
+
 * 修改为阿里云的 yum 镜像源：
 
 ```shell
