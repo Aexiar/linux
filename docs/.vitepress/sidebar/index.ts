@@ -18,7 +18,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: 'Linux 用户管理体系', link: `/notes/01_linux_basic/09_${commonDirectoryName}/` },
         { text: 'Linux 权限管理体系', link: `/notes/01_linux_basic/10_${commonDirectoryName}/` },
         { text: 'Linux 之快速安装 Ubuntu', link: `/notes/01_linux_basic/11_${commonDirectoryName}/` },
-        { text: 'Linux 软件包管理', link: `/notes/01_linux_basic/12_${commonDirectoryName}/` },
+        { text: 'Linux 软件包管理（一）', link: `/notes/01_linux_basic/12_${commonDirectoryName}/` },
         { text: 'Linux 软件包管理（二）', link: `/notes/01_linux_basic/13_${commonDirectoryName}/` },
         { text: 'Linux 进程管理', link: `/notes/01_linux_basic/14_${commonDirectoryName}/` },
         { text: 'Linux 服务管理', link: `/notes/01_linux_basic/15_${commonDirectoryName}/` },
