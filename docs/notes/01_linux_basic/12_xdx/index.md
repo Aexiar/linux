@@ -461,14 +461,17 @@ cat /etc/yum.repos.d/xxx.repo
 
 * 配置文件格式
 
-```txt
+```shell
 [baseos] # 源的名称
-name=AlmaLinux $releasever - BaseOS # 描述信息
-mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/baseos # yum 仓库镜像列表，会自动进行切换
-# baseurl=https://repo.almalinux.org/almalinux/$releasever/BaseOS/$basearch/os/ # 指向一个固定的地址
-enabled=1 # 启动状态：1 开启；0 关闭
-gpgcheck=1 # GPG 检查，1 表示在安装软件包时会进行 GPG 签名验证，确保软件包的完整性和来源的可靠性。
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9 # GPG 密钥，用于验证软件包的签名
+name=AlmaLinux $releasever - BaseOS # 描述信息（必须）
+mirrorlist=https://mirrors.almalinux.org/mirrorlist/$releasever/baseos # yum 仓库镜像列表，会自动进行切换（必须，和 baseurl 二选一）
+# baseurl=https://repo.almalinux.org/almalinux/$releasever/BaseOS/$basearch/os/ # 指向一个固定的地址（必须，和 mirrorlist 二选一）
+enabled=1 # 启动状态：1 开启；0 关闭，默认是 1（必须）
+gpgcheck=1 # GPG 检查，1 表示在安装软件包时会进行 GPG 签名验证，确保软件包的完整性和来源的可靠性。（必须）
+countme=1 # 允许匿名统计此仓库的使用情况：1 开启；0 关闭，默认是 1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9 # GPG 密钥，用于验证软件包的签名 （必须）
+metadata_expire=86400 # 设置元数据过期时间，以秒为单位。
+enabled_metadata=1 # 控制是否启用元数据缓存，1 开启；0 关闭，默认是 1
 ```
 
 > 注意⚠️：
