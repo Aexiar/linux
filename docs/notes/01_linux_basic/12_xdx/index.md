@@ -34,7 +34,7 @@
 
 * 之前，我们在`《计算机硬件与组成原理基础》`的最后就解释过 ABI、API 等相关的概念了，如下所示：
 
-![](./assets/3.jpg)
+![](./assets/2.jpg)
 
 * 所谓的 ABI（应用程序二进制接口）就是将`操作系统层`与由操作系统管理的`应用程序`和`库`分开。ABI 涵盖了低级数据类型、对齐方式和调用约定等详细信息，并定义了可执行程序的格式。系统调用在此级别定义。此接口允许应用程序和库在实现相同 ABI 的操作系统之间移植。ABI 确保了编译后的二进制文件能够在特定的操作系统和硬件平台上正确地运行。
 * Windows 和 Linux 中的 ABI 格式是不兼容了，意味着 Windows 中的程序（包括病毒）在 Linux 上是不能直接运行的，反之亦成立！！！
@@ -52,7 +52,7 @@
 file /usr/bin/ls # 查看 Linux 中应用程序的 ABI 格式
 ```
 
-![](./assets/4.png)
+![](./assets/3.png)
 
 
 
@@ -62,13 +62,13 @@ file /usr/bin/ls # 查看 Linux 中应用程序的 ABI 格式
 file Gitify-Setup-5.2.0.exe # 查看 Windows 中应用程序的 ABI 格式
 ```
 
-![](./assets/5.png)
+![](./assets/4.png)
 
 
 
 *  所谓的 API（应用程序编程接口）可以在各种不同的操作系统上给上层的应用程序提供完全相同的接口，但是它们本身在这些操作系统上的实现却可能不同。目前，主流的操作系统是 Windows 和 Linux ；由于操作系统的不同，API 又分为了 Windows API 和 Linux API，导致了在 Windows 上开发的软件在 Linux 上无法运行，在 Linux 上开发的软件在 Windows 上也无法运行，进而导致了软件移植的困难，POSIX 标准的出现就是为了解决这个问题。
 
-![](./assets/6.jpg)
+![](./assets/5.jpg)
 
 * POSIX 标准的主要目的和解决的问题包括：
   * ① **提高可移植性**：通过定义一组统一的 API（应用程序编程接口），POSIX 允许软件和程序能够在遵守这些标准的不同操作系统间更容易地移植和运行。
@@ -81,7 +81,7 @@ file Gitify-Setup-5.2.0.exe # 查看 Windows 中应用程序的 ABI 格式
 
 * 随着时间的推移，Linux 和 Windows 都实现了基本的 POSIX 标准，这就意味着我们在编写一套软件（C 语言）可以在不同的操作系统上都能成功的编译和运行（虽然软件底层的 ABI 不兼容，但是 API 是兼容的，也就意味着软件在源代码级别就是可移植的，我们只需要在不同的平台上分别编译和运行，就可以很轻松的实现软件的移植），即：
 
-![](./assets/7.png)
+![](./assets/6.png)
 
 > 注意⚠️：目前，C 或 C++ 语言编写的软件都是通过`一套代码，多平台编译`的方式来间接的实现软件的可移植性。
 
@@ -124,7 +124,7 @@ int main() {
 
 *  C 程序的编译过程是将 C 语言源代码转换成可执行文件的过程，涉及多个阶段，这些阶段通常包括`预处理`、`编译`、`汇编`和`链接`。
 
-![](./assets/8.jpg)
+![](./assets/7.jpg)
 
 * **预处理（Preprocessing）**:
   - 在实际编译之前，预处理器处理 C 源代码。
@@ -150,7 +150,7 @@ int main() {
 gcc HelloWorld.c -o hello.out # 直接编译为可执行的目标文件
 ```
 
-![](./assets/9.gif)
+![](./assets/8.gif)
 
 
 
@@ -172,7 +172,7 @@ gcc -c hello.s -o hello.o # 对汇编文件进行编译，生成目标文件
 gcc hello.o -o hello.out # 对目标文件进行链接，生成可执行文件
 ```
 
-![](./assets/10.gif)
+![](./assets/9.gif)
 
 ### 1.3.4 静态链接和动态链接
 
@@ -186,7 +186,7 @@ gcc hello.o -o hello.out # 对目标文件进行链接，生成可执行文件
 
 * 其对应的图示，如下所示：
 
-![](./assets/11.png)
+![](./assets/10.png)
 
 > 注意⚠️：
 >
@@ -218,7 +218,7 @@ gcc hello.o -o hello.out # 对目标文件进行链接，生成可执行文件
 
 * RedHat（红帽系）的软件包格式如下：
 
-![image-20240219141800345](./assets/12.png)
+![image-20240219141800345](./assets/11.png)
 
 > 温馨提示ℹ️：常见的 CPU 架构，即 arch（architecture，建筑，建筑风格，在计算机中常用来表示架构） 
 >
@@ -276,20 +276,20 @@ httpd-tools-2.4.57-5.el9.x86_64.rpm # 其它包
 ## 2.1 概述
 
 * `rpm（Redhat Package Manager）` 命令是 `RPM` 软件包的管理工具。`rpm` 原本是 `Red Hat Linux` 发行版专门用来管理 `Linux` 各项套件的程序，由于它遵循 `GPL` 规则且功能强大方便，因而广受欢迎，逐渐受到其他发行版的采用。
-* `RPM` 套件管理方式的出现，让 `Linux` 易于安装、升级，间接提升了 `Linux` 的适用度。
+* `RPM` 套件管理方式的出现，让 `Linux` 易于安装，升级，间接提升了 `Linux` 的适用度。
 
 ## 2.2 rpm 管理软件包
 
 ### 2.2.1 概述
 
-* rpm 管理软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
+* rpm rpm 管理软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
 
 | 功能       | 命令                      | 选项含义                                                     |
 | ---------- | ------------------------- | ------------------------------------------------------------ |
 | 增（安装） | `rpm -ivh xxx.rpm`        | `-i`， `--install`：安装软件包。 <br>`-v`，`--verbose` ：安装的时候显示详细信息。 <br>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
 | 删（卸载） | `rpm -e xxx.rpm --nodeps` | `-e`，`--erase`：清除（卸载）软件包，eraser 是 erase 的名词，即橡皮，所以 erase  是擦除的意思。 <br/>`--nodeps`：不验证软件包依赖，有的时候卸载不了，就需要此参数。 |
 | 改（升级） | `rpm -Uvh xxx.rpm`        | `-U`，`--upgrade`：升级软件包。<br/>`-v`，`--verbose` ：安装的时候显示详细信息。 <br/>`-h`，`--hash`：软件包安装的时候列出哈希标记，通常和 `-v` 配合使用。 |
-| 查（查询） | `rpm -qa `                | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
+| 查（查询） | `rpm -qa | grep xxx`      | `-q`，`--query` ：查询 。<br>`-a`，`--all`：全部 。          |
 |            | `rpm -ql xxx`             | `-q`，`--query` ：查询。<br/>`-l`，`--list`：列出安装到系统中软件包中的内容（绝对路径），如：命令、配置文件等。 |
 |            | `rpm -qf $(which xxx)`    | `-q`，`--query` ：查询。<br/>`-f`，`--file`：根据命令或文件的绝对路径，查询对应的软件包。 |
 
@@ -325,7 +325,7 @@ cd /tmp
 rpm -ivh zabbix-agent2-6.0.6-2.el9.x86_64.rpm
 ```
 
-![](./assets/13.gif)
+![](./assets/12.gif)
 
 ### 2.2.3 查（查询）
 
@@ -354,7 +354,7 @@ rpm -qf $(which xxx)
 rpm -qa | grep zabbix
 ```
 
-![](./assets/14.gif)
+![](./assets/13.gif)
 
 
 
@@ -364,7 +364,7 @@ rpm -qa | grep zabbix
 rpm -ql zabbix-agent2
 ```
 
-![](./assets/15.gif)
+![](./assets/14.gif)
 
 
 
@@ -374,7 +374,7 @@ rpm -ql zabbix-agent2
 rpm -qf $(which ifconfig)
 ```
 
-![](./assets/16.gif)
+![](./assets/15.gif)
 
 ### 2.2.4 改（升级）
 
@@ -409,7 +409,7 @@ cd /tmp
 rpm -Uvh zabbix-agent2-6.0.7-1.el9.x86_64.rpm
 ```
 
-![](./assets/17.gif)
+![](./assets/16.gif)
 
 ### 2.2.5 删（卸载）
 
@@ -428,7 +428,7 @@ rpm -e xxx --nodeps
 rpm -e zabbix-agent2
 ```
 
-![](./assets/18.gif)
+![](./assets/17.gif)
 
 
 
@@ -449,7 +449,20 @@ rpm -e zabbix-agent2
 
 * 通常而言，我们都是使用 yum 命令来安装软件包的；但是，在安装软件包的过程中，yum 命令会和 yum 源（仓库）进行交互，并确保了软件包的安装、更新和依赖关系的自动解决，即：
 
-![image-20240219151504276](./assets/19.png)
+![](./assets/18.png)
+
+* 其实，YUM 仓库分为两个部分：
+  * Packages：用来存放 rpm 包的目录。
+  * repodata：用来记录当前 YUM 仓库中所有 rpm 包的元数据以及依赖关系，其实就是一个小型的 SQLite 数据库。
+
+![](./assets/19.png)
+
+* 当我们通过 `yum -y install nginx` 命令安装 nginx 的时候，其流程是这样的：
+  * ① yum 首先会将 `repodata` 从远程 YUM 仓库下载到本地。
+  * ② 然后去查看 `repodata` 中是否包含 nginx 的 rpm 包以及其依赖的 rpm 包。
+  * ③ 如果有，就将 nginx 的 rpm 包以及依赖的 rpm 包下载到本地，然后调用 rpm 命令来进行安装。
+
+![](./assets/20.png)
 
 ### 3.2.2 yum 源配置文件
 
@@ -499,7 +512,7 @@ gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/almalinux/9/BaseOS/x86_64/os/RPM-GPG-KEY-AlmaLinux-9
 ```
 
-![image-20240513081809210](./assets/image-20240513081809210.png)
+![](./assets/21.png)
 
 * yum 源配置 yum 仓库的形式有多种，如下所示：
 
@@ -621,7 +634,7 @@ yum -y install xxx
 yum -y install tree
 ```
 
-![](./assets/20.gif)
+![](./assets/22.gif)
 
 #### 3.3.2.2 安装程序组
 
@@ -646,7 +659,7 @@ yum -y groupinstall xxx
 yum -y groupinstall 'Development Tools'
 ```
 
-![](./assets/21.gif)
+![](./assets/23.gif)
 
 ### 3.3.3 查（查询）
 
@@ -670,7 +683,7 @@ yum repolist [--all]
 yum repolist
 ```
 
-![](./assets/22.gif)
+![](./assets/24.gif)
 
 
 
@@ -680,7 +693,7 @@ yum repolist
 yum repolist --all
 ```
 
-![](./assets/23.gif)
+![](./assets/25.gif)
 
 
 
@@ -690,7 +703,7 @@ yum repolist --all
 yum -y install epel-release 
 ```
 
-![](./assets/24.gif)
+![](./assets/26.gif)
 
 #### 3.3.3.2 查询程序组
 
@@ -719,7 +732,7 @@ yum grouplist --installed
 yum grouplist
 ```
 
-![](./assets/25.gif)
+![](./assets/27.gif)
 
 
 
@@ -729,7 +742,7 @@ yum grouplist
 yum grouplist --installed
 ```
 
-![](./assets/26.gif)
+![](./assets/28.gif)
 
 #### 3.3.3.3 查询软件包
 
@@ -751,7 +764,7 @@ yum list [--installed]
 yum list | grep tree
 ```
 
-![](./assets/27.gif)
+![](./assets/29.gif)
 
 
 
@@ -761,7 +774,7 @@ yum list | grep tree
 yum list --installed | grep tree
 ```
 
-![](./assets/28.gif)
+![](./assets/30.gif)
 
 #### 3.3.3.4 查询软件包
 
@@ -783,7 +796,7 @@ yum provides xxx
 yum provides ifconfig
 ```
 
-![](./assets/29.gif)
+![](./assets/31.gif)
 
 
 
@@ -793,7 +806,7 @@ yum provides ifconfig
 yum provides tree
 ```
 
-![](./assets/30.gif)
+![](./assets/32.gif)
 
 ### 3.3.4 仓库（启用和禁用）
 
@@ -823,7 +836,7 @@ yum config-manager --disable 仓库名称
 yum config-manager --enable crb devel
 ```
 
-![](./assets/31.gif)
+![](./assets/33.gif)
 
 
 
@@ -833,7 +846,7 @@ yum config-manager --enable crb devel
 yum config-manager --disable crb devel
 ```
 
-![](./assets/32.gif)
+![](./assets/34.gif)
 
 ### 3.3.5 改（更新）
 
@@ -861,7 +874,7 @@ yum -y update [软件包] [--exclude=软件包] [--disableexcludes=repo]
 yum -y update --exclude=kernel*
 ```
 
-![](./assets/33.gif)
+![](./assets/35.gif)
 
 ### 3.3.6 删（卸载）
 
@@ -881,7 +894,7 @@ yum -y remove 软件包
 yum -y remove tree
 ```
 
-![](./assets/34.gif)
+![](./assets/36.gif)
 
 
 
@@ -906,7 +919,7 @@ yum -y remove tree
 wget -P /tmp https://freenginx.org/download/nginx-1.24.0.tar.gz
 ```
 
-![](./assets/35.gif)
+![](./assets/37.gif)
 
 * 安装依赖：
 
@@ -914,7 +927,7 @@ wget -P /tmp https://freenginx.org/download/nginx-1.24.0.tar.gz
 yum -y install gcc gcc-c++  autoconf automake make pcre pcre-devel zlib zlib-devel openssl openssl-devel
 ```
 
-![](./assets/36.gif)
+![](./assets/38.gif)
 
 * 解压：
 
@@ -926,7 +939,7 @@ cd /tmp
 tar -zxvf nginx-1.24.0.tar.gz
 ```
 
-![](./assets/37.gif)
+![](./assets/39.gif)
 
 * 配置：
 
@@ -938,7 +951,7 @@ cd nginx-1.24.0
 ./configure
 ```
 
-![](./assets/38.gif)
+![](./assets/40.gif)
 
 * 编译：
 
@@ -946,7 +959,7 @@ cd nginx-1.24.0
 make 
 ```
 
-![](./assets/39.gif)
+![](./assets/41.gif)
 
 * 安装：
 
@@ -954,7 +967,7 @@ make
 make install
 ```
 
-![](./assets/40.gif)
+![](./assets/42.gif)
 
 * 启动并测试：
 
@@ -970,7 +983,7 @@ cd /usr/local/nginx/sbin
 curl http://127.0.0.1:80
 ```
 
-![](./assets/41.gif)
+![](./assets/43.gif)
 
 
 
@@ -982,13 +995,13 @@ curl http://127.0.0.1:80
 
 * nexus3 是用 Java 语言构建的集中式组件仓库，它支持各种软件包，如：Maven、YUM、npm 等。
 
-![image-20240309095943990](./assets/42.png)
+![image-20240309095943990](./assets/44.png)
 
 > 注意⚠️：nexus3 的下载地址是[这里](https://help.sonatype.com/en/download-archives---repository-manager-3.html)。
 
 * 目前的架构如下：
 
-![image-20240309133612792](./assets/43.png)
+![image-20240309133612792](./assets/45.png)
 
 > 注意⚠️：nexus3 的主要功能和应用场景如下：
 >
@@ -1008,7 +1021,7 @@ curl http://127.0.0.1:80
 yum -y install java-1.8.0*
 ```
 
-![](./assets/44.gif)
+![](./assets/46.gif)
 
 * 查看 JDK 是否安装成功：
 
@@ -1020,7 +1033,7 @@ javac -version
 java -version
 ```
 
-![](./assets/45.gif)
+![](./assets/47.gif)
 
 * 下载 nexus3 ：
 
@@ -1029,7 +1042,7 @@ curl -L -o /opt/nexus-3.66.0-02-unix.tar.gz \
 	--no-buffer https://download.sonatype.com/nexus/3/nexus-3.66.0-02-unix.tar.gz
 ```
 
-![](./assets/46.gif)
+![](./assets/48.gif)
 
 * 解压并重命名：
 
@@ -1045,7 +1058,7 @@ tar -zxvf nexus-3.66.0-02-unix.tar.gz -C /usr/local
 mv nexus-3.66.0-02 nexus3
 ```
 
-![](./assets/47.gif)
+![](./assets/49.gif)
 
 * 创建虚拟用户：
 
@@ -1053,7 +1066,7 @@ mv nexus-3.66.0-02 nexus3
 useradd -M -s /sbin/nologin nexus3
 ```
 
-![](./assets/48.gif)
+![](./assets/50.gif)
 
 * 授权 nexus3 目录权限：
 
@@ -1062,7 +1075,7 @@ chown -R nexus3:nexus3 /usr/local/nexus3
 chown -R nexus3:nexus3 /usr/local/sonatype-work
 ```
 
-![](./assets/49.gif)
+![](./assets/51.gif)
 
 * 配置 systemd ：
 
@@ -1089,7 +1102,7 @@ TimeoutSec=600
 WantedBy=multi-user.target
 ```
 
-![](./assets/50.gif)
+![](./assets/52.gif)
 
 * 启动：
 
@@ -1101,7 +1114,7 @@ systemctl daemon-reload
 systemctl enable --now nexus.service
 ```
 
-![](./assets/51.gif)
+![](./assets/53.gif)
 
 * 查询服务是否启动：
 
@@ -1110,7 +1123,7 @@ systemctl enable --now nexus.service
 sytemctl status nexus
 ```
 
-![](./assets/52.gif)
+![](./assets/54.gif)
 
 ## 5.2 访问并配置
 
@@ -1118,35 +1131,35 @@ sytemctl status nexus
 
 * 通过浏览器输入 `http://192.168.10.100:8081` 来进行访问（请先关闭防火墙）：
 
-![image-20240309114510501](./assets/53.png)
+![image-20240309114510501](./assets/55.png)
 
 * 默认的用户名是 `admin` ，可以根据提示获取初始化密码：
 
-![image-20240309114557125](./assets/54.png)
+![image-20240309114557125](./assets/56.png)
 
 * 登录到系统中：
 
-![image-20240309114638073](./assets/55.png)
+![image-20240309114638073](./assets/57.png)
 
 * 根据提示，修改初始化密码：
 
-![image-20240309114720441](./assets/56.png)
+![image-20240309114720441](./assets/58.png)
 
 * 其余，下一步即可：
 
-![image-20240309114837106](./assets/57.png)
+![image-20240309114837106](./assets/59.png)
 
-![image-20240309114858532](./assets/58.png)
+![image-20240309114858532](./assets/60.png)
 
 ### 5.2.2 解释 nexus3 中仓库的类型
 
 * 我们可以通过如下的步骤，查看 nexus3 中的仓库类型：
 
-![image-20240309141551634](./assets/59.png)
+![image-20240309141551634](./assets/61.png)
 
-![image-20240309141629121](./assets/60.png)
+![image-20240309141629121](./assets/62.png)
 
-![image-20240309141725221](./assets/61.png)
+![image-20240309141725221](./assets/63.png)
 
 * 我们注意到，nexus3 中的仓库类型有 3 种，区别如下：
 * ① hosted（宿主仓库，本地仓库）：
@@ -1171,55 +1184,55 @@ sytemctl status nexus
 
 * 因为 nexus3 可以作为多种软件包的集中式组件仓库，所以我们需要为其单独创建一个 blob 存储空间，即：
 
-![image-20240309142652442](./assets/62.png)
+![image-20240309142652442](./assets/64.png)
 
-![image-20240309142748388](./assets/63.png)
+![image-20240309142748388](./assets/65.png)
 
-![image-20240309142818812](./assets/64.png)
+![image-20240309142818812](./assets/66.png)
 
 #### 5.2.3.2 创建 hosted 类型的仓库
 
 * 创建仓库：
 
-![image-20240309142921618](./assets/65.png)
+![image-20240309142921618](./assets/67.png)
 
 * 选择仓库的类型：
 
-![image-20240309142957323](./assets/66.png)
+![image-20240309142957323](./assets/68.png)
 
 * 填写关键信息，完成仓库的创建：
 
-![](./assets/67.png)
+![](./assets/69.png)
 
-![image-20240309144328206](./assets/68.png)
+![image-20240309144328206](./assets/70.png)
 
 #### 5.2.3.3 创建 proxy 类型的仓库
 
 * 和创建 hosted 类型的仓库的步骤类似，只不过需要填写远程 yum 仓库的地址，如：
 
-![](./assets/69.png)
+![](./assets/71.png)
 
 * 仓库创建完毕时的状态如下：
 
-![image-20240309145709198](./assets/70.png)
+![image-20240309145709198](./assets/72.png)
 
 #### 5.2.3.4 创建 group 类型的仓库
 
 * 将刚才创建的 hosted 类型和 proxy 类型的仓库，组合为 group 类型，即：
 
-![image-20240309145934873](./assets/71.png)
+![image-20240309145934873](./assets/73.png)
 
 * 仓库创建完毕时的状态如下：
 
-![image-20240309150013335](./assets/72.png)
+![image-20240309150013335](./assets/74.png)
 
 ## 5.3 配置 yum 源为 nexus3
 
 * 在 nexus3 的界面中，复制 yum 源的地址：
 
-![image-20240309150428604](./assets/73.png)
+![image-20240309150428604](./assets/75.png)
 
-![image-20240309150516576](./assets/74.png)
+![image-20240309150516576](./assets/76.png)
 
 * 配置 yum 源：
 
@@ -1235,7 +1248,7 @@ sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 > * ① 目前，官方没有解决 group 元数据合并问题，所以使用 proxy 类型的仓库。
 > * ② 在 AlmaLinux9 中，已经将软件包按功能划分为一个仓库，如：baseos、appstream、extras ，目的是方便管理。
 
-![](./assets/75.gif)
+![](./assets/77.gif)
 
 ## 5.4 测试
 
@@ -1249,7 +1262,7 @@ dnf clean all
 dnf makecache
 ```
 
-![](./assets/76.gif)
+![](./assets/78.gif)
 
 * 安装 Nginx 进行测试 ：
 
@@ -1257,7 +1270,7 @@ dnf makecache
 dnf -y install nginx
 ```
 
-![](./assets/77.gif)
+![](./assets/79.gif)
 
 
 
@@ -1280,7 +1293,7 @@ dnf -y install nginx
 dnf repolist [--enabled]
 ```
 
-![](./assets/78.png)
+![](./assets/80.png)
 
 > 温馨提示ℹ️：
 >
@@ -1295,7 +1308,7 @@ dnf repolist [--enabled]
 dnf repolist --all
 ```
 
-![](./assets/79.png)
+![](./assets/81.png)
 
 * 也可以通过如下的命令，来查看的所有的禁用的软件仓库：
 
@@ -1303,7 +1316,7 @@ dnf repolist --all
 dnf repolist --disabled
 ```
 
-![](./assets/80.png)
+![](./assets/82.png)
 
 ## 6.3 软件包格式
 
@@ -1323,7 +1336,7 @@ dnf repolist --disabled
 
 * 所谓的 RPM 格式，就是在每个主要的 Linux 版本中都安装有指定版本的 RPM 包。
 
-![](./assets/81.png)
+![](./assets/83.png)
 
 * RPM 格式的优点：
   * RPM 格式是一种标准的软件包管理格式，可以用于打包、安装和管理软件包。
@@ -1339,11 +1352,11 @@ dnf repolist --disabled
 * 我们也知道，很多软件包，都有不同的版本，并且每个版本又可能分为开发版本、客户端版本、服务器端版本、最小安装版本或其他等。
 * 以 `node.js` 为例：
 
-![](./assets/82.png)
+![](./assets/84.png)
 
 * 以 `postgresql` 为例：
 
-![](./assets/83.png)
+![](./assets/85.png)
 
 * 我们可以通过如下命令来查询系统内置的模块化：
 
@@ -1351,7 +1364,7 @@ dnf repolist --disabled
 dnf module list
 ```
 
-![](./assets/84.png)
+![](./assets/86.png)
 
 > 温馨提示ℹ️：
 >
@@ -1364,7 +1377,7 @@ dnf module list
 
 * 所以，模块化软件包在 Linux 系统中的表现形式如下：
 
-![](./assets/85.png)
+![](./assets/87.png)
 
 ## 6.4 dnf 搜索
 
@@ -1384,7 +1397,7 @@ dnf search <term>
 dnf search tree
 ```
 
-![](./assets/86.gif)
+![](./assets/88.gif)
 
 
 
@@ -1402,7 +1415,7 @@ dnf search --all <term>
 dnf search --all ifconfig
 ```
 
-![](./assets/87.gif)
+![](./assets/89.gif)
 
 
 
@@ -1420,7 +1433,7 @@ dnf repoquery <package_name>
 dnf repoquery kernel
 ```
 
-![](./assets/88.gif)
+![](./assets/90.gif)
 
 
 
@@ -1438,7 +1451,7 @@ dnf provides <file_name>
 dnf provides ifconfig
 ```
 
-![](./assets/89.gif)
+![](./assets/91.gif)
 
 ### 6.4.2 显示软件包
 
@@ -1456,7 +1469,7 @@ dnf list --all
 dnf list --all
 ```
 
-![](./assets/90.gif)
+![](./assets/92.gif)
 
 
 
@@ -1466,7 +1479,7 @@ dnf list --all
 dnf list --all | grep kernel
 ```
 
-![](./assets/91.gif)
+![](./assets/93.gif)
 
 
 
@@ -1484,7 +1497,7 @@ dnf repoquery
 dnf repoquery
 ```
 
-![](./assets/92.gif)
+![](./assets/94.gif)
 
 
 
@@ -1494,7 +1507,7 @@ dnf repoquery
 dnf repoquery | grep kernel
 ```
 
-![](./assets/93.gif)
+![](./assets/95.gif)
 
 
 
@@ -1512,7 +1525,7 @@ dnf list --installed
 dnf list --installed 
 ```
 
-![](./assets/94.gif)
+![](./assets/96.gif)
 
 
 
@@ -1530,7 +1543,7 @@ dnf list --available
 dnf list --available 
 ```
 
-![](./assets/95.gif)
+![](./assets/97.gif)
 
 
 
@@ -1548,7 +1561,7 @@ dnf list --upgrades
 dnf list --upgrades
 ```
 
-![](./assets/96.gif)
+![](./assets/98.gif)
 
 ### 6.4.3 显示软件仓库
 
@@ -1566,7 +1579,7 @@ dnf repolist [--enabled]
 dnf repolist
 ```
 
-![](./assets/97.gif)
+![](./assets/99.gif)
 
 
 
@@ -1576,7 +1589,7 @@ dnf repolist
 dnf repolist --all
 ```
 
-![](./assets/98.gif)
+![](./assets/100.gif)
 
 
 
@@ -1586,7 +1599,7 @@ dnf repolist --all
 dnf repolist --disabled
 ```
 
-![](./assets/99.gif)
+![](./assets/101.gif)
 
 
 
@@ -1604,7 +1617,7 @@ dnf repoinfo <repository_name>
 dnf repoinfo baseos
 ```
 
-![](./assets/100.gif)
+![](./assets/102.gif)
 
 ### 6.4.4 显示软件包信息
 
@@ -1622,7 +1635,7 @@ dnf info <package_name>
 dnf info kernel
 ```
 
-![](./assets/101.gif)
+![](./assets/103.gif)
 
 
 
@@ -1640,7 +1653,7 @@ dnf repoquery --info <package_name>
 dnf repoquery --info kernel
 ```
 
-![](./assets/102.gif)
+![](./assets/104.gif)
 
 ### 6.4.5 显示软件包组及其提供的软件包
 
@@ -1658,7 +1671,7 @@ dnf group list
 dnf group list
 ```
 
-![](./assets/103.gif)
+![](./assets/105.gif)
 
 
 
@@ -1676,7 +1689,7 @@ dnf group info "<group_name>"
 dnf group info "System Tools"
 ```
 
-![](./assets/104.gif)
+![](./assets/106.gif)
 
 ### 6.4.6 显示可用模块化内容
 
@@ -1694,7 +1707,7 @@ dnf module list
 dnf module list
 ```
 
-![](./assets/105.gif)
+![](./assets/107.gif)
 
 
 
@@ -1712,7 +1725,7 @@ dnf module provides <package_name>
 dnf module provides npm
 ```
 
-![](./assets/106.gif)
+![](./assets/108.gif)
 
 
 
@@ -1730,7 +1743,7 @@ dnf module info <module_name>
 dnf module info nodejs
 ```
 
-![](./assets/107.gif)
+![](./assets/109.gif)
 
 ## 6.5 dnf 安装
 
@@ -1750,7 +1763,7 @@ dnf -y install <package_name_1> <package_name_2> ...
 dnf -y install nodejs
 ```
 
-![](./assets/108.gif)
+![](./assets/110.gif)
 
 
 
@@ -1788,7 +1801,7 @@ yum -y install https://dev.mysql.com/get/mysql80-community-release-el9-5.noarch.
 dnf -y install mysql-community-server-8.0.36-1.el9.x86_64.rpm
 ```
 
-![](./assets/109.gif)
+![](./assets/111.gif)
 
 ### 6.5.2 安装软件包组
 
@@ -1806,7 +1819,7 @@ dnf -y group install <group_name_or_ID>
 dnf -y group install "System Tools"
 ```
 
-![](./assets/110.gif)
+![](./assets/112.gif)
 
 ### 6.5.3 安装模块化内容
 
@@ -1824,7 +1837,7 @@ dnf module list
 dnf module list
 ```
 
-![](./assets/111.gif)
+![](./assets/113.gif)
 
 
 
@@ -1842,7 +1855,7 @@ dnf module list <module_name>
 dnf module list nodejs
 ```
 
-![](./assets/112.gif)
+![](./assets/114.gif)
 
 
 
@@ -1864,7 +1877,7 @@ dnf module enable nodejs:18 -y && \
 	dnf -y install nodejs
 ```
 
-![](./assets/113.gif)
+![](./assets/115.gif)
 
 
 
@@ -1894,7 +1907,7 @@ dnf module install NAME:STREAM/PROFILE  -y
 dnf module install nodejs:18
 ```
 
-![](./assets/114.gif)
+![](./assets/116.gif)
 
 
 
@@ -1914,7 +1927,7 @@ dnf module switch-to NAME:STREAM -y
 dnf module switch-to nodejs:20 -y
 ```
 
-![](./assets/115.gif)
+![](./assets/117.gif)
 
 ## 6.6 dnf 更新
 
@@ -1936,7 +1949,7 @@ dnf check-update
 dnf check-update
 ```
 
-![](./assets/116.gif)
+![](./assets/118.gif)
 
 ### 6.6.2 更新软件包
 
@@ -1956,7 +1969,7 @@ dnf upgrade package-name -y
 dnf upgrade python3 -y
 ```
 
-![](./assets/117.gif)
+![](./assets/119.gif)
 
 
 
@@ -1979,7 +1992,7 @@ dnf upgrade -y
 dnf upgrade -y
 ```
 
-![](./assets/118.gif)
+![](./assets/120.gif)
 
 
 
@@ -1997,7 +2010,7 @@ dnf group upgrade group-name -y
 dnf group upgrade "System Tools" -y
 ```
 
-![](./assets/119.gif)
+![](./assets/121.gif)
 
 ### 6.6.3 更新和安全相关的软件包
 
@@ -2015,7 +2028,7 @@ dnf upgrade --security -y
 dnf upgrade --security -y
 ```
 
-![](./assets/120.gif)
+![](./assets/122.gif)
 
 
 
@@ -2033,7 +2046,7 @@ dnf upgrade-minimal --security -y
 dnf upgrade-minimal --security -y
 ```
 
-![](./assets/121.gif)
+![](./assets/123.gif)
 
 ## 6.7 dnf 软件自动化更新
 
@@ -2058,7 +2071,7 @@ dnf install dnf-automatic -y
 dnf install dnf-automatic -y
 ```
 
-![](./assets/122.gif)
+![](./assets/124.gif)
 
 ### 6.7.2 启动 dnf automatic 工具
 
@@ -2084,7 +2097,7 @@ systemctl enable --now dnf-automatic-install.timer
 systemctl enable --now dnf-automatic-install.timer
 ```
 
-![](./assets/123.gif)
+![](./assets/125.gif)
 
 ## 6.8 dnf 删除
 
@@ -2104,7 +2117,7 @@ yum remove package-name -y
 yum remove nodejs -y
 ```
 
-![](./assets/124.gif)
+![](./assets/126.gif)
 
 
 
@@ -2122,7 +2135,7 @@ dnf remove package-name-1 package-name-2 ... -y
 dnf remove nodejs nginx -y
 ```
 
-![](./assets/125.gif)
+![](./assets/127.gif)
 
 ### 6.8.2 删除软件包组
 
@@ -2140,7 +2153,7 @@ dnf group remove group-name -y
 dnf group remove "System Tools" -y
 ```
 
-![](./assets/126.gif)
+![](./assets/128.gif)
 
 ### 6.8.3 删除安装的模块化内容
 
@@ -2172,7 +2185,7 @@ dnf module remove NAME:STREAM/PROFILE -y
 dnf module remove nodejs:18 -y
 ```
 
-![](./assets/127.gif)
+![](./assets/129.gif)
 
 ## 6.9 软件包的历史记录
 
@@ -2204,7 +2217,7 @@ dnf history
 dnf history
 ```
 
-![](./assets/128.gif)
+![](./assets/130.gif)
 
 
 
@@ -2222,7 +2235,7 @@ dnf history list package-name
 dnf history list nodejs
 ```
 
-![](./assets/129.gif)
+![](./assets/131.gif)
 
 
 
@@ -2240,7 +2253,7 @@ dnf history info transactionID
 dnf history info 11
 ```
 
-![](./assets/130.gif)
+![](./assets/132.gif)
 
 ### 6.9.3 恢复单个事务
 
@@ -2263,7 +2276,7 @@ dnf history undo transaction_id -y
 dnf history undo 5 -y
 ```
 
-![](./assets/131.gif)
+![](./assets/133.gif)
 
 ### 6.9.4 恢复多个事务
 
@@ -2283,7 +2296,7 @@ dnf history rollback transaction_id -y
 dnf history rollback 4 -y 
 ```
 
-![](./assets/132.gif)
+![](./assets/134.gif)
 
 ### 6.9.5 重做事务
 
@@ -2303,7 +2316,7 @@ dnf history redo transactionID -y
 dnf history redo 5 -y
 ```
 
-![](./assets/133.gif)
+![](./assets/135.gif)
 
 ## 6.10 管理自定义软件仓库
 
@@ -2323,7 +2336,7 @@ dnf config-manager --add-repo xxx
 dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 ```
 
-![](./assets/134.gif)
+![](./assets/136.gif)
 
 ### 6.10.2 禁用 dnf 软件仓库
 
@@ -2341,7 +2354,7 @@ dnf config-manager --disable repositoryID
 dnf config-manager --disable docker-ce
 ```
 
-![](./assets/135.gif)
+![](./assets/137.gif)
 
 ### 6.10.3 启用 dnf 软件仓库
 
@@ -2359,7 +2372,7 @@ dnf config-manager --enable repositoryID
 dnf config-manager --enable docker-ce
 ```
 
-![](./assets/136.gif)
+![](./assets/138.gif)
 
 ## 6.11 插件
 
@@ -2371,7 +2384,7 @@ dnf config-manager --enable docker-ce
 dnf list --installed | grep plugin
 ```
 
-![](./assets/137.gif)
+![](./assets/139.gif)
 
 * 但是，`锁定版本`的`插件`并`没有默认安装`，请看下面的讲解。
 
@@ -2393,7 +2406,7 @@ dnf list --installed | grep plugin
 dnf -y install python3-dnf-plugin-versionlock
 ```
 
-![](./assets/138.gif)
+![](./assets/140.gif)
 
 > 注意⚠️：该插件是通过在 Linux 系统中创建 `/etc/yum/pluginconf.d/versionlock.list` 文件，当执行 `yum -y update` 的时候，会去该文件中查找，如果有对应的软件包信息，则不更新；否则，将更新到最新的版本。
 
@@ -2415,7 +2428,7 @@ dnf versionlock [add] 软件包1 软件包2 ...
 dnf list --installed | grep kernel
 ```
 
-![](./assets/139.gif)
+![](./assets/141.gif)
 
 
 
@@ -2426,7 +2439,7 @@ dnf list --installed | grep kernel
 neofetch
 ```
 
-![](./assets/140.gif)
+![](./assets/142.gif)
 
 * 示例：查询内核的所有版本，并降序排序
 
@@ -2434,7 +2447,7 @@ neofetch
 dnf list --showduplicates | grep kernel | sort -r 
 ```
 
-![](./assets/141.gif)
+![](./assets/143.gif)
 
 
 
@@ -2444,7 +2457,7 @@ dnf list --showduplicates | grep kernel | sort -r
 dnf versionlock kernel*
 ```
 
-![](./assets/142.gif)
+![](./assets/144.gif)
 
 
 
@@ -2454,7 +2467,7 @@ dnf versionlock kernel*
 dnf versionlock add gcc*
 ```
 
-![](./assets/143.gif)
+![](./assets/145.gif)
 
 #### 6.11.2.4 查看锁定的软件包的列表
 
@@ -2474,7 +2487,7 @@ dnf versionlock [list]
 dnf versionlock
 ```
 
-![](./assets/144.gif)
+![](./assets/146.gif)
 
 
 
@@ -2484,7 +2497,7 @@ dnf versionlock
 dnf versionlock list
 ```
 
-![](./assets/145.gif)
+![](./assets/147.gif)
 
 #### 6.11.2.5 取消指定软件包的锁定
 
@@ -2502,7 +2515,7 @@ dnf versionlock delete 软件包
 dnf versionlock delete gcc*
 ```
 
-![](./assets/146.gif)
+![](./assets/148.gif)
 
 #### 6.11.2.6 取消所有软件包的锁定
 
@@ -2520,5 +2533,5 @@ dnf versionlock clear
 dnf versionlock clear
 ```
 
-![](./assets/147.gif)
+![](./assets/149.gif)
 
