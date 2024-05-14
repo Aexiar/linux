@@ -582,11 +582,11 @@ cat /etc/yum.conf
 cachedir=/var/cache/yum/$basearch/$releasever # 缓存目录
 keepcache=1 # 是否保留缓存, 0 表示不保留缓存, 1 表示保留缓存，默认是 0 
 logfile=/var/log/yum.log # yum 操作的日志
-gpgcheck=1
-installonly_limit=3
-clean_requirements_on_remove=True
-best=True
-skip_if_unavailable=False
+gpgcheck=1 # 设置是否启用 GPG 检查来验证包的签名。1 表示启用，0 表示禁用。
+installonly_limit=3 # 同时可以安装 3 个包，最小值为 2 ；如果设置为 0 或 1 ，则不限制
+clean_requirements_on_remove=True # 设置在删除软件包时是否自动清理不需要的依赖关系。
+best=True # 设置是否总是尝试安装最新版本的软件包。
+skip_if_unavailable=False # 设置是否跳过无法访问的 YUM 包仓库。
 ```
 
 > 注意⚠️：
