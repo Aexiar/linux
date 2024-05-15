@@ -932,8 +932,11 @@ dnf -y install epel-release
 * 安装 Linux 常用的工具：
 
 ```shell
-dnf -y install tree vim wget bash-completion \
-    lrzsz net-tools sysstat iotop iftop htop unzip  nc \
+dnf -y install gcc make autoconf gcc-c++ glibc glibc-devel pcre \
+    pcre-devel openssl openssl-devel systemd-devel zlib-devel \
+    tree vim tmux lsof tcpdump bc bzip2 nfs-utils man-pages \
+    wget bash-completion \
+    lrzsz net-tools sysstat iotop iftop htop zip unzip  nc \
     nmap telnet bc psmisc httpd-tools bind-utils nethogs expect
 ```
 
