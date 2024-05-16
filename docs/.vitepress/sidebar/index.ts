@@ -13,7 +13,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: 'Linux 目录进阶（一）', link: `/notes/01_linux_basic/04_${commonDirectoryName}/` },
         { text: 'Linux 目录进阶（二）', link: `/notes/01_linux_basic/05_${commonDirectoryName}/` },
         { text: 'Linux 文件管理体系', link: `/notes/01_linux_basic/06_${commonDirectoryName}/` },
-        { text: 'Linux 标准 IO、重定向和管道', link: `/notes01_linux_basic/07_${commonDirectoryName}/` },
+        { text: 'Linux 标准 IO、重定向和管道', link: `/notes/01_linux_basic/07_${commonDirectoryName}/` },
         { text: 'Linux 四剑客（一）', link: `/notes/01_linux_basic/08_${commonDirectoryName}/` },
         { text: 'Linux 用户管理体系', link: `/notes/01_linux_basic/09_${commonDirectoryName}/` },
         { text: 'Linux 权限管理体系', link: `/notes/01_linux_basic/10_${commonDirectoryName}/` },
