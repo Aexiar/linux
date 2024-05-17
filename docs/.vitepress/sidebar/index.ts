@@ -17,7 +17,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: '文本编辑器之神 VIM', link: `` },
         { text: '文本常见处理工具', link: `` },
         { text: '正则表达式', link: `` },
-        { text: 'Linux 四剑客（一）', link: `/notes/01_linux_basic/08_${commonDirectoryName}/` },
+        { text: 'Linux 四剑客（一）', link: `/notes/01_linux_basic/11_${commonDirectoryName}/` },
         { text: 'SHELL 脚本编程（一）', link: `` },
         { text: 'Linux 用户管理体系', link: `/notes/01_linux_basic/13_${commonDirectoryName}/` },
         { text: 'Linux 权限管理体系', link: `/notes/01_linux_basic/14_${commonDirectoryName}/` },
