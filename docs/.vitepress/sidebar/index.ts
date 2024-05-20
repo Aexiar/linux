@@ -14,7 +14,7 @@ export const sidebar: DefaultTheme.Sidebar = {
         { text: 'Linux 目录进阶（二）', link: `/notes/01_linux_basic/05_${commonDirectoryName}/` },
         { text: 'Linux 文件管理体系', link: `/notes/01_linux_basic/06_${commonDirectoryName}/` },
         { text: 'Linux 标准 IO、重定向和管道', link: `/notes/01_linux_basic/07_${commonDirectoryName}/` },
-        { text: '文本编辑器之神 VIM', link: `` },
+        { text: '文本编辑器之神 VIM', link: `/notes/01_linux_basic/08_${commonDirectoryName}/` },
         { text: '文本常见处理工具', link: `` },
         { text: '正则表达式', link: `` },
         { text: 'Linux 四剑客（一）', link: `/notes/01_linux_basic/11_${commonDirectoryName}/` },
