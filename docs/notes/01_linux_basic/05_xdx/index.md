@@ -847,6 +847,8 @@ sz xxx
 
 ![](./assets/57.gif)
 
+## 5.6 cut 
+
 
 
 # 第六章：日期组合（⭐）
@@ -869,7 +871,7 @@ date [-d][-s] [+格式]
 
 * 功能：用于`查看`或`设置`系统的时间。
 * 选项：
-  * `-d`，`--date=字符串`：解析`字符串`并按照指定格式`显示`日期或时间。
+  * `-d`，`--date=字符串`：解析`字符串`并按照指定格式`显示`日期或时间，不能是 `now`。
   * `-s，--set=字符串`：根据`指定的字符串`设置日期或时间。
 
 * 格式：
@@ -1230,3 +1232,277 @@ tar -czvf backup-`date +%F`.tar.gz {1..10}.txt
 ```
 
 ![](./assets/83.gif)
+
+
+
+# 第七章：文件内容查看补充
+
+## 7.1 查看文本文件内容
+
+### 7.1.1 cat（⭐）
+
+* 格式：
+
+```shell
+cat [-E][-A][-n][-b][-s] 文件1 文件2 ...
+```
+
+* 功能：查看文本内容。
+* 选项：
+  * `-E`，`--show-ends`：显示行结束符 `$` 。
+  * `-A`，`--show-all`：显示所有的控制符，如：Tab 、换行符等。
+  * `-n`，`--number`：对显示出的每一行进行编号，`常用`。
+  * `-b`，`--number-nonblank`：对显示的非空行进行编号。
+  * `-s`，`--squeeze-blank`：压缩空行。
+
+
+
+* 准备工作：
+
+```shell
+cat > test.txt <<EOF
+aaa aaa		aaaaa   
+bbb
+ccc
+
+ddd
+
+
+eee
+
+
+fff
+
+
+ggg
+
+
+
+hhh
+EOF
+```
+
+![img](./assets/84.gif)
+
+
+
+* 示例：显示行结束符 `$`
+
+```shell
+cat -E test.txt
+```
+
+![img](./assets/85.gif)
+
+
+
+* 示例：显示所有的控制符，如：Tab 、换行符等
+
+```shell
+cat -A test.txt
+```
+
+![img](./assets/86.gif)
+
+
+
+* 示例：对显示出的每一行进行编号
+
+```shell
+cat -n test.txt
+```
+
+![img](./assets/87.gif)
+
+
+
+* 示例：对显示的非空行进行编号
+
+```shell
+cat -b test.txt
+```
+
+![img](./assets/88.gif)
+
+
+
+* 示例：压缩空行
+
+```shell
+cat -s test.txt
+```
+
+![img](./assets/89.gif)
+
+### 7.1.2 nl
+
+* 格式：
+
+```shell
+nl 文件1 文件2 ...
+```
+
+* 功能：对显示的非空行进行编号，相当于 `cat -b xxx` 。
+
+
+
+* 示例：对显示的非空行进行编号
+
+```shell
+nl test.txt
+```
+
+![img](./assets/90.gif)
+
+### 7.1.3 tac
+
+* 格式：
+
+```shell
+tac 文件1 文件2 ...
+```
+
+* 功能：按行为单位反向显示文件内容。
+* 其对应的原理，如下所示：
+
+![image-20240521212817013](./assets/91.png)
+
+
+
+* 示例：
+
+```shell
+tac test.txt
+```
+
+![img](./assets/92.gif)
+
+
+
+* 示例：
+
+```shell
+seq 1 2 20 | tac
+```
+
+![img](./assets/93.gif)
+
+### 7.1.4 rev
+
+* 格式：
+
+```shell
+rev 文件1 文件2 ...
+```
+
+* 功能：将文件内容中的同一行内容以字符为单位逆序输出。
+* 其对应的原理，如下所示：
+
+![image-20240521212930144](./assets/94.png)
+
+
+
+* 示例：
+
+```shell
+rev test.txt
+```
+
+![img](./assets/95.gif)
+
+
+
+* 示例：
+
+```shell
+seq 1 2 20 | tr '\n' ' ' | rev
+```
+
+![img](./assets/96.gif)
+
+
+
+* 示例：
+
+```shell
+echo {1..10} | rev
+```
+
+![img](./assets/97.gif)
+
+## 7.2 查看非文本文件内容
+
+### 7.2.1 hexdump（⭐）
+
+* 格式：
+
+```shell
+hexdump [-C][-n] 文件1 文件2 ...
+```
+
+* 功能：一般用来查看`“二进制”`文件的十六进制编码，但实际上它能查看任何文件，而不只限于二进制文件。
+* 选项：
+  * `-C`，`--canonical`：输出规范的十六进制和 ASCII 码，`常用`。
+  * `-n <length>`， `--length <length>`：只格式化输入文件的前 length 个字节。
+
+> 注意⚠️：在计算机中，16 进制是 4 位二进制的一种表示，即 `2^4 = 16`；但是，一个 B（字节，计算机存储的基本单位）是 8 bit（位），所以需要 2 个 16 进制数来表示，而 `hexdump -C` 就是通过 2 个 16 进制数来表示一个字节的。
+
+
+
+* 示例：
+
+```shell
+echo "Hello World!" | hexdump -C
+```
+
+![img](./assets/98.gif)
+
+
+
+* 示例：
+
+```shell
+hexdump -C -n 512 /dev/sda
+```
+
+![img](./assets/99.gif)
+
+
+
+* 示例：
+
+```shell
+echo {a..z} | tr -d " " | hexdump -C
+```
+
+![img](./assets/100.gif)
+
+### 7.2.2 xxd
+
+* 格式：
+
+```shell'
+xxd [-r] 文件
+```
+
+* 功能：用于生成二进制文件的十六进制表示的工具，它可以创建十六进制转储，还可以将十六进制表示重新转换回二进制格式。
+
+
+
+* 示例： 查看十六进制，类似于 `hexdump -C`
+
+```shell
+echo {a..z} | tr -d " " | xxd 
+```
+
+![img](./assets/101.gif)
+
+
+
+* 示例：将十六进制转换为二进制
+
+```shell
+echo {a..z} | tr -d " " | xxd | xxd -r
+```
+
+![img](./assets/102.gif)
