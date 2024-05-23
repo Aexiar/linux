@@ -47,9 +47,8 @@ jobs:
           ls -lah ./docs    
       - name: "部署"
         uses: peaceiris/actions-gh-pages@v4
+        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs 
-        
-     
 

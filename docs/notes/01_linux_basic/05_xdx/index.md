@@ -1481,7 +1481,7 @@ echo {a..z} | tr -d " " | hexdump -C
 
 * 格式：
 
-```shell'
+```shell
 xxd [-r] 文件
 ```
 
