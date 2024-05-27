@@ -130,7 +130,7 @@ ps -ef | grep -i chronyd | grep -v grep
 find [path...] [-type xxx][-name xxx][-size xxx][-mtime xxx]
 ```
 
-* 参数：`path...`，指定要搜索的目录路径；默认是当前目录。
+* 参数：`path...`，指定要搜索的目录路径。
 * 选项：
 
 | 选项         | 说明                     | 备注                                                         |
@@ -140,7 +140,11 @@ find [path...] [-type xxx][-name xxx][-size xxx][-mtime xxx]
 | -size xxx    | 根据文件的大小查找。     | `+10k` 表示大于 10k，`-10k` 表示小于 10k，单位是：k、M、G 等。 |
 | -mtime xxx   | 根据文件的修改时间查找。 | `-7` 表示最近 7 天内的文件，`+7` 表示 7 天之前的文件。<br>m 表示 modify ，翻译为中文是`修改`的意思。 |
 
-> 注意⚠️：在实际工作中，通常我们使用 find 命令的场景是`在指定目录中查找想要的文件`。
+> 注意⚠️：
+>
+> * ① 如果没有写 `path` 路径，find 默认是在当前目录中寻找。
+>
+> * ② 在实际工作中，通常我们使用 find 命令的场景是`在指定目录中查找想要的文件`。
 
 ### 1.3.2 案例（基本使用）
 
@@ -189,7 +193,7 @@ find /etc -type f -name '*.conf'
 * 示例：查询 /etc 和 /tmp 目录下等于 10kb 的文件
 
 ```shell
-# size 是大小的意思，-size 10k 表示 10kb 的文件
+# size 是大小的意思，-size 10k 表示 10kb 的文件，其实搜索的文件大小范围是（9kb,10kb]
 find /etc /tmp	-type f -size 10k
 ```
 
@@ -200,7 +204,7 @@ find /etc /tmp	-type f -size 10k
 * 示例：查询 /etc 和 /tmp 目录下大于 100kb 的文件（常用）
 
 ```shell
-# size 是大小的意思，-size +10k 表示大于 100kb 的文件
+# size 是大小的意思，-size +10k 表示大于 100kb 的文件，其实搜索的文件大小范围是(10kb，+∞)
 find /etc /tmp	-type f -size +100k
 ```
 
@@ -211,7 +215,7 @@ find /etc /tmp	-type f -size +100k
 * 示例：查询  /etc 和 /tmp 目录下小于 1kb 的文件
 
 ```shell
-# size 是大小的意思，-size -5k 表示小于 1kb 的文件
+# size 是大小的意思，-size -5k 表示小于 1kb 的文件，其实搜索的文件大小范围是(0kb,-1kb]
 find /etc /tmp	-type f -size -1k
 ```
 
@@ -404,6 +408,9 @@ ps -ef | grep sshd
 ![image-20240207202811280](./assets/30.png)
 
 * 那么，xargs 的作用是什么？xargs 就是将`管道的标准输入`转换为`某些命令`的`命令行参数`，因为某些命令是不能读取标准输入的，如：ls 命令。
+
+> 注意⚠️：由于很多命令不支持管道 `|` 来传递参数，xargs 用于产生某个命令的参数，xargs 可以读入 stdin 的数据，并且以空格符或回车符将 stdin 的数据分隔成为参数。
+
 * 可能，你还是不能理解上面的逻辑，可以手动模拟下，即：
 
 ```shell
@@ -615,3 +622,407 @@ source ~/.bashrc
 
 ![](./assets/41.gif)
 
+
+
+# 第四章：打包压缩三剑客（⭐）
+
+## 4.1 概述
+
+* 在 Linux 中，打包和压缩是两个不同的概念，即：
+  * 打包（Packaging）：
+    * 打包是指将多个文件和目录合并成一个单一的文件，但并不改变文件的内容和大小；打包后的文件通常称为归档文件（archive）。
+    * 常用的打包工具是： `tar`（tape archive）。
+  * 压缩（Compression）：
+    * 压缩是指通过特定的算法减少文件的体积，使其占用更少的存储空间；压缩后的文件通常比原文件要小。
+    * 常用的压缩工具有： `gzip`、`bzip2`、`xz` ；其中，`gzip` 的压缩比最低，`bzip2` 的压缩比居中，`xz` 的压缩比最高。
+
+> 注意⚠️：
+>
+> * ① 打包是将多个文件合并为一个文件，而压缩是减少文件的体积。
+> * ② 在实际应用中，打包和压缩常常结合使用；通常先将多个文件打包成一个归档文件，然后再对这个归档文件进行压缩。
+> * ③ 压缩比越大，压缩文件的体积越小；但是，相应的会增加 CPU 的使用率（算法的复杂度越高，占用的 CPU 的资源就会越大，但是压缩之后的文件会越小）。
+> * ④ 对于单个文件，可以使用 `cp` 备份；对于多个文件或目录，强烈推荐使用`打包压缩命令`进行备份。
+> * ⑤ 在 Linux 中，最为常用的打包压缩命令是 `tar` ，其次是 `zip` 和 `unzip` 了。
+
+## 4.2 压缩和解压缩
+
+### 4.2.1 准备工作
+
+* 准备文件：
+
+```shell
+cp /etc/services .
+```
+
+```shell
+cp /etc/passwd .
+```
+
+![](./assets/42.gif)
+
+### 4.2.2 gzip 和 gunzip（⭐）
+
+* 压缩文件：
+
+```shell
+gzip [-k][-d][-数字][-v] 文件1 文件2 ...
+```
+
+* 常用选项：
+  * `-k`，`--keep`：保留原文件。
+  * `-d`，`--decompress`：解压缩 gzip 压缩的文件。
+  * `-1`，`--fast`：指定压缩比，取值为 1-9 ，值越大压缩比也大。
+  * `-9`，`--best`：指定压缩比，取值为 1-9 ，值越大压缩比也大。
+  * `-v`，`--verbose`：显示压缩进度。
+* 解压缩：
+
+```shell
+gunzip [-v][-k] xxx.gz
+```
+
+* 常用选项：
+  * `-v`，`--verbose`：显示解压缩进度。
+  * `-k`，`--keep`：保留原文件。
+
+> 注意⚠️：
+>
+> * ① `gzip` 命令和 `gunzip` 命令依赖于 `gzip` 软件包。
+> * ② 查看 `xxx.gz` 压缩文件中的内容，需要使用 `zcat xxx.gz` 命令。
+
+
+
+* 示例：压缩文件
+
+```shell
+gzip -k services
+```
+
+![](./assets/43.gif)
+
+
+
+* 示例：压缩多个文件
+
+```shell
+gzip -kv services passwd
+```
+
+![](./assets/44.gif)
+
+
+
+* 示例：显示压缩文件中的内容
+
+```shell
+zcat service.gz
+```
+
+![](./assets/45.gif)
+
+
+
+* 示例：解压缩
+
+```shell
+gunzip -kv services.gz
+```
+
+![](./assets/46.gif)
+
+### 4.2.3 bzip2 和 bunzip2
+
+* 压缩文件：
+
+```shell
+bzip2 [-k][-d][-数字][-v] 文件1 文件2 ...
+```
+
+* 常用选项：
+  * `-k`，`--keep`：保留原文件。
+  * `-d`，`--decompress`：解压缩 bzip2 压缩的文件。
+  * `-1`，`--fast`：指定压缩比，取值为 1-9 ，值越大压缩比也大。
+  * `-9`，`--best`：指定压缩比，取值为 1-9 ，值越大压缩比也大。
+  * `-v`，`--verbose`：显示压缩进度。
+* 解压缩：
+
+```shell
+bunzip2 [-v][-k] xxx.bz2
+```
+
+* 常用选项：
+  * `-v`，`--verbose`：显示解压缩进度。
+  * `-k`，`--keep`：保留原文件。
+
+> 注意⚠️：
+>
+> * ① `bzip2` 命令和 `bunzip2` 命令依赖于 `bzip2` 软件包。
+> * ② 查看 `xxx.bz2` 压缩文件中的内容，需要使用 `bzcat xxx.bz2` 命令。
+
+
+
+* 示例：压缩文件
+
+```shell
+bzip2 -kv services
+```
+
+![](./assets/47.gif)
+
+
+
+* 示例：压缩多个文件
+
+```shell
+bzip2 -kv services passwd
+```
+
+![](./assets/48.gif)
+
+
+
+* 示例：显示压缩文件中的内容
+
+```shell
+bzcat services.bz2
+```
+
+![](./assets/49.gif)
+
+
+
+* 示例：解压缩
+
+```shell
+bunzip2 services.bz2
+```
+
+![](./assets/50.gif)
+
+### 4.2.4 xz 和 unxz
+
+* 压缩文件：
+
+```shell
+xz [-k][-d][-数字][-v] 文件1 文件2 ...
+```
+
+* 常用选项：
+  * `-k`，`--keep`：保留原文件。
+  * `-d`，`--decompress`：解压缩 bzip2 压缩的文件。
+  * `-1`，`--fast`：指定压缩比，取值为 1-9 ，值越大压缩比也大。
+  * `-9`，`--best`：指定压缩比，取值为 1-9 ，值越大压缩比也大。
+  * `-v`，`--verbose`：显示压缩进度。
+* 解压缩：
+
+```shell
+unxz [-v][-k] xxx.xz
+```
+
+* 常用选项：
+  * `-v`，`--verbose`：显示解压缩进度。
+  * `-k`，`--keep`：保留原文件。
+
+> 注意⚠️：
+>
+> * ① `xz ` 命令和 `unxz` 命令依赖于 `xz` 软件包。
+> * ② 查看 `xxx.xz` 压缩文件中的内容，需要使用 `xzcat xxx.xz` 命令。
+
+
+
+* 示例：压缩文件
+
+```shell
+xz -kv services
+```
+
+![](./assets/51.gif)
+
+
+
+* 示例：压缩多个文件
+
+```shell
+xz -kv services passwd
+```
+
+![](./assets/52.gif)
+
+
+
+* 示例：显示压缩文件中的内容
+
+```shell
+xzcat services.xz
+```
+
+![](./assets/53.gif)
+
+
+
+* 示例：解压缩
+
+```shell
+unxz services.xz
+```
+
+![](./assets/54.gif)
+
+## 4.3 zip 和 unzip（⭐）
+
+### 4.3.1 概述
+
+* zip 格式的压缩包是 Linux 和 Windows 共同支持的格式，并且 tar 命令无法处理，只能使用 zip 命令或 unzip 命令。
+* 其安装如下：
+
+```shell
+dnf -y install zip unzip
+```
+
+* 压缩：
+
+```shell
+# -r 递归目录，如果压缩目录，需要此参数
+zip [-r] xxx.zip [目录|文件...]
+```
+
+* 解压：
+
+```shell
+unzip xxx.zip -d 目录
+```
+
+> 注意⚠️：
+>
+> * ① 通常只会使用 `unzip` 解压命令。
+> * ② `zip` 命令可以实现打包目录和多个文件到一个文件并压缩；但是，`zip` 命令可能会丢失文件属性信息，如：所有者和组信 息，一般建议使用 `tar` 代替。
+
+### 4.3.2 应用示例
+
+* 示例：
+
+```shell
+zip a.zip a.txt b.txt
+```
+
+![47](./assets/55.gif)
+
+
+
+* 示例：
+
+```shell
+unzip a.zip
+```
+
+![48](./assets/56.gif)
+
+
+
+* 示例：
+
+```shell
+zip -r demo.zip demo
+```
+
+![49](./assets/57.gif)
+
+
+
+* 示例：
+
+```shell
+unzip demo.zip -d /tmp
+```
+
+![50](./assets/58.gif)
+
+## 4.4 tar（⭐）
+
+### 4.4.1 概述
+
+* 在 Linux 中的打包压缩是分为两步：
+  * ① 打包（将文件放到一起）：tar 。
+  * ② 压缩（进行压缩，解决空间）：tar 命令的选项（如：z 等）。
+* tar 命令最为常用的功能：
+  * ① 创建压缩包。
+  * ② 查看压缩包。
+  * ③ 解压压缩包。
+  * ④ 解压压缩包到指定目录。
+
+* tar 命令的创建压缩包：
+
+```shell
+# -z, --gzip, --gunzip, --ungzip   通过 gzip 过滤归档（压缩选项）
+# -c, --create   创建
+# -f, --file=ARCHIVE  指定压缩包的路径和名称
+# -v, --verbose       详细地列出处理的文件       
+tar -zcvf xxx.tar.gz 文件|目录 ...
+```
+
+* tar 命令查看压缩包中的详细内容：
+
+```shell
+# -t, --list 列出压缩包中的内容
+# -v, --verbose       详细地列出处理的文件 
+# -f, --file=ARCHIVE  指定压缩包的路径和名称
+tar -tvf xxx.tar.gz
+```
+
+* tar 命令解压压缩包：
+
+```shell
+# -x, --extract, --get       从归档中解出文件
+# -v, --verbose       详细地列出处理的文件 
+# -f, --file=ARCHIVE  指定压缩包的路径和名称
+tar -xvf xxx.tar.gz
+```
+
+* tar 命令解压压缩包到指定目录：
+
+```shell
+# -x, --extract, --get       从归档中解出文件
+# -v, --verbose       详细地列出处理的文件 
+# -f, --file=ARCHIVE  指定压缩包的路径和名称
+# -C, --directory=DIR        改变至目录 DIR
+tar -xvf xxx.tar.gz -C xxx
+```
+
+### 4.4.2 案例
+
+* 示例：创建压缩包
+
+```shell
+tar -zcvf etc.tar.gz /etc
+```
+
+![41](./assets/59.gif)
+
+
+
+* 示例：查看压缩包中的详细内容
+
+```shell
+tar -tvf etc.tar.gz
+```
+
+![42](./assets/60.gif)
+
+
+
+* 示例：解压到当前目录
+
+```shell
+tar -xvf etc.tar.gz
+```
+
+![43](./assets/61.gif)
+
+
+
+* 示例：解压到 /tmp 目录
+
+```shell
+tar -xvf etc.tar.gz -C /tmp
+```
+
+![44](./assets/62.gif)
