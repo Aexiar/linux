@@ -11,7 +11,7 @@ grep [OPTION]... PATTERNS [FILE]...
 * 对应的英文：Global search REgular expression and Print out the line。
 * 功能：文本搜索工具，根据用户指定的模式（正则表达式）对目标文本逐行进行匹配检查，并显示匹配到的行。
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 所谓的 `PATTERNS`（`模式`）就是由`正则表达式`或`文本字符（字符串）`所形成的过滤条件。
 > * ② 默认情况下，grep 支持普通正则表达式；可以通过 `-E` 选项来开启扩展正则表达式，或者直接使用 egrep 命令来代替 `grep -E 扩展正则表达式`。
@@ -182,7 +182,7 @@ df | grep '^/dev' | tr -s " " | cut -d " " -f1,5 | sort -rn -t 2
 
 * 当然，在扩展正则表达式的基础上，还发展出了 PCRE 正则表达式库，被广泛应用于很多编程语言和软件中，如：Java 和 Nginx 等。
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 传统的 UNIX 工具，如：`sed`、`grep`默认使用 `BRE`，除非 `sed` 加上 `-r` 选项，而 `grep` 加上 `-E` 选项才支持 `ERE`。
 > * ② 现代的`egrep`、`awk`等工具，以及很多编程语言默认使用 `ERE`，因为它们更直观和简洁。
