@@ -483,7 +483,7 @@ vgremove -v vg-mysql
 
 ![](./assets/29.gif)
 
-### 3.5.34 逻辑卷（Logical Volume，LV）管理
+### 3.5.3 逻辑卷（Logical Volume，LV）管理
 
 * 显示逻辑卷（Logical Volume，LV）信息：
 
