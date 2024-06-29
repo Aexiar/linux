@@ -27,8 +27,8 @@ hero:
       text: "首页"
       link: "https://aexiar.github.io"  
     - theme: alt
-      text: "计组5件套"
-      link: "https://aexiar.github.io/coa5/notes/"       
+      text: "计组6件套"
+      link: "https://aexiar.github.io/coa6/notes/"       
     - theme: alt
       text: "前端"
       link: "https://aexiar.github.io/web-design/notes/"
