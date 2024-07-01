@@ -45,20 +45,6 @@ export const sidebar: DefaultTheme.Sidebar = {
       ]
     },
     {
-      text: 'Linux自动化',
-      collapsed: true,
-      items: [
-
-      ]
-    },
-    {
-      text: 'Linux日志收集',
-      collapsed: true,
-      items: [
-
-      ]
-    },
-    {
       text: '云原生生态',
       collapsed: true,
       items: [
@@ -76,7 +62,7 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: '容器管理工具Docker',
       collapsed: true,
       items: [
-
+        { text: 'Harbor 的安装和配置', link: `/notes/05_docker/01_${commonDirectoryName}/` },
       ]
     },
     {
