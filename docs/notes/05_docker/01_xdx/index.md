@@ -235,7 +235,8 @@ tee /etc/docker/daemon.json <<-'EOF'
 {
   "exec-opts": ["native.cgroupdriver=systemd"],	
   "registry-mirrors": [
-    "https://du3ia00u.mirror.aliyuncs.com"
+    "https://du3ia00u.mirror.aliyuncs.com",
+    "https://docker.lixd.xyz"
   ],
   "live-restore": true,
   "log-driver":"json-file",
