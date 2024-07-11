@@ -2,10 +2,9 @@ import { defineConfig } from 'vitepress'
 import { nav } from './navbar'
 import sidebar from './sidebar'
 import dayjs from 'dayjs'
-
 import { loadEnv } from 'vitepress'
 
-const { VITE_BASE_URL } = loadEnv(process.env.NODE_ENV || "", process.cwd())
+const { VITE_BASE_URL } = loadEnv(process.env.NODE_ENV == undefined ? "" : process.env.NODE_ENV, process.cwd())
 
 console.log('VITE_BASE_URL', process.env.NODE_ENV, VITE_BASE_URL)
 
