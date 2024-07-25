@@ -43,7 +43,16 @@ hero:
       link: "https://aexiar.github.io/big-data/notes/"
     - theme: alt
       text: "云原生"
-      link: "/notes/"            
+      link: "/notes/"
+    - theme: alt
+      text: "Go"
+      link: "https://aexiar.github.io/go/notes/"  
+    - theme: alt
+      text: "Python"
+      link: "https://aexiar.github.io/python/notes/"          
+    - theme: alt
+      text: "开源软件"
+      link: "https://aexiar.github.io/open-software/notes/"                      
 
 # 按钮下方的描述
 features:
