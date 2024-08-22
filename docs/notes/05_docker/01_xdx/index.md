@@ -4,11 +4,11 @@
 
 * Harbor 是一个用于容器镜像的开源注册中心项目，旨在通过提供容器镜像的管理和安全功能，帮助企业构建和运行云原生应用。
 
-![image-20240620084650659](./assets/1.png)
+![](./assets/1.png)
 
 * Harbor 的[官方地址](https://goharbor.io/)。
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① 默认情况下，Harbor 给出的安装方式是使用 docker compose，但是这种方案并没有提供 TLS，即 HTTPS，需要自行配置解决。
 > * ② 如果要开启高可用，Harbor 推荐使用 Helm 来安装，即通过 Helm 将 Harbor 安装到 Kubernetes 中。
@@ -62,7 +62,7 @@
   * ① 一台云服务器。
   * ② 一个域名。
 
-> 注意⚠️：
+> [!WARNING]
 >
 > * ① 在某些国家，域名可能需要备案；本人的域名已经托管到 cloudflare ，所以无需备案。
 > * ② 需要将域名解析到对应的服务器上：略。
@@ -291,7 +291,7 @@ mkdir -pv /usr/local/share/example
 wget -P /usr/local/share/example https://github.com/goharbor/harbor/releases/download/v2.11.0/harbor-online-installer-v2.11.0.tgz 
 ```
 
-> 注意⚠️：
+> [!WARNING]
 >
 > * ① `harbor-online-installer-v2.11.0.tgz` 是在线版，即没有 Docker 镜像。
 > * ② `harbor-offline-installer-v2.11.0.tgz`是离线版，即包含 Docker 镜像（比在线版体积大）。
@@ -937,7 +937,10 @@ docker compose down \
 harbor.aurorxa.com 
 ```
 
-> 温馨提示ℹ️：上面配置的域名，每个人不一样；最好走隐私模式，防止缓存；默认的用户名是 `admin`，密码是 `Harbor12345`。
+> [!WARNING]
+>
+> * ① 上面配置的域名，每个人不一样；最好走隐私模式，防止缓存。
+> * ② 默认的用户名是 `admin`，密码是 `Harbor12345`。
 
 ![](./assets/26.gif)
 
@@ -963,7 +966,9 @@ harbor.aurorxa.com
 echo "Harbor12345" | docker login -u admin --password-stdin harbor.aurorxa.com
 ```
 
-> 温馨提示ℹ️：因为设置的 `docker.io` 项目是公开，我们其实可以不登录的。
+> [!NOTE]
+>
+> 因为设置的 `docker.io` 项目是公开，我们其实可以不登录的。
 
 ![](./assets/30.gif)
 

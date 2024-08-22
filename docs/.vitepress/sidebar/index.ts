@@ -62,6 +62,7 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: '容器管理工具Docker',
       collapsed: true,
       items: [
+        { text: 'WSL2 的安装和配置', link: `/notes/05_docker/00_${commonDirectoryName}/` },
         { text: 'Harbor 的安装和配置', link: `/notes/05_docker/01_${commonDirectoryName}/` },
       ]
     },
