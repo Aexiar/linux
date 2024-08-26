@@ -9,7 +9,8 @@
 
 > [!NOTE]
 >
-> 之所以，WSL2 比传统的虚拟化技术，如：VMWare 等，更轻量和高性能，是因为 WSL2 是作用在系统层的，是可以直接调用底层硬件的，而 VMWare  等需要操作系统提供支持。
+> * ① 开启和安装 WSL2 ，需要在 Win10 以上，本人的操作系统是 Win11 。
+> * ② 之所以，WSL2 比传统的虚拟化技术，如：VMWare 等，更轻量和高性能，是因为 WSL2 是作用在系统层的，是可以直接调用底层硬件的，而 VMWare  等需要操作系统提供支持。
 
 ## 1.2 WSL2 的功能
 
@@ -120,7 +121,7 @@ wsl --list
 
 ![126](./assets/11.gif)
 
-## 2.2 WSL2 的配置
+## 2.2 WSL2 解决代理问题
 
 * 在安装和配置 WSL2 之后，可能会出现如下的提示，即：
 
@@ -154,3 +155,63 @@ wsl --shutdown
 * 此时，再打开终端，就没有这种提示了：
 
 ![](./assets/15.png)
+
+## 2.3 WSL2 启用 systemd
+
+### 2.3.1 概述
+
+* 根据 [systemd.io](https://systemd.io/)：“systemd 是 Linux 系统的基本构建基块套件。 它提供一个系统和服务管理器，该管理器作为 PID 1 运行并启动系统的其余部分。”
+* Systemd 主要是一个 init 系统和服务管理器，它包括按需启动守护程序、装载和自动装载点维护、快照支持以及使用 Linux 控制组进行跟踪等功能。
+* 大多数主要的 Linux 发行版现在都运行 systemd，因此在 WSL2 上启用它可使体验更接近于使用裸机 Linux。
+
+> [!NOTE]
+>
+> * ① 默认情况下，在 WSL2 中，只有 Ubuntu 才会将 systemd 作为 pid-1 的守护进程。
+> * ② 但是，基于 WSL2 为内核的其余 Linux 发行版本并非将 systemd 作为 pid-1 的守护进程。
+> * ③ 本次以 AlmaLinux9 作为演示！！！
+
+* 检查进程树，判断 systemd 是否正在运行：
+
+```shell
+ps -p 1 -o comm= # 如果显示 systemd ，则表示 systemd 正在运行
+```
+
+![](./assets/16.gif)
+
+### 2.3.2 操作步骤
+
+* ① 查询 WSL2 的版本，确保 WSL2 的版本为 `0.67.6` 或更高版本：
+
+```shell
+# 如果未满足要求，则使用 wsl --update 更新 WSL2 版本
+wsl --version # 在 win 中的 cmd 或 PowerShell 执行该命令
+```
+
+![](./assets/17.png)
+
+* ② 向 `/etc/wsl.conf` 配置文件中写入以下内容：
+
+```shell
+cat <<EOF | tee /etc/wsl.conf 
+[boot]
+systemd=true
+EOF
+```
+
+![](./assets/18.gif)
+
+* ③ 重启 WSL 实例：
+
+```shell
+wsl --shutdown # 在 win 中的 cmd 或 PowerShell 
+```
+
+![](./assets/19.gif)
+
+* ④ 查看是否启用成功：
+
+```shell
+ps -p 1 -o comm=
+```
+
+![](./assets/20.png)
