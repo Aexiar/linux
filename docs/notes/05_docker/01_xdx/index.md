@@ -70,7 +70,7 @@
 
 * 网络架构：
 
-![image-20240620091849306](./assets/2.png)
+![](./assets/2.svg)
 
 ## 2.3 安装 Docker 和 Docker Compose
 
@@ -293,8 +293,8 @@ wget -P /usr/local/share/example https://github.com/goharbor/harbor/releases/dow
 
 > [!WARNING]
 >
-> * ① `harbor-online-installer-v2.11.0.tgz` 是在线版，即没有 Docker 镜像。
-> * ② `harbor-offline-installer-v2.11.0.tgz`是离线版，即包含 Docker 镜像（比在线版体积大）。
+> * ① `harbor-online-installer-v2.11.0.tgz` 是在线版，即：不包含 Docker 镜像。
+> * ② `harbor-offline-installer-v2.11.0.tgz`是离线版，即：包含 Docker 镜像（比在线版体积大）。
 
 ![](./assets/18.gif)
 
