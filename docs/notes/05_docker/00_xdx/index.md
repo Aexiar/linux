@@ -166,9 +166,8 @@ wsl --shutdown
 
 > [!NOTE]
 >
-> * ① 默认情况下，在 WSL2 中，只有 Ubuntu 才会将 systemd 作为 pid-1 的守护进程。
-> * ② 但是，基于 WSL2 为内核的其余 Linux 发行版本并非将 systemd 作为 pid-1 的守护进程。
-> * ③ 本次以 AlmaLinux9 作为演示！！！
+> * ① 默认情况下，在 WSL2 中，只有 Ubuntu 才会将 systemd 作为 pid-1 的守护进程（微软维护和定制的 Ubuntu 版本，在 GitHub 的 Codespace 中默认的 Linux 环境就是 Ubuntu）。但是，基于 WSL2 为内核的其余 Linux 发行版本并非将 systemd 作为 pid-1 的守护进程。
+> * ② 本次以 AlmaLinux9 作为演示！！！
 
 * 检查进程树，判断 systemd 是否正在运行：
 
