@@ -1,5 +1,6 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
+import ArticleMetadata from "./components/ArticleMetadata.vue"
 import mediumZoom from 'medium-zoom'
 import { onMounted, watch, nextTick } from 'vue'
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'
@@ -8,7 +9,9 @@ import './style/index.css'
 
 export default {
   extends: DefaultTheme,
-
+  enhanceApp({ app }) {
+    app.component('ArticleMetadata', ArticleMetadata)
+  },
   setup() {
     // Get frontmatter and route
     const { frontmatter } = useData()
