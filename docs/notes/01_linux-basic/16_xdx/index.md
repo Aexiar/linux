@@ -6,9 +6,9 @@
 
 ![image-20240513151453999](./assets/1.png)
 
-> 注意⚠️：
+> [!NOTE]
 >
-> * ① Linux 服务器（YUM 仓库）的地址是 192.168.10.120 ，而 Linux 服务器（内网）的仓库是 192.168.10.100 。
+> * ① Linux 服务器（YUM 仓库）的地址是 `192.168.10.120` ，而 Linux 服务器（内网）的仓库是 `192.168.10.100` 。
 > * ② 实际工作中，推荐使用 `nexus3` 来搭建 YUM 仓库。
 
 * 所有的服务器（YUM 仓库和内网）均需关闭防火墙，以防止防火墙干扰实验：
@@ -25,7 +25,9 @@ systemctl disable --now firewalld
 
 ![image-20240513153638682](./assets/3.png)
 
-> 注意⚠️：在实际工作中，无需挂载 CD-DVD ，因为 CD-DVD 已经属于淘汰的技术了，可以将 CD-DVD 中的数据复制到指定的目录中。
+> [!NOTE]
+>
+> 在实际工作中，无需挂载 CD-DVD ，因为 CD-DVD 已经属于淘汰的技术了，可以将 CD-DVD 中的数据复制到指定的目录中。
 
 * 安装 httpd 服务器：
 
@@ -85,7 +87,7 @@ http://192.168.10.120/almalinux/9
 dnf reposync --repoid=extras --download-metadata -p /var/www/html/almalinux
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 之所以这么配置，是因为 `/var/www/html/almalinux/9` 是挂载目录，而挂载目录是只读的，不可以创建和删除内容。
 > * ② 上述配置的前提是，本机有 extras 仓库，并且该仓库是开启状态。
@@ -323,7 +325,8 @@ wget -P /usr/local/src https://dlcdn.apache.org/httpd/httpd-2.4.59.tar.gz
 * 安装依赖：
 
 ```shell
-dnf -y install gcc make apr-devel apr-util-devel pcre-devel openssl-devel redhat-rpm-config
+dnf -y install gcc make apr-devel \
+	apr-util-devel pcre-devel openssl-devel redhat-rpm-config
 ```
 
 ![](./assets/31.gif)
@@ -582,7 +585,9 @@ dpkg -c tree_1.6.0-1_amd64.deb
 dpkg -i xxx.deb
 ```
 
-> 注意⚠️：在实际工作的时候，升级需要经过严格的测试（找一台裸机模拟环境进行升级）。
+> [!NOTE]
+>
+> 在实际工作的时候，升级需要经过严格的测试（找一台裸机模拟环境进行升级）。
 
 
 
@@ -854,7 +859,9 @@ apt list --upgradable
 
 * 在生产环境中，我们有时会将软件包进行锁定，防止升级到更高的版本，避免出现一些问题。
 
-> 温馨提示ℹ️：滴滴之前出现过生产事故，就是运维通过 `apt -y update && apt -y upgrade` 命令进行整个 Linux 系统的软件包升级，包括： Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
+> [!WARNING]
+>
+> 滴滴之前出现过生产事故，就是运维通过 `apt -y update && apt -y upgrade` 命令进行整个 Linux 系统的软件包升级，包括： Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
 
 * apt 的子命令 apt-mark 就可以实现软件包锁定：
 

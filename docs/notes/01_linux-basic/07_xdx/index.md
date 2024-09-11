@@ -44,7 +44,8 @@ ll /dev/std*
 
 > [!NOTE]
 >
-> 在 Linux 中，一切皆文件；所以，这些标准设备也都是以文件的形式保存在系统中的。
+> * ① 在 Linux 中，一切皆文件。
+> * ② 所以，这些标准设备也都是以文件的形式保存在系统中的。
 
 * 需要说明的是，Linux 是将这些标准设备通过软链接的方式链接到当前的终端；所以，如果我们在终端上输入各种指令，其对应的结果（正确、错误）都会显示在当前的终端上，即：
 
@@ -66,12 +67,13 @@ ll /dev/std*
 
 * 类似的伪代码，如下所示：
 
-```shell
-fd = open(const char *pathname, int flags); # 打开文件
-
-write(fd,...);         # 写数据
-
-close(fd);             # 关闭文件
+```c
+// 打开文件
+fd = open(const char *pathname, int flags); 
+// 写数据
+write(fd,...);         
+// 关闭文件
+close(fd);             
 ```
 
 * 步骤如下：

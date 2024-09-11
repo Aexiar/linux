@@ -1075,7 +1075,7 @@ root    ALL=(ALL)       ALL # 100 行
 x       ALL=(ALL)       /usr/bin/cat, /usr/bin/head, /usr/bin/tail, /usr/bin/less, /usr/bin/more, /usr/bin/grep
 ```
 
-> 解释：
+> [!NOTE]
 >
 > * `root` 表示用户名，具有 root 权限的用户。
 > * `ALL=(ALL)` 中的 `ALL` 表示所有主机（即任何 IP 地址），而 `(ALL)` 表示所有用户组，即 root 用户所属的所有用户组。
@@ -1086,7 +1086,8 @@ x       ALL=(ALL)       /usr/bin/cat, /usr/bin/head, /usr/bin/tail, /usr/bin/les
 * 普通用户（开发人员）通过 sudo 进行命令的提权，即：
 
 ```shell
-# 第一次会有密码提示输入，原理是通过时间戳文件文件实现的，可以通过 sudo -k 清除时间戳文件
+# 第一次会有密码提示输入，原理是通过时间戳文件文件实现的，
+# 可以通过 sudo -k 清除时间戳文件
 sudo cat /var/log/secure
 ```
 
@@ -1189,7 +1190,8 @@ systemctl status firewalld
 * 查看 SELinux 是否运行：
 
 ```shell
-# 结果是 permissive 或 disabled 都表示关闭，结果是 enforcing 表示开启
+# 结果是 permissive 或 disabled 都表示关闭。
+# 结果是 enforcing 表示开启
 getenforce
 ```
 
@@ -1198,11 +1200,13 @@ getenforce
 * 关闭 SELinux：
 
 ```shell
-setenforce 0 # 临时关闭
+# 临时关闭
+setenforce 0 
 ```
 
 ```shell
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config  # 永久关闭，重启生效
+# 永久关闭，重启生效
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config  
 ```
 
 ![](./assets/78.gif)
@@ -1210,7 +1214,8 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config  # 永久关
 * 查看 SELinux 是否运行：
 
 ```shell
-# 结果是 permissive 或 disabled 都表示关闭，结果是 enforcing 表示开启
+# 结果是 permissive 或 disabled 都表示关闭。
+# 结果是 enforcing 表示开启
 getenforce
 ```
 
@@ -1504,7 +1509,7 @@ getent database [key]
 
 ### 7.1.2 案例
 
-* 需求 ① ：查看系统中的指定用户的信息。
+* 需求：查看系统中的指定用户的信息。
 
 
 
@@ -1526,9 +1531,9 @@ getent passwd xiaoming
 
 ![](./assets/98.gif)
 
+### 7.1.3 案例
 
-
-* 需求 ② ：查看系统中的指定用户密码的信息。
+* 需求：查看系统中的指定用户密码的信息。
 
 
 
@@ -1550,9 +1555,9 @@ getent shadow xiaoming
 
 ![](./assets/100.gif)
 
+### 7.1.4 案例
 
-
-* 需求 ③ ：查看系统中的指定用户组的信息。
+* 需求：查看系统中的指定用户组的信息。
 
 
 
@@ -1574,9 +1579,9 @@ getent group xiaoming
 
 ![](./assets/102.gif)
 
+### 7.1.5 案例
 
-
-* 需求 ④ ：查看系统中的指定用户组密码的信息。
+* 需求：查看系统中的指定用户组密码的信息。
 
 
 
@@ -1598,7 +1603,7 @@ getent gshadow xiaoming
 
 ![](./assets/104.gif)
 
-### 7.1.3 案例
+### 7.1.6 案例
 
 * 需求：查询主机信息。
 
@@ -1622,7 +1627,7 @@ gentent hosts
 
 ![](./assets/106.gif)
 
-### 7.1.4 案例
+### 7.1.7 案例
 
 * 需求：查询服务信息（服务和端口）。
 
@@ -1700,7 +1705,8 @@ echo '用户名:密码' | chpasswd
 
 > [!NOTE]
 >
-> chpasswd 和 passwd 类似，都是交互式命令；所以，chpasswd 通常配合管道使用。
+> * ① chpasswd 和 passwd 类似，都是交互式命令。
+> * ② 所以，chpasswd 通常配合管道使用。
 
 
 

@@ -10,7 +10,8 @@
 
 > [!NOTE]
 >
-> 本次只讲解 `grep` 命令和 `find` 命令，因为其简单且容易掌握；其余的 `sed` 命令和 `awk` 命令后续讲解。
+> * ① 本次只讲解 `grep` 命令和 `find` 命令，因为其简单且容易掌握。
+> * ② 其余的 `sed` 命令和 `awk` 命令后续讲解！！！
 
 ## 1.2 grep 命令
 
@@ -197,7 +198,8 @@ find /etc -type f -name '*.conf'
 * 示例：查询 /etc 和 /tmp 目录下等于 10kb 的文件
 
 ```shell
-# size 是大小的意思，-size 10k 表示 10kb 的文件，其实搜索的文件大小范围是（9kb,10kb]
+# size 是大小的意思，-size 10k 表示 10kb 的文件，
+# 其实搜索的文件大小范围是（9kb,10kb]
 find /etc /tmp	-type f -size 10k
 ```
 
@@ -208,7 +210,8 @@ find /etc /tmp	-type f -size 10k
 * 示例：查询 /etc 和 /tmp 目录下大于 100kb 的文件（常用）
 
 ```shell
-# size 是大小的意思，-size +10k 表示大于 100kb 的文件，其实搜索的文件大小范围是(10kb，+∞)
+# size 是大小的意思，-size +10k 表示大于 100kb 的文件，
+# 其实搜索的文件大小范围是(10kb，+∞)
 find /etc /tmp	-type f -size +100k
 ```
 
@@ -219,7 +222,8 @@ find /etc /tmp	-type f -size +100k
 * 示例：查询  /etc 和 /tmp 目录下小于 1kb 的文件
 
 ```shell
-# size 是大小的意思，-size -5k 表示小于 1kb 的文件，其实搜索的文件大小范围是(0kb,-1kb]
+# size 是大小的意思，-size -5k 表示小于 1kb 的文件，
+# 其实搜索的文件大小范围是(0kb,-1kb]
 find /etc /tmp	-type f -size -1k
 ```
 

@@ -6,7 +6,7 @@
 
 ![](./assets/1.png)
 
-> 注意⚠️：
+> [!IMPORTANT]
 >
 > * ① 对于 RedHat（红帽系）而言，`软件包`的格式是 `rpm` 格式。
 > * ② 对于 Debian（Debian 系）而言，`软件包`的格式是 `deb` 格式。
@@ -39,7 +39,7 @@
 * 所谓的 ABI（应用程序二进制接口）就是将`操作系统层`与由操作系统管理的`应用程序`和`库`分开。ABI 涵盖了低级数据类型、对齐方式和调用约定等详细信息，并定义了可执行程序的格式。系统调用在此级别定义。此接口允许应用程序和库在实现相同 ABI 的操作系统之间移植。ABI 确保了编译后的二进制文件能够在特定的操作系统和硬件平台上正确地运行。
 * Windows 和 Linux 中的 ABI 格式是不兼容了，意味着 Windows 中的程序（包括病毒）在 Linux 上是不能直接运行的，反之亦成立！！！
 
-> 注意⚠️：
+> [!WARNING]
 >
 > * ① 通常而言，ABI 格式都是针对应用程序而言的，对于文本文件而言，操作系统默认都是可以打开的，如：`.txt` 文件，只要使用对应正确的应用程序就可以了。
 > * ② Windows 中的 ABI 格式是 PE（Portable Executable）格式，而 Linux 中的 ABI 格式是 ELF（Executable and Linkable Format）格式。
@@ -77,13 +77,17 @@ file Gitify-Setup-5.2.0.exe # 查看 Windows 中应用程序的 ABI 格式
   * ④ **增强互操作性**：标准化还有助于不同系统之间的数据和程序的互操作性，因为它们遵循相同的底层标准。
   * ⑤ **支持新的技术**：随着技术的发展，POSIX 标准也在不断更新和扩展，以支持新的硬件和软件技术，使得操作系统能够适应新的技术变革。
 
-> 注意⚠️：POSIX 标准通过提供一套广泛接受的标准接口，有效地解决了不同操作系统间的兼容性问题，促进了软件的可移植性和操作系统的标准化发展。
+> [!NOTE]
+>
+> POSIX 标准通过提供一套广泛接受的标准接口，有效地解决了不同操作系统间的兼容性问题，促进了软件的可移植性和操作系统的标准化发展。
 
 * 随着时间的推移，Linux 和 Windows 都实现了基本的 POSIX 标准，这就意味着我们在编写一套软件（C 语言）可以在不同的操作系统上都能成功的编译和运行（虽然软件底层的 ABI 不兼容，但是 API 是兼容的，也就意味着软件在源代码级别就是可移植的，我们只需要在不同的平台上分别编译和运行，就可以很轻松的实现软件的移植），即：
 
 ![](./assets/6.png)
 
-> 注意⚠️：目前，C 或 C++ 语言编写的软件都是通过`一套代码，多平台编译`的方式来间接的实现软件的可移植性。
+> [!NOTE]
+>
+> 目前，C 或 C++ 语言编写的软件都是通过`一套代码，多平台编译`的方式来间接的实现软件的可移植性。
 
 
 
@@ -115,7 +119,9 @@ int main() {
 | **汇编语言** | 用助记符代替二进制代码的低级语言   | 相对机器语言更易编写和理解，允许直接控制硬件资源 | 依然需要了解硬件，不够抽象，与具体硬件或平台相关             | MOV，ADD 等助记符   |
 | **高级语言** | 接近人类语言，提供了更高层次的抽象 | 易于编写和维护，可移植性好，支持多种编程范式     | 需要通过编译器或解释器转换为机器语言，可能存在一定的性能损失 | C，Java， Python 等 |
 
-> 注意⚠️：高级语言又分为系统级别语言和应用级别语言。
+> [!NOTE]
+>
+> 高级语言又分为`系统级别语言`和`应用级别语言`。
 >
 > * 系统级别语言：C、C++、Rust。
 > * 应用级别语言：Java、Python、Go、PHP 等。
@@ -188,7 +194,7 @@ gcc hello.o -o hello.out # 对目标文件进行链接，生成可执行文件
 
 ![](./assets/10.png)
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 可以简单将`静态链接`理解为，将软件所依赖的模块都`复制`一份到自己的目录保存起来，这样一旦软件过多，极大的浪费硬盘空间。
 > * ② 可以简单将`动态链接`理解为，将软件所依赖的模块都`创建软链接`，这样即使软件过多，也不会过多的浪费硬盘空间。
@@ -208,7 +214,7 @@ gcc hello.o -o hello.out # 对目标文件进行链接，生成可执行文件
   * 命令可以是系统内置的，也可以是由软件包提供的，例如：`ls` 是一个列出目录内容的命令，`apt-get` 是 Debian 和 Ubuntu 系统中用于管理软件包的命令。
   * 命令通常与特定的软件包相关联，因为它们是软件包的一部分，安装了相应的软件包后，我们就可以使用这些命令。
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① 软件包是软件的集合，包含了运行软件所需的所有文件（可执行文件、库文件、配置文件、帮助文档、脚本、数据文件等），而命令（通常是可执行文件）是用户与系统交互的工具，用于执行软件包中的程序，是软件包的一部分。
 > * ② 在Linux中，我们通常需要先安装软件包，然后才能使用其中的命令。
@@ -220,7 +226,9 @@ gcc hello.o -o hello.out # 对目标文件进行链接，生成可执行文件
 
 ![image-20240219141800345](./assets/11.png)
 
-> 温馨提示ℹ️：常见的 CPU 架构，即 arch（architecture，建筑，建筑风格，在计算机中常用来表示架构） 
+> [!NOTE]
+>
+> 常见的 CPU 架构，即 arch（architecture，建筑，建筑风格，在计算机中常用来表示架构） 
 >
 > * ① ~~x86: i386, i486, i586, i686~~
 > * ② x86_64: x64, x86_64, amd64
@@ -237,37 +245,42 @@ httpd-2.4.57-5.el9.x86_64.rpm  # 主包
 ```
 
 ```shell
-# 包含 Apache HTTP 服务器的核心文件和模块。它是 httpd 包的依赖项，不包括配置文件或其他可选模块。
+# 包含 Apache HTTP 服务器的核心文件和模块。
+# 它是 httpd 包的依赖项，不包括配置文件或其他可选模块。
 httpd-core-2.4.57-5.el9.x86_64.rpm # 核心包
 ```
 
 ```shell
-# 包含了 Apache HTTP 服务器的头文件和开发工具，适用于需要编译 Apache 模块或进行服务器开发的开发者。
+# 包含了 Apache HTTP 服务器的头文件和开发工具，
+# 适用于需要编译 Apache 模块或进行服务器开发的开发者。
 httpd-devel-2.4.57-5.el9.x86_64.rpm # 开发包
 ```
 
 ```shell
-# 提供了 Apache HTTP 服务器的文件系统层次结构和目录，确保在系统上正确安装和管理这些文件和目录。
+# 提供了 Apache HTTP 服务器的文件系统层次结构和目录，
+# 确保在系统上正确安装和管理这些文件和目录。
 httpd-filesystem-2.4.57-5.el9.noarch.rpm # 其它包
 ```
 
 ```shell
-# 包含了 Apache HTTP 服务器的详细用户手册和文档，适合需要详细了解服务器配置和功能的用户。
+# 包含了 Apache HTTP 服务器的详细用户手册和文档，
+# 适合需要详细了解服务器配置和功能的用户。
 httpd-manual-2.4.57-5.el9.noarch.rpm # 其它包
 ```
 
 ```shell
-# 包含了一些有用的工具和程序，用于管理 Apache HTTP 服务器，例如：日志文件的创建和处理工具。
+# 包含了一些有用的工具和程序，用于管理 Apache HTTP 服务器，
+# 例如：日志文件的创建和处理工具。
 httpd-tools-2.4.57-5.el9.x86_64.rpm # 其它包
 ```
 
 ### 1.4.4 软件包之间的依赖
 
-* 软件包之间可能存在依赖关系，甚至是循环依赖，如：软件包 A 依赖于软件包 B ，软件包 B 依赖于软件包 C，软件包 C 依赖于软件包 A。
+* 软件包之间可能存在依赖关系，甚至是循环依赖，如：软件包 `A` 依赖于软件包 `B` ，软件包 `B` 依赖于软件包 `C`，软件包 `C` 依赖于软件包 `A`。
 * 在安装软件包的时候，可能会因为缺少依赖的包，而导致安装失败，为此出现了解决软件包依赖的管理工具，如下所示：
-  * yum：rpm 包管理器的前端工具。
-  * dnf：Fedora 中 rpm 包管理器的前端工具，从 RHEL 8+ 之后被引入。
-  * apt：deb 包管理器的前端工具。
+  * `yum`：rpm 包管理器的前端工具。
+  * `dnf`：Fedora 中 rpm 包管理器的前端工具，从 RHEL 8+ 之后被引入。
+  * `apt`：deb 包管理器的前端工具。
 
 
 
@@ -385,7 +398,7 @@ rpm -qf $(which ifconfig)
 rpm -Uvh xxx.rpm
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 通常，`rpm -Uvh xxx.rpm` 适用于小版本的升级。
 > * ② 在实际工作的时候，升级需要经过严格的测试（找一台裸机模拟环境进行升级）。
@@ -438,7 +451,7 @@ rpm -e zabbix-agent2
 
 * `yum` 命令是在 `Fedora` 和 `RedHat` 以及 `SUSE` 中基于 `rpm` 的软件包管理器，它可以使系统管理人员交互和自动化地更新与管理 `RPM` 软件包，能够从指定的服务器自动下载 `RPM` 包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软体包，无须繁琐地一次次下载、安装。
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 在 AlmaLinux 8+ 之后的版本，其实更推荐使用 dnf 命令，因为其性能相对于 yum 来说更高。
 > * ② 无需担心，dnf 命令的`选项`、`参数`和 yum 命令的`选项`、`参数`几乎一样，在使用的时候，只需要将 yum 替换为 dnf 即可。
@@ -487,7 +500,7 @@ metadata_expire=86400 # 设置元数据过期时间，以秒为单位。
 enabled_metadata=1 # 控制是否启用元数据缓存，1 开启；0 关闭，默认是 1
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 如果是虚拟机或私有云，可能需要配置 yum 源；不过，现在默认配置的 mirrorlist 会动态切换 yum 仓库源到指定国家，速度也还是可以的。
 > * ② 如果是公有云，通常都是配置好的。
@@ -496,9 +509,9 @@ enabled_metadata=1 # 控制是否启用元数据缓存，1 开启；0 关闭，�
 * yum 源配置文件的相关变量：
 
 ```shell
-$arch：CPU 的架构，如：aarch64 、i586 、i686 、x86_64 等。
-$basearch：系统的基本架构，如：i686 和 i586 机器的基本架构都是 i386，而 AMD64 和 InTel64 机器的基本架构都是x86_64。
-$releasever：操作系统的发型版的主版本号，如：9、8、7、6 等。
+$arch # CPU 的架构，如：aarch64 、i586 、i686 、x86_64 等。
+$basearch # 系统的基本架构，如：i686 和 i586 是 i386，而 AMD64 和 InTel64 是x86_64。
+$releasever # 操作系统的发型版的主版本号，如：9、8、7、6 等。
 ```
 
 * yum 源配置文件中 baseurl 必须指向含有 repodata 目录所在的路径，即：
@@ -589,7 +602,7 @@ best=True # 设置是否总是尝试安装最新版本的软件包。
 skip_if_unavailable=False # 设置是否跳过无法访问的 YUM 包仓库。
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 可以通过 `man yum.conf` 命令查看 yum.conf 中的所有可用的配置选项和详细描述。
 > * ② 通常情况下，我们不会修改该文件，如果在内网环境中，我们通常会搭建 yum 私服（nexus3），并指定 yum 源为  yum 私服（nexus3）。
@@ -645,7 +658,7 @@ yum -y install tree
 yum -y groupinstall xxx
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 在 Linux系统中，程序组（Software Group）是一个方便用户管理和安装相关软件包的`集合`。
 > * ② 程序组通常包含了一组协同工作以提供特定功能或服务的软件包。
@@ -719,7 +732,7 @@ yum grouplist
 yum grouplist --installed
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 需要英文环境，不然显示的程序组的名称是中文（如果默认的 locale 就是中文）。
 > * ② 下面的示例，我使用英文环境来测试。
@@ -786,7 +799,10 @@ yum provides xxx
 
 * 功能：根据指定命令或文件查询对应的软件包。
 
-> 注意⚠️：该命令是 `rpm -qf $(which xxx)`的升级版本，强烈使用！！！因为没有先安装指定的软件包的前提限制了。
+> [!NOTE]
+>
+> * ① 该命令是 `rpm -qf $(which xxx)`的升级版本，强烈使用！！！
+> * ② 此命令不需要先安装指定的软件包，再根据指定命令或文件查询对应的软件包。。
 
 
 
@@ -822,7 +838,7 @@ yum config-manager --enable 仓库名称
 yum config-manager --disable 仓库名称
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 需要在 `/etc/yum.repo.d/` 下配置有 `xxx.repo` 文件。
 > * ② 如果不是系统内置，还需要通过 `yum -y  makecache` 更新本地缓存。
@@ -861,7 +877,9 @@ yum -y update [软件包] [--exclude=软件包] [--disableexcludes=repo]
   * `--exclude=软件包`：更新的时候排除某些软件包。
   * `--disableexcludes=repo`：禁止排除某些仓库。
 
-> 注意⚠️：在生产环境中搭建 kubernetes 集群的时候，我们需要禁止内核以及 kubernetes 组件的更新，有如下的解决方案：
+> [!NOTE]
+>
+> 在生产环境中搭建 kubernetes 集群的时候，我们需要禁止内核以及 kubernetes 组件的更新，有如下的解决方案：
 >
 > * ① 临时解决方案，使用 `yum -y update --exclude=kernel* --exclude=kubelet --exclude=kubeadm --exclude=kubectl  --exclude=docker-ce*` 命令。
 > * ② 永久方案，在 `/etc/yum.conf`  文件的最后一行添加 `exclude=kernel* kubelet kubeadm kubectl docker-ce* `。
@@ -884,7 +902,10 @@ yum -y update --exclude=kernel*
 yum -y remove 软件包
 ```
 
-> 注意⚠️：删除需要谨慎，生产环境切勿随意删除软件包；如果一定要删除，可以使用 `rpm -e xxx` 命令。
+> [!NOTE]
+>
+> * ① 删除需要谨慎，生产环境切勿随意删除软件包。
+> * ② 如果一定要删除，可以使用 `rpm -e xxx` 命令。
 
 
 
@@ -909,7 +930,9 @@ yum -y remove tree
   * ② **`编译`**：使用 `make` 命令根据 `Makefile` 编译 C 语言源代码，生成的通常是可执行文件（executables）、静态库（static libraries）、动态库（shared libraries）或目标文件（object files），具体取决于项目的构建配置和 `Makefile` 中定义的规则。
   * ③ **`安装`**：使用 `make install` 命令将编译好的可执行文件、库文件、头文件等安装到系统的标准路径中。
 
-> 注意⚠️：Nginx 是一个用 C 语言编写的项目，其就是使用 GNU Autotools 工具链进行项目构建的。
+> [!NOTE]
+>
+> Nginx 是一个用 C 语言编写的项目，其就是使用 GNU Autotools 工具链进行项目构建的。
 
 ## 4.2 安装 NGINX
 
@@ -924,7 +947,11 @@ wget -P /tmp https://freenginx.org/download/nginx-1.24.0.tar.gz
 * 安装依赖：
 
 ```shell
-yum -y install gcc gcc-c++  autoconf automake make pcre pcre-devel zlib zlib-devel openssl openssl-devel
+yum -y install gcc gcc-c++ \
+    autoconf automake make \
+    pcre pcre-devel \
+    zlib zlib-devel \
+    openssl openssl-devel
 ```
 
 ![](./assets/38.gif)
@@ -997,13 +1024,17 @@ curl http://127.0.0.1:80
 
 ![image-20240309095943990](./assets/44.png)
 
-> 注意⚠️：nexus3 的下载地址是[这里](https://help.sonatype.com/en/download-archives---repository-manager-3.html)。
+> [!NOTE]
+>
+> nexus3 的下载地址是[这里](https://help.sonatype.com/en/download-archives---repository-manager-3.html)。
 
 * 目前的架构如下：
 
 ![image-20240309133612792](./assets/45.png)
 
-> 注意⚠️：nexus3 的主要功能和应用场景如下：
+> [!NOTE]
+>
+> nexus3 的主要功能和应用场景如下：
 >
 > * ① **中央仓库缓存**：Nexus3 可以作为中央仓库，如：Maven Central 的缓存服务器，提高内部网络中构建和依赖下载的速度。通过设置代理仓库，可以减少对外部网络的依赖，同时节省带宽。
 > * ② **私有仓库**：开发者可以在 Nexus3 中创建私有仓库，用于存储公司内部开发的库和依赖。这有助于保护知识产权，同时方便内部团队共享和重用代码。
@@ -1161,22 +1192,24 @@ sytemctl status nexus
 
 ![image-20240309141725221](./assets/63.png)
 
-* 我们注意到，nexus3 中的仓库类型有 3 种，区别如下：
-* ① hosted（宿主仓库，本地仓库）：
-  * 该仓库是 nexus3 服务器上的本地仓库。用于存储和分发用户自己创建和管理的软件包。
-  * hosted仓库可以是 Releases（只发布正式版本）、Snapshots（用于存储开发中的快照版本）或者 Mixed（混合使用 Releases 和 Snapshots）。
-  * hosted 仓库通常用于管理内部开发的软件项目，或者作为私有的依赖库（一般不对外开放）。
+> [!NOTE]
+>
+> nexus3 中的仓库类型有 3 种，区别如下：
+>
+> * ① hosted（宿主仓库，本地仓库）：
+>   * 该仓库是 nexus3 服务器上的本地仓库。用于存储和分发用户自己创建和管理的软件包。
+>   * hosted 仓库通常用于管理内部开发的软件项目，或者作为私有的依赖库（一般不对外开放）。
+>
+> * ② proxy（代理仓库）：
+>   * proxy 仓库是 Nexus3 作为中间代理，代理外部仓库，如：Maven Central、npm 官方仓库等的仓库。
+>   * proxy仓库通常用于加速外部仓库的访问速度，减少对外部网络的依赖，以及在网络不稳定或受限的情况下提供稳定的软件包以便获取服务。
+> * ③ group（仓库组）：
+>   * group 仓库是将多个仓库（可以是 hosted、proxy 或其他 group）组合在一起，形成一个逻辑上的仓库组。
+>   * group 仓库通常用于实现复杂的仓库管理策略，例如：可以将一个 proxy 仓库和一个或多个 hosted仓库组合在一起，以便在满足特定条件时从不同的仓库中获取软件包。
+>
+> 这三种仓库类型提供了灵活的仓库管理策略，使得 nexus3 能够适应不同的软件开发和部署需求。通过合理配置这些仓库类型，可以优化构建流程，提高效率，同时确保依赖的一致性和安全性。
 
-* ② proxy（代理仓库）：
-  * proxy 仓库是 Nexus3 作为中间代理，代理外部仓库，如：Maven Central、npm 官方仓库等的仓库。
-  * 当用户从 Proxy 仓库拉取软件包时，nexus3 会先从外部仓库下载软件包，然后缓存到本地，之后再提供给用户。这样可以加快后续的下载速度，因为用户可以从本地缓存中获取软件包，而不是每次都从外部网络下载。
-  * proxy仓库通常用于加速外部仓库的访问速度，减少对外部网络的依赖，以及在网络不稳定或受限的情况下提供稳定的软件包以便获取服务。
-* ③ group（仓库组）：
-  * group 仓库是将多个仓库（可以是 hosted、proxy 或其他 group）组合在一起，形成一个逻辑上的仓库组。
-  * 用户可以像操作单个仓库一样操作 group 仓库，但实际上 nexus3 会根据配置的规则，从组内的多个仓库中寻找和提供构件。
-  * group 仓库通常用于实现复杂的仓库管理策略，例如：可以将一个 proxy 仓库和一个或多个 hosted仓库组合在一起，以便在满足特定条件时从不同的仓库中获取软件包。
 
-> 注意⚠️：这三种仓库类型提供了灵活的仓库管理策略，使得 nexus3 能够适应不同的软件开发和部署需求。通过合理配置这些仓库类型，可以优化构建流程，提高效率，同时确保依赖的一致性和安全性。
 
 ### 5.2.3 配置
 
@@ -1243,7 +1276,7 @@ sed -e 's|^mirrorlist=|#mirrorlist=|g' \
       /etc/yum.repos.d/almalinux*.repo
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① 目前，官方没有解决 group 元数据合并问题，所以使用 proxy 类型的仓库。
 > * ② 在 AlmaLinux9 中，已经将软件包按功能划分为一个仓库，如：baseos、appstream、extras ，目的是方便管理。
@@ -1280,7 +1313,7 @@ dnf -y install nginx
 
 *  在 AlmaLinux9 中，推荐使用 `dnf` 来管理软件包；不过，为了兼容之前的版本，我们还是可以使用 `yum` 命令的。
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① Yum 主要使用 Python 编写，有自己的依赖解析方法。
 > * ② DNF 使用 libsolv 进行依赖解析，由 SUSE 开发和维护，旨在提高性能。
@@ -1295,7 +1328,7 @@ dnf repolist [--enabled]
 
 ![](./assets/80.png)
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① `baseos` 软件仓库提供底层操作系统功能的核心组件，它包含了构成基础操作系统的基本软件包，如：系统库、工具和驱动程序，该仓库的内容采用 RPM 格式，支持条款与之前的 RHEL 版本相似。
 > * ② `appstream` 软件仓库包含额外的用户空间应用程序、运行时语言和数据库，这些组件支持各种工作负载和使用案例，如：开发工具、Web 服务器、数据库等。并且该仓库的内容包括多个版本的用户空间组件，这些组件的更新频率可能高于核心操作系统软件包，它提供了更大的灵活性，允许用户自定义 RHEL 版本，同时不影响平台的基本稳定性。
@@ -1327,7 +1360,7 @@ dnf repolist --disabled
   * 模块化，它们是 RPM 格式的扩展。
   * Software Collections。
 
-> 注意ℹ️：
+> [!NOTE]
 >
 > * ① Software Collections 主要是为了解决 CentOS7 软件包版本固定的问题，毕竟这个操作系统存在的时间太长了，长达 10 年；但是，CentOS 7 已经退出了历史舞台了，即该技术也已经过时了，被模块化所取代。
 > * ② dnf 其实一直运行在 fedora 项目中，而在 fedora 项目中其实一直没有很好的支持 Software Collections 。
@@ -1345,7 +1378,9 @@ dnf repolist --disabled
   * RPM 格式在处理软`件依赖关系`和`多版本软件管理`时相对较为基础，不够灵活。
   * 当需要管理`多个版本`的软件包或处理`复杂的依赖关系`时，RPM 格式可能显得不够方便。
 
-> 温馨提示ℹ️：通常，我们在使用 `dnf -y install xxx` 的时候就是这种方式。
+> [!NOTE]
+>
+> 通常，我们在使用 `dnf -y install xxx` 的时候就是这种方式。
 
 ### 6.3.3 模块化
 
@@ -1366,7 +1401,7 @@ dnf module list
 
 ![](./assets/86.png)
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① 对于 stream 和 profile 而言，可能有多个，但是总是会有一个是默认的，使用 d 来表示。
 > * ② 模块化软件包的格式有：
@@ -1773,7 +1808,10 @@ dnf -y install nodejs
 dnf -y install xxx.rmp
 ```
 
-> 温馨提示ℹ️：之前，在使用 yum 的时候，我们会使用 `yum -y localinstall xxx.rpm` 来安装本地的 RPM 包；但是，这个 `localinstall` 在 dnf 已经被标记为过时。
+> [!NOTE]
+>
+> * ① 之前，在使用 yum 的时候，我们会使用 `yum -y localinstall xxx.rpm` 来安装本地的 RPM 包。
+> * ② 但是，这个 `localinstall` 在 `dnf` 已经被标记为过时。
 
 
 
@@ -1866,7 +1904,10 @@ dnf module -y enable <module_name:stream_name> && \
 	dnf -y install module_name
 ```
 
-> 温馨提示ℹ️：这种方式和传统的 `dnf -y install xxx` 的方式没有什么区别，都只是安装了软件包，并没有在系统中`安装`软件的`模块化`；换言之，使用 `dnf module list --installed` 命令并不能查询到。
+> [!NOTE]
+>
+> * ① 这种方式和传统的 `dnf -y install xxx` 的方式没有什么区别，都只是安装了软件包，并没有在系统中`安装`软件的`模块化`。
+> * ② 换言之，使用 `dnf module list --installed` 命令并不能查询到。
 
 
 
@@ -1917,7 +1958,9 @@ dnf module install nodejs:18
 dnf module switch-to NAME:STREAM -y
 ```
 
-> 温馨提示ℹ️： 切换流是一项有风险的操作，并不是所有的软件包都支持这种操作，尤其是降级。
+> [!WARNING]
+>
+> 切换流是一项有风险的操作，并不是所有的软件包都支持这种操作，尤其是降级。
 
 
 
@@ -1939,7 +1982,9 @@ dnf module switch-to nodejs:20 -y
 dnf check-update
 ```
 
-> 温馨提示ℹ️： 也可以使用 `dnf check-upgrade` ，因为 `check-upgrade` 是 `check-update` 的别名。
+> [!NOTE]
+>
+> 也可以使用 `dnf check-upgrade` ，因为 `check-upgrade` 是 `check-update` 的别名。
 
 
 
@@ -1959,7 +2004,10 @@ dnf check-update
 dnf upgrade package-name -y
 ```
 
-> 温馨提示ℹ️： 在 yum 中，我们会使用 `dnf update package-name -y`  来更新软件包；但是，在 dnf 中 update 被标记为 upgrade 过时的别名。
+> [!NOTE]
+>
+> * ① 在 `yum` 中，我们会使用 `dnf update package-name -y`  来更新软件包。
+> * ② 但是，在 `dnf` 中 `update` 被标记为 `upgrade` 过时的别名。
 
 
 
@@ -1979,9 +2027,9 @@ dnf upgrade python3 -y
 dnf upgrade -y
 ```
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
-> *  ① 在 yum 中，我们会使用 `dnf update -y`  来更新软件包；但是，在 dnf 中 update 被标记为 upgrade 过时的别名。
+> *  ① 在 `yum` 中，我们会使用 `dnf update -y`  来更新软件包；但是，在 dnf 中 update 被标记为 upgrade 过时的别名。
 > * ② 当有内核应用更新的时候，`dnf -y update` 或 `dnf -y upgrade` 总是会安装一个新的内核，除非你手动排除内核的更新，看下文 `dnf 插件`部分。
 
 
@@ -2058,10 +2106,10 @@ dnf upgrade-minimal --security -y
 dnf install dnf-automatic -y
 ```
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① dnf-automatic 软件包，在默认情况下，使用 `/etc/dnf/automatic.conf` 作为其配置文件来定义其行为。
-> * ② 在实际工作中，生产环境慎用该功能，防止升级的挂掉环境！！！
+> * ② 在实际工作中，生产环境慎用该功能，防止自动升级挂掉环境！！！
 
 
 
@@ -2081,7 +2129,7 @@ dnf install dnf-automatic -y
 systemctl enable --now dnf-automatic-install.timer
 ```
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① `dnf-automatic-download.timer` 会`下载软件包以便进行更新`，除非手动执行 dnf -y upgrade 命令才会更新软件包。
 > * ② `dnf-automatic-install.timer`会`下载并安装、更新软件包`。
@@ -2175,7 +2223,9 @@ dnf module remove NAME/PROFILE -y
 dnf module remove NAME:STREAM/PROFILE -y
 ```
 
-> 温馨提示ℹ️：可以通过 `dnf module reset module-name -y` 来重置模块化内容的状态，变为初始化状态。
+> [!NOTE]
+>
+> 可以通过 `dnf module reset module-name -y` 来重置模块化内容的状态，变为初始化状态。
 
 
 
@@ -2199,7 +2249,9 @@ dnf module remove nodejs:18 -y
   * 意义：Redo 是指重新执行之前被撤销的操作，将系统恢复到撤销操作之后的状态。当用户撤销了一个操作后，如果后悔或者需要重新执行该操作，可以通过重做来再次应用该操作。
   * 功能：Redo 功能允许用户对已经撤销的操作进行重做，通常也是通过快捷键（如：`Ctrl+Y`）或菜单选项来触发。这个功能对于反悔之前的撤销操作或者回到之前状态的需要非常有用。
 
-> 总结：Undo 是撤销先前的操作，而 Redo 是重新执行已经被撤销的操作，两者结合起来可以提供更好的用户体验，使用户能够更自由地控制其操作历史。
+> [!NOTE]
+>
+> Undo 是撤销先前的操作，而 Redo 是重新执行已经被撤销的操作，两者结合起来可以提供更好的用户体验，使用户能够更自由地控制其操作历史。
 
 ### 6.9.2 列出事务
 
@@ -2263,7 +2315,7 @@ dnf history info 11
 dnf history undo transaction_id -y
 ```
 
-> 温馨提示ℹ️：
+> [!NOTE]
 >
 > * ① 请谨慎使用 `dnf history undo` 和 `dnf history rollback` 命令。不支持将 RHEL 软件包，特别是`selinux`, `selinux-policy-*`, `kernel`, `glibc` (`glibc` 的依赖项，如 `gcc`) 软件包，降级到旧版本。
 > * ② 因此，不建议将系统降级为次版本（例如，从 RHEL 9.1 到 RHEL 9.0），因为这可能会使系统处于不稳定状态。
@@ -2286,7 +2338,9 @@ dnf history undo 5 -y
 dnf history rollback transaction_id -y
 ```
 
-> 温馨提示ℹ️：在指定事务和最后一个事务之间进行恢复。
+> [!NOTE]
+>
+> 在指定事务和最后一个事务之间进行恢复。
 
 
 
@@ -2306,7 +2360,9 @@ dnf history rollback 4 -y
 dnf history redo transactionID -y
 ```
 
-> 温馨提示ℹ️：如果要重做到最后的事务，可以使用 `dnf history redo last -y` 。
+> [!NOTE]
+>
+> 如果要重做到最后的事务，可以使用 `dnf history redo last -y` 。
 
 
 
@@ -2394,7 +2450,9 @@ dnf list --installed | grep plugin
 
 * 在生产环境中，我们有时会将软件包进行锁定，防止升级到更高的版本，避免出现一些问题。
 
-> 温馨提示ℹ️：滴滴之前出现过生产事故，就是运维通过 `dnf -y update` 命令进行整个 Linux 系统的软件包升级，包括： Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
+> [!WARNING]
+>
+> 滴滴之前出现过生产事故，就是运维通过 `dnf -y update` 命令进行整个 Linux 系统的软件包升级，包括： Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
 
 * `yum-versionlock` 是一个 Yum 插件，它采用一组软件包的名称/版本，并排除这些软件包的所有其他版本（包括可选的以下过时版本）。这允许您保护软件包不被新版本更新。该插件提供了一个命令 `“versionlock”` ，它允许您轻松查看和编辑锁定的软件包列表。
 
@@ -2408,7 +2466,9 @@ dnf -y install python3-dnf-plugin-versionlock
 
 ![](./assets/140.gif)
 
-> 注意⚠️：该插件是通过在 Linux 系统中创建 `/etc/yum/pluginconf.d/versionlock.list` 文件，当执行 `yum -y update` 的时候，会去该文件中查找，如果有对应的软件包信息，则不更新；否则，将更新到最新的版本。
+> [!NOTE]
+>
+> 该插件是通过在 Linux 系统中创建 `/etc/yum/pluginconf.d/versionlock.list` 文件，当执行 `yum -y update` 的时候，会去该文件中查找，如果有对应的软件包信息，则不更新；否则，将更新到最新的版本。
 
 #### 6.11.2.3 锁定软件包
 
@@ -2418,7 +2478,7 @@ dnf -y install python3-dnf-plugin-versionlock
 dnf versionlock [add] 软件包1 软件包2 ...
 ```
 
-> 注意⚠️：
+> [!NOTE]
 >
 > * ① add 可以加，也可以不加，默认就是 add 。
 > * ② 锁定的软件包需要添加版本，如：`docker-ce-20.10.7*`、`docker-ce-cli-20.10.7*`、`kubelet-1.20.0*`、`kubeadm-1.20.0*`、`kubectl-1.20.0*`。
@@ -2480,7 +2540,9 @@ dnf versionlock add gcc*
 dnf versionlock [list]
 ```
 
-> 注意⚠️：list 可以加，也可以不加，默认就是 list 。
+> [!NOTE]
+>
+> list 可以加，也可以不加，默认就是 list 。
 
 
 
