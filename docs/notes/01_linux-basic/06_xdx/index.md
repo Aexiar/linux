@@ -278,24 +278,6 @@ echo [-n][-e][-E] 字符串|变量
 
 
 
-
-
-::: code-group
-
-```sh [pnpm]
-#查询pnpm版本
-pnpm -v
-```
-
-```sh [yarn]
-#查询yarn版本
-yarn -v
-```
-
-:::
-
-
-
 * 示例：
 
 ```shell
