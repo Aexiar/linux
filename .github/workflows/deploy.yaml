@@ -1,54 +1,68 @@
 name: Deploy
 
 on:
-  workflow_dispatch: # 允许从 Actions 选项卡手动运行此工作流程
-  schedule:
-    - cron: '0 0 10,20 * *'  # 每月第 10、20 天的凌晨 0 点执行
+  # 在针对 `main` 或 `master` 分支的推送上运行
   push:
     branches:
-      - master # 仅在 push master 分支时触发
-      - main # 仅在 push main 分支时触发
+      - master
+      - main
+      - github-pages
+      - gh-pages
+  schedule:
+    - cron: "0 0 10,20 * *" # 每月第 10、20 天的凌晨 0 点执行
+  # 允许我们从 Actions 选项卡手动运行此工作流程
+  workflow_dispatch:
+
+# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
+# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build: # 构建工作
-    runs-on: ubuntu-latest # 构建环境
-    steps: # 步骤
+  # 构建工作
+  build:
+    runs-on: ubuntu-latest
+    steps:
       - name: "拉取代码"
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+          fetch-depth: 0
       - name: "设置node.js的版本"
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+      - name: "配置Github Pages"
+        uses: actions/configure-pages@v5
       - name: "安装依赖"
-        run: npm install
-      - name: "打包"
-        run: npm run docs:build
-      - name: "上传制品"
+        run: |
+          npm install
+      - name: "提取 git 信息"
+        uses: rlespinasse/git-commit-data-action@v1
+      - name: "vitepress 打包"
+        run: |
+          npm run docs:build
+          touch docs/.vitepress/dist/.nojekyll
+      - name: "上传构建"
         uses: actions/upload-pages-artifact@v3
         with:
-          name: vitepress-artifact
           path: docs/.vitepress/dist
-  deploy: # 部署工作
-    needs: build # 依赖构建工作
-    runs-on: ubuntu-latest # 构建环境
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
     steps:
-      - name: "下载制品"
-        uses: actions/download-artifact@v4
-        with:
-          name: vitepress-artifact
-          path: ./
-      - name: '解压压缩文件'
-        run: |
-          mkdir docs
-          tar -xvf artifact.tar -C docs/
-          ls -lah ./docs    
       - name: "部署"
-        uses: peaceiris/actions-gh-pages@v4
-        if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs 
-
+        id: deployment
+        uses: actions/deploy-pages@v4
