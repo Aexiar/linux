@@ -1,3 +1,9 @@
+> [!NOTE]
+>
+> 
+
+
+
 # 第一章：回顾 vi 和 vim
 
 ## 1.1 vi 和 vim 简介
@@ -24,19 +30,23 @@ vim [OPTION] 文件...
 * 常用选项：
 
 ```shell
-+10 file # 打开文件后，让光标处于第 10 行的行首，如果只是 + ，则为行尾
+# 打开文件后，让光标处于第 10 行的行首，如果只是 + ，则为行尾
++10 file 
 ```
 
 ```shell
-+/PATTERN  file # 让光标处于第一个被 PATTERN 匹配的行首，PATTERN 可以简单理解为字符串，其实是正则表达式
+# 让光标处于第一个被 PATTERN 匹配的行首，PATTERN 可以简单理解为字符串，其实是正则表达式
++/PATTERN  file 
 ```
 
 ```shell
--b file # 以二进制的方式打开文件
+# 以二进制的方式打开文件
+-b file 
 ```
 
 ```shell
--d file1 file2 ... # 比较多个文件，相当于 vimdiff file1 file2 ...
+# 比较多个文件，相当于 vimdiff file1 file2 ...
+-d file1 file2 ... 
 ```
 
 > [!NOTE]
