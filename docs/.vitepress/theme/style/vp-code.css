@@ -1,10 +1,5 @@
 /* .vitepress/theme/style/vp-code.css */
 
-/* 为代码块容器添加上下间距 */
-div[class*="language-"] {
-  margin-bottom: 20px; /* 这里可以调整为你想要的间距 */
-}
-
 /* 为代码块添加 macOS 风格的小圆点 */
 div[class*="language-"].vp-adaptive-theme.line-numbers-mode {
   position: relative;
@@ -65,4 +60,7 @@ div[class*="language-"].line-numbers-mode::before {
   border-right: 1px solid var(--vp-code-block-divider-color);
 }
 
-
+/* 如果需要针对两个相邻代码块之间的间距 */
+div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
+  margin-top: 12px; /* 两个代码块之间的距离 */
+}
