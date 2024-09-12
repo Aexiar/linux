@@ -64,8 +64,3 @@ div[class*="language-"].line-numbers-mode::before {
 :not(.vp-code-group) div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
   margin-top: 12px; /* 非代码组的相邻代码块之间的间距 */
 }
-
-/* 确保代码组内部的代码块没有间距 */
-.vp-code-group div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
-  margin-top: 0; /* 取消代码组内部相邻代码块之间的间距 */
-}
