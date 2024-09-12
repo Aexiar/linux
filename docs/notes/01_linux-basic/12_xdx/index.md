@@ -1,329 +1,6 @@
-# 第一章：安装 oh-my-zsh（可选）
+# 第一章：RBAC 模型
 
 ## 1.1 概述
-
-* Zsh（Z Shell）是一个功能强大的命令行解释器，它是对 Bash 的一个扩展，提供了许多增强的功能，如：更智能的命令行补全、强大的脚本功能、主题和插件支持等。Zsh 的设计目标是提供一种更友好、更高效的命令行体验，同时保持与 Bash 的兼容性。
-* Oh My Zsh 是一个开源的、社区驱动的框架，用于管理 Zsh 配置。它提供了一个易于使用的界面来安装和管理 Zsh 的配置、插件和主题。Oh My Zsh 使得定制和扩展 Zsh 的功能变得更加简单，它包含了大量的预定义主题和插件，可以帮助用户快速搭建一个个性化的命令行环境。
-
-## 1.2 安装
-
-### 1.2.1 安装和配置 zsh
-
-* 确认系统中是否安装有 zsh ：
-
-```shell
-zsh --version
-```
-
-![](./assets/1.gif)
-
-* 如果发现没有安装，则需要手动安装：
-
-```shell
-dnf -y install zsh
-```
-
-![](./assets/2.gif)
-
-* 查看默认的 shell 解释器：
-
-```shell
-echo $SHELL
-```
-
-![](./assets/3.gif)
-
-* 使用 `chsh` 命令更改默认的 shell 解释器为 zsh ：
-
-```shell
-chsh -s $(which zsh)
-```
-
-![](./assets/4.gif)
-
-* 退出并重新登录，查看是否设置成功：
-
-```shell
-# ctrl + D
-exit
-```
-
-```shell
-echo $SHELL
-```
-
-![](./assets/5.gif)
-
-### 1.2.2 安装 oh-my-zsh
-
-#### 1.2.2.1 自动化安装
-
-* 可以使用官方提供的自动化脚本进行安装：
-
-```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-> [!NOTE]
->
-> * ① 可能会出现安装失败；此时，就需要魔法来解决！！！
-> * ② 将 `https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh` 替换为 `https://install.ohmyz.sh`，因为某些国家会污染 `raw.githubusercontent.com`。
-
-![](./assets/6.gif)
-
-#### 1.2.2.2 手动安装
-
-* 安装 git ：
-
-```shell
-dnf -y install git
-```
-
-![](./assets/7.gif)
-
-* 下载源码：
-
-```shell
-git clone https://github.com/ohmyzsh/ohmyzsh.git  --depth=1 ~/.oh-my-zsh
-```
-
-![](./assets/8.gif)
-
-* 备份现有的配置文件（可选）：
-
-```shell
-cp ~/.zshrc ~/.zshrc.back
-```
-
-![](./assets/9.gif)
-
-* 创建 zsh 的配置文件：
-
-```shell
-cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-```
-
-![](./assets/10.gif)
-
-* 加载配置文件：
-
-```shell
-source ~/.zshrc
-```
-
-![](./assets/11.gif)
-
-### 1.2.3 配置主题
-
-* Oh My Zsh 内置了很多主题，可以通过如下的命令查看：
-
-```shell
-ls ~/.oh-my-zsh/themes
-```
-
-![](./assets/12.gif)
-
-* 通过 vim 编辑 `~/.zshrc` 配置文件，修改内置主题：
-
-```shell
-vim ~/.zshrc
-```
-
-```
-# 其余略
-ZSH_THEME="agnoster" # 修改，原来是 robbyrussell
-# 其余略
-```
-
-![](./assets/13.gif)
-
-* 加载 `~/.zshrc` 配置文件：
-
-```shell
-source ~/.zshrc
-```
-
-![](./assets/14.gif)
-
-### 1.2.4 安装插件
-
-#### 1.2.4.1 概述
-
-* oh-my-zsh 内置了很多插件，可以在 `~/.oh-my-zsh/plugins`中查看，如：
-
-```shell
-ls ~/.oh-my-zsh/plugins
-```
-
-![](./assets/15.gif)
-
-* 但是，有的时候，还需要一些第三方插件，可以在[这里](https://github.com/unixorn/awesome-zsh-plugins)查看。
-
-#### 1.2.4.2 安装 zsh-completions（额外补全）
-
-* 下载并安装：
-
-```shell
-git clone https://github.com/zsh-users/zsh-completions --depth=1 ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
-```
-
-![](./assets/16.gif)
-
-* 添加到指定目录：
-
-```shell
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-```
-
-![](./assets/17.gif)
-
-* 加载配置：
-
-```shell
-source "$ZSH/oh-my-zsh.sh"
-```
-
-![](./assets/18.gif)
-
-#### 1.2.4.3 安装 zsh-autosuggestions（命令提示）
-
-* 下载并安装：
-
-```shell
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
-
-![](./assets/19.gif)
-
-* 通过 vim 编辑 `~/.zshrc` 配置文件，添加该插件：
-
-```shell
-vim ~/.zshrc
-```
-
-```txt {5}
-# 其余略
-plugins=(
-    git
-    # other plugins...
-    zsh-autosuggestions
-)
-# 其余略
-```
-
-![](./assets/20.gif)
-
-* 加载 `~/.zshrc` 配置文件：
-
-```shell
-source ~/.zshrc
-```
-
-![](./assets/21.gif)
-
-> [!NOTE]
->
-> 通过 `→` 来补全。
-
-#### 1.2.4.4 安装 zsh-syntax-highlighting（语法高亮）
-
-* 下载并安装：
-
-```shell
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-![](./assets/22.gif)
-
-* 通过 vim 编辑 `~/.zshrc` 配置文件，添加该插件：
-
-```shell
-vim ~/.zshrc
-```
-
-```txt {6}
-# 其余略
-plugins=(
-    git
-    # other plugins...
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-# 其余略
-```
-
-![](./assets/23.gif)
-
-* 加载 `~/.zshrc` 配置文件：
-
-```shell
-source ~/.zshrc
-```
-
-![](./assets/24.gif)
-
-### 1.2.5 解决问题
-
-#### 1.2.5.1 问题引出
-
-* 当我们在使用 `tab` 进行命令补全的时候，可能会出现下面的情况（出现重复字符）：
-
-![](./assets/25.gif)
-
-#### 1.2.5.2 问题解决
-
-* ① 安装语言包：
-
-```shell
-# 安装字体
-dnf -y install powerline-fonts 
-# 安装语言包
-dnf -y install glibc-langpack-en
-```
-
-![](./assets/26.gif)
-
-* ② 查看系统 locale ：
-
-```shell
-localectl list-locales
-```
-
-![](./assets/27.gif)
-
-* ③ 设置编码：
-
-```shell
-# 修改编码
-echo 'export LC_CTYPE=en_US.UTF-8' >> ~/.zshrc
-```
-
-```shell
-# 重新加载配置文件
-source ~/.zshrc
-```
-
-![](./assets/28.gif)
-
-* ④ 修改主题配置：
-
-```shell
-# 修改主题
-sed -i 's/⚡/%{%G⚡%}/' ~/.oh-my-zsh/themes/agnoster.zsh-theme
-```
-
-```shell
-# 重新加载配置文件
-source ~/.zshrc
-```
-
-![](./assets/29.gif)
-
-
-
-# 第二章：RBAC 模型
-
-## 2.1 概述
 
 * RBAC（Role-Based Access Control，基于角色的访问控制）是一种访问控制模型，它通过定义`角色`来`管理用户`对`系统资源`的`访问权限`。
 * 在 RBAC 模型中，用户不是直接被授予权限的，而是被分配到一个或多个角色中，每个角色都包含了一组权限。
@@ -341,7 +18,7 @@ source ~/.zshrc
 >   
 > * ② Kubernetes（云原生的事实标准）也是基于 RBAC 模型开发的。
 
-## 2.2 RBAC 
+## 1.2 RBAC 
 
 * 最简单的 RBAC 模型是 RBAC0，包含了`用户`、`角色`和`权限`之间的关系（多对多的关系），即：
 
@@ -353,19 +30,27 @@ source ~/.zshrc
 > * ② 其实，在 RBAC 模型出现之前，还有 ACL 模型，即：用户和权限的多对多关系；但是随着用户数量的增长，这种模型的弊端就凸显出来了，每一个用户都需要去分配权限，非常的浪费管理员的时间和精力，并且用户和权限杂乱的对应关系会给后期带来巨大的维护成本。
 > * ③ RBAC96 模型族确实是由 George Mason 大学的 Ravi Sandhu 教授在 1996 年提出的，这个模型族对基于角色的访问控制（RBAC）进行了系统的分类和扩展。RBAC96 模型族包括四个主要模型：RBAC0、RBAC1、RBAC2 和 RBAC3，它们各自代表了 RBAC 的不同层次和复杂度。
 
-## 2.3 Linux 的安全模型（3A 认证）
+## 1.3 Linux 的安全模型（3A 认证）
 
-* 在信息安全领域，3A 认证通常指的是`认证（Authentication）`、`授权（Authorization）`、和`审计（Accounting）`，这三个概念是确保系统安全的基础。在 Linux 系统中，这些功能通过各种机制和工具实现，确保了系统的安全性和可控性，其中：
+* 在信息安全领域，3A 认证通常指的是`认证（Authentication）`、`授权（Authorization）`、和`审计（Accounting）`，这三个概念是确保系统安全的基础。在 Linux 系统中，这些功能通过各种机制和工具实现，确保了系统的安全性和可控性。
 
-  * **认证（Authentication）**：
-    * 认证是指`验证`用户或系统的`身份`。在 Linux 中，用户通常需要通过用户名和密码进行认证。此外，Linux 也支持更复杂的认证机制，如：公钥基础设施（PKI）、Kerberos 认证、以及双因素认证等。
-    - PAM（Pluggable Authentication Modules）框架允许管理员配置和整合不同的认证方法，使得系统可以灵活地支持多种认证技术。
-  * **授权（Authorization）**：
-    - 授权过程决定了`已认证的用户可以访问哪些资源`，以及`他们可以进行哪些操作`。Linux 使用权限位（读、写、执行）、访问控制列表（ACLs）以及基于角色的访问控制（RBAC）等机制来管理授权。
-    - 更高级的安全模块，如：SELinux 和 AppArmor，提供了基于策略的授权控制。这些工具可以定义非常细粒度的策略，控制应用程序和用户对文件、进程和系统调用的访问。
-  * **审计（Accounting）**：
-    - 审计是指`记录和分析用户的行为和系统事件`，是安全管理中的关键部分。Linux 提供了 Auditd 这样的工具，可以详细记录并审计系统发生的各种事件。
-    - 审计记录可以帮助系统管理员追踪用户活动，发现异常行为，进行问题诊断，以及满足合规性需求。
+> [!NOTE]
+>
+> * **认证（Authentication）**：
+>
+>   * 认证是指`验证`用户或系统的`身份`。在 Linux 中，用户通常需要通过用户名和密码进行认证。此外，Linux 也支持更复杂的认证机制，如：公钥基础设施（PKI）、Kerberos 认证、以及双因素认证等。
+>
+>   - PAM（Pluggable Authentication Modules）框架允许管理员配置和整合不同的认证方法，使得系统可以灵活地支持多种认证技术。
+>
+> * **授权（Authorization）**：
+>
+>   - 授权过程决定了`已认证的用户可以访问哪些资源`，以及`他们可以进行哪些操作`。Linux 使用权限位（读、写、执行）、访问控制列表（ACLs）以及基于角色的访问控制（RBAC）等机制来管理授权。
+>   - 更高级的安全模块，如：SELinux 和 AppArmor，提供了基于策略的授权控制。这些工具可以定义非常细粒度的策略，控制应用程序和用户对文件、进程和系统调用的访问。
+>
+> * **审计（Accounting）**：
+>
+>   - 审计是指`记录和分析用户的行为和系统事件`，是安全管理中的关键部分。Linux 提供了 Auditd 这样的工具，可以详细记录并审计系统发生的各种事件。
+>   - 审计记录可以帮助系统管理员追踪用户活动，发现异常行为，进行问题诊断，以及满足合规性需求。
 
 * 其对应的流程，如下所示：
   * ① **用户发起请求**：用户通过客户端发起登录请求，输入用户名和密码。
@@ -386,9 +71,9 @@ source ~/.zshrc
 
 
 
-# 第三章：用户管理概述
+# 第二章：用户管理概述
 
-## 3.1 概述
+## 2.1 概述
 
 * 在各种操作系统中都有`用户`的概念，如：win 中的超级管理员（administrator）和普通用户；当然，Linux 中也有各种类型的用户。
 * 很多时候，我们在进行系统管理的时候，会使用到 root 用户；但是，为了系统的安全，还是推荐使用普通用户。
@@ -399,7 +84,7 @@ source ~/.zshrc
 > * ② Linux 是一个多用户、多任务的操作系统，这意味着它可以同时支持多个用户登录并执行任务。在 Linux 系统中，每个用户都有自己的用户账户，可以拥有不同的权限和资源访问级别。
 > * ③ Linux 中系统管理员可以为不同的用户分配不同的权限，以确保系统的安全性和资源的有效管理。这种多用户环境使得 Linux 成为服务器和工作站的理想选择，因为它能够高效地处理并发任务和用户需求。
 
-## 3.2 UID 和 GID
+## 2.2 UID 和 GID
 
 * 在生活中，如何精确标识一个人？答案是通过`身份证`，或者身份证上的号码（`身份证号`），即：
 
@@ -424,7 +109,7 @@ id
 
 ![](./assets/33.png)
 
-## 3.3 用户分类
+## 2.3 用户分类
 
 * 可以根据 `uid` 来对用户进行分类：
 
@@ -439,7 +124,7 @@ id
 > * ① 在 Linux 中，对用户分类的方法`并不仅仅`通过 uid 这种分类方法，也可以通过其它`分类方法`来进行分类。
 > * ② 用户的 id （特指普通用户），即 uid 在 [1000,60000] 之间，不要超过此范围，可以通过查看 `/etc/login.defs` 文件来了解。
 
-## 3.4 用户相关的文件（⭐）
+## 2.4 用户相关的文件（⭐）
 
 * Linux 中每创建一个用户，通常都会影响下面的文件：
 
@@ -505,14 +190,17 @@ cat /etc/group
 > * ① 可以使用 `vigr`命令来修改 `/etc/group` 文件，以防止误操作；但是，通常不建议手动修改 `/etc/group` 文件。
 > * ② 可以使用 `grpck` 命令来校验 `/etc/group` 文件格式是否正确。
 
-## 3.5 用户和组的关系
+## 2.5 用户和组的关系
 
-* RBAC 模型中的用户和角色之间的关系是多对多，在 Linux 中，角色和用户组的概念是等价的，即：用户和用户组之间的关系也是多对多的，所以：
-  * 一个用户可以有多个用户组；但是，至少有 1 个用户组。
-  * 一个用户组可以有多个用户；但是，可以有 0 个用户。
-  * 用户的主要组（primary group，私有组），即一个用户必须属于且只有一个主组。创建用户的时候，默认会创建一个同名的用户组作为主组。
-  * 用户的附加组（supplementary group，辅助组），即一个用户可以属于 0 或多个附加组。
-  * 使用组的时候，可以对用户进行批量管理，如：对一个用户组授权，那么该组下的所有用户都将继承这个组的权限。
+* RBAC 模型中的用户和角色之间的关系是多对多，在 Linux 中，角色和用户组的概念是等价的，即：用户和用户组之间的关系也是多对多的。
+
+> [!NOTE]
+>
+> * 一个用户可以有多个用户组；但是，至少有 1 个用户组。
+> * 一个用户组可以有多个用户；但是，可以有 0 个用户。
+> * 用户的主要组（primary group，私有组），即一个用户必须属于且只有一个主组。创建用户的时候，默认会创建一个同名的用户组作为主组。
+> * 用户的附加组（supplementary group，辅助组），即一个用户可以属于 0 或多个附加组。
+> * 使用组的时候，可以对用户进行批量管理，如：对一个用户组授权，那么该组下的所有用户都将继承这个组的权限。
 
 
 
@@ -534,9 +222,9 @@ uid=0(root) gid=0(root) groups=0(root)
 uid=1000(x) gid=1000(x) groups=1000(x),10(wheel）
 ```
 
-## 3.6 安全上下文
+## 2.6 安全上下文
 
-### 3.6.1 程序和进程的关系
+### 2.6.1 程序和进程的关系
 
 * 程序 VS 进程：
 
@@ -560,7 +248,7 @@ uid=1000(x) gid=1000(x) groups=1000(x),10(wheel）
 > * ② 程序和进程虽然紧密相关，但它们在操作系统中的角色和功能是有区别的。
 > * ③  程序定义了要执行的操作，而进程是这些操作的实际执行。
 
-### 3.6.2 安全上下文 Context
+### 2.6.2 安全上下文 Context
 
 * 在 Linux 中，运行中的程序（进程）都是以进程发起者（用户）的身份运行，进程所能够访问的资源权限取决于进程的发起者的身份（和进程本身的程序文件无关），如：某个进程需要读写某个文件，需要看该进程的发起者有没有权限读取该文件。
 
@@ -591,15 +279,15 @@ cat /etc/shadow # 报错，cat: /etc/shadow: Permission denied
 
 
 
-# 第四章：用户管理命令（⭐）
+# 第三章：用户管理命令（⭐）
 
-## 4.1 概述
+## 3.1 概述
 
 * 用户管理命令，无非就是对用户进行`增`、`删`、`改`、`查`操作。
 
-## 4.2 增加
+## 3.2 增加
 
-### 4.2.1 概述
+### 3.2.1 概述
 
 * 命令：
 
@@ -607,15 +295,17 @@ cat /etc/shadow # 报错，cat: /etc/shadow: Permission denied
 useradd [-u][-s][-M][-g][-r] 用户名
 ```
 
-* 功能：创建用户。
-* 选项：
-  *   `-u`，`--uid UID`：指定用户的 ID，即 UID 。
-  *   `-s`，`--shell SHEL`：指定命令解释器，默认是 `/bin/bash`。
-  *   `-M`，`--no-create-home`：不创建用户的家目录。
-  *   `-g`，`--gid GROUP`：指定用户组名称或用户组 ID。
-  *   `-r`，`--system`：创建系统用户，即 UID < 1000 。
-
 > [!NOTE]
+>
+> * 功能：创建用户。
+> * 选项：
+>   *   `-u`，`--uid UID`：指定用户的 ID，即 UID 。
+>   *   `-s`，`--shell SHEL`：指定命令解释器，默认是 `/bin/bash`。
+>   *   `-M`，`--no-create-home`：不创建用户的家目录。
+>   *   `-g`，`--gid GROUP`：指定用户组名称或用户组 ID。
+>   *   `-r`，`--system`：创建系统用户，即 UID < 1000 。
+
+> [!IMPORTANT]
 >
 > * ① 默认情况下，会创建`同名`的`家目录`和`用户组`。
 > * ② 在实际工作中，像 `MySQL` 、`NGINX` 之类的软件，都是作为`服务`出现的，通常是使用这样的命令：`useradd  -s /sbin/nologin -M -r mysql` 来创建虚拟账户。
@@ -640,7 +330,7 @@ useradd -u 1314 -s /sbin/nologin -M mysql
 
 ![](./assets/43.gif)
 
-### 4.2.2 useradd 命令的默认选项
+### 3.2.2 useradd 命令的默认选项
 
 * useradd 命令的默认选项（不加任何参数的默认行为）是通过 `/etc/default/useradd`定义的，即：
 
@@ -693,7 +383,7 @@ useradd -D -b BASH_DIR # 更改家目录
 >   * `/etc/skel/*` ：`/etc/skel/`目录包含了当使用`useradd`命令创建一个新用户并指定创建家目录时，应该复制到新用户家目录中的文件和目录，通常的配置文件有 `.bashrc`、`.bash_profile`、`bash_logout`等。
 >   * `/etc/login.defs`：为用户登录相关的多种行为提供了系统级的配置，如：密码过期策略、密码复杂度和账户锁定策略等。
 
-## 4.3 删除
+## 3.3 删除
 
 * 命令：
 
@@ -701,11 +391,13 @@ useradd -D -b BASH_DIR # 更改家目录
 userdel [-r] 用户名
 ```
 
-* 功能：删除用户。
-* 选项：
-  * `-r`， `--remove`：删除用户和家目录。
-
 > [!NOTE]
+>
+> * 功能：删除用户。
+> * 选项：
+>   * `-r`， `--remove`：删除用户和家目录。
+
+> [!IMPORTANT]
 >
 > * ① 默认情况下，不会删除用户的家目录，除非添加 `-r` 选项。
 > * ② 在实际工作中，`userdel` 命令很危险，建议在 `/etc/passwd` 文件对应的`用户前`添加 `#` 注释，以便达到删除用户的效果。
@@ -730,9 +422,9 @@ userdel -r x
 
 ![](./assets/49.gif)
 
-## 4.4 修改
+## 3.4 修改
 
-### 4.4.1 修改用户信息
+### 3.4.1 修改用户信息
 
 * 命令：
 
@@ -740,13 +432,15 @@ userdel -r x
 usermod [-u][-s][-g][-l] 用户名
 ```
 
-* 功能：修改用户信息。
-* 对应英文：user modify 。
-* 选项：
-  *   `-u`，`--uid UID`：指定用户的 ID，即 UID 。
-  *   `-s`，`--shell SHEL`：指定命令解释器，默认是 `/bin/bash`。
-  *   `-g`，`--gid GROUP`：指定用户组名称或用户组 ID。
-  * `-l`，`--login NEW_LOGIN`：修改用户名称，不会修改用户的家目录名称。
+> [!NOTE]
+>
+> * 功能：修改用户信息。
+> * 对应英文：user modify 。
+> * 选项：
+>   *   `-u`，`--uid UID`：指定用户的 ID，即 UID 。
+>   *   `-s`，`--shell SHEL`：指定命令解释器，默认是 `/bin/bash`。
+>   *   `-g`，`--gid GROUP`：指定用户组名称或用户组 ID。
+>   *   `-l`，`--login NEW_LOGIN`：修改用户名称，不会修改用户的家目录名称。
 
 
 
@@ -768,7 +462,7 @@ usermod -l xudaxian x
 
 ![](./assets/51.gif)
 
-### 4.4.2 修改密码
+### 3.4.2 修改密码
 
 * 命令：
 
@@ -776,12 +470,14 @@ usermod -l xudaxian x
 passwd [--stdin] [用户名]
 ```
 
-* 功能：修改用户的密码。
-* 对应英文：password 。
-* 选项：
-  * `--stdin`：从标准流中读取信息，并修改密码（只有 root 用户才能进行此操作）。
-
 > [!NOTE]
+>
+> * 功能：修改用户的密码。
+> * 对应英文：password 。
+> * 选项：
+>   * `--stdin`：从标准流中读取信息，并修改密码（只有 root 用户才能进行此操作）。
+
+> [!IMPORTANT]
 >
 > * ① 如果不写用户名，就是修改当前的用户名。
 > * ② `--stdin` 可以实现批量修改密码，如：`echo '123456' | passwd  --stdin x`。
@@ -806,7 +502,7 @@ echo '123456' | passwd --stdin x
 
 ![](./assets/53.gif)
 
-### 4.4.3 切换用户
+### 3.4.3 切换用户
 
 * 命令：
 
@@ -814,11 +510,13 @@ echo '123456' | passwd --stdin x
 su - [用户名]
 ```
 
-* 对应的英文：switch user。
-* 选项：
-  * `-`， `-l`， `--login`：切换用户的同时，切换用户的配置和环境变量。
-
 > [!NOTE]
+>
+> * 对应的英文：switch user。
+> * 选项：
+>   * `-`， `-l`， `--login`：切换用户的同时，切换用户的配置和环境变量。
+
+> [!IMPORTANT]
 >
 > * ① su 命令允许我们在不注销当前会话的情况下，以不同的用户身份之间，执行各种任务，同时保持系统的稳定和安全。
 > * ② root 切换到普通用户，`无需`登录（输入密码）；普通用户切换到 root ，`需要`登录（输入密码）。
@@ -833,9 +531,9 @@ su - x
 
 ![](./assets/54.gif)
 
-## 4.5 查询
+## 3.5 查询
 
-### 4.5.1 查询用户的信息
+### 3.5.1 查询用户的信息
 
 * 命令：
 
@@ -843,9 +541,12 @@ su - x
 id [用户名]
 ```
 
-* 功能：
-  * 查询用户的 UID、GID 和用户组信息，进而可以用来检查用户是否存在。
-  * 如果`用户名`没有指定，默认查询的是当前用户的信息。
+> [!NOTE]
+>
+> 功能：
+>
+> * 查询用户的 UID、GID 和用户组信息，进而可以用来检查用户是否存在。
+> * 如果`用户名`没有指定，默认查询的是当前用户的信息。
 
 
 
@@ -877,7 +578,7 @@ id x
 
 ![](./assets/57.gif)
 
-### 4.5.2 查询用户当前的名字
+### 3.5.2 查询用户当前的名字
 
 * 命令：
 
@@ -885,7 +586,9 @@ id x
 whoami
 ```
 
-* 功能：查询用户当前的名字。
+> [!NOTE]
+>
+> 功能：查询用户当前的名字。
 
 
 
@@ -897,9 +600,9 @@ whoami
 
 ![](./assets/58.gif)
 
-### 4.5.3 查询当前登录用户的详细信息
+### 3.5.3 查询当前登录用户的详细信息
 
-#### 4.5.3.1 概述
+#### 3.5.3.1 概述
 
 * 命令：
 
@@ -907,15 +610,17 @@ whoami
 w [-f]
 ```
 
-* 功能：查询当前登录用户的详细信息，包括：用户名称、终端类型、登录时间、空闲时间、CPU 使用情况以及用户正在执行的进程。
-* 选项：
-  * `-f`，`--from`：显示远程登录主机的 IP 地址。
-
 > [!NOTE]
+>
+> * 功能：查询当前登录用户的详细信息，包括：用户名称、终端类型、登录时间、空闲时间、CPU 使用情况以及用户正在执行的进程。
+> * 选项：
+>   * `-f`，`--from`：显示远程登录主机的 IP 地址。
+
+> [!IMPORTANT]
 >
 > w 命令其实是 uptime（计算机正常运行时间，即在线时间） 和 who 命令的组合。
 
-#### 4.5.3.2 案例
+#### 3.5.3.2 案例
 
 * 示例：
 
@@ -925,13 +630,13 @@ w -f
 
 ![](./assets/59.gif)
 
-#### 4.5.3.3 详细解释
+#### 3.5.3.3 详细解释
 
 * 下面将给出对应的详细信息的解释，即：
 
 ![image-20240214201619368](./assets/60.png)
 
-### 4.5.4 显示用户最近的登录信息
+### 3.5.4 显示用户最近的登录信息
 
 * 命令：
 
@@ -949,7 +654,7 @@ last
 
 ![](./assets/61.gif)
 
-### 4.5.5 显示用户最近一次的登录信息
+### 3.5.5 显示用户最近一次的登录信息
 
 * 命令：
 
@@ -967,9 +672,9 @@ lastlog
 
 ![](./assets/62.gif)
 
-## 4.6 用户组命令（了解）
+## 3.6 用户组命令（了解）
 
-### 4.6.1 创建用户组
+### 3.6.1 创建用户组
 
 * 命令：
 
@@ -987,7 +692,7 @@ groupadd dev
 
 ![](./assets/63.gif)
 
-### 4.6.2 创建用户的同时指定用户组
+### 3.6.2 创建用户的同时指定用户组
 
 * 命令：
 
@@ -995,7 +700,7 @@ groupadd dev
 useradd -g 用户组 用户名
 ```
 
-> [!IMPORTANT]
+> [!CAUTION]
 >
 > 前提条件是用户组存在！！！
 
@@ -1009,7 +714,7 @@ useradd -g dev x
 
 ![](./assets/64.gif)
 
-### 4.6.3 删除用户组
+### 3.6.3 删除用户组
 
 * 命令：
 
@@ -1034,9 +739,9 @@ groupdel dev
 
 
 
-# 第五章：sudo 权限管理（⭐）
+# 第四章：sudo 权限管理（⭐）
 
-## 5.1 概述
+## 4.1 概述
 
 * 在实际工作中，开发人员要查看系统日志，怎么办（root 权限太大，普通用户的权限又太小）？
 
@@ -1050,7 +755,7 @@ groupdel dev
 >
 > 未来会搭建`日志平台（ELK、EFK 等）`，那么就不需要这么麻烦了。
 
-## 5.2 sudo 授权和使用
+## 4.2 sudo 授权和使用
 
 * sudo 授权和使用步骤如下：
   * ① 使用 `visudo` 命令进行授权（其实，背后修改的是 `/etc/sudoers` 文件）。
@@ -1114,16 +819,16 @@ w       ALL=(ALL)       NOPASSWD: ALL # 授权给运维自己不需要密码运�
 * sodo 就是让普通用户可以拥有 root 的部分权限来操作 Linux。
 * 流程就是：root 账号使用 `visudo` 进行授权，普通用户使用 `sudo xxx` 来进行提权。
 
->   [!NOTE]
+>   [!IMPORTANT]
 >
 >   * ① 如果每个用户都需要这么配置，就会感觉非常麻烦，我们也可以使用`堡垒机`来进行解决这类问题。
 >   * ② 一些开源的`堡垒机`可能没有对用户提权的功能；但是，云厂商提供的`堡垒机`是有对 SSH、Telnet 协议主机增加提权功能的，只不过需要购买而已！！！
 
 
 
-# 第六章：堡垒机（⭐）
+# 第五章：堡垒机（⭐）
 
-## 6.1 概述
+## 5.1 概述
 
 * 之前，我们对于 Linux 的操作，都是通过 xshell 来`直接`进行远程连接的，即：
 
@@ -1147,13 +852,13 @@ w       ALL=(ALL)       NOPASSWD: ALL # 授权给运维自己不需要密码运�
 | 物理硬件设备 | 需要自己购买。                                               |
 | 云服务       | 需要自己购买，阿里云等云厂商都提供有对应的服务。             |
 
->   [!NOTE]
+>   [!IMPORTANT]
 >
 >   本次将以 `Next Terminal` 作为演示！！！
 
-## 6.2 关闭防火墙和 SELinux
+## 5.2 关闭防火墙和 SELinux
 
-### 6.2.1 关闭防火墙
+### 5.2.1 关闭防火墙
 
 * 查询防火墙是否运行：
 
@@ -1185,7 +890,7 @@ systemctl status firewalld
 
 ![](./assets/76.gif)
 
-### 6.2.2 关闭 SELinux
+### 5.2.2 关闭 SELinux
 
 * 查看 SELinux 是否运行：
 
@@ -1221,9 +926,9 @@ getenforce
 
 ![](./assets/79.gif)
 
-## 6.3 前置准备
+## 5.3 前置准备
 
-### 6.3.1 安装 Apache Guacamole-Server
+### 5.3.1 安装 Apache Guacamole-Server
 
 * 安装 guacd  ：
 
@@ -1308,7 +1013,7 @@ systemctl status guacd
 
 ![](./assets/83.gif)
 
-### 6.3.2 安装字体
+### 5.3.2 安装字体
 
 * 安装字体管理软件：
 
@@ -1344,7 +1049,7 @@ mkfontscale && mkfontdir && fc-cache
 
 ![](./assets/86.gif)
 
-## 6.4 安装堡垒机 -- Next Terminal
+## 5.4 安装堡垒机 -- Next Terminal
 
 * 下载软件安装包：
 
@@ -1456,7 +1161,7 @@ systemctl status next-terminal
 
 ![](./assets/92.gif)
 
-## 6.5 访问和配置堡垒机
+## 5.5 访问和配置堡垒机
 
 * 通过浏览器访问 `http://192.168.10.100:8088`，管理员的账号和密码是 `admin/admin` ，即：
 
@@ -1481,11 +1186,11 @@ systemctl status next-terminal
 
 
 
-# 第七章：补充
+# 第六章：补充
 
-## 7.1 getent
+## 6.1 getent 命令
 
-### 7.1.1 概述
+### 6.1.1 概述
 
 * 命令：
 
@@ -1493,21 +1198,23 @@ systemctl status next-terminal
 getent database [key]
 ```
 
-* 功能：从`系统数据库`中根据`指定的 key`  查询出`想要的信息`。
-* 对应的英文：get entries from administrative database 。
-
 > [!NOTE]
 >
-> database 可以是 ahosts、ahostsv4、ahostsv6、aliases、ethers、group、gshadow、hosts、initgroups、netgroup、networks、passwd、protocols、rpc、services、shadow。
+> * 功能：从`系统数据库`中根据`指定的 key`  查询出`想要的信息`。
+> * 对应的英文：get entries from administrative database 。
+> * database 可以是 ahosts、ahostsv4、ahostsv6、aliases、ethers、group、gshadow、hosts、initgroups、netgroup、networks、passwd、protocols、rpc、services、shadow。
 
-* 应用场景：
-  * 查询用户信息：通过 `getent passwd` 命令，可以查看系统中的用户账户信息。
-  * 查询用户组信息：使用 `getent group` 可以查看用户组及其成员。
-  * 查询主机信息：通过 `getent hosts` 可以查看主机名与 IP 地址的映射。
-  * 查询服务信息：`getent services` 用于查看系统中的服务及其对应的端口号。
-  * 查询网络协议：`getent protocols` 可以列出网络协议及其编号。
+> [!IMPORTANT]
+>
+> 应用场景：
+>
+> * 查询用户信息：通过 `getent passwd` 命令，可以查看系统中的用户账户信息。
+> * 查询用户组信息：使用 `getent group` 可以查看用户组及其成员。
+> * 查询主机信息：通过 `getent hosts` 可以查看主机名与 IP 地址的映射。
+> * 查询服务信息：`getent services` 用于查看系统中的服务及其对应的端口号。
+> * 查询网络协议：`getent protocols` 可以列出网络协议及其编号。
 
-### 7.1.2 案例
+### 6.1.2 案例
 
 * 需求：查看系统中的指定用户的信息。
 
@@ -1531,7 +1238,7 @@ getent passwd xiaoming
 
 ![](./assets/98.gif)
 
-### 7.1.3 案例
+### 6.1.3 案例
 
 * 需求：查看系统中的指定用户密码的信息。
 
@@ -1555,7 +1262,7 @@ getent shadow xiaoming
 
 ![](./assets/100.gif)
 
-### 7.1.4 案例
+### 6.1.4 案例
 
 * 需求：查看系统中的指定用户组的信息。
 
@@ -1579,7 +1286,7 @@ getent group xiaoming
 
 ![](./assets/102.gif)
 
-### 7.1.5 案例
+### 6.1.5 案例
 
 * 需求：查看系统中的指定用户组密码的信息。
 
@@ -1603,7 +1310,7 @@ getent gshadow xiaoming
 
 ![](./assets/104.gif)
 
-### 7.1.6 案例
+### 6.1.6 案例
 
 * 需求：查询主机信息。
 
@@ -1627,7 +1334,7 @@ gentent hosts
 
 ![](./assets/106.gif)
 
-### 7.1.7 案例
+### 6.1.7 案例
 
 * 需求：查询服务信息（服务和端口）。
 
@@ -1651,9 +1358,9 @@ getent services ssh
 
 ![](./assets/108.gif)
 
-## 7.2 批量用户操作
+## 6.2 批量用户操作
 
-### 7.3.1 批量创建或更新用户
+### 6.2.1 批量创建或更新用户
 
 * 命令：
 
@@ -1661,9 +1368,11 @@ getent services ssh
 newusers 文件
 ```
 
-* 应用场景：适合于迁移多个用户到新的 Linux 操作系统中。
-
-![](./assets/109.png)
+> [!NOTE]
+>
+> 适合于迁移多个用户到新的 Linux 操作系统中，如下所示：
+>
+> ![](./assets/109.png)
 
 
 
@@ -1695,7 +1404,7 @@ newusers abc.txt
 
 ![](./assets/112.gif)
 
-### 7.3.2 批量更新密码
+### 6.2.2 批量更新密码
 
 * 命令：
 
