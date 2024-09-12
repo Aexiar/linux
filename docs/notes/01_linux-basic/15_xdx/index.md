@@ -95,7 +95,8 @@ file Gitify-Setup-5.2.0.exe # 查看 Windows 中应用程序的 ABI 格式
 
 ```c
 // 下面的代码在 win 和 Linux 上都能编译通过，
-// 是因为 win 和 Linux 上都有相同的头文件，即都能找到 printf 和 sleep 函数，并且参数是一样的。
+// 是因为 win 和 Linux 上都有相同的头文件，
+// 即都能找到 printf 和 sleep 函数，并且参数是一样的。
 
 #include <stdio.h> 
 #include <unistd.h> 
@@ -132,21 +133,23 @@ int main() {
 
 ![](./assets/7.jpg)
 
-* **预处理（Preprocessing）**:
-  - 在实际编译之前，预处理器处理 C 源代码。
-  - 预处理包括扩展所有的宏定义，处理所有的预处理指令（如`#include`，`#define`），移除注释等。
-  - 输出的结果是一个纯净的 C 代码，没有宏和预处理指令，这一步骤不生成任何机器代码。
-* **编译（Compilation）**:
-  - 编译器将预处理后的 C 代码转换成汇编代码。
-  - 这个阶段，编译器进行语法分析和语义分析，确保代码符合 C 语言的规范，同时进行一系列的优化处理。
-  - 输出是汇编语言代码，这些代码更接近于机器语言，但仍然是人类可读的形式。
-* **汇编（Assembly）**:
-  - 汇编器将汇编代码转换为机器代码，具体表现为机器语言指令。
-  - 输出的是二进制格式的目标代码文件，这些文件中包含了执行程序所需的机器指令。
-* **链接（Linking）**:
-  - 链接器将一个或多个目标代码文件与库文件一起合并，生成最终的可执行文件。
-  - 在这个阶段，链接器解决程序中对库函数和其他模块的外部引用，例如：如果程序使用了`printf`，链接器将确保包含这个函数的库被添加到最终程序中。
-  - 输出是可执行文件或库文件，这些文件可以在操作系统中直接运行。
+> [!NOTE]
+>
+> * **预处理（Preprocessing）**:
+>   - 在实际编译之前，预处理器处理 C 源代码。
+>   - 预处理包括扩展所有的宏定义，处理所有的预处理指令（如`#include`，`#define`），移除注释等。
+>   - 输出的结果是一个纯净的 C 代码，没有宏和预处理指令，这一步骤不生成任何机器代码。
+> * **编译（Compilation）**:
+>   - 编译器将预处理后的 C 代码转换成汇编代码。
+>   - 这个阶段，编译器进行语法分析和语义分析，确保代码符合 C 语言的规范，同时进行一系列的优化处理。
+>   - 输出是汇编语言代码，这些代码更接近于机器语言，但仍然是人类可读的形式。
+> * **汇编（Assembly）**:
+>   - 汇编器将汇编代码转换为机器代码，具体表现为机器语言指令。
+>   - 输出的是二进制格式的目标代码文件，这些文件中包含了执行程序所需的机器指令。
+> * **链接（Linking）**:
+>   - 链接器将一个或多个目标代码文件与库文件一起合并，生成最终的可执行文件。
+>   - 在这个阶段，链接器解决程序中对库函数和其他模块的外部引用，例如：如果程序使用了`printf`，链接器将确保包含这个函数的库被添加到最终程序中。
+>   - 输出是可执行文件或库文件，这些文件可以在操作系统中直接运行。
 
 
 
@@ -684,9 +687,11 @@ yum -y groupinstall 'Development Tools'
 yum repolist [--all]
 ```
 
-* 功能：查询已启用的 yum 仓库。
-* 选项：
-  * `--all`：查询所有的 yum 仓库。
+> [!NOTE]
+>
+> * 功能：查询已启用的 yum 仓库。
+> * 选项：
+>   * `--all`：查询所有的 yum 仓库。
 
 
 
@@ -732,10 +737,10 @@ yum grouplist
 yum grouplist --installed
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 >
 > * ① 需要英文环境，不然显示的程序组的名称是中文（如果默认的 locale 就是中文）。
-> * ② 下面的示例，我使用英文环境来测试。
+> * ② 下面的示例，我将使用英文环境来测试！！！
 
 
 
@@ -765,9 +770,11 @@ yum grouplist --installed
 yum list [--installed]
 ```
 
-* 功能：查询软件包，包括 yum 仓库中的。
-* 选项：
-  * `--installed`：查询安装到本地的软件包。
+> [!NOTE]
+>
+> * 功能：查询软件包，包括 yum 仓库中的。
+> * 选项：
+>   * `--installed`：查询安装到本地的软件包。
 
 
 
@@ -797,9 +804,11 @@ yum list --installed | grep tree
 yum provides xxx
 ```
 
-* 功能：根据指定命令或文件查询对应的软件包。
-
 > [!NOTE]
+>
+> 功能：根据指定命令或文件查询对应的软件包。
+
+> [!IMPORTANT]
 >
 > * ① 该命令是 `rpm -qf $(which xxx)`的升级版本，强烈使用！！！
 > * ② 此命令不需要先安装指定的软件包，再根据指定命令或文件查询对应的软件包。。
@@ -838,7 +847,7 @@ yum config-manager --enable 仓库名称
 yum config-manager --disable 仓库名称
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 >
 > * ① 需要在 `/etc/yum.repo.d/` 下配置有 `xxx.repo` 文件。
 > * ② 如果不是系统内置，还需要通过 `yum -y  makecache` 更新本地缓存。
@@ -872,12 +881,14 @@ yum config-manager --disable crb devel
 yum -y update [软件包] [--exclude=软件包] [--disableexcludes=repo]
 ```
 
-* 功能：如果不写软件包，会更新内核以及软件包。
-* 选项：
-  * `--exclude=软件包`：更新的时候排除某些软件包。
-  * `--disableexcludes=repo`：禁止排除某些仓库。
-
 > [!NOTE]
+>
+> * 功能：如果不写软件包，会更新内核以及软件包。
+> * 选项：
+>   * `--exclude=软件包`：更新的时候排除某些软件包。
+>   * `--disableexcludes=repo`：禁止排除某些仓库。
+
+> [!IMPORTANT]
 >
 > 在生产环境中搭建 kubernetes 集群的时候，我们需要禁止内核以及 kubernetes 组件的更新，有如下的解决方案：
 >
@@ -925,12 +936,16 @@ yum -y remove tree
 
 * 很多 Linux 上的软件都是使用 C 语言写的，为了简化跨平台构建，很多 C 语言项目使用了 GNU Autotools 工具链来进行构建。
 * GNU Autotools 工具链是一个自动化的构建系统，包括了：`autoconf`、`automake` 和 `libtool` 等工具，通过它可以很容易的将源代码在不同的操作系统和编译环境中进行编译和安装。
-* GNU Autotools 工具链配置、编译和安装过程如下：
-  * ① **`配置`**：使用 `configure` 脚本来检查系统环境并生成 `Makefile`。这个脚本会根据你的系统配置（如：是否支持 SSL、是否安装了 PCRE 和 Zlib 、安装到那个目录，默认是 /usr/local 等）来定制 `Makefile`。
-  * ② **`编译`**：使用 `make` 命令根据 `Makefile` 编译 C 语言源代码，生成的通常是可执行文件（executables）、静态库（static libraries）、动态库（shared libraries）或目标文件（object files），具体取决于项目的构建配置和 `Makefile` 中定义的规则。
-  * ③ **`安装`**：使用 `make install` 命令将编译好的可执行文件、库文件、头文件等安装到系统的标准路径中。
 
 > [!NOTE]
+>
+> GNU Autotools 工具链配置、编译和安装过程如下：
+>
+> * ① **`配置`**：使用 `configure` 脚本来检查系统环境并生成 `Makefile`。这个脚本会根据你的系统配置（如：是否支持 SSL、是否安装了 PCRE 和 Zlib 、安装到那个目录，默认是 /usr/local 等）来定制 `Makefile`。
+> * ② **`编译`**：使用 `make` 命令根据 `Makefile` 编译 C 语言源代码，生成的通常是可执行文件（executables）、静态库（static libraries）、动态库（shared libraries）或目标文件（object files），具体取决于项目的构建配置和 `Makefile` 中定义的规则。
+> * ③ **`安装`**：使用 `make install` 命令将编译好的可执行文件、库文件、头文件等安装到系统的标准路径中。
+
+> [!IMPORTANT]
 >
 > Nginx 是一个用 C 语言编写的项目，其就是使用 GNU Autotools 工具链进行项目构建的。
 
@@ -1313,9 +1328,9 @@ dnf -y install nginx
 
 *  在 AlmaLinux9 中，推荐使用 `dnf` 来管理软件包；不过，为了兼容之前的版本，我们还是可以使用 `yum` 命令的。
 
-> [!NOTE]
+> [!IMPORTANT]
 >
-> * ① Yum 主要使用 Python 编写，有自己的依赖解析方法。
+> * ① YUM 主要使用 Python 编写，有自己的依赖解析方法。
 > * ② DNF 使用 libsolv 进行依赖解析，由 SUSE 开发和维护，旨在提高性能。
 
 ## 6.2 软件仓库
