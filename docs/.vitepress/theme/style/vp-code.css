@@ -60,7 +60,12 @@ div[class*="language-"].line-numbers-mode::before {
   border-right: 1px solid var(--vp-code-block-divider-color);
 }
 
-/* 如果需要针对两个相邻代码块之间的间距 */
-div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
-  margin-top: 12px; /* 两个代码块之间的距离 */
+/* 针对非代码组的相邻代码块添加间距 */
+:not(.vp-code-group) div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
+  margin-top: 12px; /* 非代码组的相邻代码块之间的间距 */
+}
+
+/* 确保代码组内部的代码块没有间距 */
+.vp-code-group div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
+  margin-top: 0; /* 取消代码组内部相邻代码块之间的间距 */
 }
