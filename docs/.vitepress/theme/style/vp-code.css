@@ -1,7 +1,8 @@
 /* .vitepress/theme/style/vp-code.css */
 
-div[class*="language-"]:not(:last-child) {
-  margin-bottom: 30px; /* 仅对非最后一个代码块生效，增加 30px 的间距 */
+/* 为代码块容器添加上下间距 */
+div[class*="language-"] {
+  margin-bottom: 20px; /* 这里可以调整为你想要的间距 */
 }
 
 /* 为代码块添加 macOS 风格的小圆点 */
