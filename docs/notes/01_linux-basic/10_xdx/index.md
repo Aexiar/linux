@@ -8,30 +8,35 @@
 grep [OPTION]... PATTERNS [FILE]...
 ```
 
-* 对应的英文：Global search REgular expression and Print out the line。
-* 功能：文本搜索工具，根据用户指定的模式（正则表达式）对目标文本逐行进行匹配检查，并显示匹配到的行。
-
 > [!NOTE]
+>
+> * 对应的英文：Global search REgular expression and Print out the line。
+> * 功能：文本搜索工具，根据用户指定的模式（正则表达式）对目标文本逐行进行匹配检查，并显示匹配到的行。
+
+> [!IMPORTANT]
 >
 > * ① 所谓的 `PATTERNS`（`模式`）就是由`正则表达式`或`文本字符（字符串）`所形成的过滤条件。
 > * ② 默认情况下，grep 支持普通正则表达式；可以通过 `-E` 选项来开启扩展正则表达式，或者直接使用 egrep 命令来代替 `grep -E 扩展正则表达式`。
 > * ③ 正则表达式可以通过 `man 7 regex` 命令来查询其规则。
 
-* 常用选项：
-  * `-m`，`--max-count=NUM`：匹配到指定的 NUM 行后，就停止继续匹配。
-  * `-v`，`--invert-match`：反转匹配，即显示哪些不被 PATTERNS 匹配到的行；换言之，忽略指定内容的某些行。
-  * `-n`，`--line-number`： 显示行号。
-  * `-o`，`--only-matching`：仅显示匹配到行的非空部分，即显示匹配到的字符串。
-  * `-q`，`--quiet`，`--silent`：静默模式，不输出任何信息。
-  * `-e`，`--regexp=PATTERNS`：使用正则表达式匹配，可以实现多个选项间的逻辑 OR 关系，即 `grep -e xxx -e xxx abc.txt` 。
-  * `-w`，`--word-regexp`：匹配整个单词（单词两边是数字、字母、下划线也被认为是单词的一部分）。
-  * `-E`，`--extended-regexp`：使用扩展正则表达式进行匹配。
-  * `-F`，`--fixed-strings`：不使用正则表达式进行匹配，仅使用字符串来进行匹配。
-  * `-P`， `--perl-regexp`：使用 PCRE 兼容正则表达式来进行匹配，很多语言和软件支持，如：Java、NGINX 等。
-  * `-f`，`--file=FILE`：根据模式文件进行匹配。
-  * `-A`，`--after-context=NUM`：显示匹配到的后 NUM 行。
-  * `-B`，`--before-context=NUM`：显示匹配到的前 NUM 行。
-  * `-C`， `--context=NUM`：显示匹配到的前后 NUM 行。
+> [!NOTE]
+>
+> 常用选项：
+>
+> * `-m`，`--max-count=NUM`：匹配到指定的 NUM 行后，就停止继续匹配。
+> * `-v`，`--invert-match`：反转匹配，即显示哪些不被 PATTERNS 匹配到的行；换言之，忽略指定内容的某些行。
+> * `-n`，`--line-number`： 显示行号。
+> * `-o`，`--only-matching`：仅显示匹配到行的非空部分，即显示匹配到的字符串。
+> * `-q`，`--quiet`，`--silent`：静默模式，不输出任何信息。
+> * `-e`，`--regexp=PATTERNS`：使用正则表达式匹配，可以实现多个选项间的逻辑 OR 关系，即 `grep -e xxx -e xxx abc.txt` 。
+> * `-w`，`--word-regexp`：匹配整个单词（单词两边是数字、字母、下划线也被认为是单词的一部分）。
+> * `-E`，`--extended-regexp`：使用扩展正则表达式进行匹配。
+> * `-F`，`--fixed-strings`：不使用正则表达式进行匹配，仅使用字符串来进行匹配。
+> * `-P`， `--perl-regexp`：使用 PCRE 兼容正则表达式来进行匹配，很多语言和软件支持，如：Java、NGINX 等。
+> * `-f`，`--file=FILE`：根据模式文件进行匹配。
+> * `-A`，`--after-context=NUM`：显示匹配到的后 NUM 行。
+> * `-B`，`--before-context=NUM`：显示匹配到的前 NUM 行。
+> * `-C`， `--context=NUM`：显示匹配到的前后 NUM 行。
 
 ## 1.2 应用示例
 
