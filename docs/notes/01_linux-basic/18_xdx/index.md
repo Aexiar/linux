@@ -1492,8 +1492,6 @@ mount [-rvwa] [-o options] device mountpoint
 | UUID（-U 'UUID'）  | -U 'e771fe1e-c4d6-4484-a2e1-a45b2ceef7e0' |
 | 伪文件系统名称     | proc、sysfs、devtmpfs、tmpfs              |
 
-
-
 * 其中，mountpoint 是挂载点，必须事前存在，建议使用空目录。
 * 常用选项：
 
@@ -1534,7 +1532,7 @@ mount [-rvwa] [-o options] device mountpoint
    defaults # 相当于 rw, suid, dev, exec, auto, nouser, async
 ```
 
-> [!NOTE]
+> [!IMPORTANT]
 >
 > 挂载规则：
 >
@@ -1999,12 +1997,14 @@ lsusb # dnf -y install usbutils
 df [-h][-i][-T]... [/dev/DEVICE]...
 ```
 
-* 对应的英文：disk free。
-* 功能：查看文件系统（分区）的磁盘空间使用情况。
-* 常用选项：
-  * `-h`，`--human-readable`：以人类可读的方式显示，如：20 GB 等，默认是以 KB 为单位。
-  * `-i`, `--inodes`：显示 inode 的信息，而不显示 block，默认不显示。
-  * `-T`，`--print-type`：打印文件系统。
+> [!NOTE]
+>
+> * 对应的英文：disk free。
+> * 功能：查看文件系统（分区）的磁盘空间使用情况。
+> * 常用选项：
+>   * `-h`，`--human-readable`：以人类可读的方式显示，如：20 GB 等，默认是以 KB 为单位。
+>   * `-i`, `--inodes`：显示 inode 的信息，而不显示 block，默认不显示。
+>   * `-T`，`--print-type`：打印文件系统。
 
 
 
@@ -2044,13 +2044,15 @@ df -Th
 du [-h][-s][-a][-d]... [FILE|DIRECTORY]...
 ```
 
-* 对应的英文：disk usage。
-* 功能：显示文件（集合）或目录在磁盘上的使用空间。
-* 常用选项：
-  * `-h`，`--human-readable`：以人类可读的方式显示，如：20 GB 等，默认是以 KB 为单位。
-  * `-s`，`--summarize`：显示总数。
-  * `-d`，`--max-depth=N`：指定最大目录层级。
-  * `-a`, `--all`：显示所有的文件，而不仅仅包括目录。
+> [!NOTE]
+>
+> * 对应的英文：disk usage。
+> * 功能：显示文件（集合）或目录在磁盘上的使用空间。
+> * 常用选项：
+>   * `-h`，`--human-readable`：以人类可读的方式显示，如：20 GB 等，默认是以 KB 为单位。
+>   * `-s`，`--summarize`：显示总数。
+>   * `-d`，`--max-depth=N`：指定最大目录层级。
+>   * `-a`, `--all`：显示所有的文件，而不仅仅包括目录。
 
 
 
@@ -2082,58 +2084,61 @@ find /etc -type f -exec du -h {} + | sort -rn | head -n 5
 dd if=/PATH/FROM/SRC of=/PATH/TO/DEST bs=# count=#
 ```
 
-* 对应的英文：convert and copy a file。
-* 功能：转换和复制文件，常用于备份整个硬盘或创建磁盘映像。
-* 常用的选项：
-
-```shell
-if=file # inputfile，从所命名文件读取而不是从标准输入
-```
-
-```shell
-of=file # outputfile，写到所命名的文件而不是到标准输出
-```
-
-```shell
-ibs=BYTES  # 一次性读入指定的块，默认是 512B 的块大小，可以使用 b、K、M、G 、T、P、E、Z、Y 等单位
-```
-
-```shell
-obs=BYTES # 一次性写入指定的块，默认是 512B 的块大小，可以使用 b、K、M、G 、T、P、E、Z、Y 等单位
-```
-
-```shell
-bs=BYTES # 一次性读入和写入指定的块，默认是 512B 的块大小，会覆盖 ibs 和 obs
-```
-
-```shell
-cbs=BYTES # 一次性转换指定的块，默认是 512B 的块大小，可以使用 b、K、M、G 、T、P、E、Z、Y 等单位
-```
-
-```shell
-skip=blocks   # 当读取文件的时候，从开头忽略 blocks 个 ibs 大小的块
-```
-
-```shell
-seek=blocks   # 当写入文件的时候，从开头忽略 blocks 个 obs 大小的块
-```
-
-```shell
-count=n  # 复制 n 个 bs
-```
-
-```shell
-conv=conversion[,conversion...] # 用指定的参数转换文件
-	ascii # 转换 EBCDIC 为 ASCII
-    ebcdic # 转换 ASCII 为 EBCDIC
-    lcase # 把大写字符转换为小写字符
-    ucase # 把小写字符转换为大写字符
-    nocreat # 不创建输出文件
-    noerror # 出错时不停止
-    notrunc # 不截短输出文件
-    sync # 把每个输入块填充到ibs个字节，不足部分用空(NUL)字符补齐
-    fdatasync # 写完成前，物理写入输出文
-```
+> [!NOTE]
+>
+> * 对应的英文：convert and copy a file。
+> * 功能：转换和复制文件，常用于备份整个硬盘或创建磁盘映像。
+> * 常用的选项：
+>
+> ```shell
+> if=file # inputfile，从所命名文件读取而不是从标准输入
+> ```
+>
+> ```shell
+> of=file # outputfile，写到所命名的文件而不是到标准输出
+> ```
+>
+> ```shell
+> ibs=BYTES  # 一次性读入指定的块，默认是 512B 的块大小，可以使用 b、K、M、G 、T、P、E、Z、Y 等单位
+> ```
+>
+> ```shell
+> obs=BYTES # 一次性写入指定的块，默认是 512B 的块大小，可以使用 b、K、M、G 、T、P、E、Z、Y 等单位
+> ```
+>
+> ```shell
+> bs=BYTES # 一次性读入和写入指定的块，默认是 512B 的块大小，会覆盖 ibs 和 obs
+> ```
+>
+> ```shell
+> cbs=BYTES # 一次性转换指定的块，默认是 512B 的块大小，可以使用 b、K、M、G 、T、P、E、Z、Y 等单位
+> ```
+>
+> ```shell
+> skip=blocks   # 当读取文件的时候，从开头忽略 blocks 个 ibs 大小的块
+> ```
+>
+> ```shell
+> seek=blocks   # 当写入文件的时候，从开头忽略 blocks 个 obs 大小的块
+> ```
+>
+> ```shell
+> count=n  # 复制 n 个 bs
+> ```
+>
+> ```shell
+> conv=conversion[,conversion...] # 用指定的参数转换文件
+> 	ascii # 转换 EBCDIC 为 ASCII
+>     ebcdic # 转换 ASCII 为 EBCDIC
+>     lcase # 把大写字符转换为小写字符
+>     ucase # 把小写字符转换为大写字符
+>     nocreat # 不创建输出文件
+>     noerror # 出错时不停止
+>     notrunc # 不截短输出文件
+>     sync # 把每个输入块填充到ibs个字节，不足部分用空(NUL)字符补齐
+>     fdatasync # 写完成前，物理写入输出文
+> ```
+>
 
 #### 2.10.3.3 应用示例
 
