@@ -1,5 +1,9 @@
 /* .vitepress/theme/style/vp-code.css */
 
+div[class*="language-"]:not(:last-child) {
+  margin-bottom: 30px; /* 仅对非最后一个代码块生效，增加 30px 的间距 */
+}
+
 /* 为代码块添加 macOS 风格的小圆点 */
 div[class*="language-"].vp-adaptive-theme.line-numbers-mode {
   position: relative;
