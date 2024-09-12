@@ -61,6 +61,6 @@ div[class*="language-"].line-numbers-mode::before {
 }
 
 /* 针对非代码组的相邻代码块添加间距 */
-:not(.vp-code-group) div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
+:not(.vp-code-group) > div[class*="language-"].vp-adaptive-theme + div[class*="language-"].vp-adaptive-theme {
   margin-top: 12px; /* 非代码组的相邻代码块之间的间距 */
 }
