@@ -324,7 +324,7 @@
 
 ![image-20240117093435976](./assets/49.png)
 
-## 2.5 安装 Linux
+## 2.5 安装 AlmaLinux
 
 * ① `开启此虚拟机`：
 
@@ -436,7 +436,128 @@ ifconfig
 
 * ⑤ 查看是否登录成功：
 
-![image-20240117102159684](./assets/71.png)
+![](./assets/71.png)
 
+## 2.7 安装 Ubuntu
 
+### 2.7.1 安装步骤
 
+* ① `开启此虚拟机`：
+
+![](./assets/72.png)
+
+* ② `鼠标点击`进去之后，通过键盘上的`Enter`来确认：
+
+![](./assets/73.png)
+
+> [!NOTE]
+>
+> 键盘上的`Enter`在这里，如下所示：
+>
+> ![](./assets/74.png)
+
+* ③ 设置操作系统的`语言`环境为`English`：
+
+![](./assets/75.png)
+
+* ④ 键盘配置，通过键盘上的`Enter`来确认：
+
+![](./assets/76.png)
+
+* ⑤ 选择系统安装的类型，通过键盘上的`Enter`来确认：
+
+![](./assets/77.png)
+
+* ⑥ 设置静态 IP 地址，通过键盘上的`方向键`来选择，修改之后，通过键盘上的`Enter`来选择：
+
+![](./assets/78.png)
+
+![](./assets/79.png)
+
+![](./assets/80.png)
+
+![](./assets/81.png)
+
+![](./assets/82.png)
+
+> [!CAUTION]
+>
+> 本人的`网关`和`子网`配置如下：
+>
+> ![](./assets/83.png)
+
+- ⑦ 配置代理，下一步即可：
+
+![](./assets/84.png)
+
+* ⑧ 配置 Ubuntu 系统镜像源地址，下一步即可：
+
+![](./assets/85.png)
+
+* ⑨ 引导式存储布局配置，保持默认，下一步即可：
+
+![](./assets/86.png)
+
+![](./assets/87.png)
+
+* ⑩ 配置用户名、密码等：
+
+![](./assets/88.png)
+
+* ⑪ 安装 SSH 服务：
+
+![](./assets/89.png)
+
+* ⑫ 一些精选的流行服务软件包，根据个人情况选择，下一步：
+
+![](./assets/90.png)
+
+* ⑬ 配置完成，正式开始安装系统，漫长的等待……
+
+![](./assets/91.png)
+
+* ⑭ 安装完成之后，会提示`重启系统`，那就重启吧：
+
+![](./assets/92.png)
+
+### 2.7.2 配置 root 密码以及开启远程访问
+
+* ① 通过`用户名`和`密码`登录到系统中：
+
+![](./assets/93.png)
+
+* ② 通过 `sudo passwd root` 修改 root 的密码：
+
+![](./assets/94.png)
+
+* ③ 通过如下命令修改 ssh 配置文件，以便开启 root 远程访问：
+
+```shell
+sudo vim /etc/ssh/sshd_config
+```
+
+```shell
+PermitRootLogin yes # 36 行
+```
+
+![](./assets/95.gif)
+
+* ④ 重启 SSH 服务：
+
+```shell
+sudo apt-get -y install openssh-server
+```
+
+```shell
+sudo systemctl enable --now ssh
+```
+
+```shell
+sudo systemctl restart sshd
+```
+
+![](./assets/96.gif)
+
+* ⑤ 通过 Xshell 远程连接 Ubuntu ：
+
+![](./assets/97.png)
