@@ -313,7 +313,7 @@ h1 {
     left: -5px;
     right: -2px;
     bottom: -2px;
-    border: 2px solid var(--vp-custom-block-caution);
+    border: 2px solid var(--vp-c-red-3);
     transition: all .5s;
     animation: clippath 3s infinite linear;
     border-radius: 10px;
