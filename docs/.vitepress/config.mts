@@ -2,11 +2,12 @@ import { defineConfig } from 'vitepress'
 import { nav } from './navbar'
 import sidebar from './sidebar'
 import dayjs from 'dayjs'
-import { loadEnv } from 'vitepress'
+import { loadEnv } from 'vite'
+const mode = process.env.NODE_ENV || 'development'
+const { VITE_BASE_URL } = loadEnv(mode, process.cwd())
 
-const { VITE_BASE_URL } = loadEnv(process.env.NODE_ENV == undefined ? "" : process.env.NODE_ENV, process.cwd())
-
-console.log('VITE_BASE_URL', process.env.NODE_ENV, VITE_BASE_URL)
+console.log('Mode:', process.env.NODE_ENV)
+console.log('VITE_BASE_URL:', VITE_BASE_URL)
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
