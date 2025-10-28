@@ -1,5 +1,5 @@
 import { zhNav } from '../navbar'
-import { zhSidebar } from '../sidebar'
+// import { zhSidebar } from '../sidebar'
 import dayjs from 'dayjs'
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
@@ -38,7 +38,7 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       },
     },
     nav: zhNav,
-    sidebar: zhSidebar, // 侧边栏
+    // sidebar: zhSidebar, // 侧边栏
     docFooter: { // 自定义上下页名
       prev: '上一篇', next: '下一篇'
     },
