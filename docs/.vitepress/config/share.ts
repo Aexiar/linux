@@ -1,24 +1,25 @@
-import { defineConfig } from 'vitepress'
+import {defineConfig} from 'vitepress'
 import timeline from "vitepress-markdown-timeline"
-import { groupIconMdPlugin, groupIconVitePlugin, localIconLoader } from 'vitepress-plugin-group-icons'
-import { figure } from '@mdit/plugin-figure'
-import { loadEnv } from 'vite'
-import { withMermaid } from 'vitepress-plugin-mermaid'
-import {
-  GitChangelog,
-  GitChangelogMarkdownSection,
-} from '@nolebase/vitepress-plugin-git-changelog/vite'
-import {
-  InlineLinkPreviewElementTransform
-} from '@nolebase/vitepress-plugin-inline-link-preview/markdown-it'
+import {groupIconMdPlugin, groupIconVitePlugin, localIconLoader} from 'vitepress-plugin-group-icons'
+import {figure} from '@mdit/plugin-figure'
+import {loadEnv} from 'vite'
+import Permalink from "vitepress-plugin-permalink"
+import {InlineLinkPreviewElementTransform} from '@nolebase/vitepress-plugin-inline-link-preview/markdown-it'
+import terser from '@rollup/plugin-terser'
+import {vitepressDemoPlugin} from 'vitepress-demo-plugin'
+import markdownItTaskCheckbox from 'markdown-it-task-checkbox'
+import path from 'path'
+import {VitePressSidebarOptions} from "vitepress-sidebar/types"
+import {withSidebar} from "vitepress-sidebar"
+import {vitepressPluginLegend} from 'vitepress-plugin-legend'
+import multimdTable from 'markdown-it-multimd-table'
+import {qrcode} from 'vite-plugin-qrcode'
 
 const mode = process.env.NODE_ENV || 'development'
-const { VITE_BASE_URL } = loadEnv(mode, process.cwd())
-
+const {VITE_BASE_URL} = loadEnv(mode, process.cwd())
 console.log('Mode:', process.env.NODE_ENV)
 console.log('VITE_BASE_URL:', VITE_BASE_URL)
-
-export const sharedConfig = withMermaid(defineConfig({
+const vitePressOptions = defineConfig({
   rewrites: {
     'zh/:rest*': ':rest*'
   },
@@ -28,35 +29,39 @@ export const sharedConfig = withMermaid(defineConfig({
   titleTemplate: "Hi，终于等到你", // 网页标题
   description: "许大仙、前端、Java、大数据、云原生", // 站点描述
   head: [ // favicon.ico 图标等
-    ['link', { rel: "shortcut icon", href: `${VITE_BASE_URL || '/'}logo.svg` }],
+    ['link', {rel: "shortcut icon", href: `${VITE_BASE_URL || '/'}logo.svg`}],
     // 网站 favicon.ico 图标
-    ['link', { rel: "icon", href: `${VITE_BASE_URL || '/'}logo.svg`, type: "image/svg+xml" }],
+    ['link', {rel: "icon", href: `${VITE_BASE_URL || '/'}logo.svg`, type: "image/svg+xml"}],
     // 引入 Google Fonts
-    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
-    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-    ['link', { href: 'https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback', rel: 'stylesheet' }],
+    ['link', {rel: 'preconnect', href: 'https://fonts.googleapis.com'}],
+    ['link', {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: ''}],
+    ['link', {
+      href: 'https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback',
+      rel: 'stylesheet'
+    }],
     // 网页视口
     ['meta', {
       name: "viewport",
       content: "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,shrink-to-fit=no"
     }],
-    // ['meta', { 'http-equiv': 'Permissions-Policy', content: 'interest-cohort=(), user-id=()' }],
     // 关键词和描述
-    ['meta', { name: "keywords", content: "许大仙、Java、C、C++、大数据、前端、云原生、Go、Python" }],
+    ['meta', {name: "keywords", content: "许大仙、Java、C、C++、大数据、前端、云原生、Go、Python"}],
+    ['meta', {charset: 'UTF-8'}],
   ],
   appearance: true, // 主题模式，默认浅色且开启切换
   base: VITE_BASE_URL,
   lastUpdated: true, // 上次更新
   vite: {
     build: {
-      chunkSizeWarningLimit: 1600
+      chunkSizeWarningLimit: 2000,
     },
     ssr: {
       noExternal: [
+        'dayjs',
         '@nolebase/vitepress-plugin-enhanced-readabilities',
         '@nolebase/ui',
         '@nolebase/vitepress-plugin-highlight-targeted-heading',
-        '@nolebase/vitepress-plugin-inline-link-preview',
+        '@nolebase/vitepress-plugin-inline-link-preview'
       ],
     },
     optimizeDeps: {
@@ -67,28 +72,58 @@ export const sharedConfig = withMermaid(defineConfig({
       ],
     },
     plugins: [
+      qrcode({
+        filter: url => {
+          return url.includes('192.168.1.')
+        }
+      }),
+      terser(),
       //代码组图标
       (groupIconVitePlugin({
         customIcon: {
+          'c': localIconLoader(import.meta.url, '../../public/iconify/c.svg'),
+          'idea': localIconLoader(import.meta.url, '../../public/iconify/idea.svg'),
+          'webstorm': localIconLoader(import.meta.url, '../../public/iconify/webstorm.svg'),
+          'h': localIconLoader(import.meta.url, '../../public/iconify/c.svg'),
+          'cpp': localIconLoader(import.meta.url, '../../public/iconify/cpp.svg'),
+          'java': 'vscode-icons:file-type-java',
           'winget': 'vscode-icons:file-type-shell',
+          'choco': localIconLoader(import.meta.url, '../../public/iconify/choco.svg'),
+          "控制台": localIconLoader(import.meta.url, '../../public/iconify/terminal.svg'),
+          "项目结构": localIconLoader(import.meta.url, '../../public/iconify/architecture.svg'),
+          "AlmaLinux": localIconLoader(import.meta.url, '../../public/iconify/almaLinux.svg'),
+          "Ubuntu": localIconLoader(import.meta.url, '../../public/iconify/ubuntu.svg'),
+          "effect": localIconLoader(import.meta.url, '../../public/iconify/effect.svg'),
+          "结果": localIconLoader(import.meta.url, '../../public/iconify/effect.svg'),
           'cmd': 'vscode-icons:file-type-shell',
-          'powershell': 'vscode-icons:file-type-powershell'
+          'powershell': 'vscode-icons:file-type-powershell',
+          'maven': 'vscode-icons:file-type-apache',
+          'gradle': 'vscode-icons:file-type-light-gradle',
+          'git': 'vscode-icons:file-type-git',
+          'bash': 'vscode-icons:file-type-gnu',
+          'shell': 'vscode-icons:file-type-gnu',
+          'sh': 'vscode-icons:file-type-gnu',
+          'cpu': localIconLoader(import.meta.url, '../../public/iconify/cpu.svg'),
+          'faq': localIconLoader(import.meta.url, '../../public/iconify/reply.svg'),
+          'bytecode': localIconLoader(import.meta.url, '../../public/iconify/bytecode.svg'),
+          '字节码指令': localIconLoader(import.meta.url, '../../public/iconify/bytecode.svg'),
+          'chrome': localIconLoader(import.meta.url, '../../public/iconify/chrome.svg'),
+          'firefox': localIconLoader(import.meta.url, '../../public/iconify/firefox.svg'),
+          'edge': localIconLoader(import.meta.url, '../../public/iconify/edge.svg'),
+          'arthas': localIconLoader(import.meta.url, '../../public/iconify/arthas.svg'),
+          'log': localIconLoader(import.meta.url, '../../public/iconify/log.svg'),
+          '日志': localIconLoader(import.meta.url, '../../public/iconify/log.svg'),
+          'linux': localIconLoader(import.meta.url, '../../public/iconify/linux.svg'),
+          'Linux': localIconLoader(import.meta.url, '../../public/iconify/linux.svg'),
+          'windows': localIconLoader(import.meta.url, '../../public/iconify/windows.svg'),
+          'Windows': localIconLoader(import.meta.url, '../../public/iconify/windows.svg'),
+          'sql': 'vscode-icons:file-type-sql'
         }
       }) as any),
-      GitChangelog({
-        // 填写在此处填写您的仓库链接
-        repoURL: () => 'https://github.com/Aurorxa/c',
-      }),
-      GitChangelogMarkdownSection({
-        exclude: (id) => id.endsWith("index.md"),
-        sections: {
-          disableChangelog: false,
-          disableContributors: false,
-        },
-      }),
+      Permalink(),
     ],
     server: {
-      port: 20089
+      port: 12289
     },
     css: {
       preprocessorOptions: {
@@ -99,7 +134,7 @@ export const sharedConfig = withMermaid(defineConfig({
     },
   },
   sitemap: {
-    hostname: `https://linux.weiweixu.cn${VITE_BASE_URL}`,
+    hostname: `https://java.weiweixu.cn${VITE_BASE_URL}`,
   },
   markdown: { // markdown 配置
     math: true,
@@ -108,31 +143,46 @@ export const sharedConfig = withMermaid(defineConfig({
       // 开启图片懒加载
       lazyLoading: true
     },
-    // 组件插入h1标题下
-    config: (md) => {
+    // md 配置
+    config: async (md) => {
+
+      md.use(multimdTable, {
+        multiline: true,  // 启用多行支持
+        rowspan: true,    // 启用 rowspan
+        headerless: true, // 可选：支持无表头表格
+        multibody: true,  // 可选：支持多 tbody
+        autolabel: true   // 可选：自动标签
+      });
+
+      vitepressPluginLegend(md, {
+          markmap: {
+            showToolbar: true,
+          },
+          mermaid: {
+            showToolbar: true
+          }
+        }
+      )
       // 创建 markdown-it 插件
       md.use((md) => {
         const defaultRender = md.render
-        md.render = function (...args) {
+        md.render = (...args) => {
           const [content, env] = args
-          const currentLang = env.localeIndex
-          const isHomePage = env.path === '/' || env.relativePath === 'index.md'  // 判断是否是首页
-
-          if (isHomePage) {
-            return defaultRender.apply(md, args) // 如果是首页，直接渲染内容
-          }
+          const currentLang = env?.localeIndex
           // 调用原始渲染
           let defaultContent = defaultRender.apply(md, args)
           // 替换内容
           if (currentLang === 'root') {
-            defaultContent = defaultContent.replace(/NOTE/g, '提醒')
+            defaultContent = defaultContent.replace(
+                /NOTE/g, '提醒')
               .replace(/TIP/g, '建议')
               .replace(/IMPORTANT/g, '重要')
               .replace(/WARNING/g, '警告')
               .replace(/CAUTION/g, '注意')
           } else if (currentLang === 'ko') {
             // 韩文替换
-            defaultContent = defaultContent.replace(/NOTE/g, '알림')
+            defaultContent = defaultContent.replace(
+                /NOTE/g, '알림')
               .replace(/TIP/g, '팁')
               .replace(/IMPORTANT/g, '중요')
               .replace(/WARNING/g, '경고')
@@ -141,23 +191,131 @@ export const sharedConfig = withMermaid(defineConfig({
           // 返回渲染的内容
           return defaultContent
         }
+
+        // 获取原始的 fence 渲染规则
+        const defaultFence = md.renderer.rules.fence?.bind(md.renderer.rules) ?? ((...args) => args[0][args[1]].content)
+
+        // 重写 fence 渲染规则
+        md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+          const token = tokens[idx]
+          const info = token.info.trim()
+
+          // 判断是否为 md:img 类型的代码块
+          if (info.includes('md:img')) {
+            // 只渲染图片，不再渲染为代码块
+            return `<div class="rendered-md">${md.render(token.content)}</div>`
+          }
+
+          // 其他代码块按默认规则渲染（如 java, js 等）
+          return defaultFence(tokens, idx, options, env, self)
+        }
       })
       md.use(timeline)
       md.use(groupIconMdPlugin) //代码组图标
       md.use(InlineLinkPreviewElementTransform)
-      md.use(figure, { figcaption: 'alt', copyAttrs: '^class$', lazy: true })
+      md.use(figure, {figcaption: 'alt', copyAttrs: '^class$', lazy: true})
+      md.use(markdownItTaskCheckbox)
+      md.use(vitepressDemoPlugin, {
+        demoDir: path.resolve(__dirname, '../demos'),
+      })
     }
   },
   themeConfig: { // 主题设置
     logo: '/logo.svg',  // 左上角logo
-    // 编辑链接
-    editLink: {
-      pattern: 'https://github.com/Aurorxa/linux/edit/master/docs/:path',
-      text: 'Edit this page on GitHub'
-    },
     //社交链接
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/Aurorxa/linux' },
+      {icon: 'github', link: 'https://github.com/Aurorxa/java'},
     ],
+    editLink: {
+      pattern: 'https://github.com/Aurorxa/java/edit/master/docs/:path',
+      text: 'Edit this page on GitHub'
+    },
+    externalLinkIcon: true,
+    search: {
+      provider: 'algolia',
+      options: {
+        appId: 'LVMA83X0DG',
+        apiKey: 'a8cbc88742b5e45d822f3a9607ff5122',
+        indexName: 'java-weiweixu',
+        locales: {
+          zh: {
+            placeholder: '搜索文档',
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档'
+              },
+              modal: {
+                searchBox: {
+                  resetButtonTitle: '清除查询条件',
+                  resetButtonAriaLabel: '清除查询条件',
+                  cancelButtonText: '取消',
+                  cancelButtonAriaLabel: '取消'
+                },
+                startScreen: {
+                  recentSearchesTitle: '搜索历史',
+                  noRecentSearchesText: '没有搜索历史',
+                  saveRecentSearchButtonTitle: '保存至搜索历史',
+                  removeRecentSearchButtonTitle: '从搜索历史中移除',
+                  favoriteSearchesTitle: '收藏',
+                  removeFavoriteSearchButtonTitle: '从收藏中移除'
+                },
+                errorScreen: {
+                  titleText: '无法获取结果',
+                  helpText: '你可能需要检查你的网络连接'
+                },
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换',
+                  closeText: '关闭',
+                  searchByText: '搜索提供者'
+                },
+                noResultsScreen: {
+                  noResultsText: '无法找到相关结果',
+                  suggestedQueryText: '你可以尝试查询',
+                  reportMissingResultsText: '你认为该查询应该有结果？',
+                  reportMissingResultsLinkText: '点击反馈'
+                },
+              },
+            },
+          },
+        },
+      },
+    },
   }
-}))
+})
+
+const vitePressSidebarOption: VitePressSidebarOptions | VitePressSidebarOptions[] = {
+  documentRootPath: 'docs',
+  debugPrint: true,
+  basePath: `${VITE_BASE_URL}`,
+  collapsed: true,
+  excludeByGlobPattern: ['assets', 'public', 'index.md', 'about'],
+  includeDotFiles: true,
+  includeRootIndexFile: false,
+  includeEmptyFolder: true,
+  includeFolderIndexFile: false,
+  removePrefixAfterOrdering: true,
+  prefixSeparator: /^[0-9]{1,2}[-._]/,
+  useFolderLinkFromIndexFile: true,
+  useTitleFromFrontmatter: true,
+  folderLinkNotIncludesFileName: true,
+  keepMarkdownSyntaxFromTitle: true,
+  sortMenusOrderNumericallyFromTitle: true
+}
+
+const rootLocale = 'zh'
+const supportedLocales = [rootLocale, 'en']
+
+const vitePressSidebarOptions = [
+  ...supportedLocales.map((lang) => {
+    return {
+      ...vitePressSidebarOption,
+      ...(rootLocale === lang ? {} : {basePath: `/${lang}/`}), // If using `rewrites` option
+      documentRootPath: `/docs/${lang}`,
+      resolvePath: rootLocale === lang ? '/' : `/${lang}/`,
+    }
+  })
+]
+
+export const sharedConfig = withSidebar(vitePressOptions, vitePressSidebarOptions)

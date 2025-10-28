@@ -8,5 +8,10 @@
 @import './vplink.css';
 @import './h.css';
 @import './picture.css';
+@import './sidebarIcon.css';
+@import './table.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 

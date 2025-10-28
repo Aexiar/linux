@@ -1,9 +1,9 @@
- .medium-zoom-overlay {
+.medium-zoom-overlay {
   z-index: 20;
 }
 
 .medium-zoom--opened .medium-zoom-image {
-  z-index: 199 !important;
+  z-index: 1999 !important;
 }
 
 .VPSocialLinks.VPNavBarSocialLinks.social-links {
@@ -47,8 +47,7 @@
   --vp-shadow-2: 0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
   --vp-shadow-3: 0 12px 32px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.08);
   --vp-shadow-4: 0 14px 44px rgba(0, 0, 0, 0.12), 0 3px 9px rgba(0, 0, 0, 0.12);
-  --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16),
-    0 4px 12px rgba(0, 0, 0, 0.16) 
+  --vp-shadow-5: 0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
 }
 
 .dark {
@@ -74,10 +73,11 @@
 body,
 html {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-  
   touch-action: manipulation;
   -webkit-touch-callout: none;
   -ms-touch-action: manipulation;
+  touch-action: pan-x pan-y;
+  user-scalable: no;
 }
 
 .VPSidebarItem.is-link.is-active.has-active .text {
@@ -85,3 +85,30 @@ html {
   color: var(--vp-c-brand-1) !important;
   transition: color 0.25s !important;
 }
+
+/* 自定义 md 文件 */
+.rendered-md img {
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.rendered-md {
+  display: none;  /* 默认隐藏 */
+}
+
+.rendered-md.active {
+  display: block; /* 只有在 active 状态下才显示 */
+  max-width: 100%;
+}
+
+/* 侧边栏缩放 */
+.group:has([role='button']) .VPSidebarItem.level-0 .items {
+  padding-left: 15px !important;
+  border-left: 1px solid var(--vp-c-divider);
+  border-radius: 2px;
+  transition: background-color 0.25s;
+}
+
+
+

@@ -3,3 +3,4 @@ cache
 dist 
 .idea
 .vscode
+.DS_Store
