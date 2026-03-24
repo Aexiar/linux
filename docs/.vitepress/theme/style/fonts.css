@@ -1,0 +1,7 @@
+:root {
+    /* 正文/基础字体 - VitePress 使用 --vp-font-family-base */
+    --vp-font-family-base: -apple-system,
+    BlinkMacSystemFont, SFProDisplay-Regular, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+

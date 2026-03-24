@@ -40,7 +40,3 @@
 .vp-doc div[class*='language-'].line-numbers-mode {
     margin-bottom: 20px;
 }
-
-.vp-doc p {
-  line-height: normal;
-}

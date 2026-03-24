@@ -1,0 +1,28 @@
+# [tools] - 开发工具版本
+[tools]
+node = "24"
+pnpm = "10"
+
+# [env] - 环境变量
+[env]
+
+# [tasks] - 项目任务
+[tasks.install]
+description = "安装依赖"
+run = "pnpm install"
+
+[tasks.build]
+description = "构建"
+depends = ["install"]
+run = "pnpm run docs:build"
+
+[tasks.dev]
+description = "开发"
+depends = ["install"]
+run = "pnpm run docs:dev"
+
+[tasks.preview]
+description = "预览"
+depends = ["build"]
+run = "pnpm run docs:preview"
+
