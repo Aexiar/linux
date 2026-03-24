@@ -22,7 +22,7 @@ permalink: /guide
 
 * 在 B/S 架构中，客户端是一个 Web 浏览器（Chrome、Edge），而服务器则是一个 Web 服务器。用户通过浏览器来访问服务器上托管的 Web 页面，并通过 HTTP/HTTPS 通信协议进行交互，如下所示：
 
-![B/S 架构](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/1.svg)
+![B/S 架构](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/2026-03-24-16-23-52.svg)
 
 * B/S 架构广泛应用于 Web 应用程序，如：电子商务平台、社交媒体网站、企业门户等。
 
@@ -50,7 +50,7 @@ permalink: /guide
 
 * 在 C/S 架构中，客户端和服务器是两个独立的组件，它们通过网络进行通信。客户端通常是用户直接操作的应用程序，而服务器则用于处理客户端的请求和提供相应的服务，如下所示：
 
-![C/S 架构](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/2.svg)
+![C/S 架构](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/2026-03-24-16-26-16.svg)
 
 * C/S 架构广泛应用于需要专属客户端的应用程序，如：桌面应用程序（QQ、WPS 等）、网络游戏、手机 App 等。
 
@@ -81,7 +81,7 @@ permalink: /guide
 * 在计算机软件的发展过程中，涌现出了各种各样的职业，如：前端工程师、后端工程师、架构师、算法工程师、大数据工程师、运维工程师、嵌入式工程师、底层开发（操作系统、数据库、浏览器、游戏引擎）等。
 * 我们知道，在自然界中，树是由`叶子`、`树枝`、`树干`和`树根`组成的，如下所示：
 
-![树的组成部分](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/3.jpg)
+![树的组成部分](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/2026-03-24-16-26-40.jpg)
 
 > [!NOTE]
 >
@@ -97,7 +97,7 @@ permalink: /guide
 * 在 B/S 架构应用中，前端主要关注于浏览器端（B 端）显示的页面和可交互的界面，也可以称为 `“WEB 前端”`。
 * 常见的 WEB 前端应用有：电商网站、社交媒体网站、企业门户，如下所示：
 
-![常见的 WEB 前端应用](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/4.png)
+![常见的 WEB 前端应用](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-24/2026-03-24-16-27-08.png)
 
 * WEB 前端涉及到的技术有：`HTML`、`CSS` 和 `JavaScript`（很重要）。
 
