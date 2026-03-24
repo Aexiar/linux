@@ -300,7 +300,7 @@ notepad $PROFILE  # (&mise activate pwsh) | Out-String | Invoke-Expression
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-3-23-9-57-54.gif)
+![](./assets/PixPin_2026-03-24_11-20-46.gif)
 ```
 
 :::
