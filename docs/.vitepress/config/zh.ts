@@ -1,44 +1,22 @@
 import { zhNav } from '../navbar'
-// import { zhSidebar } from '../sidebar'
 import dayjs from 'dayjs'
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
 export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   themeConfig: { // 主题设置
-    lastUpdatedText: '上次更新', // 上次更新显示文本
-    returnToTopLabel: '返回顶部', // 更改手机端菜单文字显示
-    search: {
-      provider: 'local',
-      options: {
-        locales: {
-          zh: {
-            translations: {
-              button: {
-                buttonText: '搜索',
-                buttonAriaLabel: '搜索',
-              },
-              modal: {
-                displayDetails: '显示详细列表',
-                resetButtonTitle: '重制搜索',
-                backButtonTitle: '关闭搜索',
-                noResultsText: '没有找到相关结果',
-                footer: {
-                  selectText: '选择',
-                  selectKeyAriaLabel: 'enter',
-                  navigateText: '切换',
-                  navigateUpKeyAriaLabel: '上方向键',
-                  navigateDownKeyAriaLabel: '下方向键',
-                  closeText: '关闭',
-                  closeKeyAriaLabel: 'esc',
-                },
-              },
-            },
-          },
-        },
-      },
+    lastUpdated: {
+      text: '上次更新',
+      formatOptions: {
+        year: 'numeric',
+        month: 'long',   // 输出“六月”
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }
     },
+    returnToTopLabel: '返回顶部', // 更改手机端菜单文字显示
     nav: zhNav,
-    // sidebar: zhSidebar, // 侧边栏
     docFooter: { // 自定义上下页名
       prev: '上一篇', next: '下一篇'
     },
@@ -51,11 +29,10 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       level: [1, 6],
       label: '目录'
     },
-    //大纲顶部标题
-    outlineTitle: '当前页大纲',
     editLink: {
       pattern: 'https://github.com/Aurorxa/linux/edit/master/docs/:path',
       text: '在 GitHub 编辑本页'
     },
+
   }
 }

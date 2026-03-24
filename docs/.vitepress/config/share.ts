@@ -134,7 +134,7 @@ const vitePressOptions = defineConfig({
     },
   },
   sitemap: {
-    hostname: `https://java.weiweixu.cn${VITE_BASE_URL}`,
+    hostname: `https://linux.weiweixu.cn${VITE_BASE_URL}`,
   },
   markdown: { // markdown 配置
     math: true,
@@ -224,10 +224,10 @@ const vitePressOptions = defineConfig({
     logo: '/logo.svg',  // 左上角logo
     //社交链接
     socialLinks: [
-      {icon: 'github', link: 'https://github.com/Aurorxa/java'},
+      {icon: 'github', link: 'https://github.com/Aurorxa/linux'},
     ],
     editLink: {
-      pattern: 'https://github.com/Aurorxa/java/edit/master/docs/:path',
+      pattern: 'https://github.com/Aurorxa/linux/edit/master/docs/:path',
       text: 'Edit this page on GitHub'
     },
     externalLinkIcon: true,
@@ -236,7 +236,7 @@ const vitePressOptions = defineConfig({
       options: {
         appId: 'LVMA83X0DG',
         apiKey: 'a8cbc88742b5e45d822f3a9607ff5122',
-        indexName: 'java-weiweixu',
+        indexName: 'linux-weiweixu',
         locales: {
           zh: {
             placeholder: '搜索文档',
