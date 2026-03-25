@@ -14,7 +14,7 @@
 
 * [mise](https://mise.jdx.dev/) 是一个现代化的 `统一开发环境管理工具`，它将三种核心功能整合到一个强大而单一的 CLI 中。mise 使用 Rust 编写，旨在提供高性能和高可靠性，作为一个“开发环境的前端”，用一个连贯的系统替代了多个专用工具。
 
-![](./assets/image-20260211031445805.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-26-21.png)
 
 * 其实，从官网的定位来说，mise 是开发环境的前端。
 
@@ -88,7 +88,7 @@ winget upgrade Microsoft.PowerShell --silent
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-3-35-16.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-26-36.gif)
 ```
 
 :::
@@ -108,7 +108,7 @@ pwsh -command "$PSVersionTable.PSVersion"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-3-40-21.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-26-52.gif)
 ```
 
 :::
@@ -145,7 +145,7 @@ winget uninstall --id jdx.mise
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-4-13-14.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-27-06.gif)
 ```
 
 :::
@@ -161,7 +161,7 @@ scoop uninstall mise
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-4-33-28.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-27-20.gif)
 ```
 
 :::
@@ -211,7 +211,7 @@ winget install --id jdx.mise
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-4-39-14.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-27-33.gif)
 ```
 
 :::
@@ -227,7 +227,7 @@ scoop install mise
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-4-40-33.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-31-18.gif)
 ```
 
 :::
@@ -300,7 +300,7 @@ notepad $PROFILE  # (&mise activate pwsh) | Out-String | Invoke-Expression
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/PixPin_2026-03-24_11-20-46.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-31-37.gif)
 ```
 
 :::
@@ -364,7 +364,7 @@ sed -i '/mise activate/d' ~/.config/fish/config.fish && source ~/.config/fish/co
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-16-35-35.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-31-54.gif)
 ```
 
 :::
@@ -380,7 +380,7 @@ dnf -y remove mise
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-16-40-22.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-33-18.gif)
 ```
 
 :::
@@ -396,7 +396,7 @@ apt -y remove mise
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-16-43-44.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-33-44.gif)
 ```
 
 :::
@@ -468,7 +468,7 @@ curl https://mise.run | sh
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-11-16-08-35.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-34-02.gif)
 ```
 
 :::
@@ -490,7 +490,7 @@ grep -q "mise activate" ~/.config/fish/config.fish || echo "mise activate fish |
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-13-15-41-31.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-34-23.gif)
 ```
 
 :::
@@ -516,7 +516,7 @@ grep -q "mise activate" ~/.config/fish/config.fish || echo "mise activate fish |
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-13-15-42-50.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-34-37.gif)
 ```
 
 :::
@@ -579,7 +579,7 @@ exec fish
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-13-15-55-04.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-34-55.gif)
 ```
 
 :::
@@ -599,7 +599,7 @@ docker run jdxcode/mise x node@20 -- node -v
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/2026-03-09_11-03-57.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-35-10.gif)
 ```
 
 :::
@@ -637,7 +637,7 @@ docker build --progress=plain --no-cache -t test . && \
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/2026-03-09_12-34-26.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-35-28.gif)
 ```
 
 :::
@@ -686,7 +686,7 @@ mise exec node@25 -- node -v
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-21-7-13-12.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-35-44.gif)
 ```
 
 :::
@@ -702,7 +702,7 @@ mise x node@24 -- node -v
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-24-10-13-25.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-35-59.gif)
 ```
 
 :::
@@ -718,7 +718,7 @@ mise exec node@20 python@3.11 --command "node -v && python -V"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-21-7-14-18.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-36-13.gif)
 ```
 
 :::
@@ -735,7 +735,7 @@ mise x -C /var node@20 -- node ./app.js
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-24-10-17-53.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-36-25.gif)
 ```
 
 :::
@@ -781,7 +781,7 @@ go version
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-24-10-39-36.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-36-39.gif)
 ```
 
 :::
@@ -802,7 +802,7 @@ echo $PATH
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-03-11-53-14.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-36-49.gif)
 ```
 
 :::
@@ -818,7 +818,7 @@ which node
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-03-11-54-32.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-37-02.gif)
 ```
 
 :::
@@ -847,7 +847,7 @@ mkdir -pv mall/{frontend,backend}
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-12-52-59.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-37-18.gif)
 ```
 
 :::
@@ -866,7 +866,7 @@ mise use node@lts java@25 gradle@9 pnpm@10
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-13-15-00.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-37-34.gif)
 ```
 
 :::
@@ -887,7 +887,7 @@ pnpm create vite . --template vue-ts
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-13-48-42.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-38-01.gif)
 ```
 
 :::
@@ -950,7 +950,7 @@ dependencyResolutionManagement {\
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-14-10-47.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-38-17.gif)
 ```
 
 :::
@@ -963,7 +963,7 @@ dependencyResolutionManagement {\
 
 * TOML 是为人而生的配置文件格式，即：TOML 旨在成为一个语义明显且易于阅读的最小化配置文件格式，TOML 被设计成可以无歧义地映射为哈希表。TOML 应该能很容易地被解析成各种语言中的数据结构。
 
-![](./assets/image-20260212043629592.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-38-30.png)
 
 ## 3.2 注释
 
@@ -985,7 +985,7 @@ key = "value"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304085842096.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-38-42.png)
 ```
 
 :::
@@ -1001,7 +1001,7 @@ key = "value" # 这是 TOML 中的行末注释
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304085917040.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-38-53.png)
 ```
 
 :::
@@ -1017,7 +1017,7 @@ key = "# 这真的不是注释"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304090012091.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-39-07.png)
 ```
 
 :::
@@ -1057,7 +1057,7 @@ bare-key = "value"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304090159405.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-39-26.png)
 ```
 
 :::
@@ -1077,7 +1077,7 @@ bare-key = "value"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304090305093.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-39-41.png)
 ```
 
 :::
@@ -1097,7 +1097,7 @@ site."google.com" = true
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304091352308.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-39-58.png)
 ```
 
 :::
@@ -1115,7 +1115,7 @@ fruit . flavor = "banana"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304091642414.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-40-16.png)
 ```
 
 :::
@@ -1133,7 +1133,7 @@ name = "Pradyun"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304091759434.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-40-31.png)
 ```
 
 :::
@@ -1153,7 +1153,7 @@ fruit.orange = 2
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304092113716.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-40-46.png)
 ```
 
 :::
@@ -1174,7 +1174,7 @@ fruit.apple.smooth = true
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304092330800.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-41-01.png)
 ```
 
 :::
@@ -1199,7 +1199,7 @@ orange.color = "橙"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304092544048.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-41-14.png)
 ```
 
 :::
@@ -1223,7 +1223,7 @@ orange.color = "红"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304092921472.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-41-26.png)
 ```
 
 :::
@@ -1256,7 +1256,7 @@ str = "我是一个字符串"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304093301739.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-41-42.png)
 ```
 
 :::
@@ -1276,7 +1276,7 @@ str = """
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304093329399.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-41-56.png)
 ```
 
 :::
@@ -1295,7 +1295,7 @@ regex    = '<\i\c*\s*>'
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304093538226.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-42-11.png)
 ```
 
 :::
@@ -1314,7 +1314,7 @@ regex    = '<\i\c*\s*>'
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304093622103.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-42-24.png)
 ```
 
 :::
@@ -1351,7 +1351,7 @@ int6 = 5_349_221
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304094044115.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-42-39.png)
 ```
 
 :::
@@ -1377,7 +1377,7 @@ bin1 = 0b11010110
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304094113841.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-42-53.png)
 ```
 
 :::
@@ -1428,7 +1428,7 @@ flt7 = 6.626e-34
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304094519701.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-43-24.png)
 ```
 
 :::
@@ -1457,7 +1457,7 @@ bool2 = false
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304094649966.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-43-39.png)
 ```
 
 :::
@@ -1483,7 +1483,7 @@ odt3 = 1979-05-27T00:32:00.999999-07:00
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304094808729.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-43-53.png)
 ```
 
 :::
@@ -1514,7 +1514,7 @@ colors = [ "红", "黄", "绿" ]
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304094838919.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-44-15.png)
 ```
 
 :::
@@ -1534,7 +1534,7 @@ contributors = [
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304095227963.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-44-27.png)
 ```
 
 :::
@@ -1552,7 +1552,7 @@ integers2 = [
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304095301641.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-44-42.png)
 ```
 
 :::
@@ -1571,7 +1571,7 @@ integers3 = [
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304095336828.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-44-55.png)
 ```
 
 :::
@@ -1596,7 +1596,7 @@ string_array = [
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304095510645.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-45-08.png)
 ```
 
 :::
@@ -1633,7 +1633,7 @@ profile.address = "shanghai"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304095753052.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-45-22.png)
 ```
 
 :::
@@ -1651,7 +1651,7 @@ address = "shanghai"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304130226068.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-45-33.png)
 ```
 
 :::
@@ -1668,7 +1668,7 @@ type.name = "pug"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304130318331.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-45-49.png)
 ```
 
 :::
@@ -1689,7 +1689,7 @@ orange = "橙"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304130755267.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-46-01.png)
 ```
 
 :::
@@ -1710,7 +1710,7 @@ texture = "光滑"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304130924780.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-46-36.png)
 ```
 
 :::
@@ -1733,7 +1733,7 @@ member_since = 1999-08-04
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131015408.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-46-50.png)
 ```
 
 :::
@@ -1755,7 +1755,7 @@ fruit.apple.taste.sweet = true
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131101148.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-47-07.png)
 ```
 
 :::
@@ -1779,7 +1779,7 @@ smooth = true
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131204642.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-47-21.png)
 ```
 
 :::
@@ -1820,7 +1820,7 @@ type.name = "pug"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131352430.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-47-37.png)
 ```
 
 :::
@@ -1838,7 +1838,7 @@ animal = { type.name = "pug" }
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131412497.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-47-48.png)
 ```
 
 :::
@@ -1856,12 +1856,10 @@ type = { name = "Nail" }
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131645959.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-47-58.png)
 ```
 
 :::
-
-
 
 ## 3.7 表数组
 
@@ -1904,7 +1902,7 @@ age = 20
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304131814217.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-48-11.png)
 ```
 
 :::
@@ -1937,7 +1935,7 @@ name = "plantain"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304132310643.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-48-28.png)
 ```
 
 :::
@@ -1958,7 +1956,7 @@ name = "apple"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304132405664.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-48-39.png)
 ```
 
 :::
@@ -1976,7 +1974,7 @@ fruits = []
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304132846806.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-48-54.png)
 ```
 
 :::
@@ -1999,7 +1997,7 @@ name = "granny smith"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304133031444.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-49-05.png)
 ```
 
 :::
@@ -2021,7 +2019,7 @@ color = "green"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304133132063.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-49-18.png)
 ```
 
 :::
@@ -2053,7 +2051,7 @@ enabled = true
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304133542399.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-49-32.png)
 ```
 
 :::
@@ -2075,7 +2073,7 @@ port = 8081
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304133653654.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-49-43.png)
 ```
 
 :::
@@ -2086,7 +2084,7 @@ port = 8081
 
 | 区别         | 表 (Table)                                                   | 表数组 (Table Array)                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| **数量限制** | 在同一个层级下，同一个表名通常只能定义一次，即：它代表“一个” | 可以重复多次出现同一个名称，即：每一次 `[[name]]` 都向该数组中添加一个新的元素。它代表“多个”。 |
+| **数量限制** | 在同一个层级下，同一个表名通常只能定义一次，即：它代表“一个” | 可以重复多次出现同一个名称，即：每一次 `[[name]]` 都向该数组中添加一个新的元素，即：它代表“多个”。 |
 | **数据层级** | 直接包含键值对。                                             | 包含的是一个列表，列表中的每一项才是一个包含键值对的表。     |
 | **嵌套行为** | 可以通过点号嵌套，如： `[parent.child]`                      | 可以在表数组内部嵌套普通表或另一个表数组                     |
 
@@ -2142,12 +2140,10 @@ variety = "banana"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304134622906.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-50-15.png)
 ```
 
 :::
-
-
 
 #### 3.8.3.3 误区 3
 
@@ -2170,7 +2166,7 @@ name = "Second"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/image-20260304134728488.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-50-32.png)
 ```
 
 :::
@@ -2242,7 +2238,7 @@ mkdir -pv mall/{frontend,backend}
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-12-52-59.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-50-54.gif)
 ```
 
 :::
@@ -2261,7 +2257,7 @@ mise use node@lts java@25 gradle@9 pnpm@10
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-13-15-00.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-51-12.gif)
 ```
 
 :::
@@ -2282,7 +2278,7 @@ pnpm create vite . --template vue-ts
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-13-48-42.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-51-24.gif)
 ```
 
 :::
@@ -2345,7 +2341,7 @@ dependencyResolutionManagement {\
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-05-14-10-47.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-51-40.gif)
 ```
 
 :::
@@ -2354,7 +2350,7 @@ dependencyResolutionManagement {\
 
 * mise 可以用于设置项目的环境变量，类似于 [dotenv](https://github.com/motdotla/dotenv) 和我们的构建工具集成。
 
-![](./assets/image-20260306144555848.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-51-56.png)
 
 * mise 可以通过 `mise set KEY=VALUE` 命令行的方式来设置环境变量（本质上还是通过修改 mise.toml 文件的方式），也可以直接修改 `mise.toml` 文件来进行修改。 
 
@@ -2386,7 +2382,7 @@ mise exec -- node --eval 'console.log(process.env.NODE_ENV)'
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-06-14-56-46.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-52-10.gif)
 ```
 
 :::
@@ -2422,7 +2418,7 @@ mise run dev
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-06-15-34-21.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-52-33.gif)
 ```
 
 :::

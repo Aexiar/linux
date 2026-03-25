@@ -11,13 +11,13 @@
 
 * 如果你玩过 Linux，一定对 Linux 中的软件包管理器并不陌生，如：`apt` 和 `dnf` 等，其主要目标是用来`解决依赖管理，简化软件包的安装`。
 
-![Linux 中的软件包管理器](./assets/1.png)
+![Linux 中的软件包管理器](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-33-45.png)
 
 ## 1.2 Windows 中的软件包管理器
 
 * Windows 操作系统本身就是以`图形用户界面（GUI）`为主，早期大多数人都是通过鼠标下一步来安装软件包，Windows 上的软件包的格式通常是 `.exe`、`.msi` 以及 `.zip`，一旦软件包更新之后（新版本的推出），还需要用户重新下载并进行安装，以便体验最新的功能。
 
-![Windows 操作系统早期软件包的安装](./assets/2.png)
+![Windows 操作系统早期软件包的安装](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-35-50.png)
 
 * 但是，随着时间的发展，Windows 社区吸收了 Linux 社区的思想，将软件包管理器也带入了 Windows 中，这样在 Windows 中我们也可以通过命令行来安装软件包。
 
@@ -46,7 +46,7 @@
 * ① 用户通过`命令行`执行`命令`。
 * ② `软件包管理器`去`远程仓库`下载对应的软件包并安装到本地计算机。
 
-![](./assets/1.svg)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-36-07.svg)
 
 
 
@@ -70,7 +70,7 @@ win + x
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/3.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-37-25.png)
 ```
 
 :::
@@ -84,14 +84,14 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/4.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-38-02.png)
 ```
 
 :::
 
 * ③ 关闭终端，并重新打开：
 
-![](./assets/5.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-40-58.gif)
 
 ### 2.2.2 启用 Tab 自动补全
 
@@ -104,7 +104,7 @@ notepad.exe $PROFILE
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/6.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-41-16.gif)
 ```
 
 :::
@@ -126,14 +126,14 @@ Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/7.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-42-03.gif)
 ```
 
 :::
 
 * ③ 重新打开 PowerShell ，就会发现 `winget tab` 可以自动补全：
 
-![](./assets/8.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-42-21.gif)
 
 ## 2.3 基本操作（CRUD，⭐）
 
@@ -169,7 +169,7 @@ winget search nodejs
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/1.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-42-36.gif)
 ```
 
 :::
@@ -185,7 +185,7 @@ winget search --id OpenJS.NodeJS
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/10.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-42-51.gif)
 ```
 
 :::
@@ -201,7 +201,7 @@ winget search --name Node.js
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/11.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-43-05.gif)
 ```
 
 :::
@@ -217,7 +217,7 @@ winget search -q ""
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/12.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-43-20.gif)
 ```
 
 :::
@@ -233,7 +233,7 @@ winget search "Visual Studio Code" -s msstore
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/13.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-43-35.gif)
 ```
 
 :::
@@ -249,7 +249,7 @@ winget search --id Microsoft.PowerToys --versions
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/14.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-44-02.gif)
 ```
 
 :::
@@ -287,7 +287,7 @@ winget install --id Microsoft.PowerToys
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/15.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-44-38.gif)
 ```
 
 :::
@@ -303,7 +303,7 @@ winget install --id Microsoft.PowerToys --version 0.17.0
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/16.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-44-52.gif)
 ```
 
 :::
@@ -319,7 +319,7 @@ winget install --id Apache.Groovy.4 -l D:\develop\groovy
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/17.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-45-07.gif)
 ```
 
 :::
@@ -355,7 +355,7 @@ winget upgrade --id Apache.Groovy.4
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/18.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-45-35.gif)
 ```
 
 :::
@@ -371,7 +371,7 @@ winget upgrade --all --force --unknown
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/19.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-45-50.gif)
 ```
 
 :::
@@ -408,7 +408,7 @@ winget list git
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/20.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-46-06.gif)
 ```
 
 :::
@@ -424,7 +424,7 @@ winget list
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/21.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-46-30.gif)
 ```
 
 :::
@@ -440,7 +440,7 @@ winget list -n 9
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/22.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-47-03.gif)
 ```
 
 :::
@@ -456,7 +456,7 @@ winget list --source winget -n 9
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/23.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-47-18.gif)
 ```
 
 :::
@@ -492,7 +492,7 @@ winget uninstall --id Apache.Groovy.4
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/24.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-51-35.gif)
 ```
 
 :::
@@ -503,11 +503,11 @@ winget uninstall --id Apache.Groovy.4
 
 * 之前提过，软件包管理器是需要远程仓库（镜像源，存储库）来托管软件包，如下所示：
 
-![](./assets/1.svg)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-51-51.svg)
 
 * 但是，默认情况下，winget 有些软件包是托管到 GitHub 上的，在国内如果使用 winget 进行软件包的下载会很慢，所以就需要切换到国内的 winget 的镜像源（存储库），如下所示：
 
-![](./assets/2.svg)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-52-00.svg)
 
 ### 2.4.2 查看 winget 镜像源
 
@@ -539,7 +539,7 @@ winget source list
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/25.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-52-10.gif)
 ```
 
 :::
@@ -555,7 +555,7 @@ winget source list --name winget
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/26.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-52-27.gif)
 ```
 
 :::
@@ -583,7 +583,7 @@ winget source add ustc https://mirrors.ustc.edu.cn/winget-source --trust-level t
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/27.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-52-47.gif)
 ```
 
 :::
@@ -607,7 +607,7 @@ winget source update
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/28.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-53-04.gif)
 ```
 
 :::
@@ -623,7 +623,7 @@ winget source update --name winget
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/29.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-53-19.gif)
 ```
 
 :::
@@ -651,7 +651,7 @@ winget source remove --name winget
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/30.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-53-47.gif)
 ```
 
 :::
@@ -680,7 +680,7 @@ winget source reset --force
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/31.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-54-03.gif)
 ```
 
 :::
@@ -716,7 +716,7 @@ winget show --name Apache.Groovy.4
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/32.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-54-20.gif)
 ```
 
 :::
@@ -748,7 +748,7 @@ winget export -o package.json
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/33.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-54-43.gif)
 ```
 
 :::
@@ -767,7 +767,7 @@ winget export -o package.json
 >
 > 因为有些软件还没有对 winget 进行适配，如：Maven 和 Gradle，如下所示：
 >
-> ![部分软件没有对 winget 进行适配](./assets/34.png)
+> ![部分软件没有对 winget 进行适配](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-55-02.png)
 > :::
 
 ## 3.2 安装
@@ -783,7 +783,7 @@ winget install --id Chocolatey.Chocolatey
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/35.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-55-14.gif)
 ```
 
 :::
@@ -803,7 +803,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/36.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-55-29.gif)
 ```
 
 :::
@@ -812,11 +812,11 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 * 和 winget 不同的是，Chocolatey  提供了一个[可视化界面](https://community.chocolatey.org/packages)来辅助我们使用，如下所示：
 
-![](./assets/37.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-55-46-37.png)
 
 * 我们就可以在这个[可视化界面](https://community.chocolatey.org/packages)中搜索想要的软件包，获取软件包安装的命令，如下所示：
 
-![](./assets/38.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-55-56-38.png)
 
 ## 3.4 基本操作（CRUD，⭐）
 
@@ -848,7 +848,7 @@ choco search nodejs
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/39.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-56-14-39.gif)
 ```
 
 :::
@@ -864,7 +864,7 @@ choco search nodejs --exact
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/40.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-56-29.gif)
 ```
 
 :::
@@ -880,7 +880,7 @@ choco search ""
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/41.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-56-43.gif)
 ```
 
 :::
@@ -896,7 +896,7 @@ choco search jdk --page=0 --page-size=25
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/42.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-57-26-42.gif)
 ```
 
 :::
@@ -912,7 +912,7 @@ choco search 7zip --all-versions --exact
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/43.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-57-37-43.gif)
 ```
 
 :::
@@ -948,7 +948,7 @@ choco install git
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/44.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-57-57.gif)
 ```
 
 :::
@@ -964,7 +964,7 @@ choco install notepadplusplus googlechrome 7zip -y
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/45.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-58-13.gif)
 ```
 
 :::
@@ -980,7 +980,7 @@ choco install notepadplusplus --force --force-dependencies
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/46.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-58-25-46.gif)
 ```
 
 :::
@@ -996,7 +996,7 @@ choco install notepadplusplus googlechrome 7zip -dvfy
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/47.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-58-51-47.gif)
 ```
 
 :::
@@ -1012,7 +1012,7 @@ choco install git -y --params="'/GitAndUnixToolsOnPath'"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/48.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-59-08.gif)
 ```
 
 :::
@@ -1028,7 +1028,7 @@ choco install git -y --params="'/GitAndUnixToolsOnPath'" --install-arguments="'/
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/49.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-59-33.gif)
 ```
 
 :::
@@ -1044,7 +1044,7 @@ choco install nodejs --version 22.2.0
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/50.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-08-59-44.gif)
 ```
 
 :::
@@ -1088,7 +1088,7 @@ choco upgrade chocolatey
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/51.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-00-01.gif)
 ```
 
 :::
@@ -1104,7 +1104,7 @@ choco upgrade notepadplusplus
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/52.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-00-14.gif)
 ```
 
 :::
@@ -1120,7 +1120,7 @@ choco upgrade notepadplusplus  -dvfy
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/53.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-00-29.gif)
 ```
 
 :::
@@ -1136,7 +1136,7 @@ choco upgrade git -y --params="'/GitAndUnixToolsOnPath /NoAutoCrlf'"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/54.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-00-45.gif)
 ```
 
 :::
@@ -1152,7 +1152,7 @@ choco upgrade git -y --params="'/GitAndUnixToolsOnPath /NoAutoCrlf'" --install-a
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/55.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-01-00.gif)
 ```
 
 :::
@@ -1168,7 +1168,7 @@ choco upgrade nodejs.install --version 23.6.0
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/56.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-01-16.gif)
 ```
 
 :::
@@ -1184,7 +1184,7 @@ choco upgrade all --except="'git,notepadplusplus'"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/57.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-01-28.gif)
 ```
 
 :::
@@ -1200,7 +1200,7 @@ choco upgrade all
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/58.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-01-43.gif)
 ```
 
 :::
@@ -1230,7 +1230,7 @@ choco list
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/59.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-01-57.gif)
 ```
 
 :::
@@ -1246,7 +1246,7 @@ choco list -i
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/60.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-02-11.gif)
 ```
 
 :::
@@ -1281,7 +1281,7 @@ choco uninstall git
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/61.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-02-26.gif)
 ```
 
 :::
@@ -1297,7 +1297,7 @@ choco uninstall notepadplusplus googlechrome -dv
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/62.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-02-47.gif)
 ```
 
 :::
@@ -1313,7 +1313,7 @@ choco uninstall nodejs --version 23.6.0 -fy
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/63.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-03-03.gif)
 ```
 
 :::
@@ -1329,7 +1329,7 @@ choco uninstall nodejs --all-versions
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/64.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-03-16.gif)
 ```
 
 :::
@@ -1358,7 +1358,7 @@ choco install wingetui
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/70.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-03-33.gif)
 ```
 
 :::
@@ -1367,7 +1367,7 @@ choco install wingetui
 
 * 使用方式很简单，就是在图形化界面上操作，如下所示：
 
-![](./assets/71.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-03-57.gif)
 
 
 
@@ -1377,7 +1377,7 @@ choco install wingetui
 
 * [Oh My Posh](https://ohmyposh.dev/)  的主旨是：`适用于任何 shell 的最可定制和最快的提示引擎`。
 
-![](./assets/image-20260225210329017.png)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-04-07.png)
 
 ## 5.2  Windows 安装和配置
 
@@ -1392,10 +1392,12 @@ winget install JanDeDobbeleer.OhMyPosh --source winget
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-13-41.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-04-26.gif)
 ```
 
 :::
+
+
 
 * ② 更新 Oh My Posh（可选）：
 
@@ -1406,7 +1408,7 @@ winget upgrade JanDeDobbeleer.OhMyPosh --source winget
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-15-42.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-05-09.gif)
 ```
 
 :::
@@ -1432,7 +1434,7 @@ pwsh -command "$PSVersionTable.PSVersion"
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-36-46.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-05-32.gif)
 ```
 
 :::
@@ -1451,7 +1453,7 @@ oh-my-posh font install meslo
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-27-21.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-05-51.gif)
 ```
 
 ```powershell [powershell]
@@ -1466,7 +1468,7 @@ Install-NerdFont -Name FiraCode -Scope AllUsers
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-33-44.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-06-06.gif)
 ```
 
 :::
@@ -1499,7 +1501,7 @@ Install-NerdFont -Name FiraCode -Scope AllUsers
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-48-44.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-06-27.gif)
 ```
 
 :::
@@ -1518,7 +1520,7 @@ Install-NerdFont -Name FiraCode -Scope AllUsers
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-55-22.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-10-32.gif)
 ```
 
 :::
@@ -1536,7 +1538,7 @@ Install-NerdFont -Name FiraCode -Scope AllUsers
 ```cmd [winget]
 # 安装 clink
 winget install clink
-# 开启顺泰提示符
+# 开启静态提示符
 clink set prompt.transient same_dir
 # 去掉启动 banner
 clink autorun install -- --quiet
@@ -1547,7 +1549,7 @@ clink config prompt use oh-my-posh
 ```cmd [scoop]
 # 安装 clink
 scoop install clink
-# 开启顺泰提示符
+# 开启静态提示符
 clink set prompt.transient same_dir
 # 去掉启动 banner
 clink autorun install -- --quiet
@@ -1556,7 +1558,7 @@ clink config prompt use oh-my-posh
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-22-09-48.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-11-36.gif)
 ```
 
 :::
@@ -1581,7 +1583,7 @@ notepad $PROFILE
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-22-22-23.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-11-54.gif)
 ```
 
 :::
@@ -1607,7 +1609,7 @@ which dirname
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-16-03-01.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-12-11.gif)
 ```
 
 ```bash [Ubuntu24.04]
@@ -1623,7 +1625,7 @@ which dirname
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-16-14-58.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-12-34.gif)
 ```
 
 :::
@@ -1638,7 +1640,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-16-50-15.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-12-52.gif)
 ```
 
 ```bash [Ubuntu24.04]
@@ -1647,7 +1649,7 @@ sudo chmod +x /usr/local/bin/oh-my-posh
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-16-51-21.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-13-07.gif)
 ```
 
 :::
@@ -1668,7 +1670,7 @@ oh-my-posh font install meslo
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-16-55-52.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-13-23.gif)
 ```
 
 ```bash [Ubuntu24.04]
@@ -1676,7 +1678,7 @@ oh-my-posh font install meslo
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-16-58-02.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-13-34.gif)
 ```
 
 :::
@@ -1709,7 +1711,7 @@ oh-my-posh font install meslo
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-48-44.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-13-54.gif)
 ```
 
 :::
@@ -1728,7 +1730,7 @@ oh-my-posh font install meslo
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-25-21-55-22.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-14-11.gif)
 ```
 
 :::
@@ -1747,7 +1749,7 @@ exec bash
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-17-09-13.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-14-28.gif)
 ```
 
 :::
@@ -1764,7 +1766,7 @@ exec fish
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-2-27-17-07-58.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-14-43.gif)
 ```
 
 :::
@@ -1782,7 +1784,7 @@ winget install --id lsd-rs.lsd
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-14-11-20.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-14-57.gif)
 ```
 
 ```cmd [scoop]
@@ -1790,7 +1792,7 @@ scoop install lsd
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-15-59-10.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-15-13.gif)
 ```
 
 :::
@@ -1804,7 +1806,7 @@ clink info
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-16-00-07.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-15-31.gif)
 ```
 
 :::
@@ -1823,7 +1825,7 @@ os.execute('doskey clear=cls')
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-16-01-23.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-15-46.gif)
 ```
 
 :::
@@ -1848,7 +1850,7 @@ if (Get-Command lsd -ErrorAction SilentlyContinue) {
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-16-13-30.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-16-51.gif)
 ```
 
 :::
@@ -1866,7 +1868,7 @@ ln -s $HOME/.cargo/bin/lsd /usr/local/bin/lsd
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-16-53-23.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-19-45.gif)
 ```
 
 ```bash [Ubuntu24.04]
@@ -1874,7 +1876,7 @@ apt -y install lsd
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-16-54-23.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-24-30.gif)
 ```
 
 :::
@@ -1898,7 +1900,7 @@ source ~/.bashrc
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-17-05-23.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-24-56.gif)
 ```
 
 ```fish
@@ -1909,7 +1911,7 @@ alias -s lt 'lsd --tree'
 ```
 
 ```md:img [cmd 控制台]
-![](./assets/GIF-2026-03-02-17-09-13.gif)
+![](https://github-pic.oss-cn-hangzhou.aliyuncs.com/linux/2026-03-25/2026-03-25-09-25-21.gif)
 ```
 
 :::
