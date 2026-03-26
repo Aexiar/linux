@@ -7,6 +7,7 @@ import Permalink from "vitepress-plugin-permalink"
 import {InlineLinkPreviewElementTransform} from '@nolebase/vitepress-plugin-inline-link-preview/markdown-it'
 import terser from '@rollup/plugin-terser'
 import {vitepressDemoPlugin} from 'vitepress-demo-plugin'
+// @ts-ignore
 import markdownItTaskCheckbox from 'markdown-it-task-checkbox'
 import path from 'path'
 import {VitePressSidebarOptions} from "vitepress-sidebar/types"
