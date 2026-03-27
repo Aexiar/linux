@@ -6,6 +6,9 @@
     <template #doc-before>
       <ArticleMetadata/>
     </template>
+    <template #doc-after>
+      <GiscusComment />
+    </template>
     <template #doc-top>
       <NolebaseHighlightTargetedHeading/>
     </template>
@@ -30,6 +33,7 @@
 <script lang="ts" setup>
 import BackTop from "./BackTop.vue";
 import ArticleMetadata from "./ArticleMetadata.vue";
+import GiscusComment from './GiscusComment.vue'
 import {useData} from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import {nextTick, provide} from "vue";

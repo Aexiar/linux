@@ -1,200 +1,30 @@
-/* 哔哩哔哩 */
-.vp-doc a[href*="bilibili"]:before {
+/* 基础规则：匹配符合条件的链接及其伪元素 */
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[target='_blank']::before,
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='./']::before,
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='../']::before {
     content: '';
-    background-image: url(/svg/bilibili.svg);
     width: 20px;
     height: 20px;
     display: inline-block;
     vertical-align: middle;
     position: relative;
     background-size: cover;
-    top: -2px;
     margin-right: 4px;
+    /* 优先使用 JS 动态获取的图标，如果没有则使用默认链接图标 */
+    background-image: var(--link-favicon, url('https://api.iconify.design/heroicons-solid:link.svg?color=%23409eff'));
 }
 
-/* GitHub */
-.vp-doc a[href*="github"]:before {
-    content: '';
-    background-image: url(/svg/github.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
+/* 当前站点适配：覆盖特定链接的背景图 */
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='./']::before,
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='../']::before,
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='https://note.weizwz.com']::before,
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='https://www.note.weizwz.com']::before {
+    background-image: url('https://p.weizwz.com/logo_a4353391cbf0889b.webp') !important;
 }
 
-/* Cygwin */
-.vp-doc a[href*="cygwin"]:before {
-    content: '';
-    background-image: url(/svg/cygwin.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* jetbrains */
-.vp-doc a[href*="jetbrains"]:before {
-    content: '';
-    background-image: url(/svg/jetbrains.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* clion */
-.vp-doc a[href*="clion"]:before {
-    background-image: url(/svg/clion.svg);
-}
-
-/* MinGW-64 */
-.vp-doc a[href*="mingw-w64.org"]:before {
-    content: '';
-    background-image: url(/svg/mingw-w64.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* MinGW-64 */
-.vp-doc a[href*="msys2"]:before {
-    content: '';
-    background-image: url(/svg/msys2.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* vs */
-.vp-doc a[href*="visualstudio"]:before {
-    content: '';
-    background-image: url(/svg/vs.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* vs-code */
-.vp-doc a[href*="code.visualstudio"]:before {
-    content: '';
-    background-image: url(/svg/vs-code.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* ubuntu */
-.vp-doc a[href*="ubuntu"]:before {
-    content: '';
-    background-image: url(/svg/ubuntu.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* AlmaLinux */
-.vp-doc a[href*="almalinux"]:before {
-    content: '';
-    background-image: url(/svg/almaLinux.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* tiobe */
-.vp-doc a[href*="tiobe"]:before {
-    content: '';
-    background-image: url(/svg/tiobe.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* cppreference */
-.vp-doc a[href*="cppreference"]:before {
-    content: '';
-    background-image: url(/svg/cpp.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* docker */
-.vp-doc a[href*="docker"]:before {
-    content: '';
-    background-image: url(/svg/docker.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
-}
-
-/* Google drive */
-.vp-doc a[href*="drive.google"]:before {
-    content: '';
-    background-image: url(/svg/googleDrive.svg);
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    top: -2px;
-    margin-right: 4px;
+/* 暗色模式下的滤镜效果 */
+.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not)[target='_blank']::before,
+.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='./']::before,
+.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='../']::before {
+    filter: brightness(0.8);
 }

@@ -1,7 +1,6 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
 import ArticleMetadata from "./components/ArticleMetadata.vue"
-import mediumZoom from 'medium-zoom'
 import {h, nextTick, onMounted, watch} from 'vue'
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'
 import type {EnhanceAppContext, Theme} from 'vitepress'
@@ -20,6 +19,8 @@ import './style/index.css'
 import xgplayer from "./components/Xgplayer.vue"
 import 'vitepress-plugin-legend/dist/index.css';
 import {initComponent} from "vitepress-plugin-legend/component";
+// 导入链接图标初始化方法
+import { initLinkIcons } from './utils/tools'
 
 // 彩虹背景动画样式
 function updateHomePageStyle(value: boolean) {
@@ -77,6 +78,7 @@ export default {
       }
       // 在页面加载完成时停止进度条
       router.onAfterRouteChange = () => {
+        initLinkIcons() // 初始化链接图标
         NProgress.done() // 停止进度条
       }
     }
@@ -84,13 +86,9 @@ export default {
   setup() {
     const {frontmatter} = useData()
     const route = useRoute()
-    const initZoom = () => {
-      // mediumZoom('[data-zoomable]', { background: 'var(--vp-c-bg)' }); // 默认
-      mediumZoom('.main img', {background: 'var(--vp-c-bg)'}) // 不显式添加{data-zoomable}的情况下为所有图像启用此功能
-    }
-    onMounted(() => {
-      initZoom()
 
+    onMounted(() => {
+      initLinkIcons()
       // 添加 .VPNavBarTitle 的点击事件
       const navBarTitle = document.querySelector('.VPNavBarTitle')
       if (navBarTitle) {
@@ -125,27 +123,5 @@ export default {
         false
       )
     })
-    watch(
-      () => route.path,
-      () => nextTick(() => initZoom())
-    )
-    // giscus配置
-    giscusTalk({
-        repo: 'Aexiar/java', //仓库
-        repoId: 'R_kgDONXPoQw', //仓库ID
-        category: 'Announcements', // 讨论分类
-        categoryId: 'DIC_kwDONXPoQ84ClC9a', //讨论分类ID
-        mapping: 'pathname',
-        inputPosition: 'bottom',
-        lang: 'zh-CN',
-      },
-      {
-        frontmatter, route
-      },
-      //默认值为true，表示已启用，此参数可以忽略；
-      //如果为false，则表示未启用
-      //您可以使用“comment:true”序言在页面上单独启用它
-      true
-    )
   }
 } satisfies Theme

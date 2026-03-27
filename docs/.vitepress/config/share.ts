@@ -15,11 +15,21 @@ import {withSidebar} from "vitepress-sidebar"
 import {vitepressPluginLegend} from 'vitepress-plugin-legend'
 import multimdTable from 'markdown-it-multimd-table'
 import {qrcode} from 'vite-plugin-qrcode'
+import { ImagePreviewPlugin } from 'vitepress-plugin-image-preview'
+import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
+import dayjs from "dayjs";
 
 const mode = process.env.NODE_ENV || 'development'
 const {VITE_BASE_URL} = loadEnv(mode, process.cwd())
 console.log('Mode:', process.env.NODE_ENV)
 console.log('VITE_BASE_URL:', VITE_BASE_URL)
+
+const RSS: RSSOptions = {
+  title: '许大仙',
+  baseUrl: 'https://linux.weiweixu.cn/',
+  copyright: `Copyright © ${dayjs().format("YYYY")} 许大仙`,
+}
+
 const vitePressOptions = defineConfig({
   rewrites: {
     'zh/:rest*': ':rest*'
@@ -78,6 +88,8 @@ const vitePressOptions = defineConfig({
           return url.includes('192.168.1.')
         }
       }),
+      RssPlugin(RSS),
+      ImagePreviewPlugin(),
       terser(),
       //代码组图标
       (groupIconVitePlugin({

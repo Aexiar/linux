@@ -39,6 +39,7 @@
     "vitepress-sidebar": "^1.33.1"
   },
   "dependencies": {
+    "@giscus/vue": "^3.1.1",
     "@theojs/lumen": "5.4.6",
     "dayjs": "^2.0.0-alpha.4",
     "dotenv": "^17.2.2",
@@ -48,14 +49,15 @@
     "markdown-it-container": "^4.0.0",
     "markdown-it-multimd-table-ext": "^4.2.32",
     "markdown-it-task-checkbox": "^1.0.6",
-    "medium-zoom": "^1.1.0",
     "nprogress-v2": "^1.1.10",
     "typeit": "^8.8.7",
     "vitepress-markdown-timeline": "^1.2.2",
     "vitepress-plugin-breadcrumb": "^1.0.12",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
+    "vitepress-plugin-image-preview": "^0.1.1",
     "vitepress-plugin-legend": "^1.1.0",
     "vitepress-plugin-permalink": "^1.2.1",
+    "vitepress-plugin-rss": "^0.4.3",
     "xgplayer": "^3.0.23"
   },
   "optionalDependencies": {
