@@ -25,7 +25,7 @@ console.log('Mode:', process.env.NODE_ENV)
 console.log('VITE_BASE_URL:', VITE_BASE_URL)
 
 const RSS: RSSOptions = {
-  title: '许大仙',
+  title: '为知笔记',
   baseUrl: 'https://linux.weiweixu.cn/',
   copyright: `Copyright © ${dayjs().format("YYYY")} 许大仙`,
 }
@@ -36,7 +36,7 @@ const vitePressOptions = defineConfig({
   },
   metaChunk: true,
   lang: 'zh-CN', // 语言
-  title: "许大仙", // 站点名称
+  title: "为知笔记", // 站点名称
   titleTemplate: "Hi，终于等到你", // 网页标题
   description: "许大仙、前端、Java、大数据、云原生", // 站点描述
   head: [ // favicon.ico 图标等

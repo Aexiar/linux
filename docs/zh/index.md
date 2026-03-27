@@ -25,7 +25,7 @@ hero:
   tagline: "欢迎来到我的博客🎉"
   image:  # text 和 tagline 区域旁的图片
     src: /logo.svg
-    alt: "许大仙"
+    alt: "为知笔记"
   # 按钮相关
   actions:
     - theme: brand
