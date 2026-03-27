@@ -1,26 +1,32 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
 import ArticleMetadata from "./components/ArticleMetadata.vue"
-import {h, nextTick, onMounted, watch} from 'vue'
+import { h, nextTick, onMounted, watch } from 'vue'
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'
-import type {EnhanceAppContext, Theme} from 'vitepress'
-import {inBrowser, useData, useRoute} from 'vitepress'
+import type { EnhanceAppContext, Theme } from 'vitepress'
+import { inBrowser, useData, useRoute } from 'vitepress'
 import Confetti from "./components/Confetti.vue"
 import TypeIt from "./components/TypeIt.vue"
 import SwitchLayout from './components/SwitchLayout.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
-import {NProgress} from 'nprogress-v2/dist/index.js'
-import {NolebaseInlineLinkPreviewPlugin,} from '@nolebase/vitepress-plugin-inline-link-preview/client'
+import { NProgress } from 'nprogress-v2/dist/index.js'
+import { NolebaseInlineLinkPreviewPlugin, } from '@nolebase/vitepress-plugin-inline-link-preview/client'
 import '@nolebase/vitepress-plugin-inline-link-preview/client/style.css'
 import 'nprogress-v2/dist/index.css'
 import "vitepress-markdown-timeline/dist/theme/index.css"
 import 'virtual:group-icons.css'
 import './style/index.css'
 import xgplayer from "./components/Xgplayer.vue"
-import 'vitepress-plugin-legend/dist/index.css';
-import {initComponent} from "vitepress-plugin-legend/component";
+import 'vitepress-plugin-legend/dist/index.css'
+import { initComponent } from "vitepress-plugin-legend/component"
 // 导入链接图标初始化方法
 import { initLinkIcons } from './utils/tools'
+import {
+  AntDesignContainer,
+  ElementPlusContainer,
+  NaiveUIContainer,
+} from '@vitepress-demo-preview/component'
+import '@vitepress-demo-preview/component/dist/style.css'
 
 // 彩虹背景动画样式
 function updateHomePageStyle(value: boolean) {
@@ -47,14 +53,14 @@ export default {
   Layout() {
     return h(SwitchLayout)
   },
-  enhanceApp({app, router}: EnhanceAppContext) {
-    initComponent(app);
+  enhanceApp({ app, router }: EnhanceAppContext) {
+    initComponent(app)
     // 彩虹背景动画样式
     if (typeof window !== 'undefined') {
       watch(
         () => router.route.data.relativePath,
         () => updateHomePageStyle(location.pathname === '/'),
-        {immediate: true},
+        { immediate: true },
       )
     }
     // 开启详细的水合错误信息
@@ -69,9 +75,10 @@ export default {
     app.component('TypeIt', TypeIt)
     app.component('xgplayer', xgplayer) //鼠标跟随组件
     app.use(NolebaseInlineLinkPreviewPlugin)
+    app.component('demo-preview', AntDesignContainer)
 
     if (inBrowser) {
-      NProgress.configure({showSpinner: false})
+      NProgress.configure({ showSpinner: false })
       // 手动定义 onBeforeRouteChange
       router.onBeforeRouteChange = () => {
         NProgress.start() // 开始进度条
@@ -84,7 +91,7 @@ export default {
     }
   },
   setup() {
-    const {frontmatter} = useData()
+    const { frontmatter } = useData()
     const route = useRoute()
 
     onMounted(() => {

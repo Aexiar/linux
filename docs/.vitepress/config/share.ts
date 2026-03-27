@@ -9,7 +9,7 @@ import terser from '@rollup/plugin-terser'
 import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
 // @ts-ignore
 import markdownItTaskCheckbox from 'markdown-it-task-checkbox'
-import path from 'path'
+import path, { resolve } from 'path'
 import { VitePressSidebarOptions } from "vitepress-sidebar/types"
 import { withSidebar } from "vitepress-sidebar"
 import { vitepressPluginLegend } from 'vitepress-plugin-legend'
@@ -18,6 +18,10 @@ import { qrcode } from 'vite-plugin-qrcode'
 import { ImagePreviewPlugin } from 'vitepress-plugin-image-preview'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import dayjs from "dayjs"
+import {
+  containerPreview,
+  componentPreview,
+} from '@vitepress-demo-preview/plugin'
 
 const mode = process.env.NODE_ENV || 'development'
 const { VITE_BASE_URL } = loadEnv(mode, process.cwd())
@@ -28,6 +32,10 @@ const RSS: RSSOptions = {
   title: '为知笔记',
   baseUrl: 'https://linux.weiweixu.cn/',
   copyright: `Copyright © ${dayjs().format("YYYY")} 许大仙`,
+}
+
+const alias = {
+  '@': resolve(__dirname, '../../public/demo'),
 }
 
 const vitePressOptions = defineConfig({
@@ -63,6 +71,9 @@ const vitePressOptions = defineConfig({
   base: VITE_BASE_URL,
   lastUpdated: true, // 上次更新
   vite: {
+    resolve: {
+      alias
+    },
     build: {
       chunkSizeWarningLimit: 2000,
     },
@@ -164,7 +175,13 @@ const vitePressOptions = defineConfig({
     },
     // md 配置
     config: async (md) => {
-
+      /**
+         * SSR 兼容性
+         * @link https://vitepress.dev/guide/ssr-compat
+         * 如果组件不支持 SSR，可以指定 clientOnly 以禁用 SSR。
+         */
+      md.use(containerPreview, { clientOnly: true, alias })
+      md.use(componentPreview, { clientOnly: true, alias })
       md.use(multimdTable, {
         multiline: true,  // 启用多行支持
         rowspan: true,    // 启用 rowspan

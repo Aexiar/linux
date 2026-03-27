@@ -41,6 +41,8 @@
   "dependencies": {
     "@giscus/vue": "^3.1.1",
     "@theojs/lumen": "5.4.6",
+    "@vitepress-demo-preview/component": "^2.6.2",
+    "@vitepress-demo-preview/plugin": "^1.4.1",
     "dayjs": "^2.0.0-alpha.4",
     "dotenv": "^17.2.2",
     "esbuild": "^0.25.9",
