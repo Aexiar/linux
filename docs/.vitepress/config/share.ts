@@ -1,26 +1,26 @@
-import {defineConfig} from 'vitepress'
+import { defineConfig } from 'vitepress'
 import timeline from "vitepress-markdown-timeline"
-import {groupIconMdPlugin, groupIconVitePlugin, localIconLoader} from 'vitepress-plugin-group-icons'
-import {figure} from '@mdit/plugin-figure'
-import {loadEnv} from 'vite'
+import { groupIconMdPlugin, groupIconVitePlugin, localIconLoader } from 'vitepress-plugin-group-icons'
+import { figure } from '@mdit/plugin-figure'
+import { loadEnv } from 'vite'
 import Permalink from "vitepress-plugin-permalink"
-import {InlineLinkPreviewElementTransform} from '@nolebase/vitepress-plugin-inline-link-preview/markdown-it'
+import { InlineLinkPreviewElementTransform } from '@nolebase/vitepress-plugin-inline-link-preview/markdown-it'
 import terser from '@rollup/plugin-terser'
-import {vitepressDemoPlugin} from 'vitepress-demo-plugin'
+import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
 // @ts-ignore
 import markdownItTaskCheckbox from 'markdown-it-task-checkbox'
 import path from 'path'
-import {VitePressSidebarOptions} from "vitepress-sidebar/types"
-import {withSidebar} from "vitepress-sidebar"
-import {vitepressPluginLegend} from 'vitepress-plugin-legend'
+import { VitePressSidebarOptions } from "vitepress-sidebar/types"
+import { withSidebar } from "vitepress-sidebar"
+import { vitepressPluginLegend } from 'vitepress-plugin-legend'
 import multimdTable from 'markdown-it-multimd-table'
-import {qrcode} from 'vite-plugin-qrcode'
+import { qrcode } from 'vite-plugin-qrcode'
 import { ImagePreviewPlugin } from 'vitepress-plugin-image-preview'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
-import dayjs from "dayjs";
+import dayjs from "dayjs"
 
 const mode = process.env.NODE_ENV || 'development'
-const {VITE_BASE_URL} = loadEnv(mode, process.cwd())
+const { VITE_BASE_URL } = loadEnv(mode, process.cwd())
 console.log('Mode:', process.env.NODE_ENV)
 console.log('VITE_BASE_URL:', VITE_BASE_URL)
 
@@ -40,12 +40,12 @@ const vitePressOptions = defineConfig({
   titleTemplate: "Hi，终于等到你", // 网页标题
   description: "许大仙、前端、Java、大数据、云原生", // 站点描述
   head: [ // favicon.ico 图标等
-    ['link', {rel: "shortcut icon", href: `${VITE_BASE_URL || '/'}logo.svg`}],
+    ['link', { rel: "shortcut icon", href: `${VITE_BASE_URL || '/'}logo.svg` }],
     // 网站 favicon.ico 图标
-    ['link', {rel: "icon", href: `${VITE_BASE_URL || '/'}logo.svg`, type: "image/svg+xml"}],
+    ['link', { rel: "icon", href: `${VITE_BASE_URL || '/'}logo.svg`, type: "image/svg+xml" }],
     // 引入 Google Fonts
-    ['link', {rel: 'preconnect', href: 'https://fonts.googleapis.com'}],
-    ['link', {rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: ''}],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', {
       href: 'https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback',
       rel: 'stylesheet'
@@ -56,8 +56,8 @@ const vitePressOptions = defineConfig({
       content: "width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,shrink-to-fit=no"
     }],
     // 关键词和描述
-    ['meta', {name: "keywords", content: "许大仙、Java、C、C++、大数据、前端、云原生、Go、Python"}],
-    ['meta', {charset: 'UTF-8'}],
+    ['meta', { name: "keywords", content: "许大仙、Java、C、C++、大数据、前端、云原生、Go、Python" }],
+    ['meta', { charset: 'UTF-8' }],
   ],
   appearance: true, // 主题模式，默认浅色且开启切换
   base: VITE_BASE_URL,
@@ -115,8 +115,10 @@ const vitePressOptions = defineConfig({
           'gradle': 'vscode-icons:file-type-light-gradle',
           'git': 'vscode-icons:file-type-git',
           'bash': 'vscode-icons:file-type-gnu',
-          'shell': 'vscode-icons:file-type-gnu',
-          'sh': 'vscode-icons:file-type-gnu',
+          // 'shell': 'vscode-icons:file-type-gnu',
+          'shell': localIconLoader(import.meta.url, '../../public/iconify/shell.svg'),
+          'sh': localIconLoader(import.meta.url, '../../public/iconify/shell.svg'),
+          'fish': localIconLoader(import.meta.url, '../../public/iconify/fish.svg'),
           'cpu': localIconLoader(import.meta.url, '../../public/iconify/cpu.svg'),
           "项目结构": localIconLoader(import.meta.url, '../../public/iconify/architecture.svg'),
           "effect": localIconLoader(import.meta.url, '../../public/iconify/effect.svg'),
@@ -169,16 +171,16 @@ const vitePressOptions = defineConfig({
         headerless: true, // 可选：支持无表头表格
         multibody: true,  // 可选：支持多 tbody
         autolabel: true   // 可选：自动标签
-      });
+      })
 
       vitepressPluginLegend(md, {
-          markmap: {
-            showToolbar: true,
-          },
-          mermaid: {
-            showToolbar: true
-          }
+        markmap: {
+          showToolbar: true,
+        },
+        mermaid: {
+          showToolbar: true
         }
+      }
       )
       // 创建 markdown-it 插件
       md.use((md) => {
@@ -191,7 +193,7 @@ const vitePressOptions = defineConfig({
           // 替换内容
           if (currentLang === 'root') {
             defaultContent = defaultContent.replace(
-                /NOTE/g, '提醒')
+              /NOTE/g, '提醒')
               .replace(/TIP/g, '建议')
               .replace(/IMPORTANT/g, '重要')
               .replace(/WARNING/g, '警告')
@@ -199,7 +201,7 @@ const vitePressOptions = defineConfig({
           } else if (currentLang === 'ko') {
             // 韩文替换
             defaultContent = defaultContent.replace(
-                /NOTE/g, '알림')
+              /NOTE/g, '알림')
               .replace(/TIP/g, '팁')
               .replace(/IMPORTANT/g, '중요')
               .replace(/WARNING/g, '경고')
@@ -230,7 +232,7 @@ const vitePressOptions = defineConfig({
       md.use(timeline)
       md.use(groupIconMdPlugin) //代码组图标
       md.use(InlineLinkPreviewElementTransform)
-      md.use(figure, {figcaption: 'alt', copyAttrs: '^class$', lazy: true})
+      md.use(figure, { figcaption: 'alt', copyAttrs: '^class$', lazy: true })
       md.use(markdownItTaskCheckbox)
       md.use(vitepressDemoPlugin, {
         demoDir: path.resolve(__dirname, '../demos'),
@@ -241,7 +243,7 @@ const vitePressOptions = defineConfig({
     logo: '/logo.svg',  // 左上角logo
     //社交链接
     socialLinks: [
-      {icon: 'github', link: 'https://github.com/Aurorxa/linux'},
+      { icon: 'github', link: 'https://github.com/Aurorxa/linux' },
     ],
     editLink: {
       pattern: 'https://github.com/Aurorxa/linux/edit/master/docs/:path',
@@ -328,7 +330,7 @@ const vitePressSidebarOptions = [
   ...supportedLocales.map((lang) => {
     return {
       ...vitePressSidebarOption,
-      ...(rootLocale === lang ? {} : {basePath: `/${lang}/`}), // If using `rewrites` option
+      ...(rootLocale === lang ? {} : { basePath: `/${lang}/` }), // If using `rewrites` option
       documentRootPath: `/docs/${lang}`,
       resolvePath: rootLocale === lang ? '/' : `/${lang}/`,
     }
