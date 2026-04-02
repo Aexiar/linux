@@ -23,9 +23,15 @@
     </template>
     <template #home-features-after>
       <Confetti/>
-      <TypeIt/>
       <HomeUnderline/>
       <LogoAnimate/>
+    </template>
+    <template #home-hero-info-after>
+      <TypeIt
+          strings="云原生是一种基于云计算的架构理念，通过容器、微服务、DevOps 和动态编排技术（如：Kubernetes）构建可扩展、高效和弹性的应用系统。"
+          :options="{ speed: 200, breakLines: false }"
+          class="hero-typeit"
+      />
     </template>
   </DefaultTheme.Layout>
 </template>
@@ -91,6 +97,15 @@ provide("toggle-appearance", async ({clientX: x, clientY: y}: MouseEvent) => {
 </script>
 
 <style>
+/* 全局样式调整 Hero 中的 TypeIt 大小 */
+.hero-typeit {
+  font-size: 1.5rem;
+  color: var(--vp-c-text-2);
+  margin-top: 1.5rem;
+  font-weight: 500;
+  display: block;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
