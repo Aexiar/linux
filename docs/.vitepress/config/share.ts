@@ -54,10 +54,7 @@ const vitePressOptions = defineConfig({
     // 引入 Google Fonts
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-    ['link', {
-      href: 'https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback',
-      rel: 'stylesheet'
-    }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap', rel: 'stylesheet' }],
     // 网页视口
     ['meta', {
       name: "viewport",
