@@ -135,12 +135,12 @@ const vitePressOptions = defineConfig({
                     },
                     {
                         type: 'text',
-                        content: '🔥 ➡️ 掌握',
+                        content: '🔥 ➡️ 熟悉',
                         style: ''
                     },
                     {
                         type: 'text',
-                        content: '🎯 ➡️ 精通',
+                        content: '🎯 ➡️ 掌握',
                         style: ''
                     },
                 ],
