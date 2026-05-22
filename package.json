@@ -54,6 +54,7 @@
     "nprogress-v2": "^1.1.10",
     "typeit": "^8.8.7",
     "vitepress-markdown-timeline": "^1.2.2",
+    "vitepress-plugin-announcement": "^0.1.8",
     "vitepress-plugin-breadcrumb": "^1.0.12",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",
     "vitepress-plugin-image-preview": "^0.1.1",
