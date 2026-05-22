@@ -22,7 +22,7 @@ head:
 hero:
   name: "云原生"
   text: "大、全、细"
-  tagline: ""
+  tagline: "🌱了解🔥熟悉🎯掌握"
   image:  # text 和 tagline 区域旁的图片
     src: /logo.svg
     alt: "为知笔记"
@@ -47,5 +47,3 @@ features:
     title: "注意事项"
     details: "注意事项就这么几点：边界值、等价类、数据完整性原子性、死锁、空转、……"
 ---
-
-
