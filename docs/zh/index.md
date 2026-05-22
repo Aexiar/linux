@@ -22,7 +22,7 @@ head:
 hero:
   name: "云原生"
   text: "大、全、细"
-  tagline: "🌱了解🔥熟悉🎯掌握"
+  tagline: ""
   image:  # text 和 tagline 区域旁的图片
     src: /logo.svg
     alt: "为知笔记"
