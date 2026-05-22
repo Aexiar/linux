@@ -125,9 +125,10 @@ const vitePressOptions = defineConfig({
         plugins: [
             AnnouncementPlugin({
                 title: '公告',
-                twinkle: true,
+                duration: 0,
+                mobileMinify: true,
                 body: [
-                    { type: 'text', content: '👇 文章中 emoji 详解 👇' },
+                    {type: 'text', content: '👇 文章中 emoji 详解 👇'},
                     {
                         type: 'text',
                         content: '🌱 ➡️ 了解',
@@ -188,7 +189,7 @@ const vitePressOptions = defineConfig({
                         import.meta.url,
                         "../../public/iconify/choco.svg",
                     ),
-                    控制台: localIconLoader(
+                    "控制台": localIconLoader(
                         import.meta.url,
                         "../../public/iconify/terminal.svg",
                     ),
@@ -212,7 +213,7 @@ const vitePressOptions = defineConfig({
                         "../../public/iconify/fish.svg",
                     ),
                     cpu: localIconLoader(import.meta.url, "../../public/iconify/cpu.svg"),
-                    项目结构: localIconLoader(
+                    "项目结构": localIconLoader(
                         import.meta.url,
                         "../../public/iconify/architecture.svg",
                     ),
@@ -220,7 +221,7 @@ const vitePressOptions = defineConfig({
                         import.meta.url,
                         "../../public/iconify/effect.svg",
                     ),
-                    结果: localIconLoader(
+                    "结果": localIconLoader(
                         import.meta.url,
                         "../../public/iconify/effect.svg",
                     ),
@@ -232,7 +233,7 @@ const vitePressOptions = defineConfig({
                         import.meta.url,
                         "../../public/iconify/bytecode.svg",
                     ),
-                    字节码指令: localIconLoader(
+                    "字节码指令": localIconLoader(
                         import.meta.url,
                         "../../public/iconify/bytecode.svg",
                     ),
@@ -253,7 +254,7 @@ const vitePressOptions = defineConfig({
                         "../../public/iconify/arthas.svg",
                     ),
                     log: localIconLoader(import.meta.url, "../../public/iconify/log.svg"),
-                    日志: localIconLoader(
+                    "日志": localIconLoader(
                         import.meta.url,
                         "../../public/iconify/log.svg",
                     ),
