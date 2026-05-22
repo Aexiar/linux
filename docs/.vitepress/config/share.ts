@@ -125,7 +125,7 @@ const vitePressOptions = defineConfig({
         plugins: [
             AnnouncementPlugin({
                 title: '公告',
-                duration: 0,
+                duration: 2,
                 mobileMinify: true,
                 body: [
                     {type: 'text', content: '👇 文章中 emoji 详解 👇'},
