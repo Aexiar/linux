@@ -1,8 +1,7 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from 'vitepress/theme'
 import ArticleMetadata from "./components/ArticleMetadata.vue"
-import { h, nextTick, onMounted, watch } from 'vue'
-import giscusTalk from 'vitepress-plugin-comment-with-giscus'
+import { h, onMounted, watch } from 'vue'
 import type { EnhanceAppContext, Theme } from 'vitepress'
 import { inBrowser, useData, useRoute } from 'vitepress'
 import Confetti from "./components/Confetti.vue"
@@ -23,8 +22,6 @@ import { initComponent } from "vitepress-plugin-legend/component"
 import { initLinkIcons } from './utils/tools'
 import {
   AntDesignContainer,
-  ElementPlusContainer,
-  NaiveUIContainer,
 } from '@vitepress-demo-preview/component'
 import '@vitepress-demo-preview/component/dist/style.css'
 

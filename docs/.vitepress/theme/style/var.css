@@ -3,6 +3,9 @@
 }
 
 :root {
+
+    --vp-sidebar-width: 280px;  /* 默认通常是 256px 或 224px，按需调整 */
+
     --vp-c-brand-1: #18794e;
     --vp-c-brand-2: #299764;
     --vp-c-brand-3: #30a46c;
