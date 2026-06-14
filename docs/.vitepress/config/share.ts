@@ -144,6 +144,11 @@ const vitePressOptions = defineConfig({
                         content: '🎯 ➡️ 掌握',
                         style: ''
                     },
+                    {
+                        type: 'text',
+                        content: '💾 ➡️ 过时',
+                        style: ''
+                    },
                 ],
             }),
             qrcode({
