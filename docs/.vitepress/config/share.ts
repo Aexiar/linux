@@ -27,6 +27,7 @@ import {
     componentPreview,
 } from "@vitepress-demo-preview/plugin";
 import {AnnouncementPlugin} from 'vitepress-plugin-announcement'
+import {customIcon} from "../theme/utils/customIcon";
 
 const mode = process.env.NODE_ENV || "development";
 const {VITE_BASE_URL} = loadEnv(mode, process.cwd());
@@ -161,126 +162,7 @@ const vitePressOptions = defineConfig({
             terser(),
             //代码组图标
             groupIconVitePlugin({
-                customIcon: {
-                    almalinux: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/almaLinux.svg",
-                    ),
-                    c: localIconLoader(import.meta.url, "../../public/iconify/c.svg"),
-                    idea: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/idea.svg",
-                    ),
-                    webstorm: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/webstorm.svg",
-                    ),
-                    ubuntu: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/ubuntu.svg",
-                    ),
-                    h: localIconLoader(import.meta.url, "../../public/iconify/c.svg"),
-                    cpp: localIconLoader(import.meta.url, "../../public/iconify/cpp.svg"),
-                    java: "vscode-icons:file-type-java",
-                    winget: "vscode-icons:file-type-shell",
-                    dockerfile: "vscode-icons:file-type-docker2",
-                    toml: "vscode-icons:file-type-toml",
-                    lua: "vscode-icons:file-type-lua",
-                    scoop: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/scoop.svg",
-                    ),
-                    choco: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/choco.svg",
-                    ),
-                    "控制台": localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/terminal.svg",
-                    ),
-                    cmd: "vscode-icons:file-type-shell",
-                    powershell: "vscode-icons:file-type-powershell",
-                    maven: "vscode-icons:file-type-apache",
-                    gradle: "vscode-icons:file-type-light-gradle",
-                    git: "vscode-icons:file-type-git",
-                    bash: "vscode-icons:file-type-gnu",
-                    // 'shell': 'vscode-icons:file-type-gnu',
-                    shell: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/shell.svg",
-                    ),
-                    sh: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/shell.svg",
-                    ),
-                    fish: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/fish.svg",
-                    ),
-                    cpu: localIconLoader(import.meta.url, "../../public/iconify/cpu.svg"),
-                    "项目结构": localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/architecture.svg",
-                    ),
-                    effect: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/effect.svg",
-                    ),
-                    "结果": localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/effect.svg",
-                    ),
-                    faq: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/reply.svg",
-                    ),
-                    bytecode: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/bytecode.svg",
-                    ),
-                    "字节码指令": localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/bytecode.svg",
-                    ),
-                    chrome: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/chrome.svg",
-                    ),
-                    firefox: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/firefox.svg",
-                    ),
-                    edge: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/edge.svg",
-                    ),
-                    arthas: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/arthas.svg",
-                    ),
-                    log: localIconLoader(import.meta.url, "../../public/iconify/log.svg"),
-                    "日志": localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/log.svg",
-                    ),
-                    linux: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/linux.svg",
-                    ),
-                    Linux: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/linux.svg",
-                    ),
-                    windows: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/windows.svg",
-                    ),
-                    Windows: localIconLoader(
-                        import.meta.url,
-                        "../../public/iconify/windows.svg",
-                    ),
-                    sql: "vscode-icons:file-type-sql",
-                },
+                customIcon: customIcon
             }) as any,
             Permalink(),
         ],
@@ -339,24 +221,36 @@ const vitePressOptions = defineConfig({
                     const currentLang = env?.localeIndex;
                     // 调用原始渲染
                     let defaultContent = defaultRender.apply(md, args);
-                    // 替换内容
-                    if (currentLang === "root") {
-                        defaultContent = defaultContent
-                            .replace(/NOTE/g, "提示")
-                            .replace(/TIP/g, "建议")
-                            .replace(/IMPORTANT/g, "重要")
-                            .replace(/WARNING/g, "警告")
-                            .replace(/CAUTION/g, "注意");
-                    } else if (currentLang === "ko") {
-                        // 韩文替换
-                        defaultContent = defaultContent
-                            .replace(/NOTE/g, "알림")
-                            .replace(/TIP/g, "팁")
-                            .replace(/IMPORTANT/g, "중요")
-                            .replace(/WARNING/g, "경고")
-                            .replace(/CAUTION/g, "주의");
+                    // 精准替换 VitePress 容器标题，避免误伤代码和变量
+                    const replaceContainerTitle = (html: any, enText: any, translatedText: any) => {
+                        // 正则解释：匹配任意标签，只要 class 中包含 custom-block-title，且内部文本完全等于 enText
+                        // 例如：精准匹配 <p class="custom-block-title">WARNING</p>
+                        const regex = new RegExp(
+                            `(<[a-z0-9]+[^>]*\\bclass="[^"]*\\bcustom-block-title\\b[^"]*"[^>]*>)${enText}(<\\/[a-z0-9]+>)`,
+                            'g'
+                        );
+                        return html.replace(regex, `$1${translatedText}$2`);
+                    };
+
+                    // 定义多语言映射字典，方便维护
+                    const translations = {
+                        root: {
+                            NOTE: "提示", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
+                        },
+                        ko: {
+                            NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의"
+                        }
+                    };
+
+                    // 根据当前语言执行精准替换
+                    // @ts-ignore
+                    const langMap = translations[currentLang];
+                    if (langMap) {
+                        for (const [en, translated] of Object.entries(langMap)) {
+                            defaultContent = replaceContainerTitle(defaultContent, en, translated);
+                        }
                     }
-                    // 返回渲染的内容
+
                     return defaultContent;
                 };
 
