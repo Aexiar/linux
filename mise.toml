@@ -9,9 +9,11 @@ pnpm = "10"
 # [tasks] - 项目任务
 [tasks.install]
 description = "安装依赖"
-run = """pnpm install
+run = """
+    pnpm install
     && pnpm config set shamefully-hoist true
-    && npm config set public-hoist-pattern *"""
+    && npm config set public-hoist-pattern *
+"""
 
 [tasks.build]
 description = "构建"
