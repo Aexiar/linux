@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 2rem">
+  <div style="margin-top: 2rem" v-if="frontmatter.comment !== false">
     <Giscus
         id="comments"
         :key="route.path"
@@ -25,7 +25,7 @@ import Giscus from '@giscus/vue'
 import { watch } from 'vue'
 import { inBrowser, useData, useRoute } from 'vitepress'
 
-const { isDark } = useData()
+const { isDark, frontmatter } = useData()
 const route = useRoute()
 
 watch(isDark, (dark) => {
