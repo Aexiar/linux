@@ -16,7 +16,7 @@
       <ShareButton/>
     </template>
     <template #layout-bottom>
-      <SidebarTooltip onlyEllipsis="true"/>
+      <SidebarTooltip :onlyEllipsis="true"/>
     </template>
     <template #nav-bar-content-after>
       <NolebaseEnhancedReadabilitiesMenu/>

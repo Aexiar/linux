@@ -120,6 +120,23 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+
+/* 默认桌面端常驻居中基础定位 */
+#vp-custom-sidebar-tooltip {
+  transform: translate(-50%, 0);
+}
+
+/* ==========================================================================
+   【核心修复】移动端/触摸屏环境下强行物理禁用 Tooltip 气泡
+   ========================================================================== */
+@media (max-width: 768px), (pointer: coarse) {
+  #vp-custom-sidebar-tooltip {
+    display: none !important; /* 无论是窄屏还是触摸设备，直接抹除显示能力 */
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+}
+
 /*
 ==========================================================================
    呼吸灯动画样式：控制滑过、出现和消失时的丝滑过渡

@@ -152,11 +152,7 @@ const vitePressOptions = defineConfig({
                     },
                 ],
             }),
-            qrcode({
-                filter: (url) => {
-                    return url.includes("192.168.1.");
-                },
-            }),
+            qrcode(),
             ImagePreviewPlugin(),
             terser(),
             //代码组图标
