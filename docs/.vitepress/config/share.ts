@@ -157,7 +157,6 @@ const vitePressOptions = defineConfig({
                     return url.includes("192.168.1.");
                 },
             }),
-            RssPlugin(RSS),
             ImagePreviewPlugin(),
             terser(),
             //代码组图标
@@ -288,9 +287,9 @@ const vitePressOptions = defineConfig({
         // 主题设置
         logo: "/logo.svg", // 左上角logo
         //社交链接
-        socialLinks: [{icon: "github", link: "https://github.com/Aurorxa/linux"}],
+        socialLinks: [{icon: "github", link: "https://github.com/Aexiar/linux"}],
         editLink: {
-            pattern: "https://github.com/Aurorxa/linux/edit/master/docs/:path",
+            pattern: "https://github.com/Aexiar/linux/edit/master/docs/:path",
             text: "Edit this page on GitHub",
         },
         externalLinkIcon: true,
