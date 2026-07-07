@@ -235,7 +235,7 @@ const vitePressOptions = defineConfig({
                     // 定义多语言映射字典，方便维护
                     const translations = {
                         root: {
-                            NOTE: "提示", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
+                            NOTE: "提醒", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
                         },
                         ko: {
                             NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의"
