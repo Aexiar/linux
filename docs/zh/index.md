@@ -24,7 +24,7 @@ hero:
   text: "大、全、细"
   tagline: ""
   image:  # text 和 tagline 区域旁的图片
-    src: /logo.svg
+    src: /logo.png
     alt: "为知笔记"
   # 按钮相关
   actions:

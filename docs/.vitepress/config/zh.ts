@@ -30,7 +30,7 @@ export const zhConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       label: '目录'
     },
     editLink: {
-      pattern: 'https://github.com/Aurorxa/linux/edit/master/docs/:path',
+      pattern: 'https://github.com/Aexiar/linux/edit/master/docs/:path',
       text: '在 GitHub 编辑本页'
     },
 

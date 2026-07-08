@@ -3,9 +3,6 @@
 }
 
 :root {
-
-    --vp-sidebar-width: 280px;  /* 默认通常是 256px 或 224px，按需调整 */
-
     --vp-c-brand-1: #18794e;
     --vp-c-brand-2: #299764;
     --vp-c-brand-3: #30a46c;
@@ -22,21 +19,6 @@
     --vp-custom-block-danger-bg: #ffebec;
     --vp-custom-block-important: #a371f7;
     --vp-custom-block-important-bg: #f4eefe;
-
-    /* hero标题渐变色 */
-    --vp-home-hero-name-color: transparent;
-    --vp-home-hero-name-background: -webkit-linear-gradient(
-        120deg,
-        #bd34fe,
-        #41d1ff
-    );
-    /* hero logo 背景渐变色 */
-    --vp-home-hero-image-background-image: linear-gradient(
-        -45deg,
-        #bd34fe 50%,
-        #47caff 50%
-    );
-    --vp-home-hero-image-filter: blur(40px);
 
     --vp-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
     --vp-shadow-2:
@@ -66,42 +48,4 @@
     --vp-custom-block-danger-bg: #4b1113;
     --vp-custom-block-important: #a371f7;
     --vp-custom-block-important-bg: #230555;
-}
-
-/* 禁止双指缩放 */
-body,
-html {
-    touch-action: manipulation;
-    -webkit-touch-callout: none;
-    -ms-touch-action: manipulation;
-}
-
-.VPSidebarItem.is-link.is-active.has-active .text {
-    font-weight: 600 !important;
-    color: var(--vp-c-brand-1) !important;
-    transition: color 0.25s !important;
-}
-
-/* 自定义 md 文件 */
-.rendered-md img {
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.rendered-md {
-    display: none; /* 默认隐藏 */
-}
-
-.rendered-md.active {
-    display: block; /* 只有在 active 状态下才显示 */
-    max-width: 100%;
-}
-
-/* 侧边栏缩放 */
-.group:has([role="button"]) .VPSidebarItem.level-0 .items {
-    padding-left: 15px !important;
-    border-left: 1px solid var(--vp-c-divider);
-    border-radius: 2px;
-    transition: background-color 0.25s;
 }

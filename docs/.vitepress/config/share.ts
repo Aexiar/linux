@@ -152,12 +152,7 @@ const vitePressOptions = defineConfig({
                     },
                 ],
             }),
-            qrcode({
-                filter: (url) => {
-                    return url.includes("192.168.1.");
-                },
-            }),
-            RssPlugin(RSS),
+            qrcode(),
             ImagePreviewPlugin(),
             terser(),
             //代码组图标
@@ -235,7 +230,7 @@ const vitePressOptions = defineConfig({
                     // 定义多语言映射字典，方便维护
                     const translations = {
                         root: {
-                            NOTE: "提示", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
+                            NOTE: "提醒", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
                         },
                         ko: {
                             NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의"
@@ -288,9 +283,9 @@ const vitePressOptions = defineConfig({
         // 主题设置
         logo: "/logo.svg", // 左上角logo
         //社交链接
-        socialLinks: [{icon: "github", link: "https://github.com/Aurorxa/linux"}],
+        socialLinks: [{icon: "github", link: "https://github.com/Aexiar/linux"}],
         editLink: {
-            pattern: "https://github.com/Aurorxa/linux/edit/master/docs/:path",
+            pattern: "https://github.com/Aexiar/linux/edit/master/docs/:path",
             text: "Edit this page on GitHub",
         },
         externalLinkIcon: true,

@@ -15,6 +15,9 @@
     <template #aside-outline-before>
       <ShareButton/>
     </template>
+    <template #layout-bottom>
+      <SidebarTooltip :onlyEllipsis="true"/>
+    </template>
     <template #nav-bar-content-after>
       <NolebaseEnhancedReadabilitiesMenu/>
     </template>
@@ -57,6 +60,7 @@ import {
 } from "@nolebase/vitepress-plugin-enhanced-readabilities/client";
 
 import "@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css";
+import SidebarTooltip from './SidebarTooltip.vue'
 
 const {isDark, theme} = useData();
 
@@ -86,7 +90,7 @@ provide("toggle-appearance", async ({clientX: x, clientY: y}: MouseEvent) => {
   }).ready;
 
   document.documentElement.animate(
-      {clipPath: isDark.value ? clipPath.reverse() : clipPath} as AnimationKeyFrame,
+      {clipPath: isDark.value ? clipPath.reverse() : clipPath} ,
       {
         duration: 300,
         easing: "ease-in",
