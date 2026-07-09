@@ -31,6 +31,7 @@ export const customIcon = {
     maven: "vscode-icons:file-type-apache",
     gradle: "vscode-icons:file-type-light-gradle",
     git: "vscode-icons:file-type-git",
+    docker: "vscode-icons:file-type-docker2",
     dockerfile: "vscode-icons:file-type-docker2",
     toml: "vscode-icons:file-type-toml",
     markdown: "vscode-icons:file-type-markdown",
