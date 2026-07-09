@@ -1,7 +1,6 @@
 /* ==========================================================================
    VitePress 代码组自定义 HTML 块专属重置与美化样式（完美铺满与文字靠前版）
    ========================================================================== */
-
 /* 1. 后台未激活状态：完全遵循原生隐藏策略，重置所有可能导致缝隙的样式 */
 .vp-code-group .blocks > div.vp-raw-html-block {
     position: static !important;
@@ -98,8 +97,6 @@
     border-radius: 0 0 8px 8px; /* 让图片的底部圆角贴合最外层剪裁 */
 }
 
-.vp-code-group div[class*=language-].vp-adaptive-theme.line-numbers-mode {
-    border-radius: 8px;
-    box-shadow: none;
-    padding: inherit;
+#VPContent .vp-code-group  div.language-txt.vp-adaptive-theme.line-numbers-mode.active {
+    padding: inherit !important;
 }
