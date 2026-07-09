@@ -43,7 +43,7 @@
 
 /* 5. 【文字面板】：赋予标准舒适的内边距，且让文字向左进一点 */
 .vp-custom-html-content:not(.rendered-md) {
-    padding: 24px 24px !important; /* 左右缩窄到 24px，为文字向左挪动腾出空间 */
+    padding: 0 20px !important; /* 左右缩窄到 24px，为文字向左挪动腾出空间 */
 }
 
 /* 6. 【图片面板】：无视所有边距，实现真正的 100% 全铺满 */
@@ -53,30 +53,6 @@
     border: none !important; /* 图片面板不需要重复的边框，完全交给外层 active 容器 */
     display: block !important; /* 改为 block 块级布局，彻底消除 flex 带来的边缘不贴合问题 */
     width: 100% !important;
-}
-
-/* 7. 恢复内部标准的 markdown 排版：文字靠前微调 */
-.vp-custom-html-content ol {
-    list-style: decimal !important;
-    padding-left: 18px !important; /* 大幅缩减默认缩进，配合外层 padding 让文字完美向左靠拢 */
-    margin: 0 !important;
-}
-
-.vp-custom-html-content li {
-    margin-bottom: 12px !important;
-    line-height: var(--vp-code-line-height) !important; /* 1.7 */
-    color: var(--vp-c-text-1) !important;
-    font-family: var(--vp-font-family-base) !important;
-    font-size: 15px !important;
-}
-
-.vp-custom-html-content li:last-child {
-    margin-bottom: 0 !important;
-}
-
-.vp-custom-html-content strong {
-    color: var(--vp-c-text-1) !important;
-    font-weight: 600 !important;
 }
 
 /* 8. 【核心修复】：图片及容器的终极全铺满重置 */
