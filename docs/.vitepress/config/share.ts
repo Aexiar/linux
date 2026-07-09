@@ -259,6 +259,17 @@ const vitePressOptions = defineConfig({
                     const token = tokens[idx];
                     const info = token.info.trim();
 
+                    // 判断是否为 markdown
+                    if (info.includes("markdown") ) {
+                        // 1. 将内容作为 Markdown 渲染成 HTML
+                        const renderedHtml = md.render(token.content);
+
+                        // 2. 【关键】必须包裹在 language-markdown 和 vp-adaptive-theme 类中
+                        // 这样 VitePress 的代码组逻辑才能识别它是一个合法的面板
+                        // 同时支持暗黑模式背景色
+                        return `<div class="language-markdown vp-adaptive-theme">${renderedHtml}</div>`;
+                    }
+
                     // 判断是否为 md:img 类型的代码块
                     if (info.includes("md:img")) {
                         // 只渲染图片，不再渲染为代码块
