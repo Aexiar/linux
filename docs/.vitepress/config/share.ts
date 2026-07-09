@@ -209,7 +209,7 @@ const vitePressOptions = defineConfig({
                 },
             });
             // 创建 markdown-it 插件
-            md.use((md) => {
+            /*md.use((md) => {
                 const defaultRender = md.render;
                 md.render = (...args) => {
                     const [content, env] = args;
@@ -277,6 +277,88 @@ const vitePressOptions = defineConfig({
                     }
 
                     // 其他代码块按默认规则渲染（如 java, js 等）
+                    return defaultFence(tokens, idx, options, env, self);
+                };
+            });*/
+            md.use((md) => {
+                // =========================================================================
+                // 1. AST 级别精准翻译容器标题 (保留您原有的多语言逻辑)
+                // =========================================================================
+                md.core.ruler.after('block', 'translate-containers', (state) => {
+                    const currentLang = state.env?.localeIndex || 'root';
+                    const translations = {
+                        root: { NOTE: "提醒", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意" },
+                        ko: { NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의" }
+                    };
+                    // @ts-ignore
+                    const langMap = translations[currentLang];
+                    if (!langMap) return;
+
+                    state.tokens.forEach(token => {
+                        if (token.type === 'container_custom_open') {
+                            const title = token.info.trim();
+                            // @ts-ignore
+                            if (langMap[title]) {
+                                // @ts-ignore
+                                token.info = langMap[title];
+                            }
+                        }
+                    });
+                });
+
+                // =========================================================================
+                // 2. 重写 fence 渲染规则 (利用 AST 注入类名，保障打包与多签切换)
+                // =========================================================================
+                const defaultFence =
+                    md.renderer.rules.fence?.bind(md.renderer.rules) ??
+                    ((...args) => args[0][args[1]].content);
+
+                md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+                    const token = tokens[idx];
+                    const info = token.info.trim();
+
+                    // 识别出我们的自定义块
+                    const isMarkdown = info.includes("markdown");
+                    const isMdImg = info.includes("md:img");
+
+                    if (isMarkdown || isMdImg) {
+                        // 核心修复点 1：通过修改 token.info，强行把 md:img 伪装成正常的 txt 传给 Shiki
+                        // 这一步彻底消除了终端里烦人的 "The language 'md:img' is not loaded" 警告
+                        if (isMdImg) {
+                            token.info = token.info.replace("md:img", "txt");
+                        } else {
+                            token.info = token.info.replace("markdown", "txt");
+                        }
+
+                        // 核心修复点 2：在原生渲染之前，直接把自定义类名塞进 AST 树的 attrs 数组中
+                        // 这样原生 defaultFence 跑完出来的 HTML 里，类名就是完美融合的，绝对不会有重复属性！
+                        token.attrs = token.attrs || [];
+                        const classIdx = token.attrIndex('class');
+                        if (classIdx >= 0) {
+                            // 如果原本就有 class 属性（比如带有 language-xxx active），在前面追加上我们的标识
+                            token.attrs[classIdx][1] = `vp-raw-html-block ${token.attrs[classIdx][1]}`;
+                        } else {
+                            token.attrs.push(['class', 'vp-raw-html-block']);
+                        }
+
+                        // 让原生渲染器跑出完整包裹，它现在完美承载了切换所需要的全部逻辑
+                        const originalHtml = defaultFence(tokens, idx, options, env, self);
+
+                        // 渲染出里面真正的富文本内容
+                        // 恢复真实的 token.info 用以做内部渲染
+                        token.info = info;
+                        const renderedHtml = md.render(token.content, env);
+
+                        // 正则提取原生外层 <div> 的所有内容（包含融合后的 class、v-pre、以及内部各种动态 id 等）
+                        const openTagMatch = originalHtml.match(/<div[^>]*>/);
+                        const openTag = openTagMatch ? openTagMatch[0] : '<div class="vp-raw-html-block">';
+
+                        // 组装返回，内层根据不同类型打上对应的标签样式
+                        const innerClass = isMdImg ? "vp-custom-html-content rendered-md" : "vp-custom-html-content";
+                        return `${openTag}<div class="${innerClass}">${renderedHtml}</div></div>`;
+                    }
+
+                    // 普通代码块原样放行
                     return defaultFence(tokens, idx, options, env, self);
                 };
             });
