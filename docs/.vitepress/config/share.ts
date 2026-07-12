@@ -285,27 +285,46 @@ const vitePressOptions = defineConfig({
                 // =========================================================================
                 // 1. AST 级别精准翻译容器标题 (保留您原有的多语言逻辑)
                 // =========================================================================
-                md.core.ruler.after('block', 'translate-containers', (state) => {
-                    const currentLang = state.env?.localeIndex || 'root';
-                    const translations = {
-                        root: { NOTE: "提醒", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意" },
-                        ko: { NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의" }
+                const defaultRender = md.render;
+                md.render = (...args) => {
+                    const [content, env] = args;
+                    const currentLang = env?.localeIndex || 'root';
+
+                    // 调用原始渲染，拿到生成的 HTML
+                    let defaultContent = defaultRender.apply(md, args);
+
+                    // 精准替换 VitePress 容器标题，避免误伤代码和变量
+                    const replaceContainerTitle = (html: string, enText: string, translatedText: string) => {
+                        // 正则解释：匹配任意标签，只要 class 中包含 custom-block-title，且内部文本完全等于 enText
+                        // 例如：精准匹配 <p class="custom-block-title">WARNING</p> 或 <p class="custom-block-title">NOTE</p>
+                        const regex = new RegExp(
+                            `(<[a-z0-9]+[^>]*\\bclass="[^"]*\\bcustom-block-title\\b[^"]*"[^>]*>)${enText}(<\\/[a-z0-9]+>)`,
+                            'g'
+                        );
+                        return html.replace(regex, `$1${translatedText}$2`);
                     };
+
+                    // 定义多语言映射字典
+                    const translations = {
+                        root: {
+                            NOTE: "提醒", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
+                        },
+                        ko: {
+                            NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의"
+                        }
+                    };
+
+                    // 根据当前语言执行精准替换
                     // @ts-ignore
                     const langMap = translations[currentLang];
-                    if (!langMap) return;
-
-                    state.tokens.forEach(token => {
-                        if (token.type === 'container_custom_open') {
-                            const title = token.info.trim();
-                            // @ts-ignore
-                            if (langMap[title]) {
-                                // @ts-ignore
-                                token.info = langMap[title];
-                            }
+                    if (langMap) {
+                        for (const [en, translated] of Object.entries(langMap)) {
+                            defaultContent = replaceContainerTitle(defaultContent, en, typeof translated === "string" ? translated : '');
                         }
-                    });
-                });
+                    }
+
+                    return defaultContent;
+                };
 
                 // =========================================================================
                 // 2. 重写 fence 渲染规则 (利用 AST 注入类名，保障打包与多签切换)
