@@ -8,6 +8,7 @@
 .vp-doc table {
     border-collapse: collapse;
     width: 100%;
+    display: table;
 }
 
 /* 表格头样式 - 保持默认颜色 */
