@@ -405,8 +405,8 @@ const vitePressOptions = defineConfig({
         search: {
             provider: "algolia",
             options: {
-                appId: "LVMA83X0DG",
-                apiKey: "a8cbc88742b5e45d822f3a9607ff5122",
+                appId: "5BL5JALOP3",
+                apiKey: "acc8640fabedd02c8d094b501ac9af38",
                 indexName: "linux-weiweixu",
                 locales: {
                     zh: {
