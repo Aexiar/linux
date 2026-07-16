@@ -25,7 +25,6 @@ export const customIcon = {
     fish: localIconLoader(import.meta.url, "../../../public/iconify/fish.svg"), // 内置无 fish，保留本地
     "控制台": localIconLoader(import.meta.url, "../../../public/iconify/terminal.svg"),
 
-
     // ==========================================
     // 3. 构建工具、配置与文档 (已经是内置)
     // ==========================================
