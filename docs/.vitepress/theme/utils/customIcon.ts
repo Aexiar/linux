@@ -10,6 +10,7 @@ export const customIcon = {
     java: "vscode-icons:file-type-java",
     lua: "vscode-icons:file-type-lua",
     sql: "vscode-icons:file-type-sql",
+    css: "vscode-icons:file-type-css",
     h: localIconLoader(import.meta.url, "../../../public/iconify/c.svg"), // 内置无 .h，保留本地
 
     // ==========================================
