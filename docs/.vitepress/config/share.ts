@@ -162,7 +162,7 @@ const vitePressOptions = defineConfig({
             Permalink(),
         ],
         server: {
-            port: 12289,
+            port: 6289,
             strictPort: false
         },
         css: {
