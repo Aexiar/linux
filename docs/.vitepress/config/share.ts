@@ -200,15 +200,6 @@ const vitePressOptions = defineConfig({
                 multibody: true, // 可选：支持多 tbody
                 autolabel: true, // 可选：自动标签
             });
-
-            vitepressPluginLegend(md, {
-                markmap: {
-                    showToolbar: true,
-                },
-                mermaid: {
-                    showToolbar: true,
-                },
-            });
             // 创建 markdown-it 插件
             md.use((md) => {
                 // =========================================================================
