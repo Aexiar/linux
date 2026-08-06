@@ -36,7 +36,8 @@
     "vitepress-i18n": "^1.3.4",
     "vitepress-plugin-group-icons": "^1.6.3",
     "vitepress-plugin-tabs": "^0.7.3",
-    "vitepress-sidebar": "^1.33.1"
+    "vitepress-sidebar": "^1.33.1",
+    "xgplayer": "^3.0.23"
   },
   "dependencies": {
     "@giscus/vue": "^3.1.1",
@@ -60,8 +61,7 @@
     "vitepress-plugin-image-preview": "^0.1.1",
     "vitepress-plugin-legend": "^1.1.0",
     "vitepress-plugin-permalink": "^1.2.1",
-    "vitepress-plugin-rss": "^0.4.3",
-    "xgplayer": "^3.0.23"
+    "vitepress-plugin-rss": "^0.4.3"
   },
   "optionalDependencies": {
     "@esbuild/linux-x64": "0.25.0",
