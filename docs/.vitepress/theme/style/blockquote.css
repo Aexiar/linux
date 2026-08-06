@@ -136,6 +136,50 @@
     align-items: center; /* 垂直居中对齐图标和文字 */
 }
 
+/* DETAILS 容器 (折叠块) */
+.custom-block.details {
+    background-color: var(--vp-custom-block-details-bg, rgba(84, 104, 255, 0.05));
+    border: 1px solid var(--vp-custom-block-details-border, rgba(84, 104, 255, 0.2));
+    border-left-width: 5px;
+    border-left-color: #5468ff;
+    border-radius: 8px;
+    padding: 12px 16px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.custom-block.details summary {
+    cursor: pointer;
+    font-weight: 600;
+    outline: none;
+    user-select: none;
+    color: var(--vp-c-text-1);
+    display: inline-flex;
+    align-items: center;
+}
+
+.custom-block.details summary::-webkit-details-marker {
+    display: none;
+}
+
+.custom-block.details summary::before {
+    content: "";
+    background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%235468ff' d='M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.custom-block.details[open] summary::before {
+    transform: rotate(90deg);
+}
+
 .custom-block.note:hover,
 .custom-block.important:hover,
 .custom-block.warning:hover,

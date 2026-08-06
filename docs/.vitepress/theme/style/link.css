@@ -1,30 +1,31 @@
-/* 基础规则：匹配符合条件的链接及其伪元素 */
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[target='_blank']::before,
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='./']::before,
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='../']::before {
-    content: '';
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    background-size: cover;
-    margin-right: 4px;
-    /* 优先使用 JS 动态获取的图标，如果没有则使用默认链接图标 */
-    background-image: var(--link-favicon, url('https://api.iconify.design/heroicons-solid:link.svg?color=%23409eff'));
-}
+/* 链接图标样式 */
+.vp-doc a:not([href^='https://img.shields.io/']):not(.not) {
+    &[target='_blank'],
+    &[href^='./'],
+    &[href^='../'] {
+        &::before {
+            @apply relative inline-block bg-cover align-middle;
+            content: '';
+            @apply -top-1/2 mr-1 size-5;
+            /* 优先使用 JS 动态获取的图标，如果没有则使用默认链接图标 */
+            background-image: var(--link-favicon, url('https://api.iconify.design/heroicons-solid:link.svg?color=%23409eff'));
+        }
+    }
 
-/* 当前站点适配：覆盖特定链接的背景图 */
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='./']::before,
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='../']::before,
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='https://note.weizwz.com']::before,
-.vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='https://www.note.weizwz.com']::before {
-    background-image: url('https://p.weizwz.com/logo_a4353391cbf0889b.webp') !important;
+    /* 当前站点适配 */
+    &[href^='./']::before,
+    &[href^='../']::before,
+    &[href^='https://note.weizwz.com']::before,
+    &[href^='https://www.note.weizwz.com']::before {
+        background-image: url('https://p.weizwz.com/logo_a4353391cbf0889b.webp') !important;
+    }
 }
-
-/* 暗色模式下的滤镜效果 */
-.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not)[target='_blank']::before,
-.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='./']::before,
-.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not)[href^='../']::before {
-    filter: brightness(0.8);
+.dark .vp-doc a:not([href^='https://img.shields.io/']):not(.not) {
+    &[target='_blank'],
+    &[href^='./'],
+    &[href^='../'] {
+        &::before {
+            filter: brightness(0.8);
+        }
+    }
 }

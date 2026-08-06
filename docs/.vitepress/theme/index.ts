@@ -78,6 +78,7 @@ export default {
       NProgress.configure({ showSpinner: false })
       // 手动定义 onBeforeRouteChange
       router.onBeforeRouteChange = () => {
+        initLinkIcons() // 初始化链接图标
         NProgress.start() // 开始进度条
       }
       // 在页面加载完成时停止进度条
