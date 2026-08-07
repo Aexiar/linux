@@ -25,9 +25,8 @@ import {
 } from "@vitepress-demo-preview/plugin";
 import {AnnouncementPlugin} from 'vitepress-plugin-announcement'
 import {customIcon} from "../theme/utils/customIcon";
-import { customMarkdownPlugin } from '../theme/utils/markdown-it-custom-plugin';
+import { customMarkdownPlugin } from '../theme/plugins/markdown-it-custom-plugin';
 import vitepressPluginLegend from "vitepress-plugin-legend";
-
 
 const mode = process.env.NODE_ENV || "development";
 const {VITE_BASE_URL} = loadEnv(mode, process.cwd());
