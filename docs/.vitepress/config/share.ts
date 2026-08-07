@@ -16,29 +16,23 @@ import markdownItTaskCheckbox from "markdown-it-task-checkbox";
 import path, {resolve} from "path";
 import {VitePressSidebarOptions} from "vitepress-sidebar/types";
 import {withSidebar} from "vitepress-sidebar";
-import {vitepressPluginLegend} from "vitepress-plugin-legend";
 import multimdTable from "markdown-it-multimd-table";
 import {qrcode} from "vite-plugin-qrcode";
 import {ImagePreviewPlugin} from "vitepress-plugin-image-preview";
-import {RSSOptions, RssPlugin} from "vitepress-plugin-rss";
-import dayjs from "dayjs";
 import {
     containerPreview,
     componentPreview,
 } from "@vitepress-demo-preview/plugin";
 import {AnnouncementPlugin} from 'vitepress-plugin-announcement'
 import {customIcon} from "../theme/utils/customIcon";
+import { customMarkdownPlugin } from '../theme/utils/markdown-it-custom-plugin';
+
 
 const mode = process.env.NODE_ENV || "development";
 const {VITE_BASE_URL} = loadEnv(mode, process.cwd());
 console.log("Mode:", process.env.NODE_ENV);
 console.log("VITE_BASE_URL:", VITE_BASE_URL);
 
-const RSS: RSSOptions = {
-    title: "为知笔记",
-    baseUrl: "https://linux.weiweixu.cn/",
-    copyright: `Copyright © ${dayjs().format("YYYY")} 许大仙`,
-};
 
 const alias = {
     "@": resolve(__dirname, "../../public/demo"),
@@ -200,108 +194,8 @@ const vitePressOptions = defineConfig({
                 multibody: true, // 可选：支持多 tbody
                 autolabel: true, // 可选：自动标签
             });
-            // 创建 markdown-it 插件
-            md.use((md) => {
-                // =========================================================================
-                // 1. AST 级别精准翻译容器标题 (保留您原有的多语言逻辑)
-                // =========================================================================
-                const defaultRender = md.render;
-                md.render = (...args) => {
-                    const [content, env] = args;
-                    const currentLang = env?.localeIndex || 'root';
-
-                    // 调用原始渲染，拿到生成的 HTML
-                    let defaultContent = defaultRender.apply(md, args);
-
-                    // 精准替换 VitePress 容器标题，避免误伤代码和变量
-                    const replaceContainerTitle = (html: string, enText: string, translatedText: string) => {
-                        // 正则解释：匹配任意标签，只要 class 中包含 custom-block-title，且内部文本完全等于 enText
-                        // 例如：精准匹配 <p class="custom-block-title">WARNING</p> 或 <p class="custom-block-title">NOTE</p>
-                        const regex = new RegExp(
-                            `(<[a-z0-9]+[^>]*\\bclass="[^"]*\\bcustom-block-title\\b[^"]*"[^>]*>)${enText}(<\\/[a-z0-9]+>)`,
-                            'g'
-                        );
-                        return html.replace(regex, `$1${translatedText}$2`);
-                    };
-
-                    // 定义多语言映射字典
-                    const translations = {
-                        root: {
-                            NOTE: "提醒", TIP: "建议", IMPORTANT: "重要", WARNING: "警告", CAUTION: "注意"
-                        },
-                        ko: {
-                            NOTE: "알림", TIP: "팁", IMPORTANT: "중요", WARNING: "경고", CAUTION: "주의"
-                        }
-                    };
-
-                    // 根据当前语言执行精准替换
-                    // @ts-ignore
-                    const langMap = translations[currentLang];
-                    if (langMap) {
-                        for (const [en, translated] of Object.entries(langMap)) {
-                            defaultContent = replaceContainerTitle(defaultContent, en, typeof translated === "string" ? translated : '');
-                        }
-                    }
-
-                    return defaultContent;
-                };
-
-                // =========================================================================
-                // 2. 重写 fence 渲染规则 (利用 AST 注入类名，保障打包与多签切换)
-                // =========================================================================
-                const defaultFence =
-                    md.renderer.rules.fence?.bind(md.renderer.rules) ??
-                    ((...args) => args[0][args[1]].content);
-
-                md.renderer.rules.fence = (tokens, idx, options, env, self) => {
-                    const token = tokens[idx];
-                    const info = token.info.trim();
-
-                    // 识别出我们的自定义块
-                    const isMarkdown = info.includes("markdown");
-                    const isMdImg = info.includes("md:img");
-
-                    if (isMarkdown || isMdImg) {
-                        // 核心修复点 1：通过修改 token.info，强行把 md:img 伪装成正常的 txt 传给 Shiki
-                        // 这一步彻底消除了终端里烦人的 "The language 'md:img' is not loaded" 警告
-                        if (isMdImg) {
-                            token.info = token.info.replace("md:img", "txt");
-                        } else {
-                            token.info = token.info.replace("markdown", "txt");
-                        }
-
-                        // 核心修复点 2：在原生渲染之前，直接把自定义类名塞进 AST 树的 attrs 数组中
-                        // 这样原生 defaultFence 跑完出来的 HTML 里，类名就是完美融合的，绝对不会有重复属性！
-                        token.attrs = token.attrs || [];
-                        const classIdx = token.attrIndex('class');
-                        if (classIdx >= 0) {
-                            // 如果原本就有 class 属性（比如带有 language-xxx active），在前面追加上我们的标识
-                            token.attrs[classIdx][1] = `vp-raw-html-block ${token.attrs[classIdx][1]}`;
-                        } else {
-                            token.attrs.push(['class', 'vp-raw-html-block']);
-                        }
-
-                        // 让原生渲染器跑出完整包裹，它现在完美承载了切换所需要的全部逻辑
-                        const originalHtml = defaultFence(tokens, idx, options, env, self);
-
-                        // 渲染出里面真正的富文本内容
-                        // 恢复真实的 token.info 用以做内部渲染
-                        token.info = info;
-                        const renderedHtml = md.render(token.content, env);
-
-                        // 正则提取原生外层 <div> 的所有内容（包含融合后的 class、v-pre、以及内部各种动态 id 等）
-                        const openTagMatch = originalHtml.match(/<div[^>]*>/);
-                        const openTag = openTagMatch ? openTagMatch[0] : '<div class="vp-raw-html-block">';
-
-                        // 组装返回，内层根据不同类型打上对应的标签样式
-                        const innerClass = isMdImg ? "vp-custom-html-content rendered-md" : "vp-custom-html-content";
-                        return `${openTag}<div class="${innerClass}">${renderedHtml}</div></div>`;
-                    }
-
-                    // 普通代码块原样放行
-                    return defaultFence(tokens, idx, options, env, self);
-                };
-            });
+            // 注册抽取出来的插件
+            md.use(customMarkdownPlugin);
             md.use(timeline);
             md.use(groupIconMdPlugin); //代码组图标
             md.use(InlineLinkPreviewElementTransform);
