@@ -26,6 +26,7 @@ import {
 import {AnnouncementPlugin} from 'vitepress-plugin-announcement'
 import {customIcon} from "../theme/utils/customIcon";
 import { customMarkdownPlugin } from '../theme/utils/markdown-it-custom-plugin';
+import vitepressPluginLegend from "vitepress-plugin-legend";
 
 
 const mode = process.env.NODE_ENV || "development";
@@ -180,11 +181,6 @@ const vitePressOptions = defineConfig({
         },
         // md 配置
         config: async (md) => {
-            /**
-             * SSR 兼容性
-             * @link https://vitepress.dev/guide/ssr-compat
-             * 如果组件不支持 SSR，可以指定 clientOnly 以禁用 SSR。
-             */
             md.use(containerPreview, {clientOnly: true, alias});
             md.use(componentPreview, {clientOnly: true, alias});
             md.use(multimdTable, {
@@ -193,6 +189,14 @@ const vitePressOptions = defineConfig({
                 headerless: true, // 可选：支持无表头表格
                 multibody: true, // 可选：支持多 tbody
                 autolabel: true, // 可选：自动标签
+            });
+            vitepressPluginLegend(md, {
+                markmap: {
+                    showToolbar: true,
+                },
+                mermaid: {
+                    showToolbar: true,
+                },
             });
             // 注册抽取出来的插件
             md.use(customMarkdownPlugin);
