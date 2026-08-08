@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:12
+title: index
+permalink: /pages/7d43c5ffdc
+---
 > [!IMPORTANT]
 >
 > 没有必要死磕 vi 和 vim ，能熟练使用 vi 或 vim 打开文件、修改文件、保存文件即可！！！

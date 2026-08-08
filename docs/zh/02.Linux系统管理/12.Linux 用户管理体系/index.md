@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:12
+title: index
+permalink: /pages/883cdad685
+---
 # 第一章：RBAC 模型
 
 ## 1.1 概述

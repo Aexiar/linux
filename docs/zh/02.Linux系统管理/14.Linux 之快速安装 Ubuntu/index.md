@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:13
+title: index
+permalink: /pages/c1d9327bdb
+---
 # 第一章：创建虚拟机
 
 ## 1.1 概述

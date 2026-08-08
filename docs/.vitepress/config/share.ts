@@ -25,15 +25,16 @@ import {
 } from "@vitepress-demo-preview/plugin";
 import {AnnouncementPlugin} from 'vitepress-plugin-announcement'
 import {customIcon} from "../theme/utils/customIcon";
-import { customMarkdownPlugin } from '../theme/plugins/markdown-it-custom-plugin';
+import {customMarkdownPlugin} from '../theme/plugins/markdown-it-custom-plugin';
 import vitepressPluginLegend from "vitepress-plugin-legend";
+import AutoFrontmatter from "vitepress-plugin-auto-frontmatter";
+import {randomUUID} from "node:crypto";
+import {IndexPermalinkCompat} from "../theme/plugins/Index-permalink-compat-plugin";
 
 const mode = process.env.NODE_ENV || "development";
 const {VITE_BASE_URL} = loadEnv(mode, process.cwd());
 console.log("Mode:", process.env.NODE_ENV);
 console.log("VITE_BASE_URL:", VITE_BASE_URL);
-
-
 const alias = {
     "@": resolve(__dirname, "../../public/demo"),
 };
@@ -118,6 +119,34 @@ const vitePressOptions = defineConfig({
             ],
         },
         plugins: [
+            /* 自动生成 frontmatter */
+            AutoFrontmatter({
+                pattern: "**/*.md", // 扫描的规则
+                // include: {}, // 包含 xxx: xxx 的 MD 文件，支持多个配置，如：include: { tag: true }
+                // exclude: {}, // 排除 xxx: xxx 的 MD 文件，支持多个配置，如：exclude: { tag: true }
+                transform: frontmatter => {
+                    console.log("========== AutoFrontmatter ==========");
+                    console.log(frontmatter);
+                    // 如果文件本身存在了 permalink，则不生成
+                    if (frontmatter.permalink) {
+                        return;
+                    }
+                    const transformResult = {
+                        ...frontmatter,
+                        permalink: `/pages/${(
+                            Math.random() + Math.random()
+                        )
+                            .toString(16)
+                            .slice(2, 8)}`,
+                    };
+
+                    return Object.keys(transformResult).length
+                        ? transformResult
+                        : undefined;
+                },
+                // recoverTransform: false
+            }),
+            /* 公告 */
             AnnouncementPlugin({
                 title: '公告',
                 duration: 2,
@@ -154,6 +183,8 @@ const vitePressOptions = defineConfig({
                 customIcon: customIcon
             }) as any,
             Permalink(),
+            // 一定放 Permalink 后面
+            IndexPermalinkCompat()
         ],
         server: {
             port: 6289,
@@ -294,13 +325,16 @@ const vitePressSidebarOption:
     includeRootIndexFile: false,
     includeEmptyFolder: true,
     includeFolderIndexFile: false,
+    useFolderLinkFromIndexFile: true,
+    // Sidebar 标题直接来自文件名
+    useTitleFromFrontmatter: false,
+    // 排序完成后隐藏文件名前面的序号
     removePrefixAfterOrdering: true,
     prefixSeparator: /^[0-9]{1,2}[-._]/,
-    useFolderLinkFromIndexFile: true,
-    useTitleFromFrontmatter: true,
-    folderLinkNotIncludesFileName: true,
     keepMarkdownSyntaxFromTitle: true,
+    // 使用实际文件路径进行数字排序
     sortMenusOrderNumericallyFromTitle: true,
+    folderLinkNotIncludesFileName: true,
 };
 
 const rootLocale = "zh";

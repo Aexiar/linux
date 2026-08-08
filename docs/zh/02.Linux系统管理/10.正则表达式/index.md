@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:12
+title: index
+permalink: /pages/b4c051485a
+---
 # 第一章：grep（⭐）
 
 ## 1.1 概述

@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:13
+title: index
+permalink: /pages/3b44e246e3
+---
 # 第一章：手动搭建 YUM 私有仓库
 
 ## 1.1 概述

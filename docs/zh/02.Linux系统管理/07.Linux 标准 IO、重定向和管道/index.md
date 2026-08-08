@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:12
+title: index
+permalink: /pages/f217c63e00
+---
 # 第一章：Linux 标准 IO（⭐）
 
 * 我们知道，目前主流的人机交互方式有如下两种：

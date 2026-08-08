@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:12
+title: index
+permalink: /pages/4342a35f7b
+---
 # 第一章：Linux 四剑客（⭐）
 
 ## 1.1 概述

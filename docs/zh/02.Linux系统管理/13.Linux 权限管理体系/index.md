@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:13
+title: index
+permalink: /pages/18cc3dc7ae
+---
 # 第一章：Linux 权限管理体系概述
 
 ## 1.1 回顾 RBAC 模型

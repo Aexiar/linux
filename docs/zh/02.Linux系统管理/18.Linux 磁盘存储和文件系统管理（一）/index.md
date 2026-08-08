@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:14
+title: index
+permalink: /pages/aa7cfdf9e8
+---
 # 第一章：磁盘结构
 
 ## 1.1 准备工作

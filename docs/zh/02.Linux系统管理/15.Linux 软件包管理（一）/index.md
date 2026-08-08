@@ -1,3 +1,8 @@
+---
+date: 2026-04-02 20:57:13
+title: index
+permalink: /pages/db6e621417
+---
 #  第一章：Linux 软件包概述
 
 ## 1.1 主流 Linux 发行版本分类
