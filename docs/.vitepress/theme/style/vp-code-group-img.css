@@ -35,7 +35,7 @@
 .vp-custom-html-content {
     background-color: var(--vp-code-block-bg) !important;
     color: var(--vp-c-text-1) !important;
-    border: 1px solid var(--vp-code-block-divider-color);
+    /*border: 1px solid var(--vp-code-block-divider-color);*/
     border-top: none; /* 顶部的分割线由 tab 栏提供 */
     box-sizing: border-box !important;
     width: 100% !important;
@@ -43,7 +43,7 @@
 
 /* 5. 【文字面板】：赋予标准舒适的内边距，且让文字向左进一点 */
 .vp-custom-html-content:not(.rendered-md) {
-    padding: 0 20px !important; /* 左右缩窄到 24px，为文字向左挪动腾出空间 */
+    padding: 0 -50px !important; /* 左右缩窄到 24px，为文字向左挪动腾出空间 */
 }
 
 /* 6. 【图片面板】：无视所有边距，实现真正的 100% 全铺满 */
