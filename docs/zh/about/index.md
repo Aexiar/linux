@@ -2,7 +2,7 @@
 date: 2026-04-02 20:57:14
 title: index
 comment: false
-permalink: /pages/fb8f054b9c
+permalink: /about
 ---
 
 ### 后端技术栈
