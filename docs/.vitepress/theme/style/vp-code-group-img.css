@@ -43,7 +43,7 @@
 
 /* 5. 【文字面板】：赋予标准舒适的内边距，且让文字向左进一点 */
 .vp-custom-html-content:not(.rendered-md) {
-    padding: 0 -50px !important; /* 左右缩窄到 24px，为文字向左挪动腾出空间 */
+    padding: 0 10px !important; /* 左右缩窄到 24px，为文字向左挪动腾出空间 */
 }
 
 /* 6. 【图片面板】：无视所有边距，实现真正的 100% 全铺满 */
@@ -76,3 +76,9 @@
 #VPContent .vp-code-group  div.language-txt.vp-adaptive-theme.line-numbers-mode.active {
     padding: inherit !important;
 }
+
+/* 仅针对包含自定义内容的代码块，将左内边距清零 */
+.language-txt.vp-adaptive-theme.line-numbers-mode:has(.vp-custom-html-content) {
+    padding-left: 15px !important;
+}
+
