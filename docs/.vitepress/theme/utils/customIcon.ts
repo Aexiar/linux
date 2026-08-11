@@ -70,4 +70,5 @@ export const customIcon = {
     "字节码指令": localIconLoader(import.meta.url, "../../../public/iconify/bytecode.svg"),
     log: localIconLoader(import.meta.url, "../../../public/iconify/log.svg"),
     "日志": localIconLoader(import.meta.url, "../../../public/iconify/log.svg"),
+    "路由器": localIconLoader(import.meta.url, "../../../public/iconify/router.svg"),
 }
