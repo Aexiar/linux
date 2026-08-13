@@ -187,7 +187,7 @@ const vitePressOptions = defineConfig({
             IndexPermalinkCompat()
         ],
         server: {
-            port: 6289,
+            port: 5173,
             strictPort: false
         },
         css: {
