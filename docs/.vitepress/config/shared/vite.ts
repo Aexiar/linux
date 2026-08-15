@@ -31,9 +31,10 @@ export const viteConfig = {
     plugins: [
         AutoFrontmatter({
             pattern: "**/*.md",
-            transform: frontmatter => {
+            transform: (frontmatter, fileInfo) => {
                 console.log("========== AutoFrontmatter ==========");
                 console.log(frontmatter);
+                if (/^(?:zh\/)?about\/index\.md$/.test(fileInfo.relativePath.replaceAll("\\", "/"))) return;
                 if (frontmatter.permalink) return;
 
                 const transformed = {
@@ -59,7 +60,7 @@ export const viteConfig = {
         ImagePreviewPlugin(),
         terser(),
         groupIconVitePlugin({ customIcon }) as any,
-        Permalink(),
+        Permalink({ ignoreList: [/^(?:zh\/)?about(?:\/|$)/] }),
         IndexPermalinkCompat(),
     ],
     server: { port: 5173, strictPort: false },
