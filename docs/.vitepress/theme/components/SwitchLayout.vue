@@ -12,9 +12,11 @@
     <template #doc-top>
       <NolebaseHighlightTargetedHeading/>
     </template>
+    <!--
     <template #aside-outline-before>
       <ShareButton/>
     </template>
+    -->
     <template #layout-bottom>
       <SidebarTooltip :onlyEllipsis="true"/>
     </template>
@@ -46,7 +48,7 @@ import GiscusComment from './GiscusComment.vue'
 import {useData} from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import {nextTick, provide} from "vue";
-import {ShareButton} from "@theojs/lumen";
+// import {ShareButton} from "@theojs/lumen";
 import Confetti from "./Confetti.vue";
 import TypeIt from "./TypeIt.vue";
 import HomeUnderline from "./HomeUnderline.vue";
