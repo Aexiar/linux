@@ -1,17 +1,17 @@
-import { figure } from "@mdit/plugin-figure";
-import { InlineLinkPreviewElementTransform } from "@nolebase/vitepress-plugin-inline-link-preview/markdown-it";
-import { componentPreview, containerPreview } from "@vitepress-demo-preview/plugin";
+import {figure} from "@mdit/plugin-figure";
+import {InlineLinkPreviewElementTransform} from "@nolebase/vitepress-plugin-inline-link-preview/markdown-it";
+import {componentPreview, containerPreview} from "@vitepress-demo-preview/plugin";
 import path from "node:path";
 import type MarkdownIt from "markdown-it";
 import multimdTable from "markdown-it-multimd-table";
 // @ts-ignore package does not publish declarations
 import markdownItTaskCheckbox from "markdown-it-task-checkbox";
 import timeline from "vitepress-markdown-timeline";
-import { vitepressDemoPlugin } from "vitepress-demo-plugin";
-import { groupIconMdPlugin } from "vitepress-plugin-group-icons";
+import {vitepressDemoPlugin} from "vitepress-demo-plugin";
+import {groupIconMdPlugin} from "vitepress-plugin-group-icons";
 import vitepressPluginLegend from "vitepress-plugin-legend";
-import { customMarkdownPlugin } from "../../theme/plugins/markdown-it-custom-plugin";
-import { demoAlias } from "./context";
+import {customMarkdownPlugin} from "../../theme/plugins/markdown-it-custom-plugin";
+import {demoAlias} from "./context";
 
 export async function configureMarkdown(md: MarkdownIt): Promise<void> {
     md.use(containerPreview, { clientOnly: true, alias: demoAlias });
@@ -42,5 +42,8 @@ export const markdownConfig = {
     math: true,
     lineNumbers: true,
     image: { lazyLoading: true },
+    // VitePress's attrs plugin recalculates table rowspans and conflicts with
+    // markdown-it-multimd-table's `^^` rowspan syntax.
+    attrs: { disable: true },
     config: configureMarkdown,
 };
