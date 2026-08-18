@@ -16,7 +16,7 @@ export const head: HeadConfig[] = [
     }],
     ["meta", {
         name: "keywords",
-        content: "许大仙、Java、C、C++、大数据、前端、云原生、Go、Python",
+        content: "为知笔记、云原生、Linux、容器、Kubernetes、DevOps、服务编排",
     }],
     ["meta", { charset: "UTF-8" }],
 ];
@@ -27,7 +27,7 @@ export const siteConfig = {
     lang: "zh-CN",
     title: "为知笔记",
     titleTemplate: "Hi，终于等到你",
-    description: "许大仙、前端、Java、大数据、云原生",
+    description: "为知笔记，系统整理 Linux、容器、Kubernetes、DevOps 与云原生实践",
     head,
     appearance: true,
     base: VITE_BASE_URL,

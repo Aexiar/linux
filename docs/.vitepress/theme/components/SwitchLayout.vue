@@ -7,7 +7,7 @@
       <ArticleMetadata/>
     </template>
     <template #doc-after>
-      <GiscusComment />
+      <GiscusComment/>
     </template>
     <template #doc-top>
       <NolebaseHighlightTargetedHeading/>
@@ -28,7 +28,7 @@
     </template>
     <template #home-hero-info-after>
       <TypeIt
-          strings="云原生是一种基于云计算的架构理念，通过容器、微服务、DevOps 和动态编排技术（如：Kubernetes）构建可扩展、高效和弹性的应用系统。"
+          strings="云原生是一种基于云计算的架构理念，通过容器、微服务、DevOps 和动态编排技术（如：Kubernetes）构建可扩展、高效和弹性的应用系统。|"
           :options="{ speed: 200, breakLines: false }"
           class="hero-typeit"
       />
@@ -84,7 +84,7 @@ provide("toggle-appearance", async ({clientX: x, clientY: y}: MouseEvent) => {
   }).ready;
 
   document.documentElement.animate(
-      {clipPath: isDark.value ? clipPath.reverse() : clipPath} ,
+      {clipPath: isDark.value ? clipPath.reverse() : clipPath},
       {
         duration: 300,
         easing: "ease-in",

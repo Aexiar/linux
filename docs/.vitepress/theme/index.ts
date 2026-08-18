@@ -48,7 +48,8 @@ export default {
     app.component('Confetti', Confetti)
     app.component('HomeUnderline', HomeUnderline)
     app.component('TypeIt', TypeIt)
-    app.use(NolebaseInlineLinkPreviewPlugin)
+    // The plugin's recursive Vue Plugin generic exceeds TypeScript's comparison depth.
+    app.use(NolebaseInlineLinkPreviewPlugin as any)
     app.component('demo-preview', AntDesignContainer)
 
     if (inBrowser) {

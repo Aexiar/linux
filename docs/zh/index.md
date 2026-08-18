@@ -14,14 +14,14 @@ lastUpdated: true
 head:
   - - meta
     - name: description
-      content: 许大仙前端、Java、大数据、云原生
+      content: 为知笔记，系统整理 Linux、容器、Kubernetes、DevOps 与云原生实践
   - - meta
     - name: keywords
       content: 许大仙，许大仙的博客
 
 hero:
   name: "云原生"
-  text: "大、全、细"
+  text: "从基础到实践"
   tagline: ""
   image:  # text 和 tagline 区域旁的图片
     src: /logo.png
@@ -38,13 +38,13 @@ hero:
 # 按钮下方的描述
 features:
   - icon: 🧠
-    title: "学习思路"
-    details: "学习思路就这么几条：模仿、遍历、分治、动态规划、……"
+    title: "夯实技术基础"
+    details: "从计算机基础与 Linux 系统入手，理解云原生技术栈赖以运行的底层环境。"
   - icon: ✍️
-    title: "学习手法"
-    details: "学习手法就这么几种：缓存、索引、信号/事件、回调/消息循环/dispatcher、……"
+    title: "深入核心技术"
+    details: "系统梳理容器、Kubernetes、服务编排与 DevOps，建立完整的云原生知识体系。"
   - icon: 🚨
-    title: "注意事项"
-    details: "注意事项就这么几点：边界值、等价类、数据完整性原子性、死锁、空转、……"
+    title: "沉淀实战经验"
+    details: "记录部署运维、故障排查与性能优化过程，沉淀可复用的实践方法和解决方案。"
 encrypt: false
 ---

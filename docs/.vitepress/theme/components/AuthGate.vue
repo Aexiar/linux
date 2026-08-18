@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { BrainCircuit, Eye, EyeOff, KeyRound, LockKeyhole, PencilLine, RefreshCw, UserRound } from '@lucide/vue'
+import { ArrowRight, BrainCircuit, Eye, EyeOff, KeyRound, LockKeyhole, PencilLine, RefreshCw, ShieldCheck, UserRound } from '@lucide/vue'
 
 const AUTH_KEY = 'vitepress-page-authenticated'
 const { frontmatter } = useData()
@@ -92,7 +92,7 @@ watch(isProtected, () => { errorMessage.value = '' })
       </a>
 
       <div class="auth-login-content">
-        <p class="auth-eyebrow">SECURE ACCESS</p>
+        <p class="auth-eyebrow"><ShieldCheck :size="15" aria-hidden="true" />受保护内容</p>
         <h1 id="auth-title">登录您的账号</h1>
         <p class="auth-description">验证身份后继续阅读受保护的文档内容</p>
 
@@ -120,7 +120,7 @@ watch(isProtected, () => { errorMessage.value = '' })
           </div>
 
           <p v-if="errorMessage" class="auth-error" role="alert">{{ errorMessage }}</p>
-          <button class="auth-submit" type="submit">登录并继续</button>
+          <button class="auth-submit" type="submit"><span>登录并继续</span><ArrowRight :size="18" aria-hidden="true" /></button>
         </form>
       </div>
     </section>
