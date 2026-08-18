@@ -2,6 +2,7 @@
 [tools]
 node = "24"
 pnpm = "10"
+watchexec = "latest"
 
 # [env] - 环境变量
 [env]
@@ -25,13 +26,31 @@ description = "构建"
 depends = ["install"]
 run = "pnpm run docs:build"
 
-[tasks.dev]
-description = "开发"
+[tasks."dev:server"]
+description = "启动 VitePress 开发服务器"
 depends = ["install"]
 run = "pnpm run docs:dev"
+
+[tasks."format:md"]
+description = "修正 Markdown 中文排版"
+run = [
+    "pnpm exec autocorrect --fix docs",
+    "pnpm exec textlint --no-textlintrc --rulesdir .textlint-rules --fix \"docs/**/*.md\"",
+]
+sources = ["docs/**/*.md"]
+
+[tasks."format:watch"]
+description = "监听并修正 Markdown"
+depends = ["install"]
+run = "mise watch format:md"
+
+[tasks.dev]
+description = "启动开发服务器并监听 Markdown"
+run = [
+    { tasks = ["dev:server", "format:watch"] },
+]
 
 [tasks.preview]
 description = "预览"
 depends = ["build"]
 run = "pnpm run docs:preview"
-

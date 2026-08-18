@@ -26,7 +26,7 @@
         <span class="mono">{{ speed }}×</span>
       </div>
       <div class="time-badge mono">
-        时间: <span class="accent">{{ displayTime }}</span> / {{ TOTAL }} 单位
+        时间：<span class="accent">{{ displayTime }}</span> / {{ TOTAL }} 单位
       </div>
     </div>
 
@@ -116,12 +116,12 @@ const rows = [
     id: 'cpu', name: 'CPU', sub: '处理器',
     segs: [
       { type: 'cpu-j1', start: 0,  end: 4,  label: 'J1-计算', shortLabel: 'J1-计算' },
-      { type: 'idle',   start: 4,  end: 9,  label: '空闲(等J1 I/O)', shortLabel: '空闲' },
+      { type: 'idle',   start: 4,  end: 9,  label: '空闲 (等 J1 I/O)', shortLabel: '空闲' },
       { type: 'cpu-j1', start: 9,  end: 12, label: 'J1-计算', shortLabel: 'J1-计算' },
-      { type: 'idle',   start: 12, end: 16, label: '空闲(等J1 I/O)', shortLabel: '空闲' },
+      { type: 'idle',   start: 12, end: 16, label: '空闲 (等 J1 I/O)', shortLabel: '空闲' },
       { type: 'cpu-j1', start: 16, end: 18, label: 'J1-收尾', shortLabel: 'J1-收尾' },
       { type: 'cpu-j2', start: 18, end: 21, label: 'J2-计算', shortLabel: 'J2-计算' },
-      { type: 'idle',   start: 21, end: 24, label: '空闲(等J2 I/O)', shortLabel: '空闲' },
+      { type: 'idle',   start: 21, end: 24, label: '空闲 (等 J2 I/O)', shortLabel: '空闲' },
       { type: 'cpu-j2', start: 24, end: 26, label: 'J2-计算', shortLabel: 'J2-计算' },
       { type: 'cpu-j3', start: 26, end: 28, label: 'J3-计算', shortLabel: 'J3-计算' },
     ]
@@ -129,45 +129,45 @@ const rows = [
   {
     id: 'io', name: 'I/O', sub: '磁盘/设备',
     segs: [
-      { type: 'io-j1', start: 4,  end: 9,  label: 'J1 I/O(5单位)', shortLabel: 'J1 I/O' },
-      { type: 'io-j1', start: 12, end: 16, label: 'J1 I/O(4单位)', shortLabel: 'J1 I/O' },
-      { type: 'io-j2', start: 21, end: 24, label: 'J2 I/O(3单位)', shortLabel: 'J2 I/O' },
+      { type: 'io-j1', start: 4,  end: 9,  label: 'J1 I/O(5 单位)', shortLabel: 'J1 I/O' },
+      { type: 'io-j1', start: 12, end: 16, label: 'J1 I/O(4 单位)', shortLabel: 'J1 I/O' },
+      { type: 'io-j2', start: 21, end: 24, label: 'J2 I/O(3 单位)', shortLabel: 'J2 I/O' },
     ]
   },
   {
-    id: 'j1', name: '作业1', sub: '共18单位',
+    id: 'j1', name: '作业 1', sub: '共 18 单位',
     segs: [
-      { type: 'cpu-j1', start: 0,  end: 4,  label: '计算(4)', shortLabel: '计算' },
+      { type: 'cpu-j1', start: 0,  end: 4,  label: '计算 (4)', shortLabel: '计算' },
       { type: 'io-j1',  start: 4,  end: 9,  label: 'I/O(5)',  shortLabel: 'I/O' },
-      { type: 'cpu-j1', start: 9,  end: 12, label: '计算(3)', shortLabel: '计算' },
+      { type: 'cpu-j1', start: 9,  end: 12, label: '计算 (3)', shortLabel: '计算' },
       { type: 'io-j1',  start: 12, end: 16, label: 'I/O(4)',  shortLabel: 'I/O' },
-      { type: 'cpu-j1', start: 16, end: 18, label: '计算(2)', shortLabel: '计算' },
+      { type: 'cpu-j1', start: 16, end: 18, label: '计算 (2)', shortLabel: '计算' },
     ]
   },
   {
-    id: 'j2', name: '作业2', sub: '共8单位',
+    id: 'j2', name: '作业 2', sub: '共 8 单位',
     segs: [
       { type: 'idle',   start: 0,  end: 18, label: '等待调度', shortLabel: '等待' },
-      { type: 'cpu-j2', start: 18, end: 21, label: '计算(3)', shortLabel: '计算' },
+      { type: 'cpu-j2', start: 18, end: 21, label: '计算 (3)', shortLabel: '计算' },
       { type: 'io-j2',  start: 21, end: 24, label: 'I/O(3)',  shortLabel: 'I/O' },
-      { type: 'cpu-j2', start: 24, end: 26, label: '计算(2)', shortLabel: '计算' },
+      { type: 'cpu-j2', start: 24, end: 26, label: '计算 (2)', shortLabel: '计算' },
     ]
   },
   {
-    id: 'j3', name: '作业3', sub: '共2单位',
+    id: 'j3', name: '作业 3', sub: '共 2 单位',
     segs: [
       { type: 'idle',   start: 0,  end: 26, label: '等待调度', shortLabel: '等待' },
-      { type: 'cpu-j3', start: 26, end: 28, label: '计算(2)', shortLabel: '计算' },
+      { type: 'cpu-j3', start: 26, end: 28, label: '计算 (2)', shortLabel: '计算' },
     ]
   },
 ]
 
 const legendItems = [
-  { label: '作业1 CPU', style: { background: '#7c6af7' } },
-  { label: '作业1 I/O', style: { background: '#4a3fa0', backgroundImage: 'repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.2) 3px,rgba(255,255,255,.2) 4px)' } },
-  { label: '作业2 CPU', style: { background: '#33c4a0' } },
-  { label: '作业2 I/O', style: { background: '#217a64', backgroundImage: 'repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.2) 3px,rgba(255,255,255,.2) 4px)' } },
-  { label: '作业3 CPU', style: { background: '#f5854a' } },
+  { label: '作业 1 CPU', style: { background: '#7c6af7' } },
+  { label: '作业 1 I/O', style: { background: '#4a3fa0', backgroundImage: 'repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.2) 3px,rgba(255,255,255,.2) 4px)' } },
+  { label: '作业 2 CPU', style: { background: '#33c4a0' } },
+  { label: '作业 2 I/O', style: { background: '#217a64', backgroundImage: 'repeating-linear-gradient(45deg,transparent,transparent 3px,rgba(255,255,255,.2) 3px,rgba(255,255,255,.2) 4px)' } },
+  { label: '作业 3 CPU', style: { background: '#f5854a' } },
   { label: 'CPU 空闲', style: { background: 'transparent', border: '1px dashed #3a4060' } },
 ]
 

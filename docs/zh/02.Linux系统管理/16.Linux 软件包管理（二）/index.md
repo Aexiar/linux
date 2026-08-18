@@ -26,13 +26,13 @@ systemctl disable --now firewalld
 
 ## 1.2 配置 Linux 服务器（YUM 仓库）
 
-* 前提条件：Linux 服务器（YUM 仓库）需要挂载 CD-DVD （ISO 镜像文件），即：
+* 前提条件：Linux 服务器（YUM 仓库）需要挂载 CD-DVD（ISO 镜像文件），即：
 
 ![image-20240513153638682](./assets/3.png)
 
 > [!NOTE]
 >
-> 在实际工作中，无需挂载 CD-DVD ，因为 CD-DVD 已经属于淘汰的技术了，可以将 CD-DVD 中的数据复制到指定的目录中。
+> 在实际工作中，无需挂载 CD-DVD，因为 CD-DVD 已经属于淘汰的技术了，可以将 CD-DVD 中的数据复制到指定的目录中。
 
 * 安装 httpd 服务器：
 
@@ -70,7 +70,7 @@ mount /dev/sr0 /var/www/html/almalinux/9
 
 ![](./assets/7.gif)
 
-* 启动 httpd ：
+* 启动 httpd：
 
 ```shell
 systemctl enable --now httpd
@@ -241,7 +241,7 @@ tree /usr/local/cmatrix/
 
 ![](./assets/22.gif)
 
-* 配置 cmatrix  命令帮助手册：
+* 配置 cmatrix 命令帮助手册：
 
 ```shell
 vim /etc/man_db.conf
@@ -256,7 +256,7 @@ MANDATORY_MANPATH                       /usr/local/cmatrix/share/man  # 增加
 
 ![](./assets/23.gif)
 
-* 测试 cmatrix  命令帮助手册是否配置成功：
+* 测试 cmatrix 命令帮助手册是否配置成功：
 
 ```shell
 man cmatrix  
@@ -287,7 +287,7 @@ systemctl disable --now firewalld
 
 ![](./assets/25.gif)
 
-* 查看系统是否安装有 httpd ：
+* 查看系统是否安装有 httpd：
 
 ```shell
 dnf list --installed | grep httpd
@@ -295,7 +295,7 @@ dnf list --installed | grep httpd
 
 ![](./assets/26.gif)
 
-* 卸载系统自带的 httpd ：
+* 卸载系统自带的 httpd：
 
 ```shell
 dnf -y remove httpd* 
@@ -368,7 +368,7 @@ make -j 2 && make install
 
 ![](./assets/34.gif)
 
-* 创建指定的用户，并以该用户运行 httpd ：
+* 创建指定的用户，并以该用户运行 httpd：
 
 ```shell
 useradd -r -s /sbin/nologin -u 48 -c Apache apache
@@ -408,7 +408,7 @@ MANDATORY_MANPATH                       /usr/local/apache2/man  # 增加
 
 ![](./assets/37.gif)
 
-* 配置 systemd ：
+* 配置 systemd：
 
 ```shell
 tee /usr/lib/systemd/system/httpd.service <<'EOF'
@@ -438,7 +438,7 @@ EOF
 
 ![](./assets/38.gif)
 
-* 启动 httpd ：
+* 启动 httpd：
 
 ```shell
 systemctl daemon-reload
@@ -460,13 +460,13 @@ http://192.168.10.100:80
 
 
 
-# 第三章：Ubuntu (24.04 LTS)软件包管理（⭐）
+# 第三章：Ubuntu (24.04 LTS) 软件包管理（⭐）
 
 ## 3.1 dkpg
 
 ### 3.1.1 概述
 
-* dpgk (Debian Package) 是用于 Debian 及其衍生系统（如： Ubuntu）的软件包管理器。它是 Debian 软件包管理系统的核心部分，用于安装、删除和提供有关 `.deb` 软件包的信息。
+* dpgk (Debian Package) 是用于 Debian 及其衍生系统（如：Ubuntu）的软件包管理器。它是 Debian 软件包管理系统的核心部分，用于安装、删除和提供有关 `.deb` 软件包的信息。
 
 ### 3.1.2 dpkg 管理软件包
 
@@ -476,15 +476,15 @@ http://192.168.10.100:80
 
 | 功能       | 命令                   | 选项含义                                                     | 类比 rpm                  |
 | :--------- | :--------------------- | :----------------------------------------------------------- | ------------------------- |
-| 增（安装） | `dpkg -i xxx.deb`      | `-i`， `--install`：安装软件包。                             | `rpm -ivh xxx.rpm`        |
-| 删（卸载） | `dpkg -r xxx`          | `-e`，`--remove`：删除软件包，但是保留配置文件。             | `rpm -e xxx.rpm --nodeps` |
-|            | `dpkg -P xxx`          | `-P`，`--purge`：删除软件包及其配置文件。                    | `rpm -e xxx.rpm --nodeps` |
-| 改（升级） | `dpkg -i xxx.deb`      | `-i`， `--install`：安装或升级软件包。                       | `rpm -Uvh xxx.rpm`        |
-| 查（查询） | `dpkg -l \| grep xxx`  | `-l`，`--list`：列出当前已安装的软件包。                     | `rpm -qa \|grep xxx`      |
-|            | `dpkg -L xxx`          | `-l`，`--listfiles`：列出已安装软件包中所包含的文件。        | `rpm -ql xxx`             |
-|            | `dpkg -S $(which xxx)` | `-S`，`--Search` ：根据文件或命令的绝对路径，查询对应的软件包。 | `rpm -qf $(which xxx)`    |
-|            | `dpkg -s xxx`          | `-s`，`--status`：查询已安装软件包的详细信息。               | `rpm -qi xxx`             |
-|            | `dpkg -c xxx.deb`      | `-c`，`--contents`：列出 deb 包的内容。                      | `rpm -qpl xxx.rpm`        |
+| 增（安装） | `dpkg -i xxx.deb`      | `-i` ， `--install` ：安装软件包。                             | `rpm -ivh xxx.rpm`        |
+| 删（卸载） | `dpkg -r xxx`          | `-e` ， `--remove` ：删除软件包，但是保留配置文件。             | `rpm -e xxx.rpm --nodeps` |
+|            | `dpkg -P xxx`          | `-P` ， `--purge` ：删除软件包及其配置文件。                    | `rpm -e xxx.rpm --nodeps` |
+| 改（升级） | `dpkg -i xxx.deb`      | `-i` ， `--install` ：安装或升级软件包。                       | `rpm -Uvh xxx.rpm`        |
+| 查（查询） | `dpkg -l \| grep xxx`  | `-l` ， `--list` ：列出当前已安装的软件包。                     | `rpm -qa \|grep xxx`      |
+|            | `dpkg -L xxx`          | `-l` ， `--listfiles` ：列出已安装软件包中所包含的文件。        | `rpm -ql xxx`             |
+|            | `dpkg -S $(which xxx)` | `-S` ， `--Search` ：根据文件或命令的绝对路径，查询对应的软件包。 | `rpm -qf $(which xxx)`    |
+|            | `dpkg -s xxx`          | `-s` ， `--status` ：查询已安装软件包的详细信息。               | `rpm -qi xxx`             |
+|            | `dpkg -c xxx.deb`      | `-c` ， `--contents` ：列出 deb 包的内容。                      | `rpm -qpl xxx.rpm`        |
 
 #### 3.1.2.2 增（安装）
 
@@ -656,13 +656,13 @@ dpkg -P zabbix-agent2
 
 ### 3.2.1 概述
 
-* `apt` 是 Debian 和基于 Debian 的发行版（如： Ubuntu）中的高级包管理工具。它提供了一个更简单、更一致的界面来管理软件包，包括安装、更新、升级和删除软件包。`apt` 是 `apt-get` 和 `apt-cache` 工具的简化和改进版本，集成了它们的主要功能。
+* `apt` 是 Debian 和基于 Debian 的发行版（如：Ubuntu）中的高级包管理工具。它提供了一个更简单、更一致的界面来管理软件包，包括安装、更新、升级和删除软件包。 `apt` 是 `apt-get` 和 `apt-cache` 工具的简化和改进版本，集成了它们的主要功能。
 
-### 3.2.2 apt  管理软件包
+### 3.2.2 apt 管理软件包
 
 #### 3.2.2.1 概述
 
-* apt  管理软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
+* apt 管理软件包，无非增（安装）删（卸载）改（升级）查（查询），即：
 
 | 功能       | 命令                                    | 备注                                                      |
 | :--------- | :-------------------------------------- | :-------------------------------------------------------- |
@@ -670,7 +670,7 @@ dpkg -P zabbix-agent2
 | 删（卸载） | `apt remove xxx`                        | 删除软件包，但是保留配置文件。                            |
 |            | `apt purge xxx`                         | 删除软件包以及配置文件。                                  |
 |            | `apt autoremove`                        | 自动删除不需要的软件包。                                  |
-| 改（升级） | `apt update `                           | 更新存储库索引，类似于 `dnf clean all && dnf makecache`。 |
+| 改（升级） | `apt update `                           | 更新存储库索引，类似于 `dnf clean all && dnf makecache` 。 |
 |            | `apt upgrade`                           | 更新所有可升级的软件包。                                  |
 |            | `apt full-upgrade`                      | 在升级软件包的同时自动处理依赖关系。                      |
 | 查（查询） | `apt search xxx`                        | 搜索软件包。                                              |
@@ -810,7 +810,7 @@ apt list --upgradable # 列出所有可升级的软件包
 
 
 
-* 示例： 搜索软件包
+* 示例：搜索软件包
 
 ```shell
 apt search nginx
@@ -866,7 +866,7 @@ apt list --upgradable
 
 > [!WARNING]
 >
-> 滴滴之前出现过生产事故，就是运维通过 `apt -y update && apt -y upgrade` 命令进行整个 Linux 系统的软件包升级，包括： Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
+> 滴滴之前出现过生产事故，就是运维通过 `apt -y update && apt -y upgrade` 命令进行整个 Linux 系统的软件包升级，包括：Linux 内核，导致生产环境的 kubernetes 在升级过程中挂掉，进而导致滴滴打车服务的不可用，影响非常恶劣！！！
 
 * apt 的子命令 apt-mark 就可以实现软件包锁定：
 
@@ -918,7 +918,7 @@ apt-mark hold linux-image-generic
 
 #### 3.2.3.3 生产实践（锁定 Docker 版本）
 
-* 卸载旧版本 Docker ：
+* 卸载旧版本 Docker：
 
 ```shell
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt remove $pkg -y; done
@@ -943,7 +943,7 @@ sudo apt update -y
 
 ![](./assets/65.gif)
 
-* 查看 Docker  的版本：
+* 查看 Docker 的版本：
 
 ```shell
 apt-cache madison docker-ce
@@ -951,7 +951,7 @@ apt-cache madison docker-ce
 
 ![](./assets/66.gif)
 
-* 安装指定版本的 Docker ：
+* 安装指定版本的 Docker：
 
 ```shell
 sudo apt install docker-ce=5:26.0.0-1~ubuntu.24.04~noble \
