@@ -7,48 +7,27 @@ import { inBrowser, useData, useRoute } from 'vitepress'
 import Confetti from "./components/Confetti.vue"
 import TypeIt from "./components/TypeIt.vue"
 import SwitchLayout from './components/SwitchLayout.vue'
+import AuthGate from './components/AuthGate.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import { NProgress } from 'nprogress-v2/dist/index.js'
 import { NolebaseInlineLinkPreviewPlugin, } from '@nolebase/vitepress-plugin-inline-link-preview/client'
-import '@nolebase/vitepress-plugin-inline-link-preview/client/style.css'
-import 'nprogress-v2/dist/index.css'
-import "vitepress-markdown-timeline/dist/theme/index.css"
+// Vite virtual modules cannot be resolved through CSS @import.
 import 'virtual:group-icons.css'
 import './style/index.css'
-import xgplayer from "./components/Xgplayer.vue"
-import 'vitepress-plugin-legend/dist/index.css'
 import { initComponent } from "vitepress-plugin-legend/component"
-// 导入链接图标初始化方法
 import { initLinkIcons } from './utils/tools'
 import {
   AntDesignContainer,
 } from '@vitepress-demo-preview/component'
-import '@vitepress-demo-preview/component/dist/style.css'
 
 // 彩虹背景动画样式
 function updateHomePageStyle(value: boolean) {
-  if (value) {
-    if (homePageStyle) return
-
-    homePageStyle = document.createElement('style')
-    homePageStyle.innerHTML = `
-    :root {
-      animation: rainbow 12s linear infinite;
-    }`
-    document.body.appendChild(homePageStyle)
-  } else {
-    if (!homePageStyle) return
-
-    homePageStyle.remove()
-    homePageStyle = undefined
-  }
+  document.documentElement.classList.toggle('is-home-page', value)
 }
-
-let homePageStyle: HTMLStyleElement | undefined
 export default {
   extends: DefaultTheme,
   Layout() {
-    return h(SwitchLayout)
+    return h(AuthGate, null, { default: () => h(SwitchLayout) })
   },
   enhanceApp({ app, router }: EnhanceAppContext) {
     initComponent(app)
@@ -65,12 +44,10 @@ export default {
       console.warn('[Vue warn]:', msg)
       console.warn('Component trace:', trace)
     }
-
     app.component('ArticleMetadata', ArticleMetadata)
     app.component('Confetti', Confetti)
     app.component('HomeUnderline', HomeUnderline)
     app.component('TypeIt', TypeIt)
-    app.component('xgplayer', xgplayer) //鼠标跟随组件
     app.use(NolebaseInlineLinkPreviewPlugin)
     app.component('demo-preview', AntDesignContainer)
 
@@ -103,30 +80,6 @@ export default {
         })
       }
 
-      // 禁止 ios 缩放屏幕
-      document.addEventListener('gesturestart', function (event) {
-        event.preventDefault()
-      })
-
-      // 禁止移动端（IOS）双击页面变大
-      let touchTime = 0
-      document.addEventListener('touchstart', function (event) {
-        if (event.touches.length > 1) {
-          event.preventDefault()
-        }
-      })
-      document.addEventListener(
-        'touchend',
-        function (event) {
-          //记录当前点击的时间与下一次时间的间隔
-          const nowTime = new Date()
-          if (nowTime.getTime() - touchTime <= 300) {
-            event.preventDefault()
-          }
-          touchTime = nowTime.getTime()
-        },
-        false
-      )
     })
   }
 } satisfies Theme

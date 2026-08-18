@@ -1,7 +1,8 @@
 ---
-date: 2026-04-02 20:57:12
+date: 2026-04-03 04:57:12
 title: index
 permalink: /pages/f217c63e00
+encrypt: false
 ---
 # 第一章：Linux 标准 IO（⭐）
 

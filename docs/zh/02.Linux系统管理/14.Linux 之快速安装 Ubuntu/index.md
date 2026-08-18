@@ -1,7 +1,8 @@
 ---
-date: 2026-04-02 20:57:13
+date: 2026-04-03 04:57:13
 title: index
 permalink: /pages/c1d9327bdb
+encrypt: false
 ---
 # 第一章：创建虚拟机
 

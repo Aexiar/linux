@@ -1,7 +1,8 @@
 ---
-date: 2026-04-02 20:57:13
+date: 2026-04-03 04:57:13
 title: index
 permalink: /pages/18cc3dc7ae
+encrypt: false
 ---
 # 第一章：Linux 权限管理体系概述
 

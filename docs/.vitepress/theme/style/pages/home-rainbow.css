@@ -1,3 +1,8 @@
+/* Applied only while the home page is active. */
+.is-home-page {
+    animation: rainbow 12s linear infinite;
+}
+
 /* 彩虹动画 - 移动端优化版本 */
 @keyframes rainbow {
     0% {

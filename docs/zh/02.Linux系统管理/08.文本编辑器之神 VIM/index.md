@@ -1,7 +1,8 @@
 ---
-date: 2026-04-02 20:57:12
+date: 2026-04-03 04:57:12
 title: index
 permalink: /pages/7d43c5ffdc
+encrypt: false
 ---
 > [!IMPORTANT]
 >

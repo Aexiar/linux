@@ -1,7 +1,8 @@
 ---
-date: 2026-04-02 20:57:13
+date: 2026-04-03 04:57:13
 title: index
 permalink: /pages/db6e621417
+encrypt: false
 ---
 #  第一章：Linux 软件包概述
 

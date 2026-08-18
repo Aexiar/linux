@@ -32,15 +32,16 @@ export const viteConfig = {
         AutoFrontmatter({
             pattern: "**/*.md",
             transform: (frontmatter, fileInfo) => {
-                console.log("========== AutoFrontmatter ==========");
-                console.log(frontmatter);
-                if (/^(?:zh\/)?about\/index\.md$/.test(fileInfo.relativePath.replaceAll("\\", "/"))) return;
-                if (frontmatter.permalink) return;
+                const isAboutPage = /^(?:zh\/)?about\/index\.md$/.test(fileInfo.relativePath.replaceAll("\\", "/"));
 
                 const transformed = {
                     ...frontmatter,
-                    permalink: `/pages/${(Math.random() + Math.random()).toString(16).slice(2, 8)}`,
+                    encrypt: frontmatter.encrypt ?? false,
+                    ...(frontmatter.permalink || isAboutPage
+                        ? {}
+                        : { permalink: `/pages/${(Math.random() + Math.random()).toString(16).slice(2, 8)}` }),
                 };
+                if (frontmatter.encrypt !== undefined && (frontmatter.permalink || isAboutPage)) return;
                 return Object.keys(transformed).length ? transformed : undefined;
             },
         }),

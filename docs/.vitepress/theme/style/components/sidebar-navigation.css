@@ -1,12 +1,5 @@
-/* .vitepress/theme/style/sidebarIcon.css */
 :root {
     --vp-sidebar-width: 300px;
-}
-
-.group:has([role='button']) .VPSidebarItem.level-0 .items {
-    padding-left: 10px !important;
-    border-left: 1px solid var(--vp-c-divider);
-    border-radius: 2px;
 }
 
 #VPSidebarNav .VPSidebarItem .item {
@@ -70,7 +63,7 @@
     background-image: url('/svg/file.svg') !important;
 }
 
-/* 侧边栏缩放 */
+/* 一级分组缩进和引导线 */
 .group:has([role="button"]) .VPSidebarItem.level-0 .items {
     padding-left: 15px !important;
     border-left: 1px solid var(--vp-c-divider);

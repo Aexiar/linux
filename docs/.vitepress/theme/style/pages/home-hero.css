@@ -4,39 +4,35 @@
 
     /* 1. 恢复高斯模糊，让渐变自然晕染开，不再是硬邦邦的边界 */
     filter: blur(50px) !important;
-    -webkit-filter: blur(50px) !important;
-
-    /* 2. 关键：强制把这个错位背景层裁成圆形，这样它在任何角度模糊都不会暴露出矩形直角 */
+    /* 强制将背景层裁成圆形，避免模糊后暴露矩形边角。 */
     border-radius: 50% !important;
 
     /* 3. 限制溢出，双重保险，不让模糊的边缘超过容器 */
     mix-blend-mode: normal;
 }
 
-:root {
-    .VPImage.image-src {
-        border-radius: 50%;
-        width: 200px;
-    }
+.VPImage.image-src {
+    width: 200px;
+    border-radius: 50%;
+}
 
-    /* hero标题渐变色 */
+:root {
+    /* Hero 标题渐变色 */
     --vp-home-hero-name-color: transparent;
     --vp-home-hero-name-background: -webkit-linear-gradient(
             120deg,
             #bd34fe,
             #41d1ff
     );
-    /*!* hero logo 背景渐变色 *!*/
+    /* Hero Logo 背景渐变色 */
     --vp-home-hero-image-background-image: linear-gradient(
             120deg,
             #bd34fe,
             #41d1ff
     ) !important;
-
 }
 
 .dark {
-
     --vp-home-hero-image-background-image: linear-gradient(
             120deg,
             #bd34fe,

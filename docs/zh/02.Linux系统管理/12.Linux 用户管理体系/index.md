@@ -1,7 +1,8 @@
 ---
-date: 2026-04-02 20:57:12
+date: 2026-08-10 07:18:50
 title: index
-permalink: /pages/883cdad685
+encrypt: false
+permalink: /pages/988633
 ---
 # 第一章：RBAC 模型
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="word">
+    <div class="article-metadata">
         <p>
             <span>📅更新：{{ formattedDate }}</span>
             <span>📝字数: {{ wordCount }} 字</span>
@@ -83,15 +83,3 @@ watch(
 );
 </script>
 
-<style>
-.word {
-    color: var(--vp-c-text-2);
-    font-size: 15px;
-    margin-bottom: 15px;
-}
-
-.icon {
-    display: inline-block;
-    transform: translate(0px, 2px);
-}
-</style>

@@ -41,7 +41,8 @@ li.task-list-item input[type="checkbox"]:after {
 }
 
 li.task-list-item input[type="checkbox"]:checked {
-  background-color: var(--vp-c-brand);
+  border-color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-brand-1);
 }
 
 li.task-list-item input[type="checkbox"]:checked::after {

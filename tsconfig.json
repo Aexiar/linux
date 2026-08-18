@@ -9,8 +9,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "jsx": "preserve",
-    "types": ["node", "vite/client", "vue/macros-global"],
-    "typeRoots": ["node_modules/@types", ".vitepress/types", "./global.d.ts"]
+    "types": ["node", "vite/client"]
   },
   "include": [
     "docs/.vitepress/**/*",

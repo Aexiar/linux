@@ -12,11 +12,6 @@
     <template #doc-top>
       <NolebaseHighlightTargetedHeading/>
     </template>
-    <!--
-    <template #aside-outline-before>
-      <ShareButton/>
-    </template>
-    -->
     <template #layout-bottom>
       <SidebarTooltip :onlyEllipsis="true"/>
     </template>
@@ -48,12 +43,10 @@ import GiscusComment from './GiscusComment.vue'
 import {useData} from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import {nextTick, provide} from "vue";
-// import {ShareButton} from "@theojs/lumen";
 import Confetti from "./Confetti.vue";
 import TypeIt from "./TypeIt.vue";
 import HomeUnderline from "./HomeUnderline.vue";
 import LogoAnimate from "./LogoAnimate.vue";
-import "@nolebase/vitepress-plugin-highlight-targeted-heading/client/style.css";
 import {NolebaseHighlightTargetedHeading} from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
 
 import {
@@ -61,7 +54,6 @@ import {
   NolebaseEnhancedReadabilitiesScreenMenu,
 } from "@nolebase/vitepress-plugin-enhanced-readabilities/client";
 
-import "@nolebase/vitepress-plugin-enhanced-readabilities/client/style.css";
 import SidebarTooltip from './SidebarTooltip.vue'
 
 const {isDark, theme} = useData();
@@ -102,33 +94,3 @@ provide("toggle-appearance", async ({clientX: x, clientY: y}: MouseEvent) => {
 });
 </script>
 
-<style>
-/* 全局样式调整 Hero 中的 TypeIt 大小 */
-.hero-typeit {
-  font-size: 1.5rem;
-  color: var(--vp-c-text-2);
-  margin-top: 1.5rem;
-  font-weight: 500;
-  display: block;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root),
-.dark::view-transition-new(root) {
-  z-index: 1;
-}
-
-::view-transition-new(root),
-.dark::view-transition-old(root) {
-  z-index: 9999;
-}
-
-.VPSwitchAppearance .check {
-  transform: none !important;
-}
-</style>
