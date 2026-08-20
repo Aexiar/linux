@@ -14,7 +14,6 @@ import { NolebaseInlineLinkPreviewPlugin, } from '@nolebase/vitepress-plugin-inl
 import 'virtual:group-icons.css'
 import './style/index.css'
 import { initComponent } from "vitepress-plugin-legend/component"
-import { initLinkIcons } from './utils/tools'
 import {
   AntDesignContainer,
 } from '@vitepress-demo-preview/component'
@@ -55,12 +54,10 @@ export default {
       NProgress.configure({ showSpinner: false })
       // 手动定义 onBeforeRouteChange
       router.onBeforeRouteChange = () => {
-        initLinkIcons() // 初始化链接图标
         NProgress.start() // 开始进度条
       }
       // 在页面加载完成时停止进度条
       router.onAfterRouteChange = () => {
-        initLinkIcons() // 初始化链接图标
         NProgress.done() // 停止进度条
       }
     }
@@ -70,7 +67,6 @@ export default {
     const route = useRoute()
 
     onMounted(() => {
-      initLinkIcons()
       // 添加 .VPNavBarTitle 的点击事件
       const navBarTitle = document.querySelector('.VPNavBarTitle')
       if (navBarTitle) {
