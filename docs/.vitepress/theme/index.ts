@@ -11,7 +11,6 @@ import AuthGate from './components/AuthGate.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import { NProgress } from 'nprogress-v2/dist/index.js'
 import { NolebaseInlineLinkPreviewPlugin, } from '@nolebase/vitepress-plugin-inline-link-preview/client'
-// Vite virtual modules cannot be resolved through CSS @import.
 import 'virtual:group-icons.css'
 import './style/index.css'
 import { initComponent } from "vitepress-plugin-legend/component"
