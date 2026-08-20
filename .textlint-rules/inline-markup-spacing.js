@@ -46,7 +46,7 @@ function shouldCheck(node) {
 }
 
 function needsSpace(char) {
-  return char && char !== '\n' && !REGEX_SPACE.test(char)
+  return char && char !== '\n' && !REGEX_SPACE.test(char) && !/^\p{P}$/u.test(char)
 }
 
 module.exports = withRules([rule])
