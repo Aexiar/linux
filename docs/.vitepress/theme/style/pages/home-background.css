@@ -1,0 +1,36 @@
+/* A restrained full-page atmosphere for the cloud-native home page. */
+.is-home-page .Layout {
+    --home-green-wash: rgba(221, 244, 232, 0.48);
+    --home-blue-wash: rgba(225, 237, 255, 0.52);
+    --home-fade: rgba(255, 255, 255, 0.78);
+    background-color: var(--vp-c-bg);
+    background-image:
+        linear-gradient(to bottom, transparent 52%, var(--home-fade) 84%, var(--vp-c-bg) 100%),
+        linear-gradient(145deg, var(--home-green-wash) 0%, transparent 38%),
+        linear-gradient(215deg, var(--home-blue-wash) 0%, transparent 42%);
+    background-repeat: no-repeat;
+}
+
+.is-home-page .VPContent,
+.is-home-page .VPHome,
+.is-home-page .VPFooter {
+    background: transparent;
+}
+
+.dark.is-home-page .Layout {
+    --home-green-wash: rgba(13, 63, 42, 0.3);
+    --home-blue-wash: rgba(18, 43, 78, 0.34);
+    --home-fade: rgba(27, 27, 31, 0.76);
+}
+
+@media (max-width: 768px) {
+    .is-home-page .Layout {
+        --home-green-wash: rgba(221, 244, 232, 0.38);
+        --home-blue-wash: rgba(225, 237, 255, 0.4);
+    }
+
+    .dark.is-home-page .Layout {
+        --home-green-wash: rgba(13, 63, 42, 0.24);
+        --home-blue-wash: rgba(18, 43, 78, 0.28);
+    }
+}
