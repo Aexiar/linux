@@ -144,6 +144,7 @@
     border-left-color: #5468ff;
     border-radius: 8px;
     padding: 12px 16px;
+    overflow-x: auto;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
     transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
