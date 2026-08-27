@@ -39,6 +39,7 @@ const rule = {
   type: 'node',
   Code: checkSpacing,
   Link: checkSpacing,
+  Strong: checkSpacing,
 }
 
 function shouldCheck(node) {
