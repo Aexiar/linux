@@ -13,6 +13,8 @@ export const customIcon = {
     lua: "vscode-icons:file-type-lua",
     sql: "vscode-icons:file-type-sql",
     css: "vscode-icons:file-type-css",
+    python: "vscode-icons:file-type-python",
+    "meson.build": "vscode-icons:file-type-python",
     h: localIcon("../../../public/iconify/c.svg"), // 内置无 .h，保留本地
 
     // ==========================================
