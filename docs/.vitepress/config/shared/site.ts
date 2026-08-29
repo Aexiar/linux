@@ -23,6 +23,7 @@ export const head: HeadConfig[] = [
 
 export const siteConfig = {
     rewrites: { "zh/:rest*": ":rest*" },
+    ignoreDeadLinks: [/^\/mise(?:\.html)?$/],
     metaChunk: true,
     lang: "zh-CN",
     title: "为知笔记",
