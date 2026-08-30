@@ -64,7 +64,7 @@ export const viteConfig = {
         Permalink({ ignoreList: [/^(?:zh\/)?about(?:\/|$)/] }),
         IndexPermalinkCompat(),
     ],
-    server: { port: 5173, strictPort: false },
+    server: { port: 6173, strictPort: false },
     css: {
         preprocessorOptions: {
             scss: { api: "modern-compiler" },
