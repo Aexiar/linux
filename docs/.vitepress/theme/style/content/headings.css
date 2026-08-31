@@ -9,7 +9,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
 
 h1[id] {
     padding-bottom: 0.3em;
-    margin: 0 auto 1.2em;
+    margin: 2em auto 1.2em;
     font-size: 2em;
     line-height: 1.2;
     text-align: center;
