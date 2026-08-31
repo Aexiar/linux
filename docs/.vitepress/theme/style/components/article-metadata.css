@@ -1,10 +1,102 @@
 .article-metadata {
-  margin-bottom: 15px;
+  margin: 16px 0 48px;
   color: var(--vp-c-text-2);
-  font-size: 15px;
+  font-size: 14px;
 }
 
-.article-metadata .icon {
-  display: inline-block;
-  transform: translateY(2px);
+.article-metadata + h1 {
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .article-metadata {
+    margin-top: 0;
+  }
+}
+
+.article-metadata p {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.article-metadata .metadata-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1;
+}
+
+.article-metadata .metadata-item + .metadata-item {
+  margin-left: 14px;
+  padding-left: 14px;
+  border-left: 1px solid var(--vp-c-divider);
+}
+
+.article-metadata .metadata-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--vp-c-text-3);
+}
+
+.article-metadata .metadata-label {
+  color: var(--vp-c-text-3);
+}
+
+.article-metadata .metadata-value {
+  color: var(--vp-c-text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .article-metadata .metadata-icon {
+    position: relative;
+    cursor: help;
+  }
+
+  .article-metadata .metadata-icon::after {
+    position: absolute;
+    bottom: calc(100% + 7px);
+    left: 50%;
+    z-index: 10;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: var(--vp-c-bg-elv);
+    box-shadow: var(--vp-shadow-2);
+    color: var(--vp-c-text-1);
+    content: attr(data-tooltip);
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 3px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .article-metadata .metadata-icon:hover::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .article-metadata {
+    font-size: 15px;
+  }
+
+  .article-metadata .metadata-item {
+    gap: 4px;
+  }
+
+  .article-metadata .metadata-item + .metadata-item {
+    margin-left: 8px;
+    padding-left: 8px;
+  }
+
+  .article-metadata .metadata-label {
+    display: none;
+  }
 }
