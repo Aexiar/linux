@@ -12,4 +12,4 @@ master:
             pnpm run docs:build
         - name: 部署到 Pages
           image: node:24
-          script: npx edgeone@1.0.34 pages deploy ./docs/.vitepress/dist --name vitepress-linux --token $EDGEONE_API_TOKEN
+          script: npx edgeone@1.0.34 pages deploy ./docs/.vitepress/dist --name vitepress-linux --token $EDGEONE_API_TOKEN --debug
