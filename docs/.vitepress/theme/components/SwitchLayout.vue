@@ -21,11 +21,14 @@
     <template #nav-screen-content-after>
       <NolebaseEnhancedReadabilitiesScreenMenu/>
     </template>
-    <template #home-features-after>
+    <template #home-hero-before>
+      <CloudHome v-if="frontmatter.cloudHome" />
+    </template>
+    <template v-if="!frontmatter.cloudHome" #home-features-after>
       <Confetti/>
       <HomeUnderline/>
     </template>
-    <template #home-hero-info-after>
+    <template v-if="!frontmatter.cloudHome" #home-hero-info-after>
       <TypeIt
           strings="驾驭容器与 Kubernetes，让云原生技术驱动实践。"
           :options="typeItOptions"
@@ -37,6 +40,7 @@
 
 <script lang="ts" setup>
 import BackTop from "./BackTop.vue";
+import CloudHome from './CloudHome.vue';
 import ArticleMetadata from "./ArticleMetadata.vue";
 import GiscusComment from './GiscusComment.vue'
 import {useData} from "vitepress";
@@ -54,14 +58,13 @@ import {
 
 import SidebarTooltip from './SidebarTooltip.vue'
 
-const {isDark, theme} = useData();
+const {isDark, frontmatter} = useData();
 const typeItOptions = {
   speed: 80,
   breakLines: false,
   waitUntilVisible: false,
 };
 
-console.log('@@@', theme.value)
 
 const enableTransitions = () =>
     "startViewTransition" in document &&
