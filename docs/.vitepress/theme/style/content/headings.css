@@ -29,7 +29,7 @@ h2[id] {
     padding: 0.3em;
     font-weight: bold;
     line-height: 0.8;
-    border-left: 4px solid var(--vp-c-brand-2);
+    border-left: 4px solid var(--cloud-primary);
 }
 
 h2[id] .header-anchor {

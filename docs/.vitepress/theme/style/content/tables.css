@@ -11,7 +11,7 @@
   --doc-table-head-6: #eaf8f8;
   --doc-table-head-7: #fff3eb;
   --doc-table-head-8: #f0f1ff;
-  --doc-table-accent-1: #299764;
+  --doc-table-accent-1: var(--cloud-primary);
   --doc-table-accent-2: #4f7ee8;
   --doc-table-accent-3: #c98b16;
   --doc-table-accent-4: #7b61c9;
@@ -34,7 +34,7 @@
   --doc-table-head-6: #1d3334;
   --doc-table-head-7: #39291f;
   --doc-table-head-8: #272a43;
-  --doc-table-accent-1: #3dd68c;
+  --doc-table-accent-1: var(--cloud-primary);
   --doc-table-accent-2: #7da2f8;
   --doc-table-accent-3: #e8b84f;
   --doc-table-accent-4: #aa8df2;

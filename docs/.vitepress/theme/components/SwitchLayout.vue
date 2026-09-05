@@ -24,12 +24,11 @@
     <template #home-features-after>
       <Confetti/>
       <HomeUnderline/>
-      <LogoAnimate/>
     </template>
     <template #home-hero-info-after>
       <TypeIt
-          strings="云原生是一种基于云计算的架构理念，通过容器、微服务、DevOps 和动态编排技术（如：Kubernetes）构建可扩展、高效和弹性的应用系统。"
-          :options="{ speed: 200, breakLines: false }"
+          strings="驾驭容器与 Kubernetes，让云原生技术驱动实践。"
+          :options="typeItOptions"
           class="hero-typeit"
       />
     </template>
@@ -46,7 +45,6 @@ import {nextTick, provide} from "vue";
 import Confetti from "./Confetti.vue";
 import TypeIt from "./TypeIt.vue";
 import HomeUnderline from "./HomeUnderline.vue";
-import LogoAnimate from "./LogoAnimate.vue";
 import {NolebaseHighlightTargetedHeading} from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
 
 import {
@@ -57,6 +55,11 @@ import {
 import SidebarTooltip from './SidebarTooltip.vue'
 
 const {isDark, theme} = useData();
+const typeItOptions = {
+  speed: 80,
+  breakLines: false,
+  waitUntilVisible: false,
+};
 
 console.log('@@@', theme.value)
 

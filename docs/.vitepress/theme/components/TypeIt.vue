@@ -47,7 +47,7 @@ const initTypeIt = () => {
   }
 
   instance = new TypeIt(el.value, {
-    strings: props.strings,
+    strings: Array.isArray(props.strings) ? props.strings : [props.strings],
     ...config
   })
 

@@ -39,6 +39,11 @@
     background-color: transparent !important;
 }
 
+#VPSidebarNav .VPSidebarItem.is-active > .item .link,
+#VPSidebarNav .VPSidebarItem.is-active > .item .text {
+    color: var(--cloud-primary) !important;
+}
+
 /* 图标防挤压安全网 */
 #VPSidebarNav .VPSidebarItem .item::before {
     content: '';

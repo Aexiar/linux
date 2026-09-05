@@ -12,8 +12,86 @@
 }
 
 .VPImage.image-src {
-    width: 200px;
-    border-radius: 50%;
+    width: 250px;
+    border-radius: 24%;
+    filter: drop-shadow(0 22px 28px rgb(14 116 144 / 20%));
+    transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.VPHero .image:hover .VPImage.image-src {
+    transform: translateY(-6px) rotate(2deg) scale(1.025);
+    filter: drop-shadow(0 28px 34px rgb(14 116 144 / 27%));
+}
+
+.is-home-page .VPHero .name {
+    letter-spacing: -0.045em;
+}
+
+.is-home-page .VPHero .text {
+    letter-spacing: -0.035em;
+}
+
+.is-home-page .VPHero .tagline {
+    max-width: none;
+    min-height: 34px;
+    color: var(--vp-c-text-2);
+    font-size: 20px;
+    line-height: 1.65;
+    white-space: nowrap;
+}
+
+.is-home-page .VPHero .hero-typeit {
+    display: block;
+    min-height: 34px;
+    color: var(--vp-c-text-2);
+    font-size: 20px;
+    line-height: 1.65;
+    white-space: nowrap;
+}
+
+.is-home-page .VPHero .actions {
+    padding-top: 24px;
+}
+
+.is-home-page .VPHero .VPButton {
+    min-width: 122px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgb(14 116 144 / 14%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.is-home-page .VPHero .VPButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgb(14 116 144 / 20%);
+}
+
+@media (max-width: 640px) {
+    .VPImage.image-src {
+        width: 190px;
+    }
+
+    .is-home-page .VPHero .tagline {
+        min-height: 72px;
+        font-size: 16px;
+        white-space: normal;
+    }
+
+    .is-home-page .VPHero .hero-typeit {
+        min-height: 54px;
+        font-size: 16px;
+        white-space: normal;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 959px) {
+    .is-home-page .VPHero .tagline {
+        white-space: normal;
+    }
+
+
+    .is-home-page .VPHero .hero-typeit {
+        white-space: normal;
+    }
 }
 
 :root {

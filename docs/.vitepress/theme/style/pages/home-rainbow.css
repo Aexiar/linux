@@ -1,9 +1,3 @@
-@property --cloud-primary {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #326ce5;
-}
-
 @property --cloud-secondary {
     syntax: "<color>";
     inherits: true;
@@ -12,24 +6,20 @@
 
 /* Keep the home palette within Kubernetes blue and cloud-native green. */
 .is-home-page {
-    --cloud-primary: #326ce5;
     --cloud-secondary: #30a46c;
     animation: cloud-palette 16s ease-in-out infinite alternate;
 }
 
 @keyframes cloud-palette {
     0% {
-        --cloud-primary: #326ce5;
         --cloud-secondary: #30a46c;
     }
 
     50% {
-        --cloud-primary: #2589bd;
         --cloud-secondary: #299764;
     }
 
     100% {
-        --cloud-primary: #0f8b8d;
         --cloud-secondary: #3976d7;
     }
 }
@@ -57,7 +47,7 @@
 }
 
 .VPImage.image-src {
-    border-radius: 50%;
+    border-radius: 24%;
 }
 
 .dark .VPHero .image-bg {

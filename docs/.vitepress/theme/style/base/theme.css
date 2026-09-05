@@ -1,7 +1,12 @@
 :root {
-    --vp-c-brand-1: #18794e;
-    --vp-c-brand-2: #299764;
-    --vp-c-brand-3: #30a46c;
+    /* Cloud-native brand palette: one source for every primary accent. */
+    --cloud-primary: #0e7490;
+    --cloud-primary-hover: #155e75;
+    --cloud-primary-soft: rgb(14 116 144 / 14%);
+    --vp-c-brand-1: var(--cloud-primary);
+    --vp-c-brand-2: var(--cloud-primary-hover);
+    --vp-c-brand-3: var(--cloud-primary);
+    --vp-c-brand-soft: var(--cloud-primary-soft);
 
     --vp-custom-block-info: #cccccc;
     --vp-custom-block-info-bg: #fafafa;
@@ -28,9 +33,9 @@
 }
 
 .dark {
-    --vp-c-brand-1: #3dd68c;
-    --vp-c-brand-2: #30a46c;
-    --vp-c-brand-3: #298459;
+    --cloud-primary: #38bdf8;
+    --cloud-primary-hover: #7dd3fc;
+    --cloud-primary-soft: rgb(56 189 248 / 18%);
 
     --vp-custom-block-info: #cccccc;
     --vp-custom-block-info-bg: #474748;
